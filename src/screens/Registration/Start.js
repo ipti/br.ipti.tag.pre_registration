@@ -34,7 +34,8 @@ const Start = props => {
   const searchSchools = (inputValue, callback) => {
     if (inputValue.trim().length >= 3) {
       const buscaLowerCase = inputValue.toLowerCase();
-      callback(props.schools.filter(school => school.name.toLowerCase().includes(buscaLowerCase)));
+
+      callback(props.schools ? props.schools.filter(school => school.name.toLowerCase().includes(buscaLowerCase)) : null);
     }
   };
 
@@ -44,7 +45,6 @@ const Start = props => {
       props.next('1', { school_identification: idSchool, event_pre_registration: idEvent })
     } else {
       props.setIsActive(false)
-      console.log('opppp');
       // props.next('1', {school_identification: idSchool, event_pre_registration: idEvent})
     }
 
