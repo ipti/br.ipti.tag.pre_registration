@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 
-import RegistrationContext from '../../containers/Registration/context';
+import RegistrationContext from '../../containers/Registration/Context/context';
 
 //Material-UI
 import {

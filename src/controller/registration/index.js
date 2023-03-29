@@ -1,11 +1,14 @@
 import Alert from "@material-ui/lab/Alert";
 import { useMutation } from "react-query";
 import { useHistory } from "react-router";
-import { requestSaveRegistration } from "../../query/registration";
+import { requestSaveRegistration, useFetchRequestSchoolList } from "../../query/registration";
 
 
 export const Controller = () => {
     const history = useHistory()
+
+    const { data: schoolsList } = useFetchRequestSchoolList();
+
     const requestSaveRegistrationMutation = useMutation(
         (data) => requestSaveRegistration(data),
         {
@@ -17,5 +20,5 @@ export const Controller = () => {
           },
         }
       );
-    return {requestSaveRegistrationMutation}
+    return {requestSaveRegistrationMutation, schoolsList}
 } 

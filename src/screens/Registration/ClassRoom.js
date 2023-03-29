@@ -5,8 +5,8 @@ import React, { useContext } from "react";
 import Select from "react-select";
 import homeImg from "../../assets/images/illustration-home.png";
 import { ButtonPurple } from "../../components/Buttons";
-import { useFetchRequestSchoolStages } from "../../query/registration";
-import RegistrationContext from '../../containers/Registration/context';
+import { RegistrationContext } from "../../containers/Registration/Context/context";
+import { requestSchoolStages, useFetchRequestSchoolStages } from "../../query/registration";
 import styles from "./styles";
 
 const useStyles = makeStyles(styles);
@@ -27,13 +27,15 @@ const Classroom = props => {
     const classes = useStyles();
 
     const date = Date(Date.now());
-    const { idSchool, setIdStage, setIdStagevsmodality, idStage, idStagevsmodality, year} = useContext(RegistrationContext);
+    const { school, setIdStage, setIdStagevsmodality, idStage, idStagevsmodality } = useContext(RegistrationContext);
 
-    const { data } = useFetchRequestSchoolStages({ id: idSchool, year: year });
+    // const { data: school } = requestSchoolStages({ id: idSchool});
 
-    
 
-     console.log(data)
+
+    if(!school) return null
+
+    console.log(school);
 
     const onButton = () => {
         props.next('2', {
@@ -41,6 +43,7 @@ const Classroom = props => {
             stages_vacancy_pre_registration: idStage,
         })
     }
+
     return (
         <>
             <Grid
@@ -71,13 +74,14 @@ const Classroom = props => {
                             className="basic-single"
                             classNamePrefix="select"
                             placeholder="Selecione a Turma"
-                            options={data}
+                            options={school.classroom}
                             onChange={selectedOption => {
-                                setIdStagevsmodality(selectedOption.edcenso_stage_vs_modality.id)
-                                setIdStage(selectedOption.id)
+
+                                 setIdStagevsmodality(selectedOption.edcenso_stage_vs_modality_fk)
+                                // setIdStage(selectedOption.id)
                             }}
-                            getOptionValue={opt => opt.edcenso_stage_vs_modality.name}
-                            getOptionLabel={opt => opt.edcenso_stage_vs_modality.name}
+                            getOptionValue={opt => opt.name}
+                            getOptionLabel={opt => opt.name}
                         />
                     </FormControl>
                 </Grid>

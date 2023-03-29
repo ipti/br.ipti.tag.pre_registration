@@ -6,7 +6,7 @@ import ReactSelect from "react-select";
 import AsyncSelect from "react-select/async";
 import homeImg from "../../assets/images/illustration-home.png";
 import { ButtonPurple } from "../../components/Buttons";
-import RegistrationContext from '../../containers/Registration/context';
+import { RegistrationContext } from "../../containers/Registration/Context/context";
 import styles from "./styles";
 const useStyles = makeStyles(styles);
 
@@ -26,7 +26,7 @@ const Start = props => {
   const classes = useStyles();
   const [startDate, setStartDate] = useState()
   const [endDate, setEndDate] = useState()
-  const { setIdSchool, setIdEvent, idSchool, idEvent, year, setYear } = useContext(RegistrationContext);
+  const {  setIdEvent, idSchool, idEvent, setSchool, setYear, schools } = useContext(RegistrationContext);
   const datenow = Date.now();
   const date = new Date(datenow)
 
@@ -35,7 +35,7 @@ const Start = props => {
     if (inputValue.trim().length >= 3) {
       const buscaLowerCase = inputValue.toLowerCase();
 
-      callback(props.schools ? props.schools.filter(school => school.name.toLowerCase().includes(buscaLowerCase)) : null);
+      callback(schools ? schools.filter(school => school.name.toLowerCase().includes(buscaLowerCase)) : null);
     }
   };
 
@@ -64,7 +64,7 @@ const Start = props => {
         <Grid item xs={12}>
           <h1>Matrícula Online</h1>
           <p>
-            Bem-vindo ao Matrícula online, para <br /> iniciar escolha a escola e clique no botão
+            Bem-vindo ao Matrícula online, para <br /> iniciar escolha o projeto e clique no botão
             abaixo
           </p>
         </Grid>
@@ -73,16 +73,17 @@ const Start = props => {
             component="fieldset"
             className={classes.formControl}
           >
-            <FormLabel>Escola *</FormLabel>
+            <FormLabel>Projeto *</FormLabel>
             <AsyncSelect
               styles={customStyles}
               cacheOptions
               loadOptions={searchSchools}
               defaultOptions
-              placeholder="Digite o nome da escola"
+              placeholder="Digite o nome da projeto"
               onChange={selectedOption => {
-                setIdSchool(selectedOption.inep_id);
-
+                setSchool(selectedOption)
+                //setIdSchool(selectedOption.inep_id);
+                console.log(idSchool)
                 const last_event = selectedOption.event_pre_registration.length - 1;
                 if (selectedOption.event_pre_registration[last_event]) {
                   setIdEvent(selectedOption.event_pre_registration[last_event].id)

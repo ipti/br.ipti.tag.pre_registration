@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import RegistrationContext from "./context";
+
 
 // Redux
 
@@ -13,21 +13,17 @@ import Wizard from "../../screens/Registration/Wizard";
 // Material UI
 import Grid from "@material-ui/core/Grid";
 import { Controller } from "../../controller/registration";
-import { useFetchRequestSchoolList } from "../../query/registration";
+import RegistrationContextProvider, { RegistrationContext } from "./Context/context";
+import { useContext } from "react";
 
 const Home = props => {
   const [loadDataStudent, setLoadDataStudent] = useState(false);
   const [load, setLoad] = useState(true)
-  const [idSchool, setIdSchool] = useState('');
-  const [year, setYear] = useState('');
-  const [idStage, setIdStage] = useState('');
-  const [idStagevsmodality, setIdStagevsmodality] = useState('');
-  const [idEvent, setIdEvent] = useState('');
   const [open, setOpen] = useState(false);
   const [number, setNumber] = useState("");
   const [step, setStep] = useState(0);
   const [dataValues, setDataValues] = useState({});
-  const { requestSaveRegistrationMutation } = Controller()
+  const {schools, requestSaveRegistrationMutation} = useContext(RegistrationContext);
   const [isActive, setIsActive] = useState(true);
 
   // console.log(isActive)
@@ -65,7 +61,7 @@ const Home = props => {
   // }, [loadDataSchool, loadDataStudent, loadPeriod, number, open, props, step]);
 
 
-  const { data } = useFetchRequestSchoolList();
+  
 
   const onSubmit = () => {
 
@@ -77,7 +73,6 @@ const Home = props => {
         .join("-");
     }
 
-    // console.log(dataValues)
     const parseBool = value =>
       ['true', 'false'].includes(value) ? value === true : null
     if (load && dataValues.cep) {
@@ -102,11 +97,8 @@ const Home = props => {
 
   const next = (step, values) => {
 
-    console.log(values)
-
     let data = Object.assign(dataValues, values);
 
-    console.log(data)
     setDataValues(data);
     setStep(step)
 
@@ -162,9 +154,7 @@ const Home = props => {
     //   step === 6 ||
     //   props.loading;
     return (
-      <RegistrationContext.Provider
-        value={{ idEvent, setIdEvent, idSchool, setIdSchool, idStage, setIdStage, idStagevsmodality, setIdStagevsmodality, year, setYear }}
-      >
+      <RegistrationContextProvider>
         <Grid
           container
           justifyContent="center"
@@ -174,7 +164,7 @@ const Home = props => {
           <Grid item lg={4} md={5} xs={10}>
             {isActive ? (
               <Wizard
-                schools={data}
+                schools={schools}
                 next={next}
                 step={step}
                 handleStudent={handleStudent}
@@ -187,7 +177,7 @@ const Home = props => {
             )}
           </Grid>
         </Grid>
-      </RegistrationContext.Provider>
+      </RegistrationContextProvider>
 
     );
   };
