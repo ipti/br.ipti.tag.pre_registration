@@ -26,7 +26,6 @@ const SignIn = () => {
         setValid(false);
       }
     }).catch(err => {
-      console.log("opaaa")
       setValid(false);
     });
   };

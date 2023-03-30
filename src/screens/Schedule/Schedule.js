@@ -48,8 +48,7 @@ const Schedule = ({ activePage, data, pagination, handlePage }) => {
       let dataInternalEnd = parseISO(schedule.end_date);
       let internalTransferDateEnd = format(dataInternalEnd, "dd/MM/yyyy");
       
-      console.log(data)
-
+    
       return (
         <Grid key={index} className={classes.box} item md={4} sm={3} xs={12}>
           <BoxBig

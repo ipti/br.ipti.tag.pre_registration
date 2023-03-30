@@ -155,7 +155,7 @@ const StepFive = props => {
     <>
       <Formik
         initialValues={initialValues}
-        onSubmit={values => props.next(7, values)}
+        onSubmit={values => props.next(8, values)}
         validationSchema={validationSchema}
         validateOnChange={false}
         enableReinitialize

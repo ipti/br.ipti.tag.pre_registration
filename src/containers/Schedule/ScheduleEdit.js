@@ -22,7 +22,7 @@ const ScheduleEdit = props => {
 
     const { data } = useFetchRequestScheculeOne({ id: id })
 
-    console.log(data)
+  
 
     const handleChangeActive = event => {
         setActive(event.target.checked);

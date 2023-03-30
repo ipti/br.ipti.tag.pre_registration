@@ -1,105 +1,117 @@
-import React, { useState } from "react";
-import Grid from "@material-ui/core/Grid";
-import { makeStyles} from "@material-ui/core/styles";
-import { Formik, Form } from "formik";
-import Select from "react-select";
-import { FormLabel, FormControl} from "@material-ui/core";
+import React from "react";
+
+// Material UI
+import { FormControl, FormControlLabel, FormHelperText, FormLabel, Grid, Radio, RadioGroup, TextField } from "@material-ui/core";
+
+import { makeStyles, withStyles } from "@material-ui/core/styles";
+
+// Components
 import { ButtonPurple } from "../../components/Buttons";
-import styles from "./styles";
+
+// Third party
+import { Form, Formik } from "formik";
 import * as Yup from "yup";
-import Loading from "../../components/Loading/CircularLoadingButtomActions";
-import { useFetchRequestSchoolRegistration } from "../../query/registration";
-import { getIdSchool } from "../../services/auth";
+
+// Styles
+import MaskedInput from "react-text-mask";
+import styleBase from "../../styles";
+import styles from "./styles";
 
 const useStyles = makeStyles(styles);
 
-const customStyles = {
-  control: base => ({
-    ...base,
-    height: "60px",
-    minHeight: "60px",
-    fontFamily: "Roboto, Helvetica, Arial, sans-serif"
-  }),
-  menu: base => ({
-    ...base,
-    fontFamily: "Roboto, Helvetica, Arial, sans-serif"
-  })
+const PurpleRadio = withStyles({
+  root: {
+    "&$checked": {
+      color: styleBase.colors.purple
+    }
+  },
+  checked: {}
+})(props => <Radio color="default" {...props} />);
+
+const TextMaskCpf = props => {
+  const { inputRef, ...others } = props;
+
+  return (
+    <MaskedInput
+      {...others}
+      ref={ref => {
+        inputRef(ref ? ref.inputElement : null);
+      }}
+      mask={[/\d/, /\d/, /\d/, ".", /\d/, /\d/, /\d/, ".", /\d/, /\d/, /\d/, "-", /\d/, /\d/]}
+      // placeholderChar={"_"}
+      showMask
+    />
+  );
 };
 
-// const BootstrapInput = styled(InputBase)(({ theme }) => ({
-//   'label + &': {
-//     marginTop: theme.spacing(3),
-//   },
-//   '& .MuiInputBase-input': {
-//     borderRadius: 4,
-//     position: 'relative',
-//     backgroundColor: theme.palette.background.paper,
-//     border: '1px solid #ced4da',
-//     fontSize: 16,
-//     padding: '10px 26px 10px 12px',
-//     transition: theme.transitions.create(['border-color', 'box-shadow']),
-//     // Use the system font instead of the default Roboto font.
-//     fontFamily: [
-//       '-apple-system',
-//       'BlinkMacSystemFont',
-//       '"Segoe UI"',
-//       'Roboto',
-//       '"Helvetica Neue"',
-//       'Arial',
-//       'sans-serif',
-//       '"Apple Color Emoji"',
-//       '"Segoe UI Emoji"',
-//       '"Segoe UI Symbol"',
-//     ].join(','),
-//     '&:focus': {
-//       borderRadius: 4,
-//       borderColor: '#80bdff',
-//       boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
-//     },
-//   },
-// }));
+const TextMaskDate = props => {
+  const { inputRef, ...others } = props;
+
+  return (
+    <MaskedInput
+      {...others}
+      ref={ref => {
+        inputRef(ref ? ref.inputElement : null);
+      }}
+      mask={[/\d/, /\d/, "/", /\d/, /\d/, "/", /\d/, /\d/, /\d/, /\d/]}
+      placeholderChar={"_"}
+      showMask
+    />
+  );
+};
+
+const TextMaskFone = props => {
+  const { inputRef, ...other } = props;
+
+  return (
+    <MaskedInput
+      {...other}
+      ref={ref => {
+        inputRef(ref ? ref.inputElement : null);
+      }}
+      mask={[ "(", /[1-9]/, /\d/, ")", " ", /\d/, /\d/, /\d/, /\d/, /\d/, "-", /\d/, /\d/, /\d/, /\d/ ]}
+      placeholderChar={"\u2000"}
+      showMask
+    />
+  );
+};
 
 const StepSix = props => {
   const classes = useStyles();
-  const { loadingButtom } = props;
-  const [inepId, setInepId] = useState('')
-  const [schoolInepFk, setSchoolInepFk] = useState('');
-  const [inputValueClassroom, setInputValueClassroom] = useState("");
 
   const validationSchema = Yup.object().shape({
-    school_identification: Yup.string().required("Campo obrigatório!"),
-    classroom: Yup.string().required("Campo obrigatório!")
+    cpf: Yup.string().required("Campo obrigatório!"),
+    birthday: Yup.string().required("Campo obrigatório!"),
+    sex: Yup.number().required("Campo obrigatório!"),
   });
-
-  const { data } = useFetchRequestSchoolRegistration({ id: getIdSchool() })
-  if(!data) return null
-
+ 
   const initialValues = {
-    school_identification: schoolInepFk,
-    classroom_inep_id: inepId,
-    classroom: inputValueClassroom,
-    calendar_event: data.calendar_event.find(e => e.id === 1).id
+    cpf: props?.student?.cpf ?? "",
+    sex: props?.student?.sex ?? '',
+    birthday: props?.student?.birthday ?? '',
   };
-
-  const handleChange = newValue => {
-    setInputValueClassroom(newValue);
-  };
-
 
   return (
     <>
       <Formik
         initialValues={initialValues}
-        onSubmit={values => props.next(7, values)}
+        onSubmit={values => props.next(6, values)}
         validationSchema={validationSchema}
         validateOnChange={false}
         enableReinitialize
       >
-        {props => {
+        {({ errors, values, touched, handleChange, handleSubmit }) => {
+
+          const errorList = {
+            cpf: touched.cpf && errors.cpf,
+            birthday: touched.birthday && errors.birthday,
+            sex: touched.sex && errors.sex,
+          };
+
           return (
             <Form>
               <Grid
-                className={`${classes.contentMain} ${classes.marginTop30}`}
+                className={`${classes.contentMain}`}
                 container
                 direction="row"
                 justifyContent="center"
@@ -110,34 +122,114 @@ const StepSix = props => {
                     component="fieldset"
                     className={classes.formControl}
                   >
-                    <FormLabel>Turma *</FormLabel>
-                    <Select
-                      styles={customStyles}
-                      className="basic-single"
-                      classNamePrefix="select"
-                      isSearchable={true}
-                      placeholder="Selecione a Turma"
-                      options={data.classroom}
-                      onChange={selectedOption => {
-                        handleChange(selectedOption.id);
-                        setSchoolInepFk(selectedOption.school_inep_fk)
-                        setInepId(selectedOption.inep_id)
+                    <FormLabel>Nº do CPF</FormLabel>
+                    <TextField
+                      name="cpf"
+                      variant="outlined"
+                      InputProps={{
+                        inputComponent: TextMaskCpf,
+                        value: values.cpf,
+                        onChange: handleChange
                       }}
-                      getOptionValue={opt => opt.classroom}
-                      getOptionLabel={opt => opt.name}
-                      loadingMessage={() => "Carregando"}
-                      noOptionsMessage={obj => {
-                        if (obj.inputValue.trim().length >= 3) {
-                          return "Nenhuma turma encontrada";
-                        } else {
-                          return "Digite 3 ou mais caracteres";
-                        }
-                      }}
+                      className={classes.textField}
+                      autoComplete="off"
                     />
                   </FormControl>
-                  <div className={classes.formFieldError}>
-                    {props.errors.classroom}
-                  </div>
+                </Grid>
+              </Grid>
+              <Grid
+                className={`${classes.contentMain}`}
+                container
+                direction="row"
+                justifyContent="center"
+                alignItems="center"
+              >
+                <Grid item xs={12}>
+                  <FormControl
+                    component="fieldset"
+                    className={classes.formControl}
+                    error={!!errorList.birthday}
+                  >
+                    <FormLabel>Nascimento *</FormLabel>
+                    <TextField
+                      name="birthday"
+                      variant="outlined"
+                      className={classes.textField}
+                      InputProps={{
+                        inputComponent: TextMaskDate,
+                        value: values.birthday,
+                        onChange: handleChange
+                      }}
+                      error={!!errorList.birthday}
+                    />
+                    <FormHelperText>{errorList.birthday}</FormHelperText>
+                  </FormControl>
+                </Grid>
+              </Grid>
+              <Grid
+                className={`${classes.contentMain}`}
+                container
+                direction="row"
+                justifyContent="center"
+                alignItems="center"
+              >
+                <Grid item xs={12}>
+                  <FormControl
+                    component="fieldset"
+                    className={classes.formControl}
+                    error={errorList.sex}
+                  >
+                    <FormLabel component="legend">Sexo *</FormLabel>
+                    <RadioGroup
+                      value={values.sex}
+                      name="sex"
+                      onChange={handleChange}
+                      row
+                    >
+                      <FormControlLabel
+                        value={'2'}
+                        name="sex"
+                        control={<PurpleRadio />}
+                        label="Feminino"
+                      />
+                      <FormControlLabel
+                        value={'1'}
+                        name="sex"
+                        control={<PurpleRadio />}
+                        label="Masculino"
+                      />
+                    </RadioGroup>
+                    <FormHelperText>{errorList.sex}</FormHelperText>
+                  </FormControl>
+                </Grid>
+              </Grid>
+              <Grid
+                className={`${classes.contentMain}`}
+                container
+                direction="row"
+                justifyContent="center"
+                alignItems="center"
+              >
+                <Grid item xs={12}>
+                  <FormControl
+                    component="fieldset"
+                    className={classes.formControl}
+                    error={errorList.responsable_telephone}
+                  >
+                    <FormLabel>Telefone *</FormLabel>
+                    <TextField
+                      name="responsable_telephone"
+                      variant="outlined"
+                      className={classes.textField}
+                      InputProps={{
+                        inputComponent: TextMaskFone,
+                        value: values.responsable_telephone,
+                        onChange: handleChange
+                      }}
+                      error={errorList.responsable_telephone}
+                    />
+                    <FormHelperText>{errorList.responsable_telephone}</FormHelperText>
+                  </FormControl>
                 </Grid>
               </Grid>
               <Grid
@@ -148,15 +240,11 @@ const StepSix = props => {
                 direction="row"
               >
                 <Grid item xs={6}>
-                  {!loadingButtom ? (
-                    <ButtonPurple
-                      onClick={props.handleSubmit}
-                      type="submit"
-                      title="Finalizar"
-                    />
-                  ) : (
-                    <Loading />
-                  )}
+                  <ButtonPurple
+                    onClick={handleSubmit}
+                    type="submit"
+                    title="Continuar"
+                  />
                 </Grid>
               </Grid>
             </Form>

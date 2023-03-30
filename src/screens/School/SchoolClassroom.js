@@ -36,7 +36,6 @@ const Home = ({ school }) => {
 
   if(!data) return null
 
-  console.log(school)
 
   const dependence = {
     "1": "Federal",

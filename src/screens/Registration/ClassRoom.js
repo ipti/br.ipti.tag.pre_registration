@@ -27,15 +27,15 @@ const Classroom = props => {
     const classes = useStyles();
 
     const date = Date(Date.now());
-    const { school, setIdStage, setIdStagevsmodality, idStage, idStagevsmodality } = useContext(RegistrationContext);
+    const { school, setIdStage, setIdStagevsmodality, idStage, idStagevsmodality, year } = useContext(RegistrationContext);
 
-    // const { data: school } = requestSchoolStages({ id: idSchool});
+    const { data } = useFetchRequestSchoolStages({ id: school.inep_id, year: year });
 
 
 
     if(!school) return null
 
-    console.log(school);
+  
 
     const onButton = () => {
         props.next('2', {
@@ -74,14 +74,14 @@ const Classroom = props => {
                             className="basic-single"
                             classNamePrefix="select"
                             placeholder="Selecione a Turma"
-                            options={school.classroom}
+                            options={data}
                             onChange={selectedOption => {
 
-                                 setIdStagevsmodality(selectedOption.edcenso_stage_vs_modality_fk)
-                                // setIdStage(selectedOption.id)
+                                 setIdStagevsmodality(selectedOption.edcenso_stage_vs_modality.id)
+                                 setIdStage(selectedOption.id)
                             }}
-                            getOptionValue={opt => opt.name}
-                            getOptionLabel={opt => opt.name}
+                            getOptionValue={opt => opt.edcenso_stage_vs_modality.name}
+                            getOptionLabel={opt => opt.edcenso_stage_vs_modality.name}
                         />
                     </FormControl>
                 </Grid>

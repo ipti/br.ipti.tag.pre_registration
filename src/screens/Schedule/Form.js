@@ -1,6 +1,7 @@
 import DateFnsUtils from "@date-io/date-fns";
 import {
-  FormControl, FormLabel
+  Checkbox,
+  FormControl, FormControlLabel, FormLabel
 } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import {
@@ -48,13 +49,13 @@ const customStyles = {
 const Create = props => {
   const classes = useStyles();
   const {
-    handleChangeActive,
     initialValues,
     handleSubmit,
     validationSchema,
     isEdit,
     loadingIcon,
-    schools
+    allSchool,
+    setAllSchool
   } = props;
 
 
@@ -175,6 +176,27 @@ const Create = props => {
                         {props.errors.end_date}
                       </div>
                     </FormControl>
+                  </Grid>
+                </Grid>
+                <Grid item md={12} sm={12}>
+                  <Grid
+                    container
+                    direction="row"
+                    alignItems="center"
+                    spacing={2}
+                  >
+                    <Grid item md={6} sm={6}>
+                      <FormControl
+                        component="fieldset"
+                        className={classes.formControl}
+                      >
+                        <FormLabel>Escolas</FormLabel>
+                        <FormControlLabel
+                          label="Criar em todas as escolas"
+                          control={<Checkbox value={allSchool} onChange={e => setAllSchool(e.target.checked)}/>}
+                        />
+                      </FormControl>
+                    </Grid>
                   </Grid>
                 </Grid>
                 <Grid

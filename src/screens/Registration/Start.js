@@ -26,7 +26,7 @@ const Start = props => {
   const classes = useStyles();
   const [startDate, setStartDate] = useState()
   const [endDate, setEndDate] = useState()
-  const {  setIdEvent, idSchool, idEvent, setSchool, setYear, schools } = useContext(RegistrationContext);
+  const {  setIdEvent, idSchool, idEvent, setSchool, setYear, schools, school } = useContext(RegistrationContext);
   const datenow = Date.now();
   const date = new Date(datenow)
 
@@ -42,7 +42,7 @@ const Start = props => {
   const onButton = () => {
     if (startDate <= date.getTime() && date.getTime() <= endDate && idEvent !== '') {
       props.setIsActive(true)
-      props.next('1', { school_identification: idSchool, event_pre_registration: idEvent })
+      props.next('1', { school_identification: school.inep_id, event_pre_registration: idEvent })
     } else {
       props.setIsActive(false)
       // props.next('1', {school_identification: idSchool, event_pre_registration: idEvent})
@@ -83,7 +83,6 @@ const Start = props => {
               onChange={selectedOption => {
                 setSchool(selectedOption)
                 //setIdSchool(selectedOption.inep_id);
-                console.log(idSchool)
                 const last_event = selectedOption.event_pre_registration.length - 1;
                 if (selectedOption.event_pre_registration[last_event]) {
                   setIdEvent(selectedOption.event_pre_registration[last_event].id)

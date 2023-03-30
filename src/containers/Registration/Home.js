@@ -26,7 +26,6 @@ const Home = props => {
   const {schools, requestSaveRegistrationMutation} = useContext(RegistrationContext);
   const [isActive, setIsActive] = useState(true);
 
-  // console.log(isActive)
   // useEffect(() => {
   //   setOpen(false);
 
@@ -76,6 +75,8 @@ const Home = props => {
     const parseBool = value =>
       ['true', 'false'].includes(value) ? value === true : null
     if (load && dataValues.cep) {
+
+      console.log(dataValues)
       requestSaveRegistrationMutation.mutate(
         {
           ...dataValues, sex: parseInt(dataValues.sex),
@@ -102,7 +103,8 @@ const Home = props => {
     setDataValues(data);
     setStep(step)
 
-    if (step === 7 && dataValues.cep) {
+
+    if (step === 8 && dataValues.cep) {
       onSubmit();
     }
 

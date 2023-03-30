@@ -30,9 +30,8 @@ const useStyles = makeStyles(theme => styles);
 const Stage = ({ stages, pagination, handlePage, activePage }) => {
   const classes = useStyles();
 
-  if(!stages) return null;
+  if (!stages) return null;
 
-  console.log(stages)
 
   const stage = () => {
     return stages.map((stage, index) => {
@@ -60,10 +59,14 @@ const Stage = ({ stages, pagination, handlePage, activePage }) => {
   };
 
   return (
-    <div style={{position: "relative"}}>
+    <div style={{ position: "relative" }}>
       <Grid container direction="row">
         <Grid className={classes.boxTitlePagination} item xs={12}>
-          <h1 className={`${classes.title} ${classes.floatLeft}`}>Ano Escolar</h1>
+          <div style={{ display: 'flex', flexDirection: "row" }}> 
+            <h1 className={`${classes.title} ${classes.floatLeft}`}>Ano Escolar </h1> 
+            {/* <p style={{marginLeft: 'auto'}}> Será valido o último ano escolar para cada estagio</p> */}
+          </div>
+
           <div className={`${classes.floatRight}`}>
             <Paginator
               pagination={pagination}

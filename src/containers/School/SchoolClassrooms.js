@@ -13,7 +13,6 @@ const Home = props => {
   const { data } = useFetchRequestSchool({id: id})
 
   // useEffect(() => {
-  //   console.log("alÔ")
   //   if (loadData && id) {
   //     props.dispatch({
   //       type: "FETCH_SCHOOL",

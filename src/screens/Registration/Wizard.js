@@ -34,7 +34,8 @@ class Wizard extends Component {
     "4": StepThree,
     "5": StepFour,
     "6": StepFive,
-    "7": Finish
+    "7": StepSix,
+    "8": Finish
   };
 
   render() {

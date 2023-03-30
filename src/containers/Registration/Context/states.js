@@ -8,6 +8,7 @@ export const RegistrationState = () => {
     const [schools, setSchools] = useState();
     const [school, setSchool] = useState();
     const [idSchool, setIdSchool] = useState('');
+    const [isOfLegalAge, setIsOfLegalAge] = useState('');
     const [year, setYear] = useState('');
     const [idStage, setIdStage] = useState('');
     const [idStagevsmodality, setIdStagevsmodality] = useState('');
@@ -21,9 +22,8 @@ export const RegistrationState = () => {
         }
       }, [schoolsList])
 
-      console.log(schools)
 
     return {
-        school, schools, setSchool, year, setYear, idStage, setIdStage, idStagevsmodality, setIdStagevsmodality, idEvent,setIdEvent, requestSaveRegistrationMutation
+        isOfLegalAge, setIsOfLegalAge, school, schools, setSchool, year, setYear, idStage, setIdStage, idStagevsmodality, setIdStagevsmodality, idEvent,setIdEvent, requestSaveRegistrationMutation
     }
 }

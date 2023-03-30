@@ -4,16 +4,27 @@ import Alert from "../../components/Alert/CustomizedSnackbars";
 import Loading from "../../components/Loading/CircularLoading";
 import { Controller } from "../../controller/classroom";
 import { requestCreateStage } from "../../query/stage";
-import { useFetchRequestStagevsmodality } from "../../query/Schedule";
+import { useFetchRequestSchools, useFetchRequestStagevsmodality } from "../../query/Schedule";
 import Create from "../../screens/Stage/AddStage";
 import { getIdSchool } from "../../services/auth";
 
 const AddStage = props => {
   const [active, setActive] = useState(true);
   const [loadingButtom, setLoadingButtom] = useState(false);
+  const [allSchool, setAllSchool] = useState(false);
   const [open, setOpen] = useState(false);
   const { requestCreateStageMutation } = Controller()
   const { data } = useFetchRequestStagevsmodality()
+  const { data: schools } = useFetchRequestSchools();
+
+
+  var getIdSchools = [];
+
+  if (schools) {
+    for (var school in schools) {
+      getIdSchools.push(schools[school].inep_id)
+    }
+  }
 
 
   const handleChangeActive = event => {
@@ -53,11 +64,10 @@ const AddStage = props => {
   };
 
   const handleSubmit = values => {
-    console.log(values)
     let data = {
       edcenso_stage_vs_modality: parseInt(values.edcenso_stage_vs_modality),
       vacancy: parseInt(values.vacancy),
-      school_identification: getIdSchool(),
+      school_identificationArray: allSchool ? getIdSchools : [getIdSchool()],
       year: parseInt(values.year),
     };
     requestCreateStageMutation.mutate(data)
@@ -71,27 +81,21 @@ const AddStage = props => {
       .required("Campo obrigatório!")
   });
 
-  const initialValues = () => {
-    let initialValues = {
-      edcenso_stage_vs_modality: "",
-      vacancy: "",
-      year: "",
-      school_identification: "28022041",
-    };
-    return initialValues;
-  };
+  
+    
 
   return (
     <>
-      {props?.loading && !loadingButtom ? (
+      {!data ? (
         <Loading />
       ) : (
         <>
           <Create
-            initialValues={initialValues}
            // validationSchema={validationSchema}
             stages={data}
             handleSubmit={handleSubmit}
+            allSchool={allSchool}
+            setAllSchool={setAllSchool}
           // handleChangeActive={handleChangeActive}
           // active={active}
           // isEdit={isEdit}

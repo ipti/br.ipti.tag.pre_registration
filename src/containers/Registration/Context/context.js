@@ -4,7 +4,7 @@ import { RegistrationState } from "./states";
 export const RegistrationContext = createContext({});
 
 const RegistrationContextProvider = ({ children }) => {
-    const { idEvent, idStage, idStagevsmodality, school, schools, setIdEvent, setIdStage, setIdStagevsmodality, setSchool, setYear, year, requestSaveRegistrationMutation } = RegistrationState()
+    const { idEvent, idStage, idStagevsmodality, school, schools, setIdEvent, setIdStage, setIdStagevsmodality, setSchool, setYear, year, requestSaveRegistrationMutation,isOfLegalAge, setIsOfLegalAge } = RegistrationState()
 
     return (
         <RegistrationContext.Provider
@@ -20,7 +20,9 @@ const RegistrationContextProvider = ({ children }) => {
                 setSchool,
                 setYear,
                 year,
-                requestSaveRegistrationMutation
+                requestSaveRegistrationMutation,
+                isOfLegalAge,
+                setIsOfLegalAge
             }}>
             {children}
         </RegistrationContext.Provider>

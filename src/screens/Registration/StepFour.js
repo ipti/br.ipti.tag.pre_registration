@@ -95,52 +95,7 @@ const StepFour = props => {
 
           return (
             <Form>
-              <Grid 
-                className={`${classes.marginTop} ${classes.contentMain}`}
-                container
-                direction="row"
-                justifyContent="center"
-                alignItems="center"
-              >
-                  <Grid item xs={12}>
-                      <FormControl
-                        component="fieldset"
-                        className={classes.formControl}  
-                      >
-                        <FormLabel>Nome Completo da Mãe</FormLabel>
-                        <TextField
-                          name="mother_name"
-                          value={values.mother_name}
-                          onChange={handleChange}
-                          variant="outlined"
-                          className={classes.textField}
-                        />
-                      </FormControl>
-                  </Grid>
-              </Grid>
-              <Grid 
-                className={`${classes.contentMain}`}
-                container
-                direction="row"
-                justifyContent="center"
-                alignItems="center"
-              >
-                  <Grid item xs={12}>
-                      <FormControl
-                        component="fieldset"
-                        className={classes.formControl}  
-                      >
-                        <FormLabel>Nome Completo do Pai</FormLabel>
-                        <TextField
-                        name="father_name"
-                        value={values.father_name}
-                        onChange={handleChange}
-                        variant="outlined"
-                        className={classes.textField}
-                      />
-                      </FormControl>
-                  </Grid>
-              </Grid>
+              
               <Grid
                 className={`${classes.contentMain}`}
                 container

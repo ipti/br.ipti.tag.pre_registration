@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 import * as Yup from "yup";
 import Alert from "../../components/Alert/CustomizedSnackbars";
 import Loading from "../../components/Loading/CircularLoading";
@@ -9,21 +8,21 @@ import { ScheduleForm } from "../../screens/Schedule";
 import { getIdSchool } from "../../services/auth";
 
 const Form = props => {
-  const [active, setActive] = useState(true);
-  const [loadData, setLoadData] = useState(true);
   const [loadingButtom, setLoadingButtom] = useState(false);
-  const [isEdit, setIsEdit] = useState(false);
+  const [allSchool, setAllSchool] = useState(false);
   const [open, setOpen] = useState(false);
-  const [redirect, setRedirect] = useState(false);
   const { requestSaveEventPreMutation } = Controller()
-  let history = useHistory();
 
-  const {data} = useFetchRequestSchools()
+  const { data: schools } = useFetchRequestSchools();
 
 
-  const handleChangeActive = event => {
-    setActive(event.target.checked);
-  };
+  var getIdSchools = [];
+
+  if (schools) {
+    for (var school in schools) {
+      getIdSchools.push(schools[school].inep_id)
+    }
+  }
 
   const handleClose = () => {
     setOpen(false);
@@ -61,17 +60,17 @@ const Form = props => {
     let data = {
       start_date: values.start_date,
       end_date: values.end_date,
-      school_identificationArray: [getIdSchool()],
+      school_identificationArray: allSchool ? getIdSchools : [getIdSchool()],
       year: parseInt(values.year),
     };
     requestSaveEventPreMutation.mutate(data)
   };
 
   const validationSchema = Yup.object().shape({
-      start_date: Yup.date()
+    start_date: Yup.date()
       .nullable()
       .required("Campo obrigatório!"),
-      end_date: Yup.date()
+    end_date: Yup.date()
       .when("start_date", (start_date, schema) => {
         if (start_date !== null) {
           return schema.min(
@@ -105,13 +104,15 @@ const Form = props => {
         <>
           <ScheduleForm
             initialValues={initialValues()}
-             validationSchema={validationSchema}
-            schools={data}
-             handleSubmit={handleSubmit}
-            // handleChangeActive={handleChangeActive}
-            // active={active}
-            // isEdit={isEdit}
-            // loadingIcon={props?.loading}
+            validationSchema={validationSchema}
+            schools={schools}
+            handleSubmit={handleSubmit}
+            setAllSchool={setAllSchool}
+            allSchool={allSchool}
+          // handleChangeActive={handleChangeActive}
+          // active={active}
+          // isEdit={isEdit}
+          // loadingIcon={props?.loading}
           />
           {alert()}
         </>

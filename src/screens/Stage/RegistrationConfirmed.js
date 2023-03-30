@@ -128,7 +128,6 @@ const Home = props => {
     student_pre_identification_status: 2,
     year: 2024
   }
-  console.log(student)
 
   return (
     <>

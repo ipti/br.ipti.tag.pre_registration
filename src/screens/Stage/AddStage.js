@@ -1,6 +1,7 @@
 import DateFnsUtils from "@date-io/date-fns";
 import {
-  FormControl, FormLabel
+  Checkbox,
+  FormControl, FormControlLabel, FormLabel
 } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import {
@@ -48,8 +49,8 @@ const customStyles = {
 const Create = props => {
   const classes = useStyles();
   const {
-    handleChangeActive,
-    initialValues,
+    allSchool,
+    setAllSchool,
     handleSubmit,
     validationSchema,
     isEdit,
@@ -59,6 +60,12 @@ const Create = props => {
 
 
 
+  const initialValues = {
+    edcenso_stage_vs_modality: stages[39].id,
+    vacancy: "",
+    year: "",
+    school_identificationArray: "",
+  };
   return (
     <>
       <Grid container direction="row">
@@ -83,7 +90,8 @@ const Create = props => {
         enableReinitialize
       >
         {props => {
-          console.log(props)
+
+         
           return (
             <Form>
               <MuiPickersUtilsProvider locale={brLocale} utils={DateFnsUtils}>
@@ -170,6 +178,7 @@ const Create = props => {
                       <Select
                         getOptionValue={opt => opt.name}
                         getOptionLabel={opt => opt.name}
+                        defaultValue={stages[39]}
                         onChange={selectedOption => {
                           props.setFieldValue("edcenso_stage_vs_modality", selectedOption.id)
                         }}
@@ -180,6 +189,29 @@ const Create = props => {
                         classNamePrefix="select"
                       />
                     </FormControl>
+                  </Grid>
+                </Grid>
+                <Grid item md={12} sm={12}>
+                  <Grid
+                    container
+                    direction="row"
+                    alignItems="center"
+                    spacing={2}
+                  >
+                    <Grid item md={6} sm={6}>
+                      <FormControl
+                        component="fieldset"
+                        className={classes.formControl}
+                      >
+                        <FormLabel>Escolas</FormLabel>
+                        <FormControlLabel
+                          label="Criar em todas as escolas"
+                          control={<Checkbox 
+                             value={allSchool} onChange={e => setAllSchool(e.target.checked)}
+                            />}
+                        />
+                      </FormControl>
+                    </Grid>
                   </Grid>
                 </Grid>
                 <Grid
