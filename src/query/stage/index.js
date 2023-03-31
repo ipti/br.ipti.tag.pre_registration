@@ -18,7 +18,7 @@ const requestClassroom = id => {
     .get("/classroom/" + id, {
       params: {
         include: {
-          student_pre_identification: true
+          student_pre_identification: true,
         }
       }
     })
@@ -98,7 +98,7 @@ export const requestUpdateClassroom = (data, id) => {
     });
 };
 
-const requestStagevsmodality = () => {
+const requestStagevsmodality = (year) => {
   let path = "/stages-vacancy-pre-registration";
   return api
     .get(path, {
@@ -108,7 +108,8 @@ const requestStagevsmodality = () => {
           edcenso_stage_vs_modality: true,
           student_pre_identification: true
         },
-        school_inep_id_fk: getIdSchool()
+        school_inep_id_fk: getIdSchool(),
+        year: year
       }
     })
     .then(response => response.data)
@@ -138,8 +139,8 @@ export const useFetchRequestClassrooms = () => {
   return useQuery(["useRequestClassrooms"], () => requestClassrooms());
 };
 
-export const useFetchRequestStagevsmodality = () => {
-  return useQuery("useRequestStagevsmodality", () => requestStagevsmodality());
+export const useFetchRequestStagevsmodality = ({year}) => {
+  return useQuery(["useRequestStagevsmodality", year], () => requestStagevsmodality(year));
 };
 
 export const useFetchRequestStagevsmodalityOne = ({ id }) => {

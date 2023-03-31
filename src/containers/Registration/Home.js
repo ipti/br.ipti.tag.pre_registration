@@ -23,7 +23,8 @@ const Home = props => {
   const [number, setNumber] = useState("");
   const [step, setStep] = useState(0);
   const [dataValues, setDataValues] = useState({});
-  const {schools, requestSaveRegistrationMutation} = useContext(RegistrationContext);
+  const {schools} = useContext(RegistrationContext);
+  const {requestSaveRegistrationMutation} = Controller()
   const [isActive, setIsActive] = useState(true);
 
   // useEffect(() => {
@@ -82,13 +83,12 @@ const Home = props => {
           ...dataValues, sex: parseInt(dataValues.sex),
           zone: parseInt(dataValues.zone),
           deficiency: parseBool(dataValues.deficiency),
-          cpf: dataValues.cpf.replace(/\D/g, ''),
-          responsable_cpf: dataValues.responsable_cpf.replace(/\D/g, ''),
+          cpf: dataValues.cpf ?  dataValues.cpf.replace(/\D/g, '') : null,
+          responsable_cpf: dataValues.responsable_cpf ? dataValues.responsable_cpf.replace(/\D/g, '') : "",
           responsable_telephone: dataValues.responsable_telephone.replace(/\D/g, ''),
           father_name: dataValues.father_name === "" ? null : dataValues.father_name,
           mother_name: dataValues.mother_name === "" ? null : dataValues.mother_name,
           event_pre_registration: parseInt(dataValues.event_pre_registration),
-          stages_vacancy_pre_registration: parseInt(dataValues.stages_vacancy_pre_registration)
         }
       )
       setLoad(false)
@@ -103,8 +103,9 @@ const Home = props => {
     setDataValues(data);
     setStep(step)
 
+    console.log(step)
 
-    if (step === 8 && dataValues.cep) {
+    if (step === 8) {
       onSubmit();
     }
 

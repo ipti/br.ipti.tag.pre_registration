@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 
 // Material UI
-import { FormControl, FormControlLabel, FormHelperText, FormLabel, Grid, Radio, RadioGroup, TextField } from "@material-ui/core";
+import { FormControl, FormControlLabel, FormHelperText, FormLabel, Grid, MenuItem, Radio, RadioGroup, Select, TextField } from "@material-ui/core";
 
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 
@@ -34,11 +34,15 @@ const StepThree = props => {
 
   const validationSchema = Yup.object().shape({
     name: Yup.string().required("Campo obrigatório!"),
+    color_race: Yup.number().required("Campo obrigatório!"),
+    deficiency: Yup.boolean().required("Campo obrigatório!"),
   });
   const {setIsOfLegalAge, isOfLegalAge} = useContext(RegistrationContext)
  
   const initialValues = {
     name: props?.student?.name ?? '',
+    color_race: props?.student?.color_race ?? '',
+    deficiency: props?.student?.deficiency ?? false,
   };
 
 
@@ -55,6 +59,8 @@ const StepThree = props => {
 
           const errorList = {
             name: touched.name && errors.name,
+            color_race: touched.color_race && errors.color_race,
+            deficiency: touched.deficiency && errors.deficiency
           };
 
           return (
@@ -83,6 +89,74 @@ const StepThree = props => {
                       autoComplete="off"
                     />
                     <FormHelperText>{errorList.name}</FormHelperText>
+                  </FormControl>
+                </Grid>
+              </Grid>
+              <Grid
+                className={`${classes.contentMain}`}
+                container
+                direction="row"
+                justifyContent="center"
+                alignItems="center"
+              >
+                <Grid item xs={12}>
+                  <FormControl
+                    component="fieldset"
+                    className={classes.formControl}
+                    error={errorList.color_race}
+                  >
+                    <FormLabel>Cor/Raça *</FormLabel>
+                    <Select
+                      variant="outlined"
+                      name="color_race"
+                      value={values.color_race}
+                      onChange={handleChange}
+                    >
+                      <MenuItem value={0}>Não Declarada</MenuItem>
+                      <MenuItem value={1}>Branca</MenuItem>
+                      <MenuItem value={2}>Preta</MenuItem>
+                      <MenuItem value={3}>Parda</MenuItem>
+                      <MenuItem value={4}>Amarela</MenuItem>
+                      <MenuItem value={5}>Indígena</MenuItem>
+                    </Select>
+                    <FormHelperText>{errorList.color_race}</FormHelperText>
+                  </FormControl>
+                </Grid>
+              </Grid>
+              <Grid
+                className={`${classes.contentMain}`}
+                container
+                direction="row"
+                justifyContent="center"
+                alignItems="center"
+              >
+                <Grid item xs={12}>
+                  <FormControl
+                    component="fieldset"
+                    className={classes.formControl}
+                    error={errorList.deficiency}
+                  >
+                    <FormLabel component="legend">Possui Deficiência? *</FormLabel>
+                    <RadioGroup
+                      value={values.deficiency}
+                      name="deficiency"
+                      onChange={handleChange}
+                      row
+                    >
+                      <FormControlLabel
+                        value={'true'}
+                        name="deficiency"
+                        control={<PurpleRadio />}
+                        label="Sim"
+                      />
+                      <FormControlLabel
+                        value={'false'}
+                        name="deficiency"
+                        control={<PurpleRadio />}
+                        label="não"
+                      />
+                    </RadioGroup>
+                    <FormHelperText>{errorList.deficiency}</FormHelperText>
                   </FormControl>
                 </Grid>
               </Grid>

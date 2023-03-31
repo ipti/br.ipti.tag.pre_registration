@@ -13,23 +13,22 @@ const useStyles = makeStyles(styles);
 
 const customStyles = {
     control: base => ({
-        ...base,
-        height: "60px",
-        minHeight: "60px",
-        fontFamily: "Roboto, Helvetica, Arial, sans-serif"
+      ...base,
+      height: "60px",
+      minHeight: "60px",
+      fontFamily: "Roboto, Helvetica, Arial, sans-serif"
     }),
     menu: base => ({
-        ...base,
-        fontFamily: "Roboto, Helvetica, Arial, sans-serif"
+      ...base,
+      fontFamily: "Roboto, Helvetica, Arial, sans-serif"
     })
-};
+  };
 const Classroom = props => {
     const classes = useStyles();
 
-    const date = Date(Date.now());
-    const { school, setIdStage, setIdStagevsmodality, idStage, idStagevsmodality, year } = useContext(RegistrationContext);
+    const { school, idClassRoom, setIdClassroom } = useContext(RegistrationContext);
 
-    const { data } = useFetchRequestSchoolStages({ id: school.inep_id, year: year });
+    // const { data } = useFetchRequestSchoolStages({ id: school.inep_id, year: year });
 
 
 
@@ -39,8 +38,7 @@ const Classroom = props => {
 
     const onButton = () => {
         props.next('2', {
-            edcenso_stage_vs_modality: idStagevsmodality,
-            stages_vacancy_pre_registration: idStage,
+            classroom: idClassRoom
         })
     }
 
@@ -68,20 +66,19 @@ const Classroom = props => {
                         component="fieldset"
                         className={classes.formControl}
                     >
-                        <FormLabel>Turma *</FormLabel>
+                        <FormLabel style={{display: 'flex', flexDirection: 'row',justifyContent: "start"}}  >Turma *</FormLabel>
                         <Select
                             styles={customStyles}
                             className="basic-single"
                             classNamePrefix="select"
                             placeholder="Selecione a Turma"
-                            options={data}
+                            options={school.classroom}
                             onChange={selectedOption => {
-
-                                 setIdStagevsmodality(selectedOption.edcenso_stage_vs_modality.id)
-                                 setIdStage(selectedOption.id)
+                                console.log(selectedOption)
+                                 setIdClassroom(selectedOption.id)
                             }}
-                            getOptionValue={opt => opt.edcenso_stage_vs_modality.name}
-                            getOptionLabel={opt => opt.edcenso_stage_vs_modality.name}
+                            getOptionValue={opt => opt.name + ' - ' + opt.school_year}
+                            getOptionLabel={opt => opt.name + ' - ' + opt.school_year}
                         />
                     </FormControl>
                 </Grid>

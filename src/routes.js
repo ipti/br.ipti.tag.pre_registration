@@ -63,8 +63,8 @@ const Routes = () => (
       />
       <PrivateRoute exact path="/escolas" component={School} />
       <PrivateRoute exact path="/escolas/:id" component={SchoolClassrooms} />
-      <PrivateRoute exact path="/estagios" component={Stage} />
-      <PrivateRoute exact path="/estagio/:id" component={StageForm} />
+      <PrivateRoute exact path="/turmas" component={Stage} />
+      <PrivateRoute exact path="/turmas/:id" component={StageForm} />
       <PrivateRoute exact path="/estagios/adicionar" component={AddStage} />
       <PrivateRoute
         exact

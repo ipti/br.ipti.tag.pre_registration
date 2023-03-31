@@ -1,30 +1,36 @@
-import React, { useContext } from "react";
+import React from "react";
 
-import RegistrationContext from '../../containers/Registration/Context/context';
 
 // Material UI
 import {
-  FormLabel,
-  FormControl,
-  FormHelperText,
-  TextField,
-  Grid
+  FormControl, FormControlLabel, FormHelperText, FormLabel, Grid, Radio, RadioGroup, TextField
 } from "@material-ui/core";
 
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
 
 // Components
 import { ButtonPurple } from "../../components/Buttons";
 
 // Third party
-import * as Yup from "yup";
+import { Form, Formik } from "formik";
 import MaskedInput from "react-text-mask";
-import { Formik, Form } from "formik";
+import * as Yup from "yup";
 
 // Styles
 import styles from "./styles";
 
+import styleBase from "../../styles";
+
 const useStyles = makeStyles(styles);
+
+const PurpleRadio = withStyles({
+  root: {
+    "&$checked": {
+      color: styleBase.colors.purple
+    }
+  },
+  checked: {}
+})(props => <Radio color="default" {...props} />);
 
 const TextMaskFone = props => {
   const { inputRef, ...other } = props;
@@ -37,6 +43,22 @@ const TextMaskFone = props => {
       }}
       mask={[ "(", /[1-9]/, /\d/, ")", " ", /\d/, /\d/, /\d/, /\d/, /\d/, "-", /\d/, /\d/, /\d/, /\d/ ]}
       placeholderChar={"\u2000"}
+      showMask
+    />
+  );
+};
+
+const TextMaskDate = props => {
+  const { inputRef, ...others } = props;
+
+  return (
+    <MaskedInput
+      {...others}
+      ref={ref => {
+        inputRef(ref ? ref.inputElement : null);
+      }}
+      mask={[/\d/, /\d/, "/", /\d/, /\d/, "/", /\d/, /\d/, /\d/, /\d/]}
+      placeholderChar={"_"}
       showMask
     />
   );
@@ -64,13 +86,15 @@ const StepFour = props => {
   const validationSchema = Yup.object().shape({
     responsable_name: Yup.string().required("Campo obrigatório!"),
     responsable_cpf: Yup.string().required("Campo obrigatório!"),
-    responsable_telephone: Yup.string().required("Campo obrigatório!")
+    responsable_telephone: Yup.string().required("Campo obrigatório!"),
+    birthday: Yup.string().required("Campo obrigatório!"),
+    sex: Yup.number().required("Campo obrigatório!"),
   });
 
 
   const initialValues = {
-    mother_name: props?.student?.mother_name ??  '',
-    father_name: props?.student?.father_name ?? '',
+    birthday: props?.student?.birthday ?? '',
+    sex: props?.student?.sex ?? '',
     responsable_name: props?.student?.responsable_name ?? '',
     responsable_telephone: props?.student?.responsable_telephone ?? "",
     responsable_cpf: props?.student?.responsable_cpf ?? ''
@@ -91,11 +115,78 @@ const StepFour = props => {
             responsable_name: touched.responsable_name && errors.responsable_name,
             responsable_cpf: touched.responsable_cpf && errors.responsable_cpf,
             responsable_telephone: touched.responsable_telephone && errors.responsable_telephone,
+            birthday: touched.birthday && errors.birthday,
+            sex: touched.sex && errors.sex,
           };
 
           return (
             <Form>
-              
+              <Grid
+                className={`${classes.contentMain}`}
+                container
+                direction="row"
+                justifyContent="center"
+                alignItems="center"
+              >
+                <Grid item xs={12}>
+                  <FormControl
+                    component="fieldset"
+                    className={classes.formControl}
+                    error={!!errorList.birthday}
+                  >
+                    <FormLabel>Nascimento *</FormLabel>
+                    <TextField
+                      name="birthday"
+                      variant="outlined"
+                      className={classes.textField}
+                      InputProps={{
+                        inputComponent: TextMaskDate,
+                        value: values.birthday,
+                        onChange: handleChange
+                      }}
+                      error={!!errorList.birthday}
+                    />
+                    <FormHelperText>{errorList.birthday}</FormHelperText>
+                  </FormControl>
+                </Grid>
+              </Grid>
+              <Grid
+                className={`${classes.contentMain}`}
+                container
+                direction="row"
+                justifyContent="center"
+                alignItems="center"
+              >
+                <Grid item xs={12}>
+                  <FormControl
+                    component="fieldset"
+                    className={classes.formControl}
+                    error={errorList.sex}
+                  >
+                    <FormLabel component="legend">Sexo *</FormLabel>
+                    <RadioGroup
+                      value={values.sex}
+                      name="sex"
+                      onChange={handleChange}
+                      row
+                    >
+                      <FormControlLabel
+                        value={'2'}
+                        name="sex"
+                        control={<PurpleRadio />}
+                        label="Feminino"
+                      />
+                      <FormControlLabel
+                        value={'1'}
+                        name="sex"
+                        control={<PurpleRadio />}
+                        label="Masculino"
+                      />
+                    </RadioGroup>
+                    <FormHelperText>{errorList.sex}</FormHelperText>
+                  </FormControl>
+                </Grid>
+              </Grid>
               <Grid
                 className={`${classes.contentMain}`}
                 container

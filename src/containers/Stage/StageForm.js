@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 import * as Yup from "yup";
-import { connect } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
-import Loading from "../../components/Loading/CircularLoading";
 import Alert from "../../components/Alert/CustomizedSnackbars";
-import { useFetchRequestClassroom, useFetchRequestStagevsmodalityOne } from "../../query/stage";
+import Loading from "../../components/Loading/CircularLoading";
+import { useFetchRequestClassroom } from "../../query/stage";
 import { StageForm } from "../../screens/Stage";
 
 const Form = props => {
@@ -14,7 +13,7 @@ const Form = props => {
  // let history = useHistory();
   const { id } = useParams()
 
-  const {data} = useFetchRequestStagevsmodalityOne({id: id})
+  const {data} = useFetchRequestClassroom({id: id})
 
   const alert = () => {
     if (props?.openAlert) {

@@ -4,7 +4,7 @@ import styles from "./styles";
 const useStyles = makeStyles(styles);
 
 const BoxDiscriptionClassroom = props => {
-  const { title, registrationConfirmed, registrationRemaining } = props;
+  const { title, registrationConfirmed } = props;
   const classes = useStyles();
   return (
     <div
@@ -12,19 +12,7 @@ const BoxDiscriptionClassroom = props => {
         registrationConfirmed ? classes.marginBox : ""
       } `}
     >
-      <div
-        className={`${classes.boxQuantity} ${classes.floatLeft} ${
-          registrationConfirmed
-            ? classes.boxQuantityBackgroundPurple
-            : classes.boxQuantityBackgroundPink
-        }`}
-      >
-        {registrationConfirmed ? registrationConfirmed : registrationRemaining}
-      </div>
-      <div className={classes.floatLeft}>
-        <div className={classes.boxDescriptionCalssroomTitle}>{title}</div>
-        <div>Vagas</div>
-      </div>
+      {title}
     </div>
   );
 };

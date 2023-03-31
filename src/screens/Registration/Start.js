@@ -15,11 +15,13 @@ const customStyles = {
     ...base,
     height: "60px",
     minHeight: "60px",
-    fontFamily: "Roboto, Helvetica, Arial, sans-serif"
+    fontFamily: "Roboto, Helvetica, Arial, sans-serif",
+    display: 'flex', flexDirection: 'row',justifyContent: "start"
   }),
   menu: base => ({
     ...base,
-    fontFamily: "Roboto, Helvetica, Arial, sans-serif"
+    fontFamily: "Roboto, Helvetica, Arial, sans-serif",
+    display: 'flex', flexDirection: 'row',justifyContent: "start"
   })
 };
 const Start = props => {
@@ -73,7 +75,7 @@ const Start = props => {
             component="fieldset"
             className={classes.formControl}
           >
-            <FormLabel>Projeto *</FormLabel>
+            <FormLabel style={{display: 'flex', flexDirection: 'row',justifyContent: "start"}} >Projeto *</FormLabel>
             <AsyncSelect
               styles={customStyles}
               cacheOptions
@@ -95,7 +97,7 @@ const Start = props => {
               }}
               className={classes.selectField}
               getOptionValue={opt => opt.inep_id}
-              getOptionLabel={opt => opt.inep_id + " - " + opt.name}
+              getOptionLabel={opt => opt.name}
               loadingMessage={() => "Carregando"}
               noOptionsMessage={obj => {
                 if (obj.inputValue.trim().length >= 3) {

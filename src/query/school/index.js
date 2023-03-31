@@ -38,6 +38,8 @@ const requestSchools = () => {
       });
   };
 
+
+ 
   const requestStagevsmodality = id => {
     let path = "/stages-vacancy-pre-registration";
     return api

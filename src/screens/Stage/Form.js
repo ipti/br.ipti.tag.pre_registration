@@ -57,56 +57,18 @@ const Create = props => {
     });
   };
 
+  console.log(data)
   return (
     <>
       <Grid container direction="row">
-        <TitleWithLine title={data && data.edcenso_stage_vs_modality.name} />
+        <TitleWithLine title={data && data.name} />
       </Grid>
-      <Formik
-        initialValues={initialValues}
-        onSubmit={handleSubmit}
-        validationSchema={validationSchema}
-        validateOnChange={false}
-        enableReinitialize
-      >
-        {props => {
-          return (
-            <Form>
-              <Grid
-                className={classes.boxContent}
-                container
-                direction="row"
-                spacing={3}
-              >
-
-                <BoxVacancies
-                  quantity={data && (data.vacancy - data.student_pre_identification.length)}
-                  title="Restante"
-                  md={2}
-                  sm={4}
-                  xs={12}
-                />
-                {/* <BoxVacancies
-                  background="purple"
-                  quantity={data && data.requested}
-                  title="Realizadas"
-                  md={2}
-                  sm={4}
-                  xs={12}
-                /> */}
-                <BoxVacancies
-                  background="pink"
-                  quantity={data && data.student_pre_identification.length}
-                  title="Confirmadas"
-                  md={2}
-                  sm={4}
-                  xs={12}
-                />
-              </Grid>
-            </Form>
-          );
-        }}
-      </Formik>
+      <Grid>
+        <Grid>
+          <h3>Ano da Turma</h3>
+          <p>{data.school_year}</p>
+        </Grid>
+      </Grid>
       <Grid
         className={classes.boxContentRegistration}
         container

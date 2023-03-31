@@ -42,8 +42,8 @@ const Sidebar = () => {
     //   Icon: <IconSchool />
     // },
     {
-      to: "/estagios",
-      name: "Ano Escolar",
+      to: "/turmas",
+      name: "Turmas",
       exact: false,
       IconActive: <IconClassroomActive />,
       Icon: <IconClassroom />

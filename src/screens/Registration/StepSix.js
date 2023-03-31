@@ -83,12 +83,14 @@ const StepSix = props => {
     cpf: Yup.string().required("Campo obrigatório!"),
     birthday: Yup.string().required("Campo obrigatório!"),
     sex: Yup.number().required("Campo obrigatório!"),
+    responsable_telephone: Yup.string().required("Campo obrigatório!")
   });
  
   const initialValues = {
     cpf: props?.student?.cpf ?? "",
     sex: props?.student?.sex ?? '',
     birthday: props?.student?.birthday ?? '',
+    responsable_telephone: props?.student?.responsable_telephone ?? "",
   };
 
   return (
@@ -106,6 +108,7 @@ const StepSix = props => {
             cpf: touched.cpf && errors.cpf,
             birthday: touched.birthday && errors.birthday,
             sex: touched.sex && errors.sex,
+            responsable_telephone: touched.responsable_telephone && errors.responsable_telephone,
           };
 
           return (

@@ -35,22 +35,21 @@ const Stage = ({ stages, pagination, handlePage, activePage }) => {
 
   const stage = () => {
     return stages.map((stage, index) => {
+
+      // const {} = useFetchRequestStagevsmodality(year);
+
       return (
         <Grid key={index} item md={4} sm={4} xs={12}>
           <BoxBig
-            link={`estagio/${stage.id}`}
-            title={stage.edcenso_stage_vs_modality.name}
+            link={`turmas/${stage.id}`}
+            title={stage.name}
             subtitle="Turma"
             addCursor={true}
             textRight=""
           >
             <BoxDiscriptionClassroom
-              title="Preenchidas"
-              registrationConfirmed={`${stage.student_pre_identification.length}`}
-            />
-            <BoxDiscriptionClassroom
-              title="Restante"
-              registrationRemaining={`${stage.vacancy - stage.student_pre_identification.length}`}
+              title={`ano: ${stage.school_year}`}
+            //  registrationConfirmed={`${stage.student_pre_identification.length}`}
             />
           </BoxBig>
         </Grid>
@@ -63,10 +62,9 @@ const Stage = ({ stages, pagination, handlePage, activePage }) => {
       <Grid container direction="row">
         <Grid className={classes.boxTitlePagination} item xs={12}>
           <div style={{ display: 'flex', flexDirection: "row" }}> 
-            <h1 className={`${classes.title} ${classes.floatLeft}`}>Ano Escolar </h1> 
+            <h1 className={`${classes.title} ${classes.floatLeft}`}>Turmas </h1> 
             {/* <p style={{marginLeft: 'auto'}}> Será valido o último ano escolar para cada estagio</p> */}
           </div>
-
           <div className={`${classes.floatRight}`}>
             <Paginator
               pagination={pagination}
