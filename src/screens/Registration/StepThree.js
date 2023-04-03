@@ -37,6 +37,7 @@ const StepThree = props => {
     color_race: Yup.number().required("Campo obrigatório!"),
     deficiency: Yup.boolean().required("Campo obrigatório!"),
   });
+
   const {setIsOfLegalAge, isOfLegalAge} = useContext(RegistrationContext)
  
   const initialValues = {
@@ -50,7 +51,7 @@ const StepThree = props => {
     <>
       <Formik
         initialValues={initialValues}
-        onSubmit={values => props.next( isOfLegalAge === '1' ? 5 : isOfLegalAge === '2' ? 7 : null , values)}
+        onSubmit={values => props.next(4 , values)}
         validationSchema={validationSchema}
         validateOnChange={false}
         enableReinitialize

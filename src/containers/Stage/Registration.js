@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
 import Loading from "../../components/Loading/CircularLoading";
 import { Controller } from "../../controller/classroom";
-import { useFetchRequestRegistration } from "../../query/stage";
 import { RegistrationConfirmed } from "../../screens/Stage";
+import { StageRegistrationState } from "./context/statesRegistration";
 
 const Registration = props => {
 
@@ -11,7 +11,7 @@ const Registration = props => {
 
   const { id, idRegistration } = useParams()
 
-  const {data} = useFetchRequestRegistration({id: idRegistration});
+  const {registration} = StageRegistrationState()
 
   // useEffect(() => {
 
@@ -54,12 +54,12 @@ const Registration = props => {
 
   return (
     <>
-      {!data ? (
+      {!registration ? (
         <Loading />
       ) : (
         <>
           <RegistrationConfirmed
-            registration={data}
+            registration={registration}
             classroom={id}
             handleRefusePreIdentification={handleRefusePreIdentification}
             handleSubmit={handleSubmit}

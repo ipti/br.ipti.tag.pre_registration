@@ -47,12 +47,6 @@ const Home = props => {
   } = props;
   const student = registration ?? [];
 
-  const classroomOne = props.classroom ?? [];
-
-
-  const { data } = useFetchRequestClassroom({ id: classroom })
-
-  if (!data) return null;
 
   const nullableField = "-------------";
 
@@ -86,9 +80,6 @@ const Home = props => {
 
   const responsableName = student?.responsable_name ?? nullableField;
   const responsableCpf = student?.responsable_cpf ?? nullableField;
-
-  const classroomName = data?.name ?? nullableField;
-  const modality = data?.modality === 1 ? 'Ensino Regular' : data?.modality === 2 ? 'Educação Especial' : data?.modality === 3 ? 'Educação de jovens e adultos (EJA)' : data?.modality === 4 ? 'Educação profissional' : nullableField;
 
 
   const body = student?.student_fk ? {
@@ -193,18 +184,6 @@ const Home = props => {
           <p className={classes.label}>Telefone</p>
           {student?.responsable_telephone}
         </Grid>
-        <Grid item md={6}>
-          <div className={classes.floatLeft}>
-            <p className={classes.label}>Name da Mãe</p>
-            {student?.mother_name}
-          </div>
-        </Grid>
-        <Grid item md={6}>
-          <div className={classes.floatLeft}>
-            <p className={classes.label}>Name do Pai</p>
-            {student?.father_name}
-          </div>
-        </Grid>
         <Grid item md={12}>
           <div className={classes.lineGrayClean}></div>
         </Grid>
@@ -261,7 +240,7 @@ const Home = props => {
             alt="Icone de Turma"
           />
           <p className={classes.label}>Turma</p>
-            {student?.edcenso_stage_vs_modality.name}
+            {student?.classroom?.name}
           {/* <FormControl
             component="fieldset"
             className={classes.formControl}

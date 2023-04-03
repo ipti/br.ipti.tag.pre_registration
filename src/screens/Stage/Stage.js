@@ -83,13 +83,13 @@ const Stage = ({ stages, pagination, handlePage, activePage }) => {
           </Grid>
         </List>
       </Grid>
-      <Link to="/estagios/adicionar" className={`${classes.addStage}`}>
+      {/* <Link to="/estagios/adicionar" className={`${classes.addStage}`}>
         <ThemeProvider theme={theme}>
           <Fab color="primary" aria-label="add">
             <AddIcon />
           </Fab>
         </ThemeProvider>
-      </Link>
+      </Link> */}
     </div>
   );
 };

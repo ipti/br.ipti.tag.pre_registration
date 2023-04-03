@@ -1,18 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import Alert from "../../components/Alert/CustomizedSnackbars";
 import Loading from "../../components/Loading/CircularLoading";
-import { useFetchRequestSchoolStages } from "../../query/registration";
-import { useFetchRequestSchool } from "../../query/school";
-import { useFetchRequestClassroom, useFetchRequestClassrooms, useFetchRequestStagevsmodality } from "../../query/stage";
 import { Stage } from "../../screens/Stage";
-import { getIdSchool } from "../../services/auth";
+import { StageContext } from "./context/context";
 
 const Home = props => {
-  const { data, isLoading } = useFetchRequestSchool({id: getIdSchool()});
-
-  const classrooms = data ? data.classroom.filter(i => i.edcenso_stage_vs_modality_fk === "14") : null;
-
-  
+ 
+  const {classrooms, isLoadingSchools} = useContext(StageContext)
 
   const alert = () => {
     if (props?.openAlert) {
@@ -43,7 +37,7 @@ const Home = props => {
 
   return (
     <>
-      {isLoading ? (
+      {isLoadingSchools ? (
         <Loading />
       ) : (
         <>

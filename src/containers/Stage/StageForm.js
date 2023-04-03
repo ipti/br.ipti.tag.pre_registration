@@ -1,19 +1,17 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
 import * as Yup from "yup";
 import Alert from "../../components/Alert/CustomizedSnackbars";
 import Loading from "../../components/Loading/CircularLoading";
-import { useFetchRequestClassroom } from "../../query/stage";
 import { StageForm } from "../../screens/Stage";
+import { StageFormState } from "./context/stateStageForm";
 
 const Form = props => {
+  
   const [loadData, setLoadData] = useState(true);
   const [isEdit, setIsEdit] = useState(false);
   const [loadingButtom, setLoadingButtom] = useState(false);
- // let history = useHistory();
-  const { id } = useParams()
 
-  const {data} = useFetchRequestClassroom({id: id})
+  const {classroom, isLoading} = StageFormState()
 
   const alert = () => {
     if (props?.openAlert) {
@@ -61,7 +59,7 @@ const Form = props => {
 
   return (
     <>
-      {!data ? (
+      {isLoading ? (
         <Loading />
       ) : (
         <>
@@ -72,9 +70,7 @@ const Form = props => {
             baseLink={`/turmas/${props.match.params.id}/matricula`}
             isEdit={isEdit}
             loadingIcon={props?.loading}
-            data={
-              data
-            }
+            data={ classroom }
           />
           {alert()}
         </>

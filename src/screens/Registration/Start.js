@@ -47,7 +47,6 @@ const Start = props => {
       props.next('1', { school_identification: school.inep_id, event_pre_registration: idEvent })
     } else {
       props.setIsActive(false)
-      // props.next('1', {school_identification: idSchool, event_pre_registration: idEvent})
     }
 
   }
@@ -86,6 +85,7 @@ const Start = props => {
                 setSchool(selectedOption)
                 //setIdSchool(selectedOption.inep_id);
                 const last_event = selectedOption.event_pre_registration.length - 1;
+                console.log(selectedOption.event_pre_registration[last_event])
                 if (selectedOption.event_pre_registration[last_event]) {
                   setIdEvent(selectedOption.event_pre_registration[last_event].id)
                   setStartDate(new Date(selectedOption.event_pre_registration[last_event].start_date).getTime())

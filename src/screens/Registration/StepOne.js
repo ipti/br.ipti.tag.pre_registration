@@ -57,7 +57,7 @@ const Student = props => {
         </Grid> */}
         <Grid className={classes.marginLeftButton} item xs={4}>
           <ButtonLinePurple
-            onClick={() => props.handleStudent(false)}
+            onClick={() => props.next(3)}
             type="button"
             title="Iniciar"
           />

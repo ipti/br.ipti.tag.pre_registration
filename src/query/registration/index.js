@@ -82,6 +82,25 @@ const requestSchoolList = async () => {
       });
   };
 
+  const requestSchoolToken = async id => {
+    return await api
+      .get("/school-identification/" + id, {
+        params: {
+          include: {
+            classroom: true,
+            calendar_event: true
+          }
+        }
+      })
+      .then(response => response.data)
+      .catch(err => {
+        throw err;
+      });
+  };
+
+
+
+
   export const useFetchRequestStudent = ({ id }) => {
     return useQuery(["useRequestsStudent", id], () => requestStudent(id));
   };
@@ -98,3 +117,5 @@ const requestSchoolList = async () => {
   export const useFetchRequestSchoolStages = ({ id, year }) => {
     return useQuery(["useRequestSchoolStages", id, year], () => requestSchoolStages(id, year));
   };
+
+  

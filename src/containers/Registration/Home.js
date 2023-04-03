@@ -23,9 +23,13 @@ const Home = props => {
   const [number, setNumber] = useState("");
   const [step, setStep] = useState(0);
   const [dataValues, setDataValues] = useState({});
-  const {schools} = useContext(RegistrationContext);
-  const {requestSaveRegistrationMutation} = Controller()
+  const { schools } = useContext(RegistrationContext);
+  const { requestSaveRegistrationMutation } = Controller()
   const [isActive, setIsActive] = useState(true);
+
+  const {isOfLegalAge} = useContext(RegistrationContext);
+
+  console.log(isOfLegalAge)
 
   // useEffect(() => {
   //   setOpen(false);
@@ -61,7 +65,7 @@ const Home = props => {
   // }, [loadDataSchool, loadDataStudent, loadPeriod, number, open, props, step]);
 
 
-  
+
 
   const onSubmit = () => {
 
@@ -83,7 +87,7 @@ const Home = props => {
           ...dataValues, sex: parseInt(dataValues.sex),
           zone: parseInt(dataValues.zone),
           deficiency: parseBool(dataValues.deficiency),
-          cpf: dataValues.cpf ?  dataValues.cpf.replace(/\D/g, '') : null,
+          cpf: dataValues.cpf ? dataValues.cpf.replace(/\D/g, '') : null,
           responsable_cpf: dataValues.responsable_cpf ? dataValues.responsable_cpf.replace(/\D/g, '') : "",
           responsable_telephone: dataValues.responsable_telephone.replace(/\D/g, ''),
           father_name: dataValues.father_name === "" ? null : dataValues.father_name,
@@ -103,7 +107,6 @@ const Home = props => {
     setDataValues(data);
     setStep(step)
 
-    console.log(step)
 
     if (step === 8) {
       onSubmit();
@@ -120,6 +123,18 @@ const Home = props => {
     //   }
     // }
   };
+  console.log(step)
+  const backStep = () => {
+    if (step > 0) {
+      setStep(step - 1)
+    }
+  }
+
+  const nextStep = () => {
+    if (step <= 6) {
+      setStep(step + 1)
+    }
+  }
 
   const getDataStudent = number => {
     setNumber(number);
@@ -157,31 +172,31 @@ const Home = props => {
     //   step === 6 ||
     //   props.loading;
     return (
-      <RegistrationContextProvider>
-        <Grid
-          container
-          justifyContent="center"
-          alignItems="center"
-          style={{ minWidth: "100%" }}
-        >
-          <Grid item lg={4} md={5} xs={10}>
-            {isActive ? (
-              <Wizard
-                schools={schools}
-                next={next}
-                step={step}
-                handleStudent={handleStudent}
-                loadingButtom={props.loading}
-                setIsActive={setIsActive}
-                handleSubmit={onSubmit}
-              />
-            ) : (
-              <Wait />
-            )}
-          </Grid>
+      <Grid
+        container
+        justifyContent="center"
+        alignItems="center"
+        style={{ minWidth: "100%" }}
+      >
+        <Grid item lg={4} md={5} xs={10}>
+          {isActive ? (
+            <Wizard
+              schools={schools}
+              next={next}
+              step={step}
+              handleStudent={handleStudent}
+              loadingButtom={props.loading}
+              setIsActive={setIsActive}
+              handleSubmit={onSubmit}
+              backStep={backStep}
+              nextStep={nextStep}
+              isOfLegalAge={isOfLegalAge}
+            />
+          ) : (
+            <Wait />
+          )}
         </Grid>
-      </RegistrationContextProvider>
-
+      </Grid>
     );
   };
 

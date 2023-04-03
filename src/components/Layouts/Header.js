@@ -85,8 +85,7 @@ const Header = () => {
 
   if(!data) return null
   const schoolSelection = data.find(x => x.inep_id === getIdSchool())
-  console.log(schoolSelection)
-
+ 
   return (
     <AppBar classes={{ root: classes.root }} position="static">
       <Toolbar className={classes.tooBar} disableGutters>
