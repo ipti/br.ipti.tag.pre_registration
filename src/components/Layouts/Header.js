@@ -1,19 +1,21 @@
 import React from "react";
 
 
-import { Grid } from "@material-ui/core";
+import { Grid, useMediaQuery } from "@material-ui/core";
 import AppBar from "@material-ui/core/AppBar";
 import IconButton from "@material-ui/core/IconButton";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import { makeStyles } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
+import { makeStyles } from "@material-ui/core/styles";
+import { MenuTwoTone } from "@material-ui/icons";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import { useHistory } from "react-router-dom";
 import Select from "react-select";
 import { useFetchRequestSchoolList } from "../../query/registration";
 import { getIdSchool, idSchool, isAuthenticated } from "../../services/auth";
 import styleBase from "../../styles";
+
 
 const customStyles = {
   control: base => ({
@@ -61,11 +63,12 @@ const useStyles = makeStyles({
   }
 });
 
-const Header = () => {
+const Header = ({setIsSidebar, isSidebar}) => {
   const classes = useStyles();
   let history = useHistory();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+  const matches = useMediaQuery('(max-width:600px)')
 
   const handleMenu = event => {
     setAnchorEl(event.currentTarget);
@@ -85,10 +88,21 @@ const Header = () => {
 
   if(!data) return null
   const schoolSelection = data.find(x => x.inep_id === getIdSchool())
- 
+
   return (
     <AppBar classes={{ root: classes.root }} position="static">
       <Toolbar className={classes.tooBar} disableGutters>
+        {matches ? <MenuTwoTone onClick={
+          () => {
+            if(isSidebar){
+              setIsSidebar(false)
+            }else{
+              setIsSidebar(true)
+            }
+          }
+        } 
+        
+        style={{color: 'black', marginLeft: '10px'}}/> : null}
         <h2 className={classes.title}>Matrícula</h2>
         <>
           <Grid item xs={3}>

@@ -1,13 +1,21 @@
-import React from "react";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
+import React from "react";
 import FinishImg from "../../assets/images/illustration-success.png";
+import ButtonGreen from "../../components/Buttons/ButtonGreen";
 import styles from "./styles";
+import { useHistory } from "react-router";
+import { useContext } from "react";
+import { RegistrationContext } from "../../containers/Registration/Context/context";
 
 const useStyles = makeStyles(styles);
 
 const Finish = props => {
+
+  const { error } = useContext(RegistrationContext)
   const classes = useStyles();
+
+  console.log(error)
   return (
     <>
       <Grid
@@ -26,7 +34,13 @@ const Finish = props => {
             <br /> a escola entrará em contato
           </p>
         </Grid>
-      </Grid>
+      </Grid><div style={{ margin: 'auto', marginTop: '20px', width: '300px' }}>
+        <ButtonGreen
+          type="button"
+          onClick={() => window.location.reload()}
+          title="Voltar para o inicio"
+        />
+      </div>
       <Grid
         className={`${classes.contentStart} ${classes.contentBond}`}
         container

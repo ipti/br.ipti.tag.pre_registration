@@ -10,7 +10,6 @@ import ReMatricula from "./containers/Registration/ReMatricula";
 import AddStage from "./containers/Stage/AddStage";
 import { Stage, StageForm } from "./containers/Stage";
 import StageContextProvider from "./containers/Stage/context/context";
-import RegistrationContextProvider from "./containers/Registration/Context/context";
 
 //const Home = lazy(() => import("./containers/Home"));
 const Schedule = lazy(() => import("./containers/Schedule/Schedule"));
@@ -49,7 +48,7 @@ const Routes = () => (
   <HashRouter>
     <Switch>
       <Route path="/login" exact component={Login} />
-      <RegistrationContextProvider><Route path="/matricula" exact component={RegistrationHome} /></RegistrationContextProvider>
+      <Route path="/matricula" exact component={RegistrationHome} />
       <Route path="/matricula/:id" exact component={ReMatricula} />
       <PrivateRoute exact path="/" component={Schedule} />
       <PrivateRoute exact path="/cronograma" component={Schedule} />

@@ -27,9 +27,7 @@ const Home = props => {
   const { requestSaveRegistrationMutation } = Controller()
   const [isActive, setIsActive] = useState(true);
 
-  const {isOfLegalAge} = useContext(RegistrationContext);
-
-  console.log(isOfLegalAge)
+  
 
   // useEffect(() => {
   //   setOpen(false);
@@ -64,11 +62,7 @@ const Home = props => {
   //   }
   // }, [loadDataSchool, loadDataStudent, loadPeriod, number, open, props, step]);
 
-
-
-
   const onSubmit = () => {
-
 
     if (dataValues?.birthday) {
       dataValues.birthday = dataValues.birthday
@@ -81,7 +75,6 @@ const Home = props => {
       ['true', 'false'].includes(value) ? value === true : null
     if (load && dataValues.cep) {
 
-      console.log(dataValues)
       requestSaveRegistrationMutation.mutate(
         {
           ...dataValues, sex: parseInt(dataValues.sex),
@@ -100,6 +93,7 @@ const Home = props => {
 
   };
 
+
   const next = (step, values) => {
 
     let data = Object.assign(dataValues, values);
@@ -108,7 +102,7 @@ const Home = props => {
     setStep(step)
 
 
-    if (step === 8) {
+    if (step === 6) {
       onSubmit();
     }
 
@@ -123,7 +117,6 @@ const Home = props => {
     //   }
     // }
   };
-  console.log(step)
   const backStep = () => {
     if (step > 0) {
       setStep(step - 1)
@@ -172,7 +165,8 @@ const Home = props => {
     //   step === 6 ||
     //   props.loading;
     return (
-      <Grid
+      <RegistrationContextProvider>
+           <Grid
         container
         justifyContent="center"
         alignItems="center"
@@ -190,13 +184,15 @@ const Home = props => {
               handleSubmit={onSubmit}
               backStep={backStep}
               nextStep={nextStep}
-              isOfLegalAge={isOfLegalAge}
+              values={dataValues}
             />
           ) : (
             <Wait />
           )}
         </Grid>
       </Grid>
+      </RegistrationContextProvider>
+     
     );
   };
 

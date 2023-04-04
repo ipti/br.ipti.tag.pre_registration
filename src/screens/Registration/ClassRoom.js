@@ -6,8 +6,8 @@ import Select from "react-select";
 import homeImg from "../../assets/images/illustration-home.png";
 import { ButtonPurple } from "../../components/Buttons";
 import { RegistrationContext } from "../../containers/Registration/Context/context";
-import { requestSchoolStages, useFetchRequestSchoolStages } from "../../query/registration";
 import styles from "./styles";
+import { useState } from "react";
 
 const useStyles = makeStyles(styles);
 
@@ -25,16 +25,10 @@ const customStyles = {
   };
 const Classroom = props => {
     const classes = useStyles();
-
+    const [isValid, setIsValid] = useState(false)
     const { school, idClassRoom, setIdClassroom } = useContext(RegistrationContext);
 
-    // const { data } = useFetchRequestSchoolStages({ id: school.inep_id, year: year });
-
-
-
     if(!school) return null
-
-  
 
     const onButton = () => {
         props.next('2', {
@@ -72,10 +66,11 @@ const Classroom = props => {
                             className="basic-single"
                             classNamePrefix="select"
                             placeholder="Selecione a Turma"
+                            value={props?.values?.classroom}
                             options={school.classroom}
                             onChange={selectedOption => {
-                                console.log(selectedOption)
                                  setIdClassroom(selectedOption.id)
+                                 setIsValid(true)
                             }}
                             getOptionValue={opt => opt.name + ' - ' + opt.school_year}
                             getOptionLabel={opt => opt.name + ' - ' + opt.school_year}
@@ -95,6 +90,7 @@ const Classroom = props => {
                         type="button"
                         onClick={onButton}
                         title="Continuar"
+                        disabled={!isValid}
                     />
                 </Grid>
             </Grid>

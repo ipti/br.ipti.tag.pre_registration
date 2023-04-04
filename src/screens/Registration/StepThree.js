@@ -41,9 +41,9 @@ const StepThree = props => {
   const {setIsOfLegalAge, isOfLegalAge} = useContext(RegistrationContext)
  
   const initialValues = {
-    name: props?.student?.name ?? '',
-    color_race: props?.student?.color_race ?? '',
-    deficiency: props?.student?.deficiency ?? false,
+    name: props?.values?.name ?? '',
+    color_race: props?.values?.color_race ?? '',
+    deficiency: props?.values?.deficiency ?? false,
   };
 
 

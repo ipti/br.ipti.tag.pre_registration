@@ -67,6 +67,7 @@ const StepFive = props => {
     edcenso_city: Yup.string().required("Campo obrigatório!"),
     zone: Yup.number().required("Campo obrigatório!"),
   });
+  
 
   const TextMaskCep = props => {
     const { inputRef, ...others } = props;
@@ -89,14 +90,14 @@ const StepFive = props => {
   // },[])
 
   const initialValues = {
-    cep: props?.student?.cep ?? "",
-    address: props?.student?.address ?? "",
-    number: props?.student?.number ?? "",
-    complement: props?.student?.complement ?? "",
-    neighborhood: props?.student?.neighborhood ?? "",
-    edcenso_uf: props?.student?.edcenso_uf ?? "",
-    edcenso_city: props?.student?.edcenso_city ?? "",
-    zone: props?.student?.zone ?? ''
+    cep: props?.values?.cep ?? "",
+    address: props?.values?.address ?? "",
+    number: props?.values?.number ?? "",
+    complement: props?.values?.complement ?? "",
+    neighborhood: props?.values?.neighborhood ?? "",
+    edcenso_uf: props?.values?.edcenso_uf ?? "",
+    edcenso_city: props?.values?.edcenso_city ?? "",
+    zone: props?.values?.zone ?? ''
   };
 
   const checkCep = (e, setFieldValue) => {
@@ -155,7 +156,7 @@ const StepFive = props => {
     <>
       <Formik
         initialValues={initialValues}
-        onSubmit={values => props.next(8, values)}
+        onSubmit={values => props.next(6, values)}
         validationSchema={validationSchema}
         validateOnChange={false}
         enableReinitialize

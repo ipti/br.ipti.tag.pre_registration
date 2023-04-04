@@ -30,6 +30,24 @@ const useStyles = {
       backgroundColor: styleBase.colors.purpleDark
     }
   },
+  buttomGreen: {
+    backgroundColor: styleBase.colors.green,
+    border: "none",
+    borderRadius: "50px",
+    color: styleBase.colors.white,
+    fontSize: styleBase.typography.font.medium,
+    fontFamily: styleBase.typography.types.light,
+    width: "100%",
+    textAlign: "center",
+    padding: "8px 18px",
+    cursor: 'pointer',
+    transition: 'ease-in',
+    outline: 'none',
+
+    '&:hover': {
+      backgroundColor: '#41CD4D',
+    }
+  },
   buttomLinePurple: {
     border: "1px solid",
     borderRadius: "50px",

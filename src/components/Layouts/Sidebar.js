@@ -1,24 +1,23 @@
+import { makeStyles } from "@material-ui/core/styles";
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
 import {
   //IconHouse,
   //IconHouseActive,
   IconClassroom,
-  IconSchedule,
-  IconSchool,
   IconClassroomActive,
-  IconScheduleActive,
-  IconSchoolActive
+  IconSchedule,
+  IconScheduleActive
 } from "../Svg";
 
+import { useMediaQuery } from "@material-ui/core";
 import styles from "./styles";
 
 const useStyles = makeStyles(styles);
 
-const Sidebar = () => {
+const Sidebar = ({isSidebar}) => {
   let history = useHistory();
-
+  const matches = useMediaQuery('(max-width:600px)')
   const navItems = [
     // {
     //   to: "/",
@@ -53,7 +52,7 @@ const Sidebar = () => {
   const classes = useStyles();
 
   return (
-    <div className={`${classes.root}`}>
+    <div className={`${classes.root}`} style={{display: !isSidebar && matches ? "none" : "flex"}}>
       <ul className={`${classes.menu}`}>
         {navItems.map(({ to, name, Icon, IconActive }, index) => (
           <li key={index}>

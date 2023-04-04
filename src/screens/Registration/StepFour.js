@@ -93,18 +93,18 @@ const StepFour = props => {
 
 
   const initialValues = {
-    birthday: props?.student?.birthday ?? '',
-    sex: props?.student?.sex ?? '',
-    responsable_name: props?.student?.responsable_name ?? '',
-    responsable_telephone: props?.student?.responsable_telephone ?? "",
-    responsable_cpf: props?.student?.responsable_cpf ?? ''
+    birthday: props?.values?.birthday ?? '',
+    sex: props?.values?.sex ?? '',
+    responsable_name: props?.values?.responsable_name ?? '',
+    responsable_telephone: props?.values?.responsable_telephone ?? "",
+    responsable_cpf: props?.values?.responsable_cpf ?? ''
   };
 
   return (
     <>
       <Formik
         initialValues={initialValues}
-        onSubmit={values => props.next(6, values)}
+        onSubmit={values => props.next(5, values)}
         validationSchema={validationSchema}
         validateOnChange={false}
         enableReinitialize

@@ -28,6 +28,7 @@ const Start = props => {
   const classes = useStyles();
   const [startDate, setStartDate] = useState()
   const [endDate, setEndDate] = useState()
+  const [isValid, setIsValid] = useState()
   const {  setIdEvent, idSchool, idEvent, setSchool, setYear, schools, school } = useContext(RegistrationContext);
   const datenow = Date.now();
   const date = new Date(datenow)
@@ -83,9 +84,8 @@ const Start = props => {
               placeholder="Digite o nome da projeto"
               onChange={selectedOption => {
                 setSchool(selectedOption)
-                //setIdSchool(selectedOption.inep_id);
+                setIsValid(true)
                 const last_event = selectedOption.event_pre_registration.length - 1;
-                console.log(selectedOption.event_pre_registration[last_event])
                 if (selectedOption.event_pre_registration[last_event]) {
                   setIdEvent(selectedOption.event_pre_registration[last_event].id)
                   setStartDate(new Date(selectedOption.event_pre_registration[last_event].start_date).getTime())
@@ -123,6 +123,7 @@ const Start = props => {
             type="button"
             onClick={onButton}
             title="Iniciar"
+            disabled={!isValid}
           />
         </Grid>
       </Grid>

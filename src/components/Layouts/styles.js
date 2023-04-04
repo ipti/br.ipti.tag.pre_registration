@@ -69,14 +69,14 @@ const useStyles = {
   floatLeft: {
     float: "left"
   },
-  "@media(max-width: 600px)": {
-    menu: {
-      display: "none"
-    },
-    root: {
-      display: "none"
-    }
-  },
+  // "@media(max-width: 600px)": {
+  //   menu: {
+  //     display: "none"
+  //   },
+  //   root: {
+  //     display: "none"
+  //   }
+  // },
   header: {
     flexBasis: 'auto',
     flexGrow: 0
