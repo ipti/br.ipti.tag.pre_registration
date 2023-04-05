@@ -82,42 +82,9 @@ const Home = props => {
   const responsableCpf = student?.responsable_cpf ?? nullableField;
 
 
-  const body = student?.student_fk ? {
-    name: studentName,
-    birthday: studentBirthday,
-    deficiency: student?.deficiency,
-    color_race: student?.color_race,
-    edcenso_city_fk: student?.edcenso_city_fk,
-    edcenso_uf_fk: student?.edcenso_uf_fk,
-    responsable_name: student?.responsableName,
-    responsableCpf: student?.responsableCpf,
-    responsable_telephone: student?.responsable_telephone,
-    sex: student?.sex,
-    student_identification: student?.student_fk,
-    student_fk: student?.student_fk,
-    school_identification: student?.school_inep_id_fk,
+  const body = {
     classroom: student?.classroom_fk,
-    calendar_event: student?.calendar_event_fk,
-    zone: student?.zone,
-    student_pre_identification_status: 2,
-    year: 2024
-  } : {
-    name: studentName,
-    birthday: studentBirthday,
-    deficiency: student?.deficiency,
-    color_race: student?.color_race,
-    edcenso_city_fk: student?.edcenso_city_fk,
-    edcenso_uf_fk: student?.edcenso_uf_fk,
-    responsable_name: student?.responsableName,
-    responsableCpf: student?.responsableCpf,
-    responsable_telephone: student?.responsable_telephone,
-    sex: student?.sex,
-    school_identification: student?.school_inep_id_fk,
-    classroom: student?.classroom_fk,
-    calendar_event: student?.calendar_event_fk,
-    zone: student?.zone,
-    student_pre_identification_status: 2,
-    year: 2024
+    year: student?.classroom.school_year
   }
 
   return (
@@ -271,7 +238,7 @@ const Home = props => {
           Manhã
         </Grid> */}
       </Grid>
-      {/* <Grid
+      <Grid
         className={classes.boxButtons}
         container
         direction="row"
@@ -279,27 +246,32 @@ const Home = props => {
       >
         {!props?.loadingIcon ? (
           <>
-            <Grid item md={3}>
+            {!student?.unavailable ? <Grid item md={3}>
               <ButtonPurple
                 onClick={() => handleSubmit(body)}
                 type="button"
-                title="Confirmar"
+                title="Confirmar Matricula"
               />
-            </Grid>
-            <Grid item md={3}>
+            </Grid> : <Grid item md={3}>
+              <ButtonLinePurple
+                type="button"
+                title="Já Matriculado"
+              />
+            </Grid>}
+            {/* <Grid item md={3}>
               <ButtonLinePurple
                 onClick={() => handleRefusePreIdentification(false)}
                 type="button"
                 title="Recusar"
               />
-            </Grid>
+            </Grid> */}
           </>
         ) : (
           <Grid item md={3}>
             <Loading />
           </Grid>
         )}
-      </Grid> */}
+      </Grid>
     </>
   );
 };

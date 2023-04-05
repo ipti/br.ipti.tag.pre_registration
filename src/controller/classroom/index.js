@@ -20,10 +20,7 @@ export const Controller = () => {
                     <Alert>
                         opoaaa
                     </Alert>
-
                 )
-
-
             },
         }
     );

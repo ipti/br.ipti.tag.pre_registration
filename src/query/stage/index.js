@@ -74,14 +74,7 @@ export const requestCreateStage = (data) => {
 };
 
 export const requestUpdateRegistration = (data, id) => {
-  if (data.student_identification) {
-    return api
-      .post("/student-pre-identifyregistered/registration/" + id, data)
-      .then(response => response.data)
-      .catch(err => {
-        throw err;
-      });
-  }
+  
   return api
     .post("/student-pre-identify/registration/" + id, data)
     .then(response => response.data)
@@ -103,7 +96,6 @@ const requestStagevsmodality = (year) => {
   let path = "/stages-vacancy-pre-registration";
   return api
     .get(path, {
-
       params: {
         include: {
           edcenso_stage_vs_modality: true,

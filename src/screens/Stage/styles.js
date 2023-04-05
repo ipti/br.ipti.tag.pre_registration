@@ -74,7 +74,9 @@ const useStyles = {
     bottom: 20
   },
   boxButtons: {
-    marginTop: 100
+    marginTop: 100,
+    justifyContent: 'end' 
+
   },
   "@media(max-width: 600px)": {
     title: {
