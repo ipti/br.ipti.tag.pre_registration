@@ -5,22 +5,19 @@ import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 
 // Components
-import { TitleWithLine } from "../../components/Titles";
 import { BoxStatus } from "../../components/Boxes";
-import { ButtonPurple, ButtonLinePurple } from "../../components/Buttons";
+import { ButtonLinePurple, ButtonPurple } from "../../components/Buttons";
 import Loading from "../../components/Loading/CircularLoadingButtomActions";
-import Select from "react-select";
+import { TitleWithLine } from "../../components/Titles";
 
 // Assets
+import IconClassroom from "../../assets/images/classroom-icon.png";
+import IconHouse from "../../assets/images/house-icon.png";
 import IconMale from "../../assets/images/male-icon.png";
 import IconStudent from "../../assets/images/student-male-icon.png";
-import IconHouse from "../../assets/images/house-icon.png";
-import IconClassroom from "../../assets/images/classroom-icon.png";
 
 // Styles
 import styles from "./styles";
-import { useFetchRequestClassroom } from "../../query/stage";
-import { FormControl, FormLabel} from "@material-ui/core";
 
 const useStyles = makeStyles(styles);
 
@@ -68,7 +65,6 @@ const Home = props => {
   }
 
   // const studentEdcenso = student.edcenso_city['name'];
-  // console.log(studentEdcenso)
   const status = student?.newStudent;
 
   const address = student?.address ?? nullableField;

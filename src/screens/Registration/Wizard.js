@@ -29,8 +29,7 @@ const Wizard = props => {
       "2": StepOne,
       "3": StepThree,
       "4": isOfLegalAge === '1' ? StepFour : StepSix,
-      "5": StepFive,
-      "6": Finish
+      "5": Finish
     };
 
     const StepComponent = componentMapping[props.step];

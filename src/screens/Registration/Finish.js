@@ -15,7 +15,6 @@ const Finish = props => {
   const { error } = useContext(RegistrationContext)
   const classes = useStyles();
 
-  console.log(error)
   return (
     <>
       <Grid

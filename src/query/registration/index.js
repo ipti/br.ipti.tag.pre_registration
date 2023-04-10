@@ -54,7 +54,7 @@ const requestSchoolList = async () => {
       .get("/student-pre-identify/school", {
         params: {
           include: {
-            classroom: true,
+            classroom: {where: {school_year: 2023}},
             calendar_event: true,
             event_pre_registration: true
           }
@@ -73,7 +73,9 @@ const requestSchoolList = async () => {
           include: {
             classroom: true,
             calendar_event: true
-          }
+          },
+          
+
         }
       })
       .then(response => response.data)

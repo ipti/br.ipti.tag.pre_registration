@@ -71,9 +71,10 @@ const Home = props => {
         .join("-");
     }
 
+    console.log(dataValues)
     const parseBool = value =>
       ['true', 'false'].includes(value) ? value === true : null
-    if (load && dataValues.cep) {
+    if (load) {
 
       requestSaveRegistrationMutation.mutate(
         {
@@ -102,7 +103,10 @@ const Home = props => {
     setStep(step)
 
 
-    if (step === 6) {
+    console.log(step)
+
+    if (step === 5) {
+      console.log(step)
       onSubmit();
     }
 

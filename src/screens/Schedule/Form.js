@@ -190,9 +190,9 @@ const Create = props => {
                         component="fieldset"
                         className={classes.formControl}
                       >
-                        <FormLabel>Escolas</FormLabel>
+                        <FormLabel>Projetos</FormLabel>
                         <FormControlLabel
-                          label="Criar em todas as escolas"
+                          label="Criar em todas as projetos"
                           control={<Checkbox value={allSchool} onChange={e => setAllSchool(e.target.checked)}/>}
                         />
                       </FormControl>

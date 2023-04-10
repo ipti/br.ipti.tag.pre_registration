@@ -89,6 +89,7 @@ const StepFour = props => {
     responsable_telephone: Yup.string().required("Campo obrigatório!"),
     birthday: Yup.string().required("Campo obrigatório!"),
     sex: Yup.number().required("Campo obrigatório!"),
+    zone: Yup.number().required("Campo obrigatório!"),
   });
 
 
@@ -97,7 +98,8 @@ const StepFour = props => {
     sex: props?.values?.sex ?? '',
     responsable_name: props?.values?.responsable_name ?? '',
     responsable_telephone: props?.values?.responsable_telephone ?? "",
-    responsable_cpf: props?.values?.responsable_cpf ?? ''
+    responsable_cpf: props?.values?.responsable_cpf ?? '',
+    zone: props?.values?.zone ?? ''
   };
 
   return (
@@ -117,6 +119,7 @@ const StepFour = props => {
             responsable_telephone: touched.responsable_telephone && errors.responsable_telephone,
             birthday: touched.birthday && errors.birthday,
             sex: touched.sex && errors.sex,
+            zone: touched.zone && errors.zone,
           };
 
           return (
@@ -269,6 +272,41 @@ const StepFour = props => {
                       error={errorList.responsable_telephone}
                     />
                     <FormHelperText>{errorList.responsable_telephone}</FormHelperText>
+                  </FormControl>
+                </Grid>
+              </Grid>
+              <Grid
+                className={`${classes.contentMain}`}
+                container
+                direction="row"
+                justifyContent="center"
+                alignItems="center"
+              >
+                <Grid item xs={12}>
+                  <FormControl
+                    component="fieldset"
+                    className={classes.formControl}
+                    error={errorList.zone}
+                  >
+                    <FormLabel component="legend">Zona *</FormLabel>
+                    <RadioGroup
+                      value={values.zone}
+                      name="zone"
+                      onChange={handleChange}
+                      row
+                    >
+                      <FormControlLabel
+                        value="2"
+                        control={<PurpleRadio />}
+                        label="Urbana"
+                      />
+                      <FormControlLabel
+                        value="1"
+                        control={<PurpleRadio />}
+                        label="Rural"
+                      />
+                    </RadioGroup>
+                    <FormHelperText>{errorList.zone}</FormHelperText>
                   </FormControl>
                 </Grid>
               </Grid>

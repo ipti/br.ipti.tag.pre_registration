@@ -83,7 +83,8 @@ const StepSix = props => {
     cpf: Yup.string().required("Campo obrigatório!"),
     birthday: Yup.string().required("Campo obrigatório!"),
     sex: Yup.number().required("Campo obrigatório!"),
-    responsable_telephone: Yup.string().required("Campo obrigatório!")
+    responsable_telephone: Yup.string().required("Campo obrigatório!"),
+    zone: Yup.number().required("Campo obrigatório!"),
   });
  
   const initialValues = {
@@ -91,6 +92,7 @@ const StepSix = props => {
     sex: props?.values?.sex ?? '',
     birthday: props?.values?.birthday ?? '',
     responsable_telephone: props?.values?.responsable_telephone ?? "",
+    zone: props?.values?.zone ?? ''
   };
 
   return (
@@ -109,6 +111,7 @@ const StepSix = props => {
             birthday: touched.birthday && errors.birthday,
             sex: touched.sex && errors.sex,
             responsable_telephone: touched.responsable_telephone && errors.responsable_telephone,
+            zone: touched.zone && errors.zone,
           };
 
           return (
@@ -125,7 +128,7 @@ const StepSix = props => {
                     component="fieldset"
                     className={classes.formControl}
                   >
-                    <FormLabel>Nº do CPF</FormLabel>
+                    <FormLabel>Nº do CPF *</FormLabel>
                     <TextField
                       name="cpf"
                       variant="outlined"
@@ -232,6 +235,41 @@ const StepSix = props => {
                       error={errorList.responsable_telephone}
                     />
                     <FormHelperText>{errorList.responsable_telephone}</FormHelperText>
+                  </FormControl>
+                </Grid>
+              </Grid>
+              <Grid
+                className={`${classes.contentMain}`}
+                container
+                direction="row"
+                justifyContent="center"
+                alignItems="center"
+              >
+                <Grid item xs={12}>
+                  <FormControl
+                    component="fieldset"
+                    className={classes.formControl}
+                    error={errorList.zone}
+                  >
+                    <FormLabel component="legend">Zona *</FormLabel>
+                    <RadioGroup
+                      value={values.zone}
+                      name="zone"
+                      onChange={handleChange}
+                      row
+                    >
+                      <FormControlLabel
+                        value="2"
+                        control={<PurpleRadio />}
+                        label="Urbana"
+                      />
+                      <FormControlLabel
+                        value="1"
+                        control={<PurpleRadio />}
+                        label="Rural"
+                      />
+                    </RadioGroup>
+                    <FormHelperText>{errorList.zone}</FormHelperText>
                   </FormControl>
                 </Grid>
               </Grid>

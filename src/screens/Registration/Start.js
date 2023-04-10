@@ -2,8 +2,7 @@ import { FormControl, FormLabel } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import React, { useContext, useState } from "react";
-import ReactSelect from "react-select";
-import AsyncSelect from "react-select/async";
+import Select from "react-select";
 import homeImg from "../../assets/images/illustration-home.png";
 import { ButtonPurple } from "../../components/Buttons";
 import { RegistrationContext } from "../../containers/Registration/Context/context";
@@ -16,12 +15,12 @@ const customStyles = {
     height: "60px",
     minHeight: "60px",
     fontFamily: "Roboto, Helvetica, Arial, sans-serif",
-    display: 'flex', flexDirection: 'row',justifyContent: "start"
+    display: 'flex', flexDirection: 'row', justifyContent: "start"
   }),
   menu: base => ({
     ...base,
     fontFamily: "Roboto, Helvetica, Arial, sans-serif",
-    display: 'flex', flexDirection: 'row',justifyContent: "start"
+    display: 'flex', flexDirection: 'row', justifyContent: "start"
   })
 };
 const Start = props => {
@@ -29,18 +28,11 @@ const Start = props => {
   const [startDate, setStartDate] = useState()
   const [endDate, setEndDate] = useState()
   const [isValid, setIsValid] = useState()
-  const {  setIdEvent, idSchool, idEvent, setSchool, setYear, schools, school } = useContext(RegistrationContext);
+  const { setIdEvent, idSchool, idEvent, setSchool, setYear, schools, school } = useContext(RegistrationContext);
   const datenow = Date.now();
   const date = new Date(datenow)
 
-
-  const searchSchools = (inputValue, callback) => {
-    if (inputValue.trim().length >= 3) {
-      const buscaLowerCase = inputValue.toLowerCase();
-
-      callback(schools ? schools.filter(school => school.name.toLowerCase().includes(buscaLowerCase)) : null);
-    }
-  };
+  
 
   const onButton = () => {
     if (startDate <= date.getTime() && date.getTime() <= endDate && idEvent !== '') {
@@ -75,13 +67,14 @@ const Start = props => {
             component="fieldset"
             className={classes.formControl}
           >
-            <FormLabel style={{display: 'flex', flexDirection: 'row',justifyContent: "start"}} >Projeto *</FormLabel>
-            <AsyncSelect
+            <FormLabel style={{ display: 'flex', flexDirection: 'row', justifyContent: "start" }} >Projeto *</FormLabel>
+            <Select
               styles={customStyles}
-              cacheOptions
-              loadOptions={searchSchools}
-              defaultOptions
+              className="basic-single"
+              classNamePrefix="select"
               placeholder="Digite o nome da projeto"
+            //  value={schools}
+              options={schools}
               onChange={selectedOption => {
                 setSchool(selectedOption)
                 setIsValid(true)
@@ -95,17 +88,8 @@ const Start = props => {
                   props.setIsActive(false)
                 }
               }}
-              className={classes.selectField}
               getOptionValue={opt => opt.inep_id}
               getOptionLabel={opt => opt.name}
-              loadingMessage={() => "Carregando"}
-              noOptionsMessage={obj => {
-                if (obj.inputValue.trim().length >= 3) {
-                  return "Nenhuma escola encontrada";
-                } else {
-                  return "Digite 3 ou mais caracteres";
-                }
-              }}
             />
           </FormControl>
         </Grid>

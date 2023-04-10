@@ -57,7 +57,6 @@ const Create = props => {
     });
   };
 
-  console.log(data)
   return (
     <>
       <Grid container direction="row">

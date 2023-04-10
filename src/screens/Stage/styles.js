@@ -78,11 +78,17 @@ const useStyles = {
     justifyContent: 'end' 
 
   },
+  spaceBetween: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
   "@media(max-width: 600px)": {
     title: {
       fontSize: "16px"
     }
   }
+
 };
 
 export default useStyles;
