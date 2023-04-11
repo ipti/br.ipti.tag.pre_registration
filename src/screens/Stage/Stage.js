@@ -38,10 +38,18 @@ const Stage = ({ stages, pagination, handlePage, activePage }) => {
 
   if (!stages) return null;
 
-  const year_classrrom = [{year: "Todos", id: 10}, {year: 2014, id: 0}, {year: 2015, id: 1}, {year: 2016, id: 2}, {year: 2017, id: 3}, {year: 2018, id: 4}, {year: 2019, id: 5}, {year: 2020, id: 6}, {year: 2021, id: 7}, {year: 2021, id: 8}, {year: 2022, id: 9}]
 
-  console.log(year)
+  const currentYear = new Date().getFullYear();
 
+  const numYears = 10;
+
+  const yearArray = Array.from({ length: numYears }, (v, i) => ({
+    year: currentYear - i,
+    id: i
+  }));
+
+  const year_classrrom = [{year: "Todos", id: 11}, ...yearArray];
+  
   const stage = () => {
     return stages.map((stage, index) => {
 
