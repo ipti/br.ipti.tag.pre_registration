@@ -173,8 +173,8 @@ const Home = props => {
            <Grid
         container
         justifyContent="center"
-        alignItems="center"
-        style={{ minWidth: "100%" }}
+        //alignItems="center"
+        style={{ minWidth: "100%", marginTop: 30 }}
       >
         <Grid item lg={4} md={5} xs={10}>
           {isActive ? (

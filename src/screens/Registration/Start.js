@@ -12,6 +12,7 @@ const useStyles = makeStyles(styles);
 const customStyles = {
   control: base => ({
     ...base,
+
     height: "60px",
     minHeight: "60px",
     fontFamily: "Roboto, Helvetica, Arial, sans-serif",
@@ -19,8 +20,8 @@ const customStyles = {
   }),
   menu: base => ({
     ...base,
+    width: '100%',
     fontFamily: "Roboto, Helvetica, Arial, sans-serif",
-    display: 'flex', flexDirection: 'row', justifyContent: "start"
   })
 };
 const Start = props => {
@@ -32,7 +33,7 @@ const Start = props => {
   const datenow = Date.now();
   const date = new Date(datenow)
 
-  
+
 
   const onButton = () => {
     if (startDate <= date.getTime() && date.getTime() <= endDate && idEvent !== '') {
@@ -50,7 +51,7 @@ const Start = props => {
         container
         direction="row"
         justifyContent="center"
-        alignItems="center"
+      //  alignItems="center"
       >
         <Grid item xs={12}>
           <img src={homeImg} alt="" />
@@ -73,7 +74,7 @@ const Start = props => {
               className="basic-single"
               classNamePrefix="select"
               placeholder="Digite o nome da projeto"
-            //  value={schools}
+              //  value={schools}
               options={schools}
               onChange={selectedOption => {
                 setSchool(selectedOption)

@@ -20,7 +20,7 @@ const customStyles = {
     }),
     menu: base => ({
       ...base,
-      fontFamily: "Roboto, Helvetica, Arial, sans-serif"
+      fontFamily: "Roboto, Helvetica, Arial, sans-serif",
     })
   };
 const Classroom = props => {
