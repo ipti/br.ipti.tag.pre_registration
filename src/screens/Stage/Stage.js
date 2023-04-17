@@ -2,7 +2,7 @@ import React from "react";
 
 // Material UI
 import Grid from "@material-ui/core/Grid";
-import { createMuiTheme, makeStyles } from "@material-ui/core/styles";
+import { ThemeProvider, createMuiTheme, makeStyles } from "@material-ui/core/styles";
 import Alert from "@material-ui/lab/Alert";
 
 import Select from "react-select";
@@ -12,12 +12,14 @@ import List from "../../components/List";
 import { Paginator } from "../../components/Paginator";
 
 // Styles
-import styleBase from "../../styles";
-import styles from "./styles";
-import { useState } from "react";
+import { Fab } from "@material-ui/core";
+import AddIcon from "@material-ui/icons/Add";
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import { StageContext } from "../../containers/Stage/context/context";
 import { getYearClassRoom, yearClassroom } from "../../services/auth";
+import styleBase from "../../styles";
+import styles from "./styles";
 
 const theme = createMuiTheme({
   palette: {
@@ -122,13 +124,13 @@ const Stage = ({ stages, pagination, handlePage, activePage }) => {
           </Grid>
         </List>
       </Grid>
-      {/* <Link to="/estagios/adicionar" className={`${classes.addStage}`}>
+      <Link to="/turmas/adicionar" className={`${classes.addStage}`}>
         <ThemeProvider theme={theme}>
           <Fab color="primary" aria-label="add">
             <AddIcon />
           </Fab>
         </ThemeProvider>
-      </Link> */}
+      </Link>
     </div>
   );
 };

@@ -7,9 +7,10 @@ import MainLayout from "./components/Layouts/MainLayout";
 import NotFoundPage from "./components/Layouts/NotFoundPage";
 import CircularLoading from "./components/Loading/CircularLoading";
 import ReMatricula from "./containers/Registration/ReMatricula";
-import AddStage from "./containers/Stage/AddStage";
 import { Stage, StageForm } from "./containers/Stage";
 import StageContextProvider from "./containers/Stage/context/context";
+import AddStage from "./containers/Stage/AddStage"
+import CreateClassroom from "./containers/Stage/AddStage";
 
 //const Home = lazy(() => import("./containers/Home"));
 const Schedule = lazy(() => import("./containers/Schedule/Schedule"));
@@ -64,7 +65,7 @@ const Routes = () => (
       />
       <PrivateRoute exact path="/escolas" component={School} />
       <PrivateRoute exact path="/escolas/:id" component={SchoolClassrooms} />
-      <StageContextProvider>
+      {/* <StageContextProvider>
         <PrivateRoute exact path="/turmas" component={Stage} />
         <PrivateRoute exact path="/turmas/:id" component={StageForm} />
         <PrivateRoute
@@ -72,9 +73,10 @@ const Routes = () => (
           path="/turmas/:id/matricula/:idRegistration"
           component={RegistrationClassroom}
         />
-      </StageContextProvider>
+       
+      </StageContextProvider> */}
 
-      <PrivateRoute exact path="/estagios/adicionar" component={AddStage} />
+      <PrivateRoute exact path="/estagios/adicionar" component={CreateClassroom} />
 
       <Route path="/*" component={NotFoundPage} />
     </Switch>

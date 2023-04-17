@@ -1,19 +1,16 @@
-import React from "react";
-import { createContext } from "react";
-import { StageState } from "./states";
+import React, { createContext } from "react";
 import { AddClassroomState } from "./statesAddClassroom";
 
-export const StageContext = createContext({});
+export const CreateClassroomContext = createContext({});
 
 const StageContextProvider = ({ children }) => {
 
-    const { classrooms, isLoadingSchools } = StageState();
     const { initial_hour, initial_min, final_hour, final_min, setFinal_hour, setFinal_min, setInitial_hour, setInitial_min } = AddClassroomState()
 
     return (
-        <StageContext.Provider value={{ classrooms, isLoadingSchools }}>
+        <CreateClassroomContext.Provider value={{ initial_hour, initial_min, final_hour, final_min, setFinal_hour, setFinal_min, setInitial_hour, setInitial_min }}>
             {children}
-        </StageContext.Provider>
+        </CreateClassroomContext.Provider>
     )
 }
 

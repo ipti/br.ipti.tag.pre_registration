@@ -65,7 +65,7 @@ const Create = props => {
       <Grid>
         <Grid>
           <h3>Ano da Turma</h3>
-          <p>{data.school_year}</p>
+          {/* <p>{data.school_year}</p> */}
         </Grid>
       </Grid>
       <Grid

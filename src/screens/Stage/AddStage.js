@@ -1,15 +1,17 @@
 import DateFnsUtils from "@date-io/date-fns";
 import {
   Checkbox,
-  FormControl, FormControlLabel, FormLabel
+  FormControl, FormControlLabel, FormGroup, FormLabel
 } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
+import TextField from "@material-ui/core/TextField";
 import {
   createMuiTheme, makeStyles
 } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
+import { MobileTimePicker } from '@mui/x-date-pickers/MobileTimePicker';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import {
-  KeyboardDatePicker, MuiPickersUtilsProvider
+  MuiPickersUtilsProvider
 } from "@material-ui/pickers";
 import brLocale from "date-fns/locale/pt-BR";
 import { Form, Formik } from "formik";
@@ -21,6 +23,9 @@ import Loading from "../../components/Loading/CircularLoadingButtomActions";
 import { TitleWithLine } from "../../components/Titles";
 import styleBase from "../../styles";
 import styles from "./styles";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import { useState } from "react";
 
 const useStyles = makeStyles(theme => styles);
 
@@ -60,6 +65,9 @@ const Create = props => {
 
 
 
+
+
+
   const initialValues = {
     edcenso_stage_vs_modality: stages[39].id,
     vacancy: "",
@@ -77,7 +85,7 @@ const Create = props => {
           xs={12}
         >
           <h1 className={`${classes.title} ${classes.floatLeft}`}>
-            {`Adicionar Ano Escolar`}
+            {`Adicionar Turma`}
           </h1>
 
         </Grid>
@@ -85,13 +93,13 @@ const Create = props => {
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}
-       // validationSchema={validationSchema}
+        // validationSchema={validationSchema}
         validateOnChange={false}
         enableReinitialize
       >
         {props => {
 
-         
+
           return (
             <Form>
               <MuiPickersUtilsProvider locale={brLocale} utils={DateFnsUtils}>
@@ -110,7 +118,7 @@ const Create = props => {
                         component="fieldset"
                         className={classes.formControl}
                       >
-                        <FormLabel>Vagas</FormLabel>
+                        <FormLabel>Nome</FormLabel>
                         <TextField
                           name="vacancy"
                           value={props.values.vacancy}
@@ -134,25 +142,63 @@ const Create = props => {
                     //alignItems="center"
                     spacing={2}
                   >
-
-                    <Grid item md={12} sm={12}>
-                      <TitleWithLine title="Ano" />
-                    </Grid>
                     <Grid item md={5} sm={5}>
                       <FormControl
                         component="fieldset"
                         className={classes.formControl}
                       >
-                        <FormLabel>Ano</FormLabel>
-                        <TextField
-                          name="year"
-                          value={props.values.year}
-                          onChange={props.handleChange}
-                          id="outlined-size-small"
-                          variant="outlined"
-                          required
-                          className={classes.textField}
-                        />
+                        <FormLabel>Horário Inicial *</FormLabel>
+                        <LocalizationProvider dateAdapter={AdapterDayjs}>
+                          <DemoContainer
+                            components={['MobileTimePicker', 'MobileTimePicker', 'MobileTimePicker']}
+                            sx={{ minWidth: 210 }}
+                          >
+                            <MobileTimePicker
+                              label={'"Hora", "Minutos"'}
+                              views={['hours', 'minutes']}
+                              onChange={e => { setInitial_hour(e.$H); setInitial_min(e.$M) }}
+                            />
+
+                          </DemoContainer>
+
+                        </LocalizationProvider>
+
+
+                        <div className={classes.formFieldError}>
+                          {props.errors.year}
+                        </div>
+                      </FormControl>
+                    </Grid>
+                  </Grid>
+                </Grid>
+                <Grid item md={12} sm={12}>
+                  <Grid
+                    container
+                    direction="column"
+                    //alignItems="center"
+                    spacing={2}
+                  >
+                    <Grid item md={5} sm={5}>
+                      <FormControl
+                        component="fieldset"
+                        className={classes.formControl}
+                      >
+                        <FormLabel>Horário final *</FormLabel>
+                        <LocalizationProvider dateAdapter={AdapterDayjs}>
+                          <DemoContainer
+                            components={['MobileTimePicker', 'MobileTimePicker', 'MobileTimePicker']}
+                            sx={{ minWidth: 210 }}
+                          >
+                            <MobileTimePicker
+                              label={'"Hora", "Minutos"'}
+                              views={['hours', 'minutes']}
+                              onChange={e => { setFinal_hour(e.$H); setFinal_min(e.$m) }}
+                            />
+
+                          </DemoContainer>
+
+                        </LocalizationProvider>
+
 
                         <div className={classes.formFieldError}>
                           {props.errors.year}
@@ -167,51 +213,104 @@ const Create = props => {
                   direction="column"
                   spacing={2}
                 >
-                  <Grid item md={12} sm={12}>
-                    <TitleWithLine title="Ano Escolar" />
+                  <FormLabel>Dias da Semana *</FormLabel>
+                  <Grid item md={5} sm={5}>
+                    <FormGroup>
+                      <FormControlLabel
+                        // disabled={cegueiraDisabled}
+                        control={
+                          <Checkbox
+                          // checked={values.deficiency_type_blindness}
+                          // onChange={handleChange}
+                          />}
+                        name='deficiency_type_blindness'
+                        label="Segunda-Feira"
+                      />
+                    </ FormGroup>
                   </Grid>
                   <Grid item md={5} sm={5}>
-                    <FormControl
-                      component="fieldset"
-                      className={classes.formControl}
-                    >
-                      <Select
-                        getOptionValue={opt => opt.name}
-                        getOptionLabel={opt => opt.name}
-                        defaultValue={stages[39]}
-                        onChange={selectedOption => {
-                          props.setFieldValue("edcenso_stage_vs_modality", selectedOption.id)
-                        }}
-                        styles={customStyles}
-                        name="edcenso_stage_vs_modality"
-                        options={stages}
-                        className="basic-multi-select"
-                        classNamePrefix="select"
+                    <FormGroup>
+                      <FormControlLabel
+                        // disabled={cegueiraDisabled}
+                        control={
+                          <Checkbox
+                          // checked={values.deficiency_type_blindness}
+                          // onChange={handleChange}
+                          />}
+                        name='deficiency_type_blindness'
+                        label="Terça-Feira"
                       />
-                    </FormControl>
+                    </ FormGroup>
                   </Grid>
-                </Grid>
-                <Grid item md={12} sm={12}>
-                  <Grid
-                    container
-                    direction="row"
-                    alignItems="center"
-                    spacing={2}
-                  >
-                    <Grid item md={6} sm={6}>
-                      <FormControl
-                        component="fieldset"
-                        className={classes.formControl}
-                      >
-                        <FormLabel>Escolas</FormLabel>
-                        <FormControlLabel
-                          label="Criar em todas as escolas"
-                          control={<Checkbox 
-                             value={allSchool} onChange={e => setAllSchool(e.target.checked)}
-                            />}
-                        />
-                      </FormControl>
-                    </Grid>
+                  <Grid item md={5} sm={5}>
+                    <FormGroup>
+                      <FormControlLabel
+                        // disabled={cegueiraDisabled}
+                        control={
+                          <Checkbox
+                          // checked={values.deficiency_type_blindness}
+                          // onChange={handleChange}
+                          />}
+                        name='deficiency_type_blindness'
+                        label="Quarta-Feira"
+                      />
+                    </ FormGroup>
+                  </Grid>
+                  <Grid item md={5} sm={5}>
+                    <FormGroup>
+                      <FormControlLabel
+                        // disabled={cegueiraDisabled}
+                        control={
+                          <Checkbox
+                          // checked={values.deficiency_type_blindness}
+                          // onChange={handleChange}
+                          />}
+                        name='deficiency_type_blindness'
+                        label="Quinta-Feira"
+                      />
+                    </ FormGroup>
+                  </Grid>
+                  <Grid item md={5} sm={5}>
+                    <FormGroup>
+                      <FormControlLabel
+                        // disabled={cegueiraDisabled}
+                        control={
+                          <Checkbox
+                          // checked={values.deficiency_type_blindness}
+                          // onChange={handleChange}
+                          />}
+                        name='deficiency_type_blindness'
+                        label="Sexta-Feira"
+                      />
+                    </ FormGroup>
+                  </Grid>
+                  <Grid item md={5} sm={5}>
+                    <FormGroup>
+                      <FormControlLabel
+                        // disabled={cegueiraDisabled}
+                        control={
+                          <Checkbox
+                          // checked={values.deficiency_type_blindness}
+                          // onChange={handleChange}
+                          />}
+                        name='deficiency_type_blindness'
+                        label="Sábado"
+                      />
+                    </ FormGroup>
+                  </Grid>
+                  <Grid item md={5} sm={5}>
+                    <FormGroup>
+                      <FormControlLabel
+                        // disabled={cegueiraDisabled}
+                        control={
+                          <Checkbox
+                          // checked={values.deficiency_type_blindness}
+                          // onChange={handleChange}
+                          />}
+                        name='deficiency_type_blindness'
+                        label="Domingo"
+                      />
+                    </ FormGroup>
                   </Grid>
                 </Grid>
                 <Grid
