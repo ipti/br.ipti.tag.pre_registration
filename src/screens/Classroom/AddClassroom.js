@@ -8,24 +8,24 @@ import TextField from "@material-ui/core/TextField";
 import {
   createMuiTheme, makeStyles
 } from "@material-ui/core/styles";
-import { MobileTimePicker } from '@mui/x-date-pickers/MobileTimePicker';
-import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import {
   MuiPickersUtilsProvider
 } from "@material-ui/pickers";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { MobileTimePicker } from '@mui/x-date-pickers/MobileTimePicker';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import brLocale from "date-fns/locale/pt-BR";
+import dayjs from "dayjs";
 import { Form, Formik } from "formik";
 import PropTypes from "prop-types";
-import React from "react";
-import Select from 'react-select';
+import React, { useContext } from "react";
 import { ButtonPurple } from "../../components/Buttons";
 import Loading from "../../components/Loading/CircularLoadingButtomActions";
 import { TitleWithLine } from "../../components/Titles";
+import { CreateClassroomContext } from "../../containers/Stage/context/contextAddClassroom";
 import styleBase from "../../styles";
 import styles from "./styles";
-import { LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
-import { useState } from "react";
 
 const useStyles = makeStyles(theme => styles);
 
@@ -56,24 +56,16 @@ const Create = props => {
   const {
     allSchool,
     setAllSchool,
-    handleSubmit,
-    validationSchema,
+    handleSubmit, 
     isEdit,
     loadingIcon,
     stages
   } = props;
 
+ 
 
+  const { initialValue, setInitial_hour, setInitial_min, setFinal_hour, setFinal_min } = useContext(CreateClassroomContext)
 
-
-
-
-  const initialValues = {
-    edcenso_stage_vs_modality: stages[39].id,
-    vacancy: "",
-    year: "",
-    school_identificationArray: "",
-  };
   return (
     <>
       <Grid container direction="row">
@@ -91,15 +83,12 @@ const Create = props => {
         </Grid>
       </Grid>
       <Formik
-        initialValues={initialValues}
+        initialValues={initialValue}
         onSubmit={handleSubmit}
-        // validationSchema={validationSchema}
         validateOnChange={false}
         enableReinitialize
       >
         {props => {
-
-
           return (
             <Form>
               <MuiPickersUtilsProvider locale={brLocale} utils={DateFnsUtils}>
@@ -111,17 +100,17 @@ const Create = props => {
                     spacing={2}
                   >
                     <Grid item md={12} sm={12}>
-                      <TitleWithLine title="Vagas" />
+                      <TitleWithLine title="Turma" />
                     </Grid>
                     <Grid item md={5} sm={5}>
                       <FormControl
                         component="fieldset"
                         className={classes.formControl}
                       >
-                        <FormLabel>Nome</FormLabel>
+                        <FormLabel>Nome*</FormLabel>
                         <TextField
-                          name="vacancy"
-                          value={props.values.vacancy}
+                          name="name"
+                          value={props.values.name}
                           onChange={props.handleChange}
                           id="outlined-size-small"
                           variant="outlined"
@@ -129,7 +118,7 @@ const Create = props => {
                           className={classes.textField}
                         />
                         <div className={classes.formFieldError}>
-                          {props.errors.vacancy}
+                          {props.errors.name}
                         </div>
                       </FormControl>
                     </Grid>
@@ -156,14 +145,11 @@ const Create = props => {
                             <MobileTimePicker
                               label={'"Hora", "Minutos"'}
                               views={['hours', 'minutes']}
+                              defaultValue={dayjs('2022-04-17T07:00')}
                               onChange={e => { setInitial_hour(e.$H); setInitial_min(e.$M) }}
                             />
-
                           </DemoContainer>
-
                         </LocalizationProvider>
-
-
                         <div className={classes.formFieldError}>
                           {props.errors.year}
                         </div>
@@ -184,7 +170,7 @@ const Create = props => {
                         className={classes.formControl}
                       >
                         <FormLabel>Horário final *</FormLabel>
-                        <LocalizationProvider dateAdapter={AdapterDayjs}>
+                        <LocalizationProvider dateAdapter={AdapterDayjs} >
                           <DemoContainer
                             components={['MobileTimePicker', 'MobileTimePicker', 'MobileTimePicker']}
                             sx={{ minWidth: 210 }}
@@ -192,14 +178,11 @@ const Create = props => {
                             <MobileTimePicker
                               label={'"Hora", "Minutos"'}
                               views={['hours', 'minutes']}
+                              defaultValue={dayjs('2022-04-17T12:00')}
                               onChange={e => { setFinal_hour(e.$H); setFinal_min(e.$m) }}
                             />
-
                           </DemoContainer>
-
                         </LocalizationProvider>
-
-
                         <div className={classes.formFieldError}>
                           {props.errors.year}
                         </div>
@@ -220,10 +203,10 @@ const Create = props => {
                         // disabled={cegueiraDisabled}
                         control={
                           <Checkbox
-                          // checked={values.deficiency_type_blindness}
-                          // onChange={handleChange}
+                          checked={props.values.week_days_monday}
+                          onChange={props.handleChange}
                           />}
-                        name='deficiency_type_blindness'
+                        name='week_days_monday'
                         label="Segunda-Feira"
                       />
                     </ FormGroup>
@@ -234,10 +217,10 @@ const Create = props => {
                         // disabled={cegueiraDisabled}
                         control={
                           <Checkbox
-                          // checked={values.deficiency_type_blindness}
-                          // onChange={handleChange}
+                          checked={props.values.week_days_tuesday}
+                          onChange={props.handleChange}
                           />}
-                        name='deficiency_type_blindness'
+                        name='week_days_tuesday'
                         label="Terça-Feira"
                       />
                     </ FormGroup>
@@ -248,10 +231,10 @@ const Create = props => {
                         // disabled={cegueiraDisabled}
                         control={
                           <Checkbox
-                          // checked={values.deficiency_type_blindness}
-                          // onChange={handleChange}
+                          checked={props.values.week_days_wednesday}
+                          onChange={props.handleChange}
                           />}
-                        name='deficiency_type_blindness'
+                        name='week_days_wednesday'
                         label="Quarta-Feira"
                       />
                     </ FormGroup>
@@ -262,10 +245,10 @@ const Create = props => {
                         // disabled={cegueiraDisabled}
                         control={
                           <Checkbox
-                          // checked={values.deficiency_type_blindness}
-                          // onChange={handleChange}
+                          checked={props.values.week_days_thursday}
+                          onChange={props.handleChange}
                           />}
-                        name='deficiency_type_blindness'
+                        name='week_days_thursday'
                         label="Quinta-Feira"
                       />
                     </ FormGroup>
@@ -276,10 +259,10 @@ const Create = props => {
                         // disabled={cegueiraDisabled}
                         control={
                           <Checkbox
-                          // checked={values.deficiency_type_blindness}
-                          // onChange={handleChange}
+                          checked={props.values.week_days_friday}
+                          onChange={props.handleChange}
                           />}
-                        name='deficiency_type_blindness'
+                        name='week_days_friday'
                         label="Sexta-Feira"
                       />
                     </ FormGroup>
@@ -290,10 +273,10 @@ const Create = props => {
                         // disabled={cegueiraDisabled}
                         control={
                           <Checkbox
-                          // checked={values.deficiency_type_blindness}
-                          // onChange={handleChange}
+                          checked={props.values.week_days_saturday}
+                          onChange={props.handleChange}
                           />}
-                        name='deficiency_type_blindness'
+                        name='week_days_saturday'
                         label="Sábado"
                       />
                     </ FormGroup>
@@ -304,10 +287,10 @@ const Create = props => {
                         // disabled={cegueiraDisabled}
                         control={
                           <Checkbox
-                          // checked={values.deficiency_type_blindness}
-                          // onChange={handleChange}
+                          checked={props.values.week_days_sunday}
+                          onChange={props.handleChange}
                           />}
-                        name='deficiency_type_blindness'
+                        name='week_days_sunday'
                         label="Domingo"
                       />
                     </ FormGroup>
@@ -317,6 +300,7 @@ const Create = props => {
                   className={classes.marginButtom}
                   container
                   direction="row"
+                  style={{marginTop: '30px'}}
                 >
                   <Grid item md={2} sm={2}>
                     {!loadingIcon ? (

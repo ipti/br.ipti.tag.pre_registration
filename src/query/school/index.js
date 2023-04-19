@@ -25,7 +25,6 @@ const requestRegistrations = () => {
 
 const requestSchool = id => {
 
-  console.log(getYearClassRoom())
   return api
     .get("/school-identification/" + id, getYearClassRoom() !== '' ? {
       params: {

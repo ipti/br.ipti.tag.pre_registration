@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import * as Yup from "yup";
 import Alert from "../../components/Alert/CustomizedSnackbars";
 import Loading from "../../components/Loading/CircularLoading";
-import { StageForm } from "../../screens/Stage";
+import Create from "../../screens/Classroom/Form";
 import { StageFormState } from "./context/stateStageForm";
 
 const Form = props => {
@@ -63,7 +63,7 @@ const Form = props => {
         <Loading />
       ) : (
         <>
-          <StageForm
+          <Create
             //initialValues={initialValues}
             validationSchema={validationSchema}
             handleSubmit={handleSubmit}

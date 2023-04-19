@@ -19,7 +19,7 @@ import IconStudent from "../../assets/images/student-male-icon.png";
 // Styles
 import { useFetchRequestSchoolRegistration } from "../../query/registration";
 import { getIdSchool } from "../../services/auth";
-import styles from "../Stage/styles";
+import styles from "../Classroom/styles";
 
 const useStyles = makeStyles(styles);
 const customStyles = {

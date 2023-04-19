@@ -4,19 +4,21 @@ import Alert from "../../components/Alert/CustomizedSnackbars";
 import Loading from "../../components/Loading/CircularLoading";
 import { Controller } from "../../controller/classroom";
 import { useFetchRequestSchools, useFetchRequestStagevsmodality } from "../../query/Schedule";
-import Create from "../../screens/Stage/AddStage";
+import StageContextProvider from "./context/contextAddClassroom";
+import Create from "../../screens/Classroom/AddClassroom";
 
 const CreateClassroom = props => {
   const [active, setActive] = useState(true);
   const [loadingButtom, setLoadingButtom] = useState(false);
+
   const [allSchool, setAllSchool] = useState(false);
   const [open, setOpen] = useState(false);
   const { requestCreateStageMutation } = Controller()
   const { data } = useFetchRequestStagevsmodality()
   const { data: schools } = useFetchRequestSchools();
+  const {requestCreateClassroomMutation} = Controller()
 
-
-
+  
 
 
   const handleChangeActive = event => {
@@ -28,6 +30,7 @@ const CreateClassroom = props => {
   };
 
   const alert = () => {
+
     let status = null;
     let message = null;
 
@@ -56,32 +59,22 @@ const CreateClassroom = props => {
   };
 
   const handleSubmit = values => {
-    let data = {
-      edcenso_stage_vs_modality: parseInt(values.edcenso_stage_vs_modality),
-      vacancy: parseInt(values.vacancy),
-     // school_identificationArray: allSchool ? getIdSchools : [getIdSchool()],
-      year: parseInt(values.year),
-    };
-    requestCreateStageMutation.mutate(data)
+    requestCreateClassroomMutation.mutate(
+      {...values, 
+        initial_hour: `${values.initial_hour}`, 
+        initial_min: `${values.initial_minute}`,
+        final_hour: `${values.final_hour}`,
+        final_min: `${values.final_minute}`
+      })
   };
 
-  const validationSchema = Yup.object().shape({
-    edcenso_stage_vs_modality: Yup.number().required("Campo obrigatório!"),
-    vacancy: Yup.number().required("Campo obrigatório!"),
-    year: Yup.number()
-      .min(4, "Campo deve ter no mínimo 4 digitos. Ex: 2020")
-      .required("Campo obrigatório!")
-  });
-
-  
-    
 
   return (
     <>
       {!data ? (
         <Loading />
       ) : (
-        <>
+        <StageContextProvider>
           <Create
            // validationSchema={validationSchema}
             stages={data}
@@ -94,7 +87,7 @@ const CreateClassroom = props => {
           // loadingIcon={props?.loading}
           />
           {alert()}
-        </>
+        </StageContextProvider>
       )}
     </>
   );

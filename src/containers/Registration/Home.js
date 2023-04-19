@@ -71,7 +71,6 @@ const Home = props => {
         .join("-");
     }
 
-    console.log(dataValues)
     const parseBool = value =>
       ['true', 'false'].includes(value) ? value === true : null
     if (load) {
@@ -103,10 +102,7 @@ const Home = props => {
     setStep(step)
 
 
-    console.log(step)
-
     if (step === 5) {
-      console.log(step)
       onSubmit();
     }
 

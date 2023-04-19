@@ -4,6 +4,7 @@ import Alert from "@material-ui/lab/Alert";
 import { useMutation } from "react-query";
 import { useHistory } from "react-router";
 import { requestCreateStage, requestEditPreIdentification, requestUpdateRegistration } from "../../query/stage";
+import { requestCreateClassroom } from "../../query/classroom";
 
 
 export const Controller = () => {
@@ -59,5 +60,21 @@ export const Controller = () => {
             },
         }
     );
-    return { requestUpdateRegistrationMutation, requestUpdatePreIdentificationMutation, requestCreateStageMutation }
+
+    const requestCreateClassroomMutation = useMutation(
+        (data) => requestCreateClassroom(data),
+        {
+            onError: (error) => {
+                console.log(error.response.data.message);
+            },
+            onSuccess: (data) => {
+                console.log(data)
+            },
+        }
+    );
+
+
+
+
+    return { requestUpdateRegistrationMutation, requestUpdatePreIdentificationMutation, requestCreateStageMutation, requestCreateClassroomMutation }
 } 

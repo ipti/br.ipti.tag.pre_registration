@@ -1,12 +1,13 @@
-import React, { useContext } from "react";
+import React from "react";
 import Alert from "../../components/Alert/CustomizedSnackbars";
 import Loading from "../../components/Loading/CircularLoading";
-import { Stage } from "../../screens/Stage";
-import { StageContext } from "./context/context";
+import { Controller } from "../../controller/Stage";
+import StageContextProvider from "./context/context";
+import Classroom from "../../screens/Classroom/Classroom";
 
 const Home = props => {
- 
-  const {classrooms, isLoadingSchools} = useContext(StageContext)
+
+  const { isLoadingSchools } = Controller()
 
   const alert = () => {
     if (props?.openAlert) {
@@ -40,14 +41,12 @@ const Home = props => {
       {isLoadingSchools ? (
         <Loading />
       ) : (
-        <>
-          <Stage
-            stages={classrooms}
-          />
+        <StageContextProvider>
+          <Classroom />
           {alert()}
-        </>
+        </ StageContextProvider>
       )}
-    </>
+    </ >
   );
 };
 

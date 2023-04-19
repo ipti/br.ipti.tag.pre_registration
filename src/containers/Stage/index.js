@@ -1,5 +1,5 @@
-import Stage from "./Stage";
-import StageForm from "./StageForm";
+import Classroom from "./Classroom";
+import ClassroomForm from "./ClasroomForm";
 import Registration from "./Registration";
 
-export { Stage, StageForm, Registration };
+export { Classroom, ClassroomForm, Registration };

@@ -17,6 +17,15 @@ const requestClassroom = id => {
       });
   };
 
+  export const requestCreateClassroom = data => {
+    return api
+        .post("/classroom", data)
+        .then(response => response.data)
+        .catch(err => {
+            throw err;
+        });
+};
+
   export const useFetchRequestClassroom = ({id}) => {
     return useQuery(["useRequestClassroom"], () => requestClassroom(id));
   };

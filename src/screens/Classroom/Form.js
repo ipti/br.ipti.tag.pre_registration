@@ -1,23 +1,17 @@
-import React from "react";
 import PropTypes from "prop-types";
+import React from "react";
 
 // Material UI
-import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
-import { FormLabel, FormControl } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
-import Loading from "../../components/Loading/CircularLoadingButtomActions";
 
 // Third party
-import { Formik, Form } from "formik";
 
 // Components
-import { TitleWithLine } from "../../components/Titles";
-import { BoxVacancies } from "../../components/Boxes";
 import { BoxRegistration } from "../../components/Boxes";
-import { ButtonPurple } from "../../components/Buttons";
 import List from "../../components/List";
+import { TitleWithLine } from "../../components/Titles";
 
 // Styles
 import styles from "./styles";
@@ -86,15 +80,6 @@ const Create = props => {
       </Grid>
     </>
   );
-};
-
-Create.propTypes = {
-  vacancies: PropTypes.number,
-  handleChange: PropTypes.func,
-  handleSubmit: PropTypes.func,
-  initialValues: PropTypes.object,
-  isEdit: PropTypes.bool,
-  data: PropTypes.object
 };
 
 export default Create;

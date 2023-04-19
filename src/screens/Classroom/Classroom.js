@@ -32,14 +32,13 @@ const theme = createMuiTheme({
 const useStyles = makeStyles(theme => styles);
 
 
-const Stage = ({ stages, pagination, handlePage, activePage }) => {
+const Classroom = ({ pagination, handlePage, activePage }) => {
+
+  const {classrooms: stages} = useContext(StageContext)
 
   const classes = useStyles();
 
-  const { year, setYear } = useContext(StageContext)
-
   if (!stages) return null;
-
 
   const currentYear = new Date().getFullYear();
 
@@ -55,9 +54,7 @@ const Stage = ({ stages, pagination, handlePage, activePage }) => {
   const stage = () => {
     return stages.map((stage, index) => {
 
-      // const {} = useFetchRequestStagevsmodality(year);
-
-      return (
+     return (
         <Grid key={index} item md={4} sm={4} xs={12}>
           <BoxBig
             link={`turmas/${stage.id}`}
@@ -124,7 +121,7 @@ const Stage = ({ stages, pagination, handlePage, activePage }) => {
           </Grid>
         </List>
       </Grid>
-      <Link to="/turmas/adicionar" className={`${classes.addStage}`}>
+      <Link to="/turma/adicionar" className={`${classes.addStage}`}>
         <ThemeProvider theme={theme}>
           <Fab color="primary" aria-label="add">
             <AddIcon />
@@ -135,4 +132,4 @@ const Stage = ({ stages, pagination, handlePage, activePage }) => {
   );
 };
 
-export default Stage;
+export default Classroom;

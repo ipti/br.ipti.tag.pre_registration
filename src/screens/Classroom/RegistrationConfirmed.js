@@ -40,7 +40,7 @@ const Home = props => {
 
   const {
     registration,
-    handleSubmit, classroom, handleRefusePreIdentification
+    handleSubmit
   } = props;
   const student = registration ?? [];
 
@@ -49,7 +49,8 @@ const Home = props => {
 
   const studentName = student?.name;
   const cpf = student?.cpf;
-  const color_race = student?.color_race === 0 ? 'Branca' : student?.color_race === 2 ? 'Preta' : student?.color_race === 3 ? 'Parda' : student?.color_race === 4 ? 'Amarela' : student?.color_race === 5 ? 'Indígena' : 'Não especificado';
+  
+  const color_race = student?.color_race === 0 ? 'Não Declarada' : student?.color_race === 1 ? 'Branca' : student?.color_race === 2 ? 'Preta' : student?.color_race === 3 ? 'Parda' : student?.color_race === 4 ? 'Amarela' : student?.color_race === 5 ? 'Indígena' : 'Não especificado';
   const deficiency = student?.deficiency ? 'sim' : 'não';
 
   const studentBirthday = student?.birthday
