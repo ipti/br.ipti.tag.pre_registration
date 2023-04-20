@@ -69,6 +69,7 @@ export const Controller = () => {
             },
             onSuccess: (data) => {
                 console.log(data)
+                history.push('/turmas')
             },
         }
     );

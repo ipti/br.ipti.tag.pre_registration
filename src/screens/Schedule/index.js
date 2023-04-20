@@ -1,4 +1,4 @@
-import Schedule from "./Schedule";
+import Schedule from "../Schedule/Schedule";
 import ScheduleForm from "./Form";
 
 export { Schedule, ScheduleForm };

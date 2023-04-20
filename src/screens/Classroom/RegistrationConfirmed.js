@@ -21,20 +21,6 @@ import styles from "./styles";
 
 const useStyles = makeStyles(styles);
 
-
-const customStyles = {
-  control: base => ({
-    ...base,
-    height: "60px",
-    minHeight: "60px",
-    fontFamily: "Roboto, Helvetica, Arial, sans-serif"
-  }),
-  menu: base => ({
-    ...base,
-    fontFamily: "Roboto, Helvetica, Arial, sans-serif"
-  })
-};
-
 const Home = props => {
   const classes = useStyles();
 

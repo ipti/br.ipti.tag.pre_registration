@@ -16,7 +16,7 @@ import { Fab } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { StageContext } from "../../containers/Stage/context/context";
+import { StageContext } from "../../containers/Classroom/context/context";
 import { getYearClassRoom, yearClassroom } from "../../services/auth";
 import styleBase from "../../styles";
 import styles from "./styles";

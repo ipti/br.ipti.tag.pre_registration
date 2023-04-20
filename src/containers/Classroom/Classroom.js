@@ -7,31 +7,19 @@ import Classroom from "../../screens/Classroom/Classroom";
 
 const Home = props => {
 
-  const { isLoadingSchools } = Controller()
+  const { isLoadingSchools, isError } = Controller()
 
   const alert = () => {
-    if (props?.openAlert) {
-      let status = null;
-      let message = null;
-
-      if (props?.error) {
-        status = 0;
-        message = props.error;
-      } else {
-        status = props.fetchClassroom.status;
-        message = props.fetchClassroom.message;
-      }
-
-      if (status && message) {
+  
+      if (isError) {
         return (
           <Alert
             open={props?.openAlert}
             //  handleClose={handleClose}
-            status={status}
-            message={message}
+            status={0}
+            message={"Ocorreu um erro!"}
           />
         );
-      }
     }
     return <></>;
   };

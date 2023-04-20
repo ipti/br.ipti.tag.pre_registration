@@ -6,7 +6,7 @@ import {
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import {
-  createMuiTheme, makeStyles
+  makeStyles
 } from "@material-ui/core/styles";
 import {
   MuiPickersUtilsProvider
@@ -23,46 +23,22 @@ import React, { useContext } from "react";
 import { ButtonPurple } from "../../components/Buttons";
 import Loading from "../../components/Loading/CircularLoadingButtomActions";
 import { TitleWithLine } from "../../components/Titles";
-import { CreateClassroomContext } from "../../containers/Stage/context/contextAddClassroom";
-import styleBase from "../../styles";
+import { CreateClassroomContext } from "../../containers/Classroom/context/contextAddClassroom";
 import styles from "./styles";
 
 const useStyles = makeStyles(theme => styles);
 
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: styleBase.colors.purple
-    }
-  }
-});
 
-const customStyles = {
-  control: base => ({
-    ...base,
-    height: "60px",
-
-    minHeight: "60px",
-    fontFamily: "Roboto, Helvetica, Arial, sans-serif"
-  }),
-  menu: base => ({
-    ...base,
-    fontFamily: "Roboto, Helvetica, Arial, sans-serif"
-  })
-};
 
 const Create = props => {
   const classes = useStyles();
   const {
-    allSchool,
-    setAllSchool,
-    handleSubmit, 
+    handleSubmit,
     isEdit,
     loadingIcon,
-    stages
   } = props;
 
- 
+
 
   const { initialValue, setInitial_hour, setInitial_min, setFinal_hour, setFinal_min } = useContext(CreateClassroomContext)
 
@@ -203,8 +179,8 @@ const Create = props => {
                         // disabled={cegueiraDisabled}
                         control={
                           <Checkbox
-                          checked={props.values.week_days_monday}
-                          onChange={props.handleChange}
+                            checked={props.values.week_days_monday}
+                            onChange={props.handleChange}
                           />}
                         name='week_days_monday'
                         label="Segunda-Feira"
@@ -217,8 +193,8 @@ const Create = props => {
                         // disabled={cegueiraDisabled}
                         control={
                           <Checkbox
-                          checked={props.values.week_days_tuesday}
-                          onChange={props.handleChange}
+                            checked={props.values.week_days_tuesday}
+                            onChange={props.handleChange}
                           />}
                         name='week_days_tuesday'
                         label="Terça-Feira"
@@ -231,8 +207,8 @@ const Create = props => {
                         // disabled={cegueiraDisabled}
                         control={
                           <Checkbox
-                          checked={props.values.week_days_wednesday}
-                          onChange={props.handleChange}
+                            checked={props.values.week_days_wednesday}
+                            onChange={props.handleChange}
                           />}
                         name='week_days_wednesday'
                         label="Quarta-Feira"
@@ -245,8 +221,8 @@ const Create = props => {
                         // disabled={cegueiraDisabled}
                         control={
                           <Checkbox
-                          checked={props.values.week_days_thursday}
-                          onChange={props.handleChange}
+                            checked={props.values.week_days_thursday}
+                            onChange={props.handleChange}
                           />}
                         name='week_days_thursday'
                         label="Quinta-Feira"
@@ -259,8 +235,8 @@ const Create = props => {
                         // disabled={cegueiraDisabled}
                         control={
                           <Checkbox
-                          checked={props.values.week_days_friday}
-                          onChange={props.handleChange}
+                            checked={props.values.week_days_friday}
+                            onChange={props.handleChange}
                           />}
                         name='week_days_friday'
                         label="Sexta-Feira"
@@ -273,8 +249,8 @@ const Create = props => {
                         // disabled={cegueiraDisabled}
                         control={
                           <Checkbox
-                          checked={props.values.week_days_saturday}
-                          onChange={props.handleChange}
+                            checked={props.values.week_days_saturday}
+                            onChange={props.handleChange}
                           />}
                         name='week_days_saturday'
                         label="Sábado"
@@ -287,8 +263,8 @@ const Create = props => {
                         // disabled={cegueiraDisabled}
                         control={
                           <Checkbox
-                          checked={props.values.week_days_sunday}
-                          onChange={props.handleChange}
+                            checked={props.values.week_days_sunday}
+                            onChange={props.handleChange}
                           />}
                         name='week_days_sunday'
                         label="Domingo"
@@ -300,7 +276,7 @@ const Create = props => {
                   className={classes.marginButtom}
                   container
                   direction="row"
-                  style={{marginTop: '30px'}}
+                  style={{ marginTop: '30px' }}
                 >
                   <Grid item md={2} sm={2}>
                     {!loadingIcon ? (

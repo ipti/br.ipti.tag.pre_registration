@@ -1,7 +1,7 @@
 import React from "react";
 
 // Router
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 // Material UI
 import Grid from "@material-ui/core/Grid";
@@ -9,28 +9,28 @@ import { makeStyles } from "@material-ui/core/styles";
 import Alert from '@material-ui/lab/Alert';
 
 // Components
-import { BoxBig, BoxDiscriptionClassroom, BoxRegistration } from "../../components/Boxes";
-import { TitleWithLine } from "../../components/Titles";
+import { BoxBig, BoxDiscriptionClassroom } from "../../components/Boxes";
 import List from "../../components/List";
+import { TitleWithLine } from "../../components/Titles";
 
 // Assets
-import MaleIcon from "../../assets/images/male-icon.png";
 import SchoolIcon from "../../assets/images/house-icon.png";
+import MaleIcon from "../../assets/images/male-icon.png";
 
 // Styles
+import { useFetchRequestStagevsmodalitySchool } from "../../query/school";
 import styles from "./styles";
-import { useFetchRequestRegistrations, useFetchRequestStagevsmodalitySchool } from "../../query/school";
 
 const useStyles = makeStyles(styles);
 
 const Home = ({ school }) => {
   const classes = useStyles();
-  let history = useHistory();
+  //let history = useHistory();
   const { id } = useParams()
 
-  const handleLink = link => {
-    history.push(link);
-  };
+  // const handleLink = link => {
+  //   history.push(link);
+  // };
 
   const { data } = useFetchRequestStagevsmodalitySchool({id: id});
 

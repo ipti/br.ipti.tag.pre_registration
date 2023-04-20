@@ -1,8 +1,8 @@
-import React from "react";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
-import { ButtonPurple, ButtonLinePurple } from "../../components/Buttons";
+import React from "react";
 import homeImg from "../../assets/images/illustration-home.png";
+import { ButtonLinePurple } from "../../components/Buttons";
 import styles from "./styles";
 
 const useStyles = makeStyles(styles);

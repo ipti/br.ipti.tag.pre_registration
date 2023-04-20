@@ -5,9 +5,9 @@ export const StageFormState = () => {
 
     const { id } = useParams()
 
-    const {data: classroom, isLoading} = useFetchRequestClassroom({id: id})
+    const {data: classroom, isLoading, isError} = useFetchRequestClassroom({id: id})
 
     return {
-        classroom, isLoading
+        classroom, isLoading, isError
     }
 }

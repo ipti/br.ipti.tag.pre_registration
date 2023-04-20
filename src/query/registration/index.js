@@ -84,21 +84,21 @@ const requestSchoolList = async () => {
       });
   };
 
-  const requestSchoolToken = async id => {
-    return await api
-      .get("/school-identification/" + id, {
-        params: {
-          include: {
-            classroom: true,
-            calendar_event: true
-          }
-        }
-      })
-      .then(response => response.data)
-      .catch(err => {
-        throw err;
-      });
-  };
+  // const requestSchoolToken = async id => {
+  //   return await api
+  //     .get("/school-identification/" + id, {
+  //       params: {
+  //         include: {
+  //           classroom: true,
+  //           calendar_event: true
+  //         }
+  //       }
+  //     })
+  //     .then(response => response.data)
+  //     .catch(err => {
+  //       throw err;
+  //     });
+  // };
 
 
 

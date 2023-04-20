@@ -17,10 +17,8 @@ import RegistrationContextProvider, { RegistrationContext } from "./Context/cont
 import { useContext } from "react";
 
 const Home = props => {
-  const [loadDataStudent, setLoadDataStudent] = useState(false);
   const [load, setLoad] = useState(true)
   const [open, setOpen] = useState(false);
-  const [number, setNumber] = useState("");
   const [step, setStep] = useState(0);
   const [dataValues, setDataValues] = useState({});
   const { schools } = useContext(RegistrationContext);
@@ -30,7 +28,6 @@ const Home = props => {
   
 
   // useEffect(() => {
-  //   setOpen(false);
 
   //   if (loadDataSchool) {
   //     props.dispatch({ type: "FETCH_SCHOOLS_LIST" });
@@ -129,11 +126,6 @@ const Home = props => {
     }
   }
 
-  const getDataStudent = number => {
-    setNumber(number);
-    setLoadDataStudent(true);
-  };
-
   const handleClose = () => {
     setOpen(false);
   };
@@ -141,7 +133,7 @@ const Home = props => {
   const alert = () => {
     return (
       <Alert
-        open={props.openAlert}
+        open={open}
         handleClose={handleClose}
         status="0"
         message="Matrícula não encontrada!."
@@ -210,17 +202,5 @@ const Home = props => {
   );
 };
 
-// const mapStateToProps = state => {
-
-//   return {
-//     address: state.viaCep.addresses,
-//     student: state.registration.student,
-//     registration: state.registration.registration,
-//     period: state.registration.period,
-//     schoolList: state.registration.schoolList,
-//     loading: state.registration.loading,
-//     openAlert: state.registration.openAlert
-//   };
-// };
 
 export default Home;

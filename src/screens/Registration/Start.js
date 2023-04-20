@@ -29,7 +29,7 @@ const Start = props => {
   const [startDate, setStartDate] = useState()
   const [endDate, setEndDate] = useState()
   const [isValid, setIsValid] = useState()
-  const { setIdEvent, idSchool, idEvent, setSchool, setYear, schools, school } = useContext(RegistrationContext);
+  const { setIdEvent, idEvent, setSchool, setYear, schools, school } = useContext(RegistrationContext);
   const datenow = Date.now();
   const date = new Date(datenow)
 

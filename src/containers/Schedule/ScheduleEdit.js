@@ -1,58 +1,31 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import * as Yup from "yup";
-import { ScheduleForm } from "../../screens/Schedule";
-import { useHistory, useParams } from "react-router-dom";
-import { connect } from "react-redux";
-import moment from "moment";
-import Loading from "../../components/Loading/CircularLoading";
 import Alert from "../../components/Alert/CustomizedSnackbars";
-import { useFetchRequestScheculeOne, useFetchRequestSchools } from "../../query/Schedule";
+import Loading from "../../components/Loading/CircularLoading";
 import { Controller } from "../../controller/Schedule/index";
+import { ScheduleForm } from "../../screens/Schedule";
+import { States } from "./states/ScheduleEditStates";
 
 const ScheduleEdit = props => {
-    const { id } = useParams();
-    const [active, setActive] = useState(true);
-    const [loadData, setLoadData] = useState(true);
-    const [loadingButtom, setLoadingButtom] = useState(false);
-    const [isEdit, setIsEdit] = useState(false);
     const [open, setOpen] = useState(false);
-    const [redirect, setRedirect] = useState(false);
     const { requestSaveEventPreMutation } = Controller()
-    let history = useHistory();
 
-    const { data } = useFetchRequestScheculeOne({ id: id })
 
-  
-
-    const handleChangeActive = event => {
-        setActive(event.target.checked);
-    };
-
+    const { data, isError, isLoading} = States()
+   
     const handleClose = () => {
         setOpen(false);
     };
 
     const alert = () => {
-        let status = null;
-        let message = null;
-
-        if (props?.error) {
-            status = 0;
-            message = props.error;
-        }
-
-        if (props?.fetchSchedule?.status === "0") {
-            status = props?.fetchSchedule.status;
-            message = props?.fetchSchedule.message;
-        }
-
-        if (status !== null && message !== null) {
+       
+        if (isError) {
             return (
                 <Alert
                     open={open}
                     handleClose={handleClose}
-                    status={status}
-                    message={message}
+                    status={0}
+                    message={"Ocorreu um erro"}
                 />
             );
         }
@@ -102,7 +75,7 @@ const ScheduleEdit = props => {
 
     return (
         <>
-            {props?.loading && !loadingButtom ? (
+            {isLoading ? (
                 <Loading />
             ) : (
                 <>

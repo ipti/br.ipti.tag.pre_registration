@@ -3,27 +3,19 @@ import * as Yup from "yup";
 import Alert from "../../components/Alert/CustomizedSnackbars";
 import Loading from "../../components/Loading/CircularLoading";
 import { Controller } from "../../controller/Schedule/index";
-import { useFetchRequestSchools } from "../../query/Schedule";
 import { ScheduleForm } from "../../screens/Schedule";
 import { getIdSchool } from "../../services/auth";
+import { States } from "./states/ScheduleFormStatus";
 
 const Form = props => {
-  const [loadingButtom, setLoadingButtom] = useState(false);
+  //const [loadingButtom, setLoadingButtom] = useState(false);
   const [allSchool, setAllSchool] = useState(false);
   const [open, setOpen] = useState(false);
   const { requestSaveEventPreMutation } = Controller()
 
-  const { data: schools } = useFetchRequestSchools();
+  const { getIdSchools, initialValues, isLoading, schools} = States()
 
-
-  var getIdSchools = [];
-
-  if (schools) {
-    for (var school in schools) {
-      getIdSchools.push(schools[school].inep_id)
-    }
-  }
-
+  
   const handleClose = () => {
     setOpen(false);
   };
@@ -86,33 +78,21 @@ const Form = props => {
       .required("Campo obrigatório!")
   });
 
-  const initialValues = () => {
-    let initialValues = {
-      start_date: null,
-      end_date: null,
-      year: "",
-      school_identificationArray: "",
-    };
-    return initialValues;
-  };
+ 
 
   return (
     <>
-      {props?.loading && !loadingButtom ? (
+      {isLoading ? (
         <Loading />
       ) : (
         <>
           <ScheduleForm
-            initialValues={initialValues()}
+            initialValues={initialValues}
             validationSchema={validationSchema}
             schools={schools}
             handleSubmit={handleSubmit}
             setAllSchool={setAllSchool}
             allSchool={allSchool}
-          // handleChangeActive={handleChangeActive}
-          // active={active}
-          // isEdit={isEdit}
-          // loadingIcon={props?.loading}
           />
           {alert()}
         </>

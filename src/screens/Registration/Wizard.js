@@ -7,7 +7,6 @@ import Grid from "@material-ui/core/Grid";
 import Classroom from "./ClassRoom";
 import Finish from "./Finish";
 import Start from "./Start";
-import StepFive from "./StepFive";
 import StepFour from "./StepFour";
 import StepOne from "./StepOne";
 import StepSix from "./StepSix";

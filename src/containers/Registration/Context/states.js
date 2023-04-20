@@ -1,13 +1,10 @@
-import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Controller } from "../../../controller/registration";
 
 
 export const RegistrationState = () => {
     const [schools, setSchools] = useState();
     const [school, setSchool] = useState();
-    const [idSchool, setIdSchool] = useState('');
     const [idClassRoom, setIdClassroom] = useState("")
     const [isOfLegalAge, setIsOfLegalAge] = useState('');
     const [idEvent, setIdEvent] = useState('');

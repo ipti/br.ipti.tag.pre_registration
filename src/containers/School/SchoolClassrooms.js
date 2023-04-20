@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { SchoolClassroom } from "../../screens/School";
-import { connect } from "react-redux";
+import React from "react";
+import { useParams } from "react-router";
 import Alert from "../../components/Alert/CustomizedSnackbars";
 import Loading from "../../components/Loading/CircularLoading";
-import { useParams } from "react-router";
 import { useFetchRequestSchool } from "../../query/school";
+import { SchoolClassroom } from "../../screens/School";
 
 const Home = props => {
-  const [loadData, setLoadData] = useState(true);
   const { id } = useParams()
 
   const { data } = useFetchRequestSchool({id: id})

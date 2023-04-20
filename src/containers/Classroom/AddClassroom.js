@@ -1,29 +1,16 @@
 import React, { useState } from "react";
-import * as Yup from "yup";
 import Alert from "../../components/Alert/CustomizedSnackbars";
 import Loading from "../../components/Loading/CircularLoading";
 import { Controller } from "../../controller/classroom";
-import { useFetchRequestSchools, useFetchRequestStagevsmodality } from "../../query/Schedule";
-import StageContextProvider from "./context/contextAddClassroom";
+import { useFetchRequestStagevsmodality } from "../../query/Schedule";
 import Create from "../../screens/Classroom/AddClassroom";
+import StageContextProvider from "./context/contextAddClassroom";
 
 const CreateClassroom = props => {
-  const [active, setActive] = useState(true);
-  const [loadingButtom, setLoadingButtom] = useState(false);
-
   const [allSchool, setAllSchool] = useState(false);
   const [open, setOpen] = useState(false);
-  const { requestCreateStageMutation } = Controller()
   const { data } = useFetchRequestStagevsmodality()
-  const { data: schools } = useFetchRequestSchools();
   const {requestCreateClassroomMutation} = Controller()
-
-  
-
-
-  const handleChangeActive = event => {
-    setActive(event.target.checked);
-  };
 
   const handleClose = () => {
     setOpen(false);

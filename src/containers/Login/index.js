@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import * as Yup from "yup";
 import Login from "../../screens/Login/Login";
 import api from "../../services/api";
 import { idSchool, login } from "../../services/auth";
-import { useHistory } from "react-router-dom";
-import { QueryCache } from "react-query";
 
 const SignIn = () => {
   const [isValid, setValid] = useState(true);

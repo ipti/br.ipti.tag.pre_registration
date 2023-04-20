@@ -1,6 +1,5 @@
 import { useMutation } from "react-query";
 import { requestSaveRegistration, useFetchRequestSchoolList } from "../../query/registration";
-import { useState } from "react";
 
 
 export const Controller = () => {

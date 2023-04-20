@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 // Material UI
 import Grid from "@material-ui/core/Grid";
@@ -22,30 +22,14 @@ import { getIdSchool } from "../../services/auth";
 import styles from "../Classroom/styles";
 
 const useStyles = makeStyles(styles);
-const customStyles = {
-  control: base => ({
-    ...base,
-    height: "60px",
-    minHeight: "60px",
-    fontFamily: "Roboto, Helvetica, Arial, sans-serif"
-  }),
-  menu: base => ({
-    ...base,
-    fontFamily: "Roboto, Helvetica, Arial, sans-serif"
-  })
-};
 const Home = props => {
   const classes = useStyles();
-  const [schoolInepFk, setSchoolInepFk] = useState('');
-  const [inputValueClassroom, setInputValueClassroom] = useState("");
+  // const [schoolInepFk, setSchoolInepFk] = useState('');
+  // const [inputValueClassroom, setInputValueClassroom] = useState("");
 
   const { data } = useFetchRequestSchoolRegistration({ id: getIdSchool() });
 
   if (!data) return null
-  const handleChange = newValue => {
-    setInputValueClassroom(newValue);
-  };
-
 
   const {
     registration,
@@ -84,8 +68,8 @@ const Home = props => {
     responsable_cpf: student?.responsable_cpf,
     student_identification: student?.id,
     sex: student?.sex,
-    school_identification: schoolInepFk,
-    classroom: inputValueClassroom,
+    // school_identification: schoolInepFk,
+    // classroom: inputValueClassroom,
    // calendar_event: data.calendar_event.find(e => e.id === 1).id
   }
 

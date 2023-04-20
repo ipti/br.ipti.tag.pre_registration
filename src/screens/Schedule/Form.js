@@ -4,10 +4,10 @@ import {
   FormControl, FormControlLabel, FormLabel
 } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
-import {
-  createMuiTheme, makeStyles
-} from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
+import {
+  makeStyles
+} from "@material-ui/core/styles";
 import {
   KeyboardDatePicker, MuiPickersUtilsProvider
 } from "@material-ui/pickers";
@@ -15,36 +15,12 @@ import brLocale from "date-fns/locale/pt-BR";
 import { Form, Formik } from "formik";
 import PropTypes from "prop-types";
 import React from "react";
-import Select from 'react-select';
 import { ButtonPurple } from "../../components/Buttons";
 import Loading from "../../components/Loading/CircularLoadingButtomActions";
 import { TitleWithLine } from "../../components/Titles";
-import styleBase from "../../styles";
 import styles from "./styles";
 
 const useStyles = makeStyles(theme => styles);
-
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: styleBase.colors.purple
-    }
-  }
-});
-
-const customStyles = {
-  control: base => ({
-    ...base,
-    height: "60px",
-
-    minHeight: "60px",
-    fontFamily: "Roboto, Helvetica, Arial, sans-serif"
-  }),
-  menu: base => ({
-    ...base,
-    fontFamily: "Roboto, Helvetica, Arial, sans-serif"
-  })
-};
 
 const Create = props => {
   const classes = useStyles();

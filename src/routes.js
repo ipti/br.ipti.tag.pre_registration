@@ -7,8 +7,8 @@ import MainLayout from "./components/Layouts/MainLayout";
 import NotFoundPage from "./components/Layouts/NotFoundPage";
 import CircularLoading from "./components/Loading/CircularLoading";
 import ReMatricula from "./containers/Registration/ReMatricula";
-import { Classroom, ClassroomForm } from "./containers/Stage";
-import CreateClassroom from "./containers/Stage/AddClassroom";
+import { Classroom, ClassroomForm } from "./containers/Classroom";
+import CreateClassroom from "./containers/Classroom/AddClassroom";
 
 //const Home = lazy(() => import("./containers/Home"));
 const Schedule = lazy(() => import("./containers/Schedule/Schedule"));
@@ -21,7 +21,7 @@ const SchoolClassrooms = lazy(() =>
 
 
 const RegistrationClassroom = lazy(() =>
-  import("./containers/Stage/Registration")
+  import("./containers/Classroom/Registration")
 );
 
 const PrivateRoute = ({ component: Component, ...rest }) => (

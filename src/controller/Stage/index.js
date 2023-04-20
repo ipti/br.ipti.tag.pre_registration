@@ -4,9 +4,9 @@ import { getIdSchool } from "../../services/auth";
 
 export const Controller = () => {
 
-    const { data: school, isLoading: isLoadingSchools, refetch } = useFetchRequestSchool({ id: getIdSchool()});
+    const { data: school, isLoading: isLoadingSchools, refetch, isError } = useFetchRequestSchool({ id: getIdSchool()});
 
     return {
-        school, isLoadingSchools, refetch
+        school, isLoadingSchools, refetch, isError
     }
 }

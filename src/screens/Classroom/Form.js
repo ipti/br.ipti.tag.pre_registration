@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import React from "react";
 
 // Material UI
@@ -22,12 +21,8 @@ const Create = props => {
   const classes = useStyles();
 
   const {
-    initialValues,
-    handleSubmit,
-    validationSchema,
     data,
     baseLink,
-    loadingIcon
   } = props;
 
 

@@ -4,15 +4,10 @@ import React from "react";
 import FinishImg from "../../assets/images/illustration-success.png";
 import ButtonGreen from "../../components/Buttons/ButtonGreen";
 import styles from "./styles";
-import { useHistory } from "react-router";
-import { useContext } from "react";
-import { RegistrationContext } from "../../containers/Registration/Context/context";
 
 const useStyles = makeStyles(styles);
 
 const Finish = props => {
-
-  const { error } = useContext(RegistrationContext)
   const classes = useStyles();
 
   return (

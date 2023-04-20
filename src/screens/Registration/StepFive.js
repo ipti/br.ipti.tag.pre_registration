@@ -1,17 +1,16 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 
-import RegistrationContext from '../../containers/Registration/Context/context';
 
 //Material-UI
 import {
-  FormLabel,
   FormControl,
-  RadioGroup,
-  Radio,
   FormControlLabel,
+  FormHelperText,
+  FormLabel,
   Grid,
-  TextField,
-  FormHelperText
+  Radio,
+  RadioGroup,
+  TextField
 } from "@material-ui/core";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Select from "react-select";
@@ -23,16 +22,16 @@ import { ButtonPurple } from "../../components/Buttons";
 import styles from "./styles";
 
 // Third party
+import { Form, Formik } from "formik";
 import * as Yup from "yup";
-import { Formik, Form } from "formik";
 
-import api from "../../services/api";
 import Loading from "../../components/Loading/CircularLoadingButtomActions";
+import api from "../../services/api";
 
 
-import styleBase from "../../styles";
-import MaskedInput from "react-text-mask";
 import { useEffect } from "react";
+import MaskedInput from "react-text-mask";
+import styleBase from "../../styles";
 
 const useStyles = makeStyles(styles);
 
