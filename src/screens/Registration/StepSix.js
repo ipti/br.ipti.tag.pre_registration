@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 
 // Material UI
 import { FormControl, FormControlLabel, FormHelperText, FormLabel, Grid, Radio, RadioGroup, TextField } from "@material-ui/core";
@@ -16,6 +16,9 @@ import * as Yup from "yup";
 import MaskedInput from "react-text-mask";
 import styleBase from "../../styles";
 import styles from "./styles";
+import { RegistrationContext } from "../../containers/Registration/Context/context";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(styles);
 
@@ -69,7 +72,7 @@ const TextMaskFone = props => {
       ref={ref => {
         inputRef(ref ? ref.inputElement : null);
       }}
-      mask={[ "(", /[1-9]/, /\d/, ")", " ", /\d/, /\d/, /\d/, /\d/, /\d/, "-", /\d/, /\d/, /\d/, /\d/ ]}
+      mask={["(", /[1-9]/, /\d/, ")", " ", /\d/, /\d/, /\d/, /\d/, /\d/, "-", /\d/, /\d/, /\d/, /\d/]}
       placeholderChar={"\u2000"}
       showMask
     />
@@ -78,6 +81,9 @@ const TextMaskFone = props => {
 
 const StepSix = props => {
   const classes = useStyles();
+  const [student, setStudent] = useState([])
+
+  const { school } = useContext(RegistrationContext)
 
   const validationSchema = Yup.object().shape({
     cpf: Yup.string().required("Campo obrigatório!"),
@@ -86,7 +92,7 @@ const StepSix = props => {
     responsable_telephone: Yup.string().required("Campo obrigatório!"),
     zone: Yup.number().required("Campo obrigatório!"),
   });
- 
+
   const initialValues = {
     cpf: props?.values?.cpf ?? "",
     sex: props?.values?.sex ?? '',
@@ -94,6 +100,24 @@ const StepSix = props => {
     responsable_telephone: props?.values?.responsable_telephone ?? "",
     zone: props?.values?.zone ?? ''
   };
+
+  const Isverify = (e) => {
+    var cpf = e.target.value.replace(/\D/g, '');
+    var isValid = school.student_documents_and_address.filter(x => cpf === x.cpf);
+
+    console.log(isValid)
+    if (isValid.length < 2) {
+      // fetch("/student-pre-identify/studentidentification/" + isValid.student_fk)
+      //   .then(res => res.json()).then(data => {
+      //     console.log(data)
+      //   })
+        setStudent(isValid);
+    }
+
+    
+  }
+
+  console.log(student)
 
   return (
     <>
@@ -137,12 +161,23 @@ const StepSix = props => {
                         value: values.cpf,
                         onChange: handleChange
                       }}
+                      onBlur={(e) => Isverify(e)}
                       className={classes.textField}
                       autoComplete="off"
                     />
                   </FormControl>
                 </Grid>
               </Grid>
+              {student.length !== 0 ? 
+              <Grid 
+                className={`${classes.contentMain}`}
+                container
+                direction="row"
+                justifyContent="center"
+                alignItems="center">
+                  Já temos um cadastro com esse CPF,  
+                  <Link to="/matricula/4789"> clique aqui para fazer a pré matricula com seus dados</Link>
+              </Grid> : null}
               <Grid
                 className={`${classes.contentMain}`}
                 container
