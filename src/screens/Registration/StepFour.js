@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 
 
 // Material UI
@@ -19,6 +19,8 @@ import * as Yup from "yup";
 // Styles
 import styles from "./styles";
 
+import BoxStudents from "../../components/Boxes/BoxStudents";
+import { RegistrationContext } from "../../containers/Registration/Context/context";
 import styleBase from "../../styles";
 
 const useStyles = makeStyles(styles);
@@ -41,7 +43,7 @@ const TextMaskFone = props => {
       ref={ref => {
         inputRef(ref ? ref.inputElement : null);
       }}
-      mask={[ "(", /[1-9]/, /\d/, ")", " ", /\d/, /\d/, /\d/, /\d/, /\d/, "-", /\d/, /\d/, /\d/, /\d/ ]}
+      mask={["(", /[1-9]/, /\d/, ")", " ", /\d/, /\d/, /\d/, /\d/, /\d/, "-", /\d/, /\d/, /\d/, /\d/]}
       placeholderChar={"\u2000"}
       showMask
     />
@@ -50,6 +52,7 @@ const TextMaskFone = props => {
 
 const TextMaskDate = props => {
   const { inputRef, ...others } = props;
+
 
   return (
     <MaskedInput
@@ -82,6 +85,9 @@ const TextMaskCpf = props => {
 
 const StepFour = props => {
   const classes = useStyles();
+  const { school } = useContext(RegistrationContext)
+  const [student, setStudent] = useState([])
+  const [studentResponsable, setStudentResponsable] = useState([])
 
   const validationSchema = Yup.object().shape({
     responsable_name: Yup.string().required("Campo obrigatório!"),
@@ -99,9 +105,29 @@ const StepFour = props => {
     responsable_name: props?.values?.responsable_name ?? '',
     responsable_telephone: props?.values?.responsable_telephone ?? "",
     responsable_cpf: props?.values?.responsable_cpf ?? '',
-    zone: props?.values?.zone ?? ''
+    zone: props?.values?.zone ?? '',
+    cpf: props?.values?.cpf ?? ''
   };
 
+  const Isverify = (e) => {
+    var cpf = e.target.value.replace(/\D/g, '');
+    var isValid = school.student_documents_and_address.filter(x => cpf === x.cpf);
+
+    console.log(isValid)
+    if (isValid.length !== 0) {
+      setStudent(isValid);
+    }
+  }
+
+  const Isverifyresponsable = (e) => {
+    var cpf = e.target.value.replace(/\D/g, '');
+    var isValid = school.student_documents_and_address.filter(x => cpf === x.cpf);
+
+    console.log(isValid)
+    if (isValid.length !== 0) {
+      setStudentResponsable(isValid);
+    }
+  }
   return (
     <>
       <Formik
@@ -124,6 +150,49 @@ const StepFour = props => {
 
           return (
             <Form>
+              <Grid
+                className={`${classes.contentMain}`}
+                container
+                direction="row"
+                justifyContent="center"
+                alignItems="center"
+              >
+                <Grid item xs={12}>
+                  <FormControl
+                    component="fieldset"
+                    className={classes.formControl}
+                  >
+                    <FormLabel>Nº do CPF</FormLabel>
+                    <TextField
+                      name="cpf"
+                      variant="outlined"
+                      InputProps={{
+                        inputComponent: TextMaskCpf,
+                        value: values.cpf,
+                        onChange: handleChange
+                      }}
+                      onBlur={(e) => Isverify(e)}
+                      className={classes.textField}
+                      autoComplete="off"
+
+                    />
+                  </FormControl>
+                </Grid>
+              </Grid>
+              {student.length !== 0 ?
+                <Grid
+                  className={`${classes.contentMain}`}
+                  container
+                  direction="row"
+                  justifyContent="center"
+                  alignItems="start">
+                  Já temos um cadastro com esse CPF,
+                  {student.map((student, i) => {
+                    return (
+                      <BoxStudents student={student} student_identification={school.student_identification} />
+                    )
+                  })}
+                </Grid> : null}
               <Grid
                 className={`${classes.contentMain}`}
                 container
@@ -201,32 +270,6 @@ const StepFour = props => {
                   <FormControl
                     component="fieldset"
                     className={classes.formControl}
-                    error={errorList.responsable_name}
-                  >
-                    <FormLabel>Nome Completo do Responsável *</FormLabel>
-                    <TextField
-                      name="responsable_name"
-                      value={values.responsable_name}
-                      onChange={handleChange}
-                      variant="outlined"
-                      className={classes.textField}
-                      error={errorList.responsable_name}
-                    />
-                    <FormHelperText>{errorList.responsable_name}</FormHelperText>               
-                    </FormControl>
-                </Grid>
-              </Grid>
-              <Grid
-                className={`${classes.contentMain}`}
-                container
-                direction="row"
-                justifyContent="center"
-                alignItems="center"
-              >
-                <Grid item xs={12}>
-                  <FormControl
-                    component="fieldset"
-                    className={classes.formControl}
                     error={errorList.responsable_cpf}
                   >
                     <FormLabel>Nº do CPF do Responsável *</FormLabel>
@@ -238,11 +281,53 @@ const StepFour = props => {
                         value: values.responsable_cpf,
                         onChange: handleChange
                       }}
+                      onBlur={(e) => Isverifyresponsable(e)}
                       className={classes.textField}
                       error={errorList.responsable_cpf}
                       autoComplete="off"
                     />
                     <FormHelperText>{errorList.responsable_cpf}</FormHelperText>
+                  </FormControl>
+                </Grid>
+              </Grid>
+              {studentResponsable.length !== 0 ?
+                <Grid
+                  className={`${classes.contentMain}`}
+                  container
+                  direction="row"
+                  justifyContent="center"
+                  alignItems="start">
+                  Encontramos cadastros com esse CPF, é algum desse?
+                  {studentResponsable.map((student, i) => {
+                    return (
+                      <BoxStudents student={student} student_identification={school.student_identification} />
+                    )
+                  })}
+
+                </Grid> : null}
+              <Grid
+                className={`${classes.contentMain}`}
+                container
+                direction="row"
+                justifyContent="center"
+                alignItems="center"
+              >
+                <Grid item xs={12}>
+                  <FormControl
+                    component="fieldset"
+                    className={classes.formControl}
+                    error={errorList.responsable_name}
+                  >
+                    <FormLabel>Nome Completo do Responsável *</FormLabel>
+                    <TextField
+                      name="responsable_name"
+                      value={values.responsable_name}
+                      onChange={handleChange}
+                      variant="outlined"
+                      className={classes.textField}
+                      error={errorList.responsable_name}
+                    />
+                    <FormHelperText>{errorList.responsable_name}</FormHelperText>
                   </FormControl>
                 </Grid>
               </Grid>

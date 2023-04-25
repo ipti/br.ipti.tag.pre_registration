@@ -13,12 +13,12 @@ import { Form, Formik } from "formik";
 import * as Yup from "yup";
 
 // Styles
+import { useState } from "react";
 import MaskedInput from "react-text-mask";
+import BoxStudents from "../../components/Boxes/BoxStudents";
+import { RegistrationContext } from "../../containers/Registration/Context/context";
 import styleBase from "../../styles";
 import styles from "./styles";
-import { RegistrationContext } from "../../containers/Registration/Context/context";
-import { useState } from "react";
-import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(styles);
 
@@ -106,18 +106,11 @@ const StepSix = props => {
     var isValid = school.student_documents_and_address.filter(x => cpf === x.cpf);
 
     console.log(isValid)
-    if (isValid.length < 2) {
-      // fetch("/student-pre-identify/studentidentification/" + isValid.student_fk)
-      //   .then(res => res.json()).then(data => {
-      //     console.log(data)
-      //   })
-        setStudent(isValid);
+    if (isValid.length !== 0) {
+      setStudent(isValid);
     }
-
-    
   }
 
-  console.log(student)
 
   return (
     <>
@@ -168,16 +161,20 @@ const StepSix = props => {
                   </FormControl>
                 </Grid>
               </Grid>
-              {student.length !== 0 ? 
-              <Grid 
-                className={`${classes.contentMain}`}
-                container
-                direction="row"
-                justifyContent="center"
-                alignItems="center">
-                  Já temos um cadastro com esse CPF,  
-                  <Link to="/matricula/4789"> clique aqui para fazer a pré matricula com seus dados</Link>
-              </Grid> : null}
+              {student.length !== 0 ?
+                <Grid
+                  className={`${classes.contentMain}`}
+                  container
+                  direction="row"
+                  justifyContent="center"
+                  alignItems="start">
+                  Já temos um cadastro com esse CPF,
+                  {student.map((student, i) => {
+                    return (
+                      <BoxStudents student={student} student_identification={school.student_identification} />
+                    )
+                  })}
+                </Grid> : null}
               <Grid
                 className={`${classes.contentMain}`}
                 container

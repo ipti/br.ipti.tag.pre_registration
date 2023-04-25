@@ -1,9 +1,11 @@
 import { useMutation } from "react-query";
 import { requestSaveRegistration, useFetchRequestSchoolList } from "../../query/registration";
+import { useHistory } from "react-router";
 
 
 export const Controller = () => {
     const { data: schoolsList } = useFetchRequestSchoolList();
+    const history = useHistory()
 
     const requestSaveRegistrationMutation = useMutation(
         (data) => requestSaveRegistration(data),
@@ -13,7 +15,8 @@ export const Controller = () => {
             window.location.reload()
           },
           onSuccess: (data) => {
-           // history.push('/')
+            alert("Pré-matricula feita com sucesso!");
+            history.push('/')
           },
         }
       );

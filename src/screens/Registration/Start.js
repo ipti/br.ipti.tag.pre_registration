@@ -31,12 +31,9 @@ const Start = props => {
   const [isValid, setIsValid] = useState()
   const { setIdEvent, idEvent, setSchool, setYear, schools, school } = useContext(RegistrationContext);
 
-
   console.log(school);
   const datenow = Date.now();
   const date = new Date(datenow)
-
-
 
   const onButton = () => {
     if (startDate <= date.getTime() && date.getTime() <= endDate && idEvent !== '') {
@@ -45,7 +42,6 @@ const Start = props => {
     } else {
       props.setIsActive(false)
     }
-
   }
   return (
     <>
