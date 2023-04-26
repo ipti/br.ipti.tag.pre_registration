@@ -111,7 +111,7 @@ const StepFour = props => {
 
   const Isverify = (e) => {
     var cpf = e.target.value.replace(/\D/g, '');
-    var isValid = school.student_documents_and_address.filter(x => cpf === x.cpf);
+    var isValid = school.student_documents_and_address.filter(x => (cpf === x.cpf) && (x.received_responsable_cpf === false));
 
     console.log(isValid)
     if (isValid.length !== 0) {
@@ -121,13 +121,15 @@ const StepFour = props => {
 
   const Isverifyresponsable = (e) => {
     var cpf = e.target.value.replace(/\D/g, '');
-    var isValid = school.student_documents_and_address.filter(x => cpf === x.cpf);
+    var isValid = school.student_documents_and_address.filter(x => (cpf === x.cpf) && (x.received_responsable_cpf === true));
 
     console.log(isValid)
     if (isValid.length !== 0) {
       setStudentResponsable(isValid);
     }
   }
+
+
   return (
     <>
       <Formik

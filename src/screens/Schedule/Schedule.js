@@ -35,7 +35,7 @@ const theme = createMuiTheme({
   }
 });
 
-const Schedule = ({ activePage, data, pagination, handlePage }) => {
+const Schedule = ({ activePage, data, pagination, handlePage, deleteSchedule }) => {
   const classes = useStyles();
 
   const schedules = () => {
@@ -57,6 +57,8 @@ const Schedule = ({ activePage, data, pagination, handlePage }) => {
             addCursor={true}
             title="Cronograma"
             textRight={schedule.year}
+            deleteSchedule={deleteSchedule}
+            id={schedule.id}
           >
             <BoxDiscriptionSchedule
               title={`Novas Alunos - ${schedule.school_identification.name}`}

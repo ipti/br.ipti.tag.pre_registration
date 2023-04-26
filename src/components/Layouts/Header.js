@@ -113,7 +113,9 @@ const Header = ({setIsSidebar, isSidebar}) => {
               options={data}
               onChange={selectedOption => {
                 idSchool(selectedOption.inep_id);
+                history.push("/")
                 window.location.reload()
+               
               }}
               defaultValue={schoolSelection}
               getOptionValue={opt => opt.inep_id}

@@ -64,11 +64,12 @@ const Home = props => {
   const responsableName = student?.responsable_name ?? nullableField;
   const responsableCpf = student?.responsable_cpf ?? nullableField;
 
-
-  const body = {
+  const body = !student.student_fk ? {
     classroom: student?.classroom_fk,
     year: student?.classroom.school_year
-  }
+  } : {student_fk: student.student_fk};
+
+
 
   return (
     <>
@@ -92,7 +93,7 @@ const Home = props => {
           {studentBirthday}
         </Grid>
         <Grid item md={4}>
-          <BoxStatus title={!status ? "Transferência" : "Novo Aluno"} />
+          <BoxStatus title={student.student_fk ? "Transferência" : "Novo Aluno"} />
         </Grid>
         <Grid item md={3}>
           <p className={classes.label}>CPF</p>

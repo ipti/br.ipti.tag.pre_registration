@@ -19,7 +19,11 @@ const useStyles = {
     backgroundColor: styleBase.colors.purple,
     color: styleBase.colors.white,
     padding: "0px 15px",
-    borderRadius: "50px"
+    borderRadius: "50px",
+    marginLeft: "5px"
+  },
+  iconDelete: {
+    cursor: "pointer",
   },
   iconHouse: {
     marginTop: "-5px",

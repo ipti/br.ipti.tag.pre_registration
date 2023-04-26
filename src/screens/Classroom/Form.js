@@ -26,6 +26,7 @@ const Create = props => {
   } = props;
 
 
+  console.log(data)
   const registrations = () => {
     const registrationList = data?.student_pre_identification ?? [];
 

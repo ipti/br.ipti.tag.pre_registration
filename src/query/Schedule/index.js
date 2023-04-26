@@ -36,6 +36,15 @@ const requestStagevsmodality = () => {
     });
 };
 
+export const requestDeleteSchedule = id => {
+  let path = "/event-pre-registration/" + id;
+  return api
+    .delete(path)
+    .then(response => response.data)
+    .catch(err => {
+      throw err;
+    });
+};
 
 
 

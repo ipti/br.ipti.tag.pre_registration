@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import ImgSchool from "../../assets/images/school-icon.png";
 import { Link } from "react-router-dom";
 import styles from "./styles";
+import { Clear } from "@material-ui/icons";
 const useStyles = makeStyles(styles);
 
 const BoxBig = props => {
@@ -33,9 +34,10 @@ const BoxBig = props => {
       {textRight && (
         <>
           <span className={classes.title}>{title}</span>
-          <span className={`${classes.floatRight} ${classes.textRight}`}>
+          <span className={`${classes.textRight}`}>
             {textRight}
           </span>
+          <Clear className={`${classes.floatRight} ${classes.iconDelete}`} onClick={() => props.deleteSchedule(props.id)} />
         </>
       )}
     </div>
