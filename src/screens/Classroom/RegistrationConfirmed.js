@@ -52,7 +52,7 @@ const Home = props => {
   }
 
   // const studentEdcenso = student.edcenso_city['name'];
-  const status = student?.newStudent;
+  // const status = student?.newStudent;
 
   const address = student?.address ?? nullableField;
   const cep = student?.cep ?? nullableField;

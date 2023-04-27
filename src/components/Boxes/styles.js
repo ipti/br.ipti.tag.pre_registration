@@ -124,9 +124,12 @@ const useStyles = {
     borderRadius: "8px",
     borderColor: styleBase.colors.purple,
     fontFamily: styleBase.typography.types.light,
-    width: "100%",
-    padding: "10px 5px 0px 5px",
-    position: "relative"
+    width: "80%",
+    padding: "10px",
+    margin: '20px',
+    "& h4": {
+      fontFamily: styleBase.typography.types.light
+    }
   },
   subtitleStudent: {
     color: styleBase.colors.grayClear
@@ -174,6 +177,23 @@ const useStyles = {
     // "&:hover": {
     //   whiteSpace: "unset"
     // }
+  },
+  button: {
+    backgroundColor: styleBase.colors.purple,
+    margin: 'auto 0px',
+    border: "none",
+    borderRadius: "50px",
+    color: styleBase.colors.white,
+    fontSize: styleBase.typography.font.small,
+    fontFamily: styleBase.typography.types.light,
+    cursor: 'pointer',
+    transition: 'ease-in',
+    textAlign: "center",
+    padding: "8px 18px",
+    outline: 'none',
+    '&:hover': {
+      backgroundColor: styleBase.colors.purpleDark
+    }
   }
 };
 export default useStyles;

@@ -19,6 +19,7 @@ import BoxStudents from "../../components/Boxes/BoxStudents";
 import { RegistrationContext } from "../../containers/Registration/Context/context";
 import styleBase from "../../styles";
 import styles from "./styles";
+import ModalExistStudent from "../../components/Modal/ModalExistStudent";
 
 const useStyles = makeStyles(styles);
 
@@ -82,6 +83,7 @@ const TextMaskFone = props => {
 const StepSix = props => {
   const classes = useStyles();
   const [student, setStudent] = useState([])
+  const [openModal, setOpenModal] = useState(false)
 
   const { school } = useContext(RegistrationContext)
 
@@ -105,9 +107,9 @@ const StepSix = props => {
     var cpf = e.target.value.replace(/\D/g, '');
     var isValid = school.student_documents_and_address.filter(x => (cpf === x.cpf) && (x.received_responsable_cpf === false));
 
-    console.log(isValid)
     if (isValid.length !== 0) {
       setStudent(isValid);
+      setOpenModal(true)
     }
   }
 
@@ -161,20 +163,6 @@ const StepSix = props => {
                   </FormControl>
                 </Grid>
               </Grid>
-              {student.length !== 0 ?
-                <Grid
-                  className={`${classes.contentMain}`}
-                  container
-                  direction="row"
-                  justifyContent="center"
-                  alignItems="start">
-                  Já temos um cadastro com esse CPF,
-                  {student.map((student, i) => {
-                    return (
-                      <BoxStudents student={student} student_identification={school.student_identification} />
-                    )
-                  })}
-                </Grid> : null}
               <Grid
                 className={`${classes.contentMain}`}
                 container
@@ -324,6 +312,7 @@ const StepSix = props => {
           );
         }}
       </Formik>
+      <ModalExistStudent openModal={openModal} school={school} student={student} />
     </>
   );
 };

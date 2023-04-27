@@ -22,6 +22,7 @@ import styles from "./styles";
 import BoxStudents from "../../components/Boxes/BoxStudents";
 import { RegistrationContext } from "../../containers/Registration/Context/context";
 import styleBase from "../../styles";
+import ModalExistStudent from "../../components/Modal/ModalExistStudent";
 
 const useStyles = makeStyles(styles);
 
@@ -88,6 +89,8 @@ const StepFour = props => {
   const { school } = useContext(RegistrationContext)
   const [student, setStudent] = useState([])
   const [studentResponsable, setStudentResponsable] = useState([])
+  const [openModalCPF, setOpenModalCPF] = useState(false)
+  const [openModalCPFResponsable, setOpenModalCPFResponsable] = useState(false)
 
   const validationSchema = Yup.object().shape({
     responsable_name: Yup.string().required("Campo obrigatório!"),
@@ -116,6 +119,7 @@ const StepFour = props => {
     console.log(isValid)
     if (isValid.length !== 0) {
       setStudent(isValid);
+      setOpenModalCPF(true)
     }
   }
 
@@ -125,6 +129,7 @@ const StepFour = props => {
 
     console.log(isValid)
     if (isValid.length !== 0) {
+      setOpenModalCPFResponsable(true)
       setStudentResponsable(isValid);
     }
   }
@@ -181,20 +186,7 @@ const StepFour = props => {
                   </FormControl>
                 </Grid>
               </Grid>
-              {student.length !== 0 ?
-                <Grid
-                  className={`${classes.contentMain}`}
-                  container
-                  direction="row"
-                  justifyContent="center"
-                  alignItems="start">
-                  Já temos um cadastro com esse CPF,
-                  {student.map((student, i) => {
-                    return (
-                      <BoxStudents student={student} student_identification={school.student_identification} />
-                    )
-                  })}
-                </Grid> : null}
+
               <Grid
                 className={`${classes.contentMain}`}
                 container
@@ -292,21 +284,6 @@ const StepFour = props => {
                   </FormControl>
                 </Grid>
               </Grid>
-              {studentResponsable.length !== 0 ?
-                <Grid
-                  className={`${classes.contentMain}`}
-                  container
-                  direction="row"
-                  justifyContent="center"
-                  alignItems="start">
-                  Encontramos cadastros com esse CPF, é algum desse?
-                  {studentResponsable.map((student, i) => {
-                    return (
-                      <BoxStudents student={student} student_identification={school.student_identification} />
-                    )
-                  })}
-
-                </Grid> : null}
               <Grid
                 className={`${classes.contentMain}`}
                 container
@@ -416,6 +393,8 @@ const StepFour = props => {
           );
         }}
       </Formik>
+      <ModalExistStudent openModal={openModalCPF} school={school} student={student} setOpen={setOpenModalCPF} />
+      <ModalExistStudent openModal={openModalCPFResponsable} school={school} student={studentResponsable} setOpen={setOpenModalCPFResponsable} />
     </>
   );
 };
