@@ -26,6 +26,16 @@ const requestClassroom = id => {
         });
 };
 
+export const requestDeletePreRegistration = id => {
+  return api
+      .delete("/student-pre-identification/"+ id)
+      .then(response => response.data)
+      .catch(err => {
+          throw err;
+      });
+};
+
+
   export const useFetchRequestClassroom = ({id}) => {
     return useQuery(["useRequestClassroom"], () => requestClassroom(id));
   };

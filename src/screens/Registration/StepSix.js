@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 
 // Material UI
 import { FormControl, FormControlLabel, FormHelperText, FormLabel, Grid, Radio, RadioGroup, TextField } from "@material-ui/core";
@@ -13,9 +13,13 @@ import { Form, Formik } from "formik";
 import * as Yup from "yup";
 
 // Styles
+import { useState } from "react";
 import MaskedInput from "react-text-mask";
+import BoxStudents from "../../components/Boxes/BoxStudents";
+import { RegistrationContext } from "../../containers/Registration/Context/context";
 import styleBase from "../../styles";
 import styles from "./styles";
+import ModalExistStudent from "../../components/Modal/ModalExistStudent";
 
 const useStyles = makeStyles(styles);
 
@@ -69,7 +73,7 @@ const TextMaskFone = props => {
       ref={ref => {
         inputRef(ref ? ref.inputElement : null);
       }}
-      mask={[ "(", /[1-9]/, /\d/, ")", " ", /\d/, /\d/, /\d/, /\d/, /\d/, "-", /\d/, /\d/, /\d/, /\d/ ]}
+      mask={["(", /[1-9]/, /\d/, ")", " ", /\d/, /\d/, /\d/, /\d/, /\d/, "-", /\d/, /\d/, /\d/, /\d/]}
       placeholderChar={"\u2000"}
       showMask
     />
@@ -78,6 +82,10 @@ const TextMaskFone = props => {
 
 const StepSix = props => {
   const classes = useStyles();
+  const [student, setStudent] = useState([])
+  const [openModal, setOpenModal] = useState(false)
+
+  const { school } = useContext(RegistrationContext)
 
   const validationSchema = Yup.object().shape({
     cpf: Yup.string().required("Campo obrigatório!"),
@@ -86,7 +94,7 @@ const StepSix = props => {
     responsable_telephone: Yup.string().required("Campo obrigatório!"),
     zone: Yup.number().required("Campo obrigatório!"),
   });
- 
+
   const initialValues = {
     cpf: props?.values?.cpf ?? "",
     sex: props?.values?.sex ?? '',
@@ -94,6 +102,17 @@ const StepSix = props => {
     responsable_telephone: props?.values?.responsable_telephone ?? "",
     zone: props?.values?.zone ?? ''
   };
+
+  const Isverify = (e) => {
+    var cpf = e.target.value.replace(/\D/g, '');
+    var isValid = school.student_documents_and_address.filter(x => (cpf === x.cpf) && (x.received_responsable_cpf === false));
+
+    if (isValid.length !== 0) {
+      setStudent(isValid);
+      setOpenModal(true)
+    }
+  }
+
 
   return (
     <>
@@ -137,6 +156,7 @@ const StepSix = props => {
                         value: values.cpf,
                         onChange: handleChange
                       }}
+                      onBlur={(e) => Isverify(e)}
                       className={classes.textField}
                       autoComplete="off"
                     />
@@ -292,6 +312,7 @@ const StepSix = props => {
           );
         }}
       </Formik>
+      <ModalExistStudent openModal={openModal} school={school} student={student} />
     </>
   );
 };

@@ -115,7 +115,6 @@ const StepFive = props => {
           setFieldValue("address", data.logradouro);
           setErrorCep(false);
         }
-
       })
   }
 

@@ -14,7 +14,7 @@ const Home = props => {
   //   setLoadDataPaginate(true);
   // };
 
-  const { schedules, isLoadingSchedules, isError } = States()
+  const { schedules, isLoadingSchedules, isError, deleteSchedule } = States()
 
   
   const alert = () => {
@@ -43,6 +43,7 @@ const Home = props => {
             // pagination={props.schedule.pagination}
             // activePage={page}
              data={schedules}
+             deleteSchedule={deleteSchedule}
             // handlePage={handlePage}
           />
           {alert()}

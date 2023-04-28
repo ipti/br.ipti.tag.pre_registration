@@ -44,15 +44,17 @@ const Home = props => {
   // : "";
   var city = nullableField;
   var state = nullableField;
+  
   if (student.edcenso_city) {
     city = student?.edcenso_city.name
   }
+
   if (student?.edcenso_uf) {
     state = student.edcenso_uf['name']
   }
 
   // const studentEdcenso = student.edcenso_city['name'];
-  const status = student?.newStudent;
+  // const status = student?.newStudent;
 
   const address = student?.address ?? nullableField;
   const cep = student?.cep ?? nullableField;
@@ -64,11 +66,12 @@ const Home = props => {
   const responsableName = student?.responsable_name ?? nullableField;
   const responsableCpf = student?.responsable_cpf ?? nullableField;
 
-
-  const body = {
+  const body = !student.student_fk ? {
     classroom: student?.classroom_fk,
     year: student?.classroom.school_year
-  }
+  } : {student_fk: student.student_fk};
+
+
 
   return (
     <>
@@ -92,7 +95,7 @@ const Home = props => {
           {studentBirthday}
         </Grid>
         <Grid item md={4}>
-          <BoxStatus title={!status ? "Transferência" : "Novo Aluno"} />
+          <BoxStatus title={student.student_fk ? "Transferência" : "Novo Aluno"} />
         </Grid>
         <Grid item md={3}>
           <p className={classes.label}>CPF</p>

@@ -17,19 +17,31 @@ import IconMale from "../../assets/images/male-icon.png";
 import IconStudent from "../../assets/images/student-male-icon.png";
 
 // Styles
+import { FormControl, FormLabel } from "@material-ui/core";
+import { useState } from "react";
+import ReactSelect from "react-select";
 import { useFetchRequestSchoolRegistration } from "../../query/registration";
-import { getIdSchool } from "../../services/auth";
 import styles from "../Classroom/styles";
 
 const useStyles = makeStyles(styles);
+
+const customStyles = {
+  control: base => ({
+    ...base,
+    height: "60px",
+    minHeight: "60px",
+    fontFamily: "Roboto, Helvetica, Arial, sans-serif"
+  }),
+  menu: base => ({
+    ...base,
+    fontFamily: "Roboto, Helvetica, Arial, sans-serif",
+  })
+};
+
 const Home = props => {
   const classes = useStyles();
   // const [schoolInepFk, setSchoolInepFk] = useState('');
   // const [inputValueClassroom, setInputValueClassroom] = useState("");
-
-  const { data } = useFetchRequestSchoolRegistration({ id: getIdSchool() });
-
-  if (!data) return null
 
   const {
     registration,
@@ -37,6 +49,13 @@ const Home = props => {
   } = props;
   const student = registration ?? [];
 
+  const [idClassroom, setIdClassroom] = useState()
+
+  const { data } = useFetchRequestSchoolRegistration({
+    id: student.school_inep_id_fk
+  });
+
+  if (!data) return null
 
   const nullableField = "-------------";
 
@@ -54,23 +73,25 @@ const Home = props => {
 
 
   const responsableName = student?.responsable_name ?? nullableField;
-  const responsableCpf = student?.responsable_cpf ?? nullableField;
+  const responsableCpf = student?.school_identification.student_documents_and_address[0].cpf ?? nullableField;
+  const last_event = student.school_identification.event_pre_registration.length - 1;
 
   const body = {
     name: studentName,
     birthday: studentBirthday,
     deficiency: student?.deficiency,
     color_race: student?.color_race,
-    edcenso_city_fk: student?.edcenso_city_fk,
-    edcenso_uf_fk: student?.edcenso_uf_fk,
-    responsable_telephone: student?.responsable_telephone,
-    responsable_name: student?.responsable_name,
-    responsable_cpf: student?.responsable_cpf,
+    edcenso_city_fk: student?.edcenso_city_fk ?? null,
+    edcenso_uf_fk: student?.edcenso_uf_fk ?? null,
+    responsable_telephone: student?.responsable_telephone ?? null,
+    responsable_name: student?.responsable_name ?? null,
+    responsable_cpf: student?.responsable_cpf ?? null,
     student_identification: student?.id,
     sex: student?.sex,
-    // school_identification: schoolInepFk,
-    // classroom: inputValueClassroom,
-   // calendar_event: data.calendar_event.find(e => e.id === 1).id
+    school_identification: student.school_identification.inep_id,
+    event_pre_registration: parseInt(student.school_identification.event_pre_registration[last_event]),
+    classroom: idClassroom,
+    zone: student.school_identification.student_documents_and_address[0].residence_zone
   }
 
 
@@ -134,18 +155,6 @@ const Home = props => {
           <p className={classes.label}>Telefone</p>
           {student?.responsable_telephone}
         </Grid>
-        <Grid item md={6}>
-          <div className={classes.floatLeft}>
-            <p className={classes.label}>Name da Mãe</p>
-            {student?.mother_name}
-          </div>
-        </Grid>
-        <Grid item md={6}>
-          <div className={classes.floatLeft}>
-            <p className={classes.label}>Name do Pai</p>
-            {student?.father_name}
-          </div>
-        </Grid>
         <Grid item md={12}>
           <div className={classes.lineGrayClean}></div>
         </Grid>
@@ -169,6 +178,27 @@ const Home = props => {
         <Grid item md={12}>
           <div className={classes.lineGrayClean}></div>
         </Grid>
+      </Grid>
+      <Grid item xs={12}>
+        <FormControl
+          component="fieldset"
+          className={classes.formControl}
+        >
+          <FormLabel style={{ display: 'flex', flexDirection: 'row', justifyContent: "start" }}  >Turma *</FormLabel>
+          <ReactSelect
+            styles={customStyles}
+            className="basic-single"
+            classNamePrefix="select"
+            placeholder="Selecione a Turma"
+            value={props?.values?.classroom}
+            options={student.school_identification.classroom}
+            onChange={selectedOption => {
+              setIdClassroom(selectedOption.id)
+            }}
+            getOptionValue={opt => opt.name + ' - ' + opt.school_year}
+            getOptionLabel={opt => opt.name + ' - ' + opt.school_year}
+          />
+        </FormControl>
       </Grid>
       {/* 
       <Grid
@@ -240,6 +270,7 @@ const Home = props => {
           Manhã
         </Grid>
       </Grid> */}
+
       <Grid
         className={classes.boxButtons}
         container

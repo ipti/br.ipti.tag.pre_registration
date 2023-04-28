@@ -9,7 +9,10 @@ const requestStudent = async id => {
             {
                 params: {
                     include: {
-                        edcenso_city: true,
+                        edcenso_uf: true,
+                        school_identification: {include:{student_documents_and_address: {where: {student_fk: id}}, classroom: true, event_pre_registration: true}}
+                       // student_documents_and_address: true
+
                     }
                 }
             })
@@ -19,6 +22,21 @@ const requestStudent = async id => {
         });
 };
 
+export const requestStudentOne = async id => {
+  return await api
+      .get("/student-pre-identify/studentidentification/" + id,
+          {
+              params: {
+                  include: {
+                      edcenso_city: true,
+                  }
+              }
+          })
+      .then(response => response.data)
+      .catch(err => {
+          throw err;
+      });
+};
 
 // request stages classroom 
 export const requestSchoolStages = async (id, year) => {
@@ -56,7 +74,9 @@ const requestSchoolList = async () => {
           include: {
             classroom: {where: {school_year: 2023}},
             calendar_event: true,
-            event_pre_registration: true
+            event_pre_registration: true,
+            student_documents_and_address: true,
+            student_identification: true
           }
         }
       })

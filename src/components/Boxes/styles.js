@@ -19,7 +19,11 @@ const useStyles = {
     backgroundColor: styleBase.colors.purple,
     color: styleBase.colors.white,
     padding: "0px 15px",
-    borderRadius: "50px"
+    borderRadius: "50px",
+    marginLeft: "5px"
+  },
+  iconDelete: {
+    cursor: "pointer",
   },
   iconHouse: {
     marginTop: "-5px",
@@ -107,8 +111,9 @@ const useStyles = {
     marginTop: 0
   },
   iconStudent: {
-    marginRight: 15,
-    float: "left",
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     "& img": {
       borderRadius: "6px",
       backgroundColor: styleBase.colors.blueClear,
@@ -120,9 +125,22 @@ const useStyles = {
     borderRadius: "8px",
     borderColor: styleBase.colors.purple,
     fontFamily: styleBase.typography.types.light,
+    width: "80%",
+    padding: "10px",
+    margin: '20px',
+    "& h4": {
+      fontFamily: styleBase.typography.types.light
+    }
+  },
+  boxStudentConfirmation: {
+    border: "1px solid",
+    borderRadius: "8px",
+    borderColor: styleBase.colors.purple,
+    fontFamily: styleBase.typography.types.light,
     width: "100%",
-    padding: "10px 5px 0px 5px",
-    position: "relative"
+    padding: "10px",
+    position: "relative",
+    cursor: 'pointer'
   },
   subtitleStudent: {
     color: styleBase.colors.grayClear
@@ -130,10 +148,9 @@ const useStyles = {
   confimedCicle: {
     width: 10,
     height: 10,
-    display: "block",
     borderRadius: "50%",
-    right: "8px",
-    bottom: "5px",
+    right: "14px",
+    bottom: "8px",
     position: "absolute",
     backgroundColor: styleBase.colors.green
   },
@@ -142,8 +159,8 @@ const useStyles = {
     height: 10,
     display: "block",
     borderRadius: "50%",
-    right: "8px",
-    bottom: "5px",
+    right: "14px",
+    bottom: "8px",
     position: "absolute",
     backgroundColor: styleBase.colors.red
   },
@@ -170,6 +187,23 @@ const useStyles = {
     // "&:hover": {
     //   whiteSpace: "unset"
     // }
+  },
+  button: {
+    backgroundColor: styleBase.colors.purple,
+    margin: 'auto 0px',
+    border: "none",
+    borderRadius: "50px",
+    color: styleBase.colors.white,
+    fontSize: styleBase.typography.font.small,
+    fontFamily: styleBase.typography.types.light,
+    cursor: 'pointer',
+    transition: 'ease-in',
+    textAlign: "center",
+    padding: "8px 18px",
+    outline: 'none',
+    '&:hover': {
+      backgroundColor: styleBase.colors.purpleDark
+    }
   }
 };
 export default useStyles;

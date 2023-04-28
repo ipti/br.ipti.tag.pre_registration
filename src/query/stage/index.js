@@ -74,13 +74,22 @@ export const requestCreateStage = (data) => {
 };
 
 export const requestUpdateRegistration = (data, id) => {
-  
-  return api
-    .post("/student-pre-identify/registration/" + id, data)
-    .then(response => response.data)
-    .catch(err => {
-      throw err;
-    });
+  if (data.student_fk) {
+    return api
+      .post("student-pre-identifyregistered/registration/" + id)
+      .then(response => response.data)
+      .catch(err => {
+        throw err;
+      });
+  } else {
+    return api
+      .post("/student-pre-identify/registration/" + id, data)
+      .then(response => response.data)
+      .catch(err => {
+        throw err;
+      });
+  }
+
 };
 
 export const requestUpdateClassroom = (data, id) => {
@@ -132,7 +141,7 @@ export const useFetchRequestClassrooms = () => {
   return useQuery(["useRequestClassrooms"], () => requestClassrooms());
 };
 
-export const useFetchRequestStagevsmodality = ({year}) => {
+export const useFetchRequestStagevsmodality = ({ year }) => {
   return useQuery(["useRequestStagevsmodality", year], () => requestStagevsmodality(year));
 };
 

@@ -26,6 +26,7 @@ const Create = props => {
   } = props;
 
 
+  console.log(data)
   const registrations = () => {
     const registrationList = data?.student_pre_identification ?? [];
 
@@ -37,6 +38,7 @@ const Create = props => {
           key={index}
           name={registration?.name}
           sex={registration?.sex}
+          id={registration?.id}
           student_fk={registration?.student_fk}
           md={4}
           sm={4}

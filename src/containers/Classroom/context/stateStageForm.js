@@ -1,13 +1,14 @@
-import { useParams } from "react-router";
-import { useFetchRequestClassroom } from "../../../query/stage";
+import { Controller } from "../../../controller/classroom";
 
 export const StageFormState = () => {
 
-    const { id } = useParams()
 
-    const {data: classroom, isLoading, isError} = useFetchRequestClassroom({id: id})
+
+    const { requestDeletePreRegistrationMutation, classroom, isError, isLoading } = Controller();
+
+
 
     return {
-        classroom, isLoading, isError
+        classroom, isLoading, isError, requestDeletePreRegistrationMutation
     }
 }
