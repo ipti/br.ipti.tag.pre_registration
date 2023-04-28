@@ -38,6 +38,7 @@ const Create = props => {
           key={index}
           name={registration?.name}
           sex={registration?.sex}
+          id={registration?.id}
           student_fk={registration?.student_fk}
           md={4}
           sm={4}

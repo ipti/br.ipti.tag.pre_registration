@@ -44,9 +44,11 @@ const Home = props => {
   // : "";
   var city = nullableField;
   var state = nullableField;
+  
   if (student.edcenso_city) {
     city = student?.edcenso_city.name
   }
+
   if (student?.edcenso_uf) {
     state = student.edcenso_uf['name']
   }

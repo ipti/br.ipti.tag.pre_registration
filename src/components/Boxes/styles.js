@@ -111,8 +111,9 @@ const useStyles = {
     marginTop: 0
   },
   iconStudent: {
-    marginRight: 15,
-    float: "left",
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     "& img": {
       borderRadius: "6px",
       backgroundColor: styleBase.colors.blueClear,
@@ -131,16 +132,25 @@ const useStyles = {
       fontFamily: styleBase.typography.types.light
     }
   },
+  boxStudentConfirmation: {
+    border: "1px solid",
+    borderRadius: "8px",
+    borderColor: styleBase.colors.purple,
+    fontFamily: styleBase.typography.types.light,
+    width: "100%",
+    padding: "10px",
+    position: "relative",
+    cursor: 'pointer'
+  },
   subtitleStudent: {
     color: styleBase.colors.grayClear
   },
   confimedCicle: {
     width: 10,
     height: 10,
-    display: "block",
     borderRadius: "50%",
-    right: "8px",
-    bottom: "5px",
+    right: "14px",
+    bottom: "8px",
     position: "absolute",
     backgroundColor: styleBase.colors.green
   },
@@ -149,8 +159,8 @@ const useStyles = {
     height: 10,
     display: "block",
     borderRadius: "50%",
-    right: "8px",
-    bottom: "5px",
+    right: "14px",
+    bottom: "8px",
     position: "absolute",
     backgroundColor: styleBase.colors.red
   },

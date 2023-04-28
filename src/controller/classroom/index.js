@@ -2,18 +2,23 @@ import React from "react";
 
 import Alert from "@material-ui/lab/Alert";
 import { useMutation } from "react-query";
-import { useHistory } from "react-router";
-import { requestCreateStage, requestEditPreIdentification, requestUpdateRegistration } from "../../query/stage";
-import { requestCreateClassroom } from "../../query/classroom";
+import { useHistory, useParams } from "react-router";
+import { requestCreateStage, requestEditPreIdentification, requestUpdateRegistration, useFetchRequestClassroom } from "../../query/stage";
+import { requestCreateClassroom, requestDeletePreRegistration } from "../../query/classroom";
+import swal from "@sweetalert/with-react";
 
 
 export const Controller = () => {
+    const { id } = useParams()
+
+    const { data: classroom, isLoading, isError, refetch } = useFetchRequestClassroom({ id: id })
+
     const history = useHistory()
     const requestUpdateRegistrationMutation = useMutation(
         ({ data, id }) => requestUpdateRegistration(data, id),
         {
             onError: (error) => {
-                console.log(error.response.data.message);
+                swal(error.response.data.message);
             },
             onSuccess: (data) => {
                 history.goBack()
@@ -30,7 +35,7 @@ export const Controller = () => {
         (data) => requestCreateStage(data),
         {
             onError: (error) => {
-                console.log(error.response.data.message);
+                swal(error.response.data.message);
             },
             onSuccess: (data) => {
                 history.goBack()
@@ -47,7 +52,7 @@ export const Controller = () => {
         ({ data, id }) => requestEditPreIdentification(data, id),
         {
             onError: (error) => {
-                console.log(error.response.data.message);
+                swal(error.response.data.message);
             },
             onSuccess: (data) => {
                 history.goBack()
@@ -65,11 +70,22 @@ export const Controller = () => {
         (data) => requestCreateClassroom(data),
         {
             onError: (error) => {
-                console.log(error.response.data.message);
+                swal(error.response.data.message);
             },
             onSuccess: (data) => {
-                console.log(data)
                 history.push('/turmas')
+            },
+        }
+    );
+
+    const requestDeletePreRegistrationMutation = useMutation(
+        (data) => requestDeletePreRegistration(data),
+        {
+            onError: (error) => {
+                swal(error.response.data.message);
+            },
+            onSuccess: (data) => {
+                refetch()
             },
         }
     );
@@ -77,5 +93,6 @@ export const Controller = () => {
 
 
 
-    return { requestUpdateRegistrationMutation, requestUpdatePreIdentificationMutation, requestCreateStageMutation, requestCreateClassroomMutation }
+
+    return { requestUpdateRegistrationMutation, requestUpdatePreIdentificationMutation, requestCreateStageMutation, requestCreateClassroomMutation, requestDeletePreRegistrationMutation, classroom, isLoading, isError, refetch }
 } 
