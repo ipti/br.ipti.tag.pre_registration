@@ -1,9 +1,11 @@
-import Grid from "@material-ui/core/Grid";
+
 import { makeStyles } from "@material-ui/core/styles";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+
+import Grid from "@material-ui/core/Grid";
 import { Clear } from "@material-ui/icons";
 import swal from "@sweetalert/with-react";
-import React from "react";
-import { useHistory } from "react-router-dom";
 import IconMale from "../../assets/images/student-male-icon.png";
 import IconWoman from "../../assets/images/student-woman-icon.png";
 import { Controller } from "../../controller/classroom";
@@ -13,15 +15,18 @@ const useStyles = makeStyles(styles);
 
 const BoxRegistration = props => {
   const { name, link, unavailable, sex, md, sm, xs, student_fk, id } = props;
-  
+
   const { requestDeletePreRegistrationMutation } = Controller();
   const classes = useStyles();
   const history = useHistory();
 
   const toLink = (e) => {
-    
+
       history.push(link)
     
+
+      history.push(link)
+
   }
 
   const deletePreRegistration = (e, id) => {
