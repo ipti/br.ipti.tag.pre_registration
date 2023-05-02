@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 import api from "../../services/api";
-import { getIdSchool } from "../../services/auth";
+import { getIdSchool, logout } from "../../services/auth";
 
 
 
@@ -12,6 +12,10 @@ const requestSchools = () => {
     .get(path)
     .then(response => response.data)
     .catch(err => {
+      if(err.response.status){
+        logout()
+        window.location.reload()
+      }
       throw err;
     });
 };
@@ -22,6 +26,10 @@ const requestScheculeOne = (id) => {
     .get(path)
     .then(response => response.data)
     .catch(err => {
+      if(err.response.status){
+        logout()
+        window.location.reload()
+      }
       throw err;
     });
 };
@@ -32,6 +40,10 @@ const requestStagevsmodality = () => {
     .get(path)
     .then(response => response.data)
     .catch(err => {
+      if(err.response.status){
+        logout()
+        window.location.reload()
+      }
       throw err;
     });
 };
@@ -42,6 +54,10 @@ export const requestDeleteSchedule = id => {
     .delete(path)
     .then(response => response.data)
     .catch(err => {
+      if(err.response.status){
+        logout()
+        window.location.reload()
+      }
       throw err;
     });
 };
@@ -63,6 +79,10 @@ const requestSchecule = () => {
     })
     .then(response => response.data)
     .catch(err => {
+      if(err.response.status){
+        logout()
+        window.location.reload()
+      }
       throw err;
     });
 };
@@ -72,13 +92,13 @@ export const requestSaveEventPre = data => {
     .post("/event-pre-registration", data)
     .then(response => response.data)
     .catch(err => {
+      if(err.response.status){
+        logout()
+        window.location.reload()
+      }
       throw err;
     });
 };
-
-
-
-
 
 
 export const useFetchRequestSchools = () => {

@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 import api from "../../services/api";
-import { getIdSchool } from "../../services/auth";
+import { getIdSchool, logout } from "../../services/auth";
 
 // Requests
 const requestClassrooms = () => {
@@ -9,6 +9,10 @@ const requestClassrooms = () => {
     .get(path)
     .then(response => response.data)
     .catch(err => {
+      if(err.response.status){
+        logout()
+        window.location.reload()
+      }
       throw err;
     });
 };
@@ -24,6 +28,10 @@ const requestClassroom = id => {
     })
     .then(response => response.data)
     .catch(err => {
+      if(err.response.status){
+        logout()
+        window.location.reload()
+      }
       throw err;
     });
 };
@@ -42,6 +50,10 @@ const requestRegistration = id => {
     })
     .then(response => response.data)
     .catch(err => {
+      if(err.response.status){
+        logout()
+        window.location.reload()
+      }
       throw err;
     });
 };
@@ -51,6 +63,10 @@ export const requestSaveClassroom = data => {
     .post("/classroom", data)
     .then(response => response.data)
     .catch(err => {
+      if(err.response.status){
+        logout()
+        window.location.reload()
+      }
       throw err;
     });
 };
@@ -60,6 +76,10 @@ export const requestEditPreIdentification = (data, id) => {
     .put("/student-pre-identification/" + id, data)
     .then(response => response.data)
     .catch(err => {
+      if(err.response.status){
+        logout()
+        window.location.reload()
+      }
       throw err;
     });
 };
@@ -69,6 +89,10 @@ export const requestCreateStage = (data) => {
     .post("/stages-vacancy-pre-registration", data)
     .then(response => response.data)
     .catch(err => {
+      if(err.response.status){
+        logout()
+        window.location.reload()
+      }
       throw err;
     });
 };
@@ -79,6 +103,10 @@ export const requestUpdateRegistration = (data, id) => {
       .post("student-pre-identifyregistered/registration/" + id)
       .then(response => response.data)
       .catch(err => {
+        if(err.response.status){
+          logout()
+          window.location.reload()
+        }
         throw err;
       });
   } else {
@@ -86,6 +114,10 @@ export const requestUpdateRegistration = (data, id) => {
       .post("/student-pre-identify/registration/" + id, data)
       .then(response => response.data)
       .catch(err => {
+        if(err.response.status){
+          logout()
+          window.location.reload()
+        }
         throw err;
       });
   }
@@ -97,6 +129,10 @@ export const requestUpdateClassroom = (data, id) => {
     .put("/classroom/" + id, data)
     .then(response => response.data)
     .catch(err => {
+      if(err.response.status){
+        logout()
+        window.location.reload()
+      }
       throw err;
     });
 };
@@ -116,6 +152,10 @@ const requestStagevsmodality = (year) => {
     })
     .then(response => response.data)
     .catch(err => {
+      if(err.response.status){
+        logout()
+        window.location.reload()
+      }
       throw err;
     });
 };
@@ -133,6 +173,10 @@ const requestStagevsmodalityOne = id => {
     })
     .then(response => response.data)
     .catch(err => {
+      if(err.response.status){
+        logout()
+        window.location.reload()
+      }
       throw err;
     });
 };

@@ -15,11 +15,10 @@ import * as Yup from "yup";
 // Styles
 import { useState } from "react";
 import MaskedInput from "react-text-mask";
-import BoxStudents from "../../components/Boxes/BoxStudents";
+import ModalExistStudent from "../../components/Modal/ModalExistStudent";
 import { RegistrationContext } from "../../containers/Registration/Context/context";
 import styleBase from "../../styles";
 import styles from "./styles";
-import ModalExistStudent from "../../components/Modal/ModalExistStudent";
 
 const useStyles = makeStyles(styles);
 

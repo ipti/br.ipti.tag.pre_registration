@@ -82,6 +82,7 @@ export const Controller = () => {
         (data) => requestDeletePreRegistration(data),
         {
             onError: (error) => {
+                
                 swal(error.response.data.message);
             },
             onSuccess: (data) => {
