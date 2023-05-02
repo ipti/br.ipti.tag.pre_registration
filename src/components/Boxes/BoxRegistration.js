@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+=======
+import React, { useState } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import { Link, useHistory } from "react-router-dom";
+>>>>>>> feature/ipti
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import { Clear } from "@material-ui/icons";
@@ -8,20 +14,36 @@ import IconMale from "../../assets/images/student-male-icon.png";
 import IconWoman from "../../assets/images/student-woman-icon.png";
 import { Controller } from "../../controller/classroom";
 import styles from "./styles";
+<<<<<<< HEAD
+=======
+import { Clear } from "@material-ui/icons";
+import { Controller } from "../../controller/classroom";
+import swal from "@sweetalert/with-react";
+>>>>>>> feature/ipti
 
 const useStyles = makeStyles(styles);
 
 const BoxRegistration = props => {
   const { name, link, unavailable, sex, md, sm, xs, student_fk, id } = props;
+<<<<<<< HEAD
   
+=======
+  const [isClick, setIsClick] = useState(true)
+>>>>>>> feature/ipti
   const { requestDeletePreRegistrationMutation } = Controller();
   const classes = useStyles();
   const history = useHistory();
 
   const toLink = (e) => {
+<<<<<<< HEAD
     
       history.push(link)
     
+=======
+    if (isClick) {
+      history.push(link)
+    }
+>>>>>>> feature/ipti
   }
 
   const deletePreRegistration = (e, id) => {

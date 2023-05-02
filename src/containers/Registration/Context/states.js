@@ -9,6 +9,7 @@ export const RegistrationState = () => {
     const [isOfLegalAge, setIsOfLegalAge] = useState('');
     const [idEvent, setIdEvent] = useState('');
     const [year, setYear] = useState('');
+    const [quiz, setQuiz] = useState();
     
     const {schoolsList, requestSaveRegistrationMutation} = Controller()
 
