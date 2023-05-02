@@ -20,7 +20,8 @@ const useStyles = {
     color: styleBase.colors.white,
     padding: "0px 15px",
     borderRadius: "50px",
-    marginLeft: "5px"
+    float: "left",
+    marginLeft: "auto"
   },
   iconDelete: {
     cursor: "pointer",

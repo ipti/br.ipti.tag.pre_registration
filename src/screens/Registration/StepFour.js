@@ -19,10 +19,9 @@ import * as Yup from "yup";
 // Styles
 import styles from "./styles";
 
-import BoxStudents from "../../components/Boxes/BoxStudents";
+import ModalExistStudent from "../../components/Modal/ModalExistStudent";
 import { RegistrationContext } from "../../containers/Registration/Context/context";
 import styleBase from "../../styles";
-import ModalExistStudent from "../../components/Modal/ModalExistStudent";
 
 const useStyles = makeStyles(styles);
 

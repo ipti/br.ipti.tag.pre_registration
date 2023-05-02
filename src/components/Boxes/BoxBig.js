@@ -34,9 +34,7 @@ const BoxBig = props => {
       {textRight && (
         <>
           <span className={classes.title}>{title}</span>
-          <span className={`${classes.textRight}`}>
-            {textRight}
-          </span>
+          
           <Clear className={`${classes.floatRight} ${classes.iconDelete}`} onClick={() => props.deleteSchedule(props.id)} />
         </>
       )}

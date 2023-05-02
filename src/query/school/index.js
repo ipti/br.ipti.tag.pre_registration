@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 import api from "../../services/api";
-import { getYearClassRoom } from "../../services/auth";
+import { getYearClassRoom, logout } from "../../services/auth";
 
 // Requests
 const requestSchools = () => {
@@ -10,6 +10,10 @@ const requestSchools = () => {
     .get(path)
     .then(response => response.data)
     .catch(err => {
+      if(err.response.status){
+        logout()
+        window.location.reload()
+      }
       throw err;
     });
 };
@@ -19,6 +23,10 @@ const requestRegistrations = () => {
     .get("/student-pre-identification")
     .then(response => response.data)
     .catch(err => {
+      if(err.response.status){
+        logout()
+        window.location.reload()
+      }
       throw err;
     });
 };
@@ -44,6 +52,10 @@ const requestSchool = id => {
     })
     .then(response => response.data)
     .catch(err => {
+      if(err.response.status){
+        logout()
+        window.location.reload()
+      }
       throw err;
     });
 };
@@ -64,6 +76,10 @@ const requestStagevsmodality = id => {
     })
     .then(response => response.data)
     .catch(err => {
+      if(err.response.status){
+        logout()
+        window.location.reload()
+      }
       throw err;
     });
 };
