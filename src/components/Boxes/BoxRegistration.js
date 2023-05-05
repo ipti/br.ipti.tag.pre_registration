@@ -8,15 +8,15 @@ import { Clear } from "@material-ui/icons";
 import swal from "@sweetalert/with-react";
 import IconMale from "../../assets/images/student-male-icon.png";
 import IconWoman from "../../assets/images/student-woman-icon.png";
-import { Controller } from "../../controller/classroom";
 import styles from "./styles";
+import { ControllerClassroomForm } from "../../controller/classroom/ClassroomForm";
 
 const useStyles = makeStyles(styles);
 
 const BoxRegistration = props => {
   const { name, link, unavailable, sex, md, sm, xs, student_fk, id } = props;
 
-  const { requestDeletePreRegistrationMutation } = Controller();
+  const { requestDeletePreRegistrationMutation } = ControllerClassroomForm();
   const classes = useStyles();
   const history = useHistory();
 

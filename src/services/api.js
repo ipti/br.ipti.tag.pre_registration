@@ -2,7 +2,7 @@ import axios from "axios";
 import { getToken } from "./auth";
 
 const api = axios.create({
-    baseURL: "https://apitag.azurewebsites.net/"
+    baseURL: "http://tag-api-loadbalance-772604107.us-east-1.elb.amazonaws.com:3000/"
 });
 
 api.interceptors.request.use(async config => {

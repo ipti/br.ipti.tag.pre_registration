@@ -25,8 +25,6 @@ const Home = props => {
   const { requestSaveRegistrationMutation } = Controller()
   const [isActive, setIsActive] = useState(true);
 
-  
-
   // useEffect(() => {
 
   //   if (loadDataSchool) {
@@ -68,10 +66,11 @@ const Home = props => {
         .join("-");
     }
 
+    console.log(dataValues)
+
     const parseBool = value =>
       ['true', 'false'].includes(value) ? value === true : null
     if (load) {
-
       requestSaveRegistrationMutation.mutate(
         {
           ...dataValues, sex: parseInt(dataValues.sex),
@@ -87,7 +86,6 @@ const Home = props => {
       )
       setLoad(false)
     }
-
   };
 
 
@@ -98,8 +96,9 @@ const Home = props => {
     setDataValues(data);
     setStep(step)
 
+    console.log(dataValues)
 
-    if (step === 5) {
+    if (step === 6) {
       onSubmit();
     }
 
@@ -114,6 +113,7 @@ const Home = props => {
     //   }
     // }
   };
+
   const backStep = () => {
     if (step > 0) {
       setStep(step - 1)

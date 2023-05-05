@@ -84,7 +84,7 @@ const StepSix = props => {
   const [student, setStudent] = useState([])
   const [openModal, setOpenModal] = useState(false)
 
-  const { school } = useContext(RegistrationContext)
+  const { school, quiz } = useContext(RegistrationContext)
 
   const validationSchema = Yup.object().shape({
     cpf: Yup.string().required("Campo obrigatório!"),
@@ -104,7 +104,7 @@ const StepSix = props => {
 
   const Isverify = (e) => {
     var cpf = e.target.value.replace(/\D/g, '');
-    var isValid = school.student_documents_and_address.filter(x => (cpf === x.cpf) && (x.received_responsable_cpf === false));
+    var isValid = cpf ? school.student_documents_and_address.filter(x => (cpf === x.cpf) && (x.received_responsable_cpf === false)) : [];
 
     if (isValid.length !== 0) {
       setStudent(isValid);
@@ -117,7 +117,7 @@ const StepSix = props => {
     <>
       <Formik
         initialValues={initialValues}
-        onSubmit={values => props.next(5, values)}
+        onSubmit={values => quiz.length > 0 ? props.next(5, values) : props.next(6, values)}
         validationSchema={validationSchema}
         validateOnChange={false}
         enableReinitialize

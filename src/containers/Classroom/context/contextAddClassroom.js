@@ -38,7 +38,7 @@ const StageContextProvider = ({ children }) => {
             final_hour,
             setFinal_hour,
             final_minute,
-            setFinal_min,
+            setFinal_min
         }}>
             {children}
         </CreateClassroomContext.Provider>

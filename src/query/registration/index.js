@@ -19,7 +19,7 @@ const requestStudent = async id => {
       })
     .then(response => response.data)
     .catch(err => {
-      if (err.response.status) {
+      if (err.response.status === 401) {
         logout()
         window.location.reload()
       }
@@ -39,7 +39,7 @@ export const requestStudentOne = async id => {
       })
     .then(response => response.data)
     .catch(err => {
-      if (err.response.status) {
+      if (err.response.status === 401) {
         logout()
         window.location.reload()
       }
@@ -56,7 +56,7 @@ export const requestSchoolStages = async (id, year) => {
           year: year
         }
       })
-    .then(response => response.data)
+    .then(response => response.data === 401)
     .catch(err => {
       if (err.response.status) {
         logout()
@@ -74,7 +74,7 @@ export const requestSaveRegistration = data => {
     .post("/student-pre-identification", data)
     .then(response => response.data)
     .catch(err => {
-      if(err.response.status){
+      if(err.response.status === 401){
         logout()
         window.location.reload()
       }
@@ -99,7 +99,7 @@ const requestSchoolList = async () => {
     })
     .then(response => response.data)
     .catch(err => {
-      if(err.response.status){
+      if(err.response.status === 401){
         logout()
         window.location.reload()
       }
@@ -121,7 +121,7 @@ const requestSchool = async id => {
     })
     .then(response => response.data)
     .catch(err => {
-      if(err.response.status){
+      if(err.response.status === 401){
         logout()
         window.location.reload()
       }

@@ -16,7 +16,7 @@ export const Controller = () => {
           },
           onSuccess: (data) => {
             alert("Pré-matricula feita com sucesso!");
-            history.push('/')
+            history.push('/login')
           },
         }
       );

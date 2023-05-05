@@ -26,16 +26,19 @@ const Home = props => {
 
   const {
     registration,
-    handleSubmit
+    handleSubmit,
+    answer
   } = props;
   const student = registration ?? [];
 
 
+
+  console.log(answer)
   const nullableField = "-------------";
 
   const studentName = student?.name;
   const cpf = student?.cpf;
-  
+
   const color_race = student?.color_race === 0 ? 'Não Declarada' : student?.color_race === 1 ? 'Branca' : student?.color_race === 2 ? 'Preta' : student?.color_race === 3 ? 'Parda' : student?.color_race === 4 ? 'Amarela' : student?.color_race === 5 ? 'Indígena' : 'Não especificado';
   const deficiency = student?.deficiency ? 'sim' : 'não';
 
@@ -44,7 +47,7 @@ const Home = props => {
   // : "";
   var city = nullableField;
   var state = nullableField;
-  
+
   if (student.edcenso_city) {
     city = student?.edcenso_city.name
   }
@@ -69,7 +72,7 @@ const Home = props => {
   const body = !student.student_fk ? {
     classroom: student?.classroom_fk,
     year: student?.classroom.school_year
-  } : {student_fk: student.student_fk};
+  } : { student_fk: student.student_fk };
 
 
 
@@ -193,7 +196,7 @@ const Home = props => {
             alt="Icone de Turma"
           />
           <p className={classes.label}>Turma</p>
-            {student?.classroom?.name}
+          {student?.classroom?.name}
           {/* <FormControl
             component="fieldset"
             className={classes.formControl}
@@ -224,6 +227,34 @@ const Home = props => {
           Manhã
         </Grid> */}
       </Grid>
+      {answer ?<> {answer.length > 0 ? <>
+        <Grid item md={12}>
+          <div className={classes.lineGrayClean}></div>
+        </Grid>
+        <Grid container direction="row" spacing={3}>
+          <Grid item md={5}>
+            <img
+              className={`${classes.floatLeft} ${classes.iconHouse}`}
+              src={IconClassroom}
+              alt="Icone de Endereço"
+            />
+            <div className={classes.floatLeft}>
+              <p className={classes.label}>Formulario</p>
+            </div>
+          </Grid>
+          {answer.map((item, index) => {
+            return (
+              <Grid item md={12}>
+                <p className={classes.label}>{item.description}</p>
+                {item.value}
+              </Grid>
+            )
+          })}
+
+        </Grid>
+      </>
+        : null} </> : null}
+
       <Grid
         className={classes.boxButtons}
         container

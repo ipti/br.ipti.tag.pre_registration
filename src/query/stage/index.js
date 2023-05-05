@@ -9,7 +9,7 @@ const requestClassrooms = () => {
     .get(path)
     .then(response => response.data)
     .catch(err => {
-      if(err.response.status){
+      if(err.response.status === 401){
         logout()
         window.location.reload()
       }
@@ -18,6 +18,7 @@ const requestClassrooms = () => {
 };
 
 const requestClassroom = id => {
+  console.log('oiiiiiiiiiiiiiiiiii')
   return api
     .get("/classroom/" + id, {
       params: {
@@ -28,7 +29,7 @@ const requestClassroom = id => {
     })
     .then(response => response.data)
     .catch(err => {
-      if(err.response.status){
+      if(err.response.status === 401){
         logout()
         window.location.reload()
       }
@@ -50,7 +51,20 @@ const requestRegistration = id => {
     })
     .then(response => response.data)
     .catch(err => {
-      if(err.response.status){
+      if(err.response.status === 401){
+        logout()
+        window.location.reload()
+      }
+      throw err;
+    });
+};
+
+const requestAnwser = id => {
+  return api
+    .get("/answer-pre-identification/" + id)
+    .then(response => response.data)
+    .catch(err => {
+      if(err.response.status === 401){
         logout()
         window.location.reload()
       }
@@ -63,7 +77,7 @@ export const requestSaveClassroom = data => {
     .post("/classroom", data)
     .then(response => response.data)
     .catch(err => {
-      if(err.response.status){
+      if(err.response.status === 401){
         logout()
         window.location.reload()
       }
@@ -76,7 +90,7 @@ export const requestEditPreIdentification = (data, id) => {
     .put("/student-pre-identification/" + id, data)
     .then(response => response.data)
     .catch(err => {
-      if(err.response.status){
+      if(err.response.status === 401){
         logout()
         window.location.reload()
       }
@@ -89,7 +103,7 @@ export const requestCreateStage = (data) => {
     .post("/stages-vacancy-pre-registration", data)
     .then(response => response.data)
     .catch(err => {
-      if(err.response.status){
+      if(err.response.status === 401){
         logout()
         window.location.reload()
       }
@@ -103,7 +117,7 @@ export const requestUpdateRegistration = (data, id) => {
       .post("student-pre-identifyregistered/registration/" + id)
       .then(response => response.data)
       .catch(err => {
-        if(err.response.status){
+        if(err.response.status === 401){
           logout()
           window.location.reload()
         }
@@ -114,7 +128,7 @@ export const requestUpdateRegistration = (data, id) => {
       .post("/student-pre-identify/registration/" + id, data)
       .then(response => response.data)
       .catch(err => {
-        if(err.response.status){
+        if(err.response.status === 401){
           logout()
           window.location.reload()
         }
@@ -129,7 +143,7 @@ export const requestUpdateClassroom = (data, id) => {
     .put("/classroom/" + id, data)
     .then(response => response.data)
     .catch(err => {
-      if(err.response.status){
+      if(err.response.status === 401){
         logout()
         window.location.reload()
       }
@@ -152,7 +166,7 @@ const requestStagevsmodality = (year) => {
     })
     .then(response => response.data)
     .catch(err => {
-      if(err.response.status){
+      if(err.response.status === 401){
         logout()
         window.location.reload()
       }
@@ -173,7 +187,7 @@ const requestStagevsmodalityOne = id => {
     })
     .then(response => response.data)
     .catch(err => {
-      if(err.response.status){
+      if(err.response.status === 401){
         logout()
         window.location.reload()
       }
@@ -199,4 +213,8 @@ export const useFetchRequestClassroom = ({ id }) => {
 
 export const useFetchRequestRegistration = ({ id }) => {
   return useQuery(["useRequestRegistration", id], () => requestRegistration(id));
+};
+
+export const useFetchRequestAnwser = ({ id }) => {
+  return useQuery(["useRequestAnwser", id], () => requestAnwser(id));
 };

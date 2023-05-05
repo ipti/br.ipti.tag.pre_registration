@@ -85,11 +85,13 @@ const TextMaskCpf = props => {
 
 const StepFour = props => {
   const classes = useStyles();
-  const { school } = useContext(RegistrationContext)
+  const { school, quiz } = useContext(RegistrationContext)
   const [student, setStudent] = useState([])
   const [studentResponsable, setStudentResponsable] = useState([])
   const [openModalCPF, setOpenModalCPF] = useState(false)
   const [openModalCPFResponsable, setOpenModalCPFResponsable] = useState(false)
+
+  console.log(quiz)
 
   const validationSchema = Yup.object().shape({
     responsable_name: Yup.string().required("Campo obrigatório!"),
@@ -113,9 +115,8 @@ const StepFour = props => {
 
   const Isverify = (e) => {
     var cpf = e.target.value.replace(/\D/g, '');
-    var isValid = school.student_documents_and_address.filter(x => (cpf === x.cpf) && (x.received_responsable_cpf === false));
+    var isValid = cpf ? school.student_documents_and_address.filter(x => (cpf === x.cpf) && (x.received_responsable_cpf === false)) : [];
 
-    console.log(isValid)
     if (isValid.length !== 0) {
       setStudent(isValid);
       setOpenModalCPF(true)
@@ -124,9 +125,8 @@ const StepFour = props => {
 
   const Isverifyresponsable = (e) => {
     var cpf = e.target.value.replace(/\D/g, '');
-    var isValid = school.student_documents_and_address.filter(x => (cpf === x.cpf) && (x.received_responsable_cpf === true));
+    var isValid = cpf ? school.student_documents_and_address.filter(x => (cpf === x.cpf) && (x.received_responsable_cpf === true)) : [];
 
-    console.log(isValid)
     if (isValid.length !== 0) {
       setOpenModalCPFResponsable(true)
       setStudentResponsable(isValid);
@@ -138,7 +138,7 @@ const StepFour = props => {
     <>
       <Formik
         initialValues={initialValues}
-        onSubmit={values => props.next(5, values)}
+        onSubmit={values => quiz.length > 0 ? props.next(5, values) : props.next(6, values)}
         validationSchema={validationSchema}
         validateOnChange={false}
         enableReinitialize
