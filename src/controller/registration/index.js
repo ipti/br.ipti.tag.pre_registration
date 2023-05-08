@@ -1,6 +1,7 @@
 import { useMutation } from "react-query";
 import { requestSaveRegistration, useFetchRequestSchoolList } from "../../query/registration";
 import { useHistory } from "react-router";
+import swal from "sweetalert";
 
 
 export const Controller = () => {
@@ -11,14 +12,31 @@ export const Controller = () => {
         (data) => requestSaveRegistration(data),
         {
           onError: (error) => {
-            alert(`${error.response.data.message} \nRepita todo o processo` );
-            window.location.reload()
+            swal(`${error.response.data.message} \nRepita todo o processo` );
+            //window.location.reload()
           },
           onSuccess: (data) => {
-            alert("Pré-matricula feita com sucesso!");
-            history.push('/login')
+            swal("Pré-matricula feita com sucesso!")
+            //history.go('/login')
           },
         }
       );
-    return {requestSaveRegistrationMutation, schoolsList}
+
+      const requestSaveRegistrationIdentificationMutation = useMutation(
+        (data) => requestSaveRegistration(data),
+        {
+          onError: (error) => {
+          //  swal(`${error.response.data.message} \nRepita todo o processo` );
+            //window.location.reload()
+
+            console.log(error);
+          },
+          onSuccess: (data) => {
+            console.log(data)
+            swal("Pré-matricula feita com sucesso!")
+            //history.go('/login')
+          },
+        }
+      );
+    return {requestSaveRegistrationMutation, schoolsList, requestSaveRegistrationIdentificationMutation}
 } 

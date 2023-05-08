@@ -11,7 +11,7 @@ const requestStudent = async id => {
         params: {
           include: {
             edcenso_uf: true,
-            school_identification: { include: { student_documents_and_address: { where: { student_fk: id } }, classroom: true, event_pre_registration: true } }
+            school_identification: { include: { student_documents_and_address: { where: { student_fk: id } }, classroom: {where: {school_year: 2023}}, event_pre_registration: true } }
             // student_documents_and_address: true
 
           }

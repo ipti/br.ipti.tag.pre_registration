@@ -76,6 +76,7 @@ const Start = props => {
               options={schools}
               onChange={selectedOption => {
                 setSchool(selectedOption)
+                console.log(selectedOption)
                 setIsValid(true)
                 const last_event = selectedOption.event_pre_registration.length - 1;
                 if (selectedOption.event_pre_registration[last_event]) {

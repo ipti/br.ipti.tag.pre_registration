@@ -33,7 +33,7 @@ const StepThree = props => {
   const classes = useStyles();
 
   const validationSchema = Yup.object().shape({
-    name: Yup.string().required("Campo obrigatório!"),
+    name: Yup.string().required("Campo obrigatório!").min(10, 'minimo de 10 caracteres'),
     color_race: Yup.number().required("Campo obrigatório!"),
     deficiency: Yup.boolean().required("Campo obrigatório!"),
   });
@@ -43,7 +43,7 @@ const StepThree = props => {
   const initialValues = {
     name: props?.values?.name ?? '',
     color_race: props?.values?.color_race ?? '',
-    deficiency: props?.values?.deficiency ?? false,
+    deficiency: props?.values?.deficiency ?? "",
   };
 
 

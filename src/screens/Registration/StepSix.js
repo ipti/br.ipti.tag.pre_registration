@@ -145,6 +145,7 @@ const StepSix = props => {
                   <FormControl
                     component="fieldset"
                     className={classes.formControl}
+                    error={errorList.cpf}
                   >
                     <FormLabel>Nº do CPF *</FormLabel>
                     <TextField
@@ -156,9 +157,11 @@ const StepSix = props => {
                         onChange: handleChange
                       }}
                       onBlur={(e) => Isverify(e)}
+                      error={errorList.cpf}
                       className={classes.textField}
                       autoComplete="off"
                     />
+                    <FormHelperText>{errorList.cpf}</FormHelperText>
                   </FormControl>
                 </Grid>
               </Grid>

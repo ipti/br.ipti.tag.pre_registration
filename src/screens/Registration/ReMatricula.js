@@ -64,12 +64,6 @@ const Home = props => {
     map1.set(anwser.question_id, anwser)
   };
 
-  const submit = () => {
-    map1.forEach((item, index) => {
-      arrayquiz.push(item)
-    })
-    handleSubmit(body)
-  }
 
   const nullableField = "-------------";
 
@@ -112,7 +106,13 @@ const Home = props => {
 
 
 
-
+  const gerarArray = e => {
+      // e.preventDefault;
+      // map1.forEach((item, index) => {
+      //   arrayquiz.push(item)
+      // })
+      // handleSubmit(body)
+  }
 
 
 
@@ -201,37 +201,38 @@ const Home = props => {
           <div className={classes.lineGrayClean}></div>
         </Grid>
       </Grid>
-      <Grid className={`${classes.contentForm}`}>
-        <form onSubmit={submit}>
-          <Grid item xs={12}>
-            <FormControl
-              component="fieldset"
-              className={classes.formControl}
-            >
-              <FormLabel style={{ display: 'flex', flexDirection: 'row', justifyContent: "start" }}  >Turma *</FormLabel>
-              <Select
-                styles={customStyles}
-                className="basic-single"
-                classNamePrefix="select"
-                placeholder="Selecione a Turma"
-                value={props?.values?.classroom}
-                options={student.school_identification.classroom}
-                onChange={selectedOption => {
-                  setIdClassroom(selectedOption.id)
-                }}
-                getOptionValue={opt => opt.name + ' - ' + opt.school_year}
-                getOptionLabel={opt => opt.name + ' - ' + opt.school_year}
-                required
-              />
-            </FormControl>
-          </Grid>
+      <div>
+        <Grid style={{ display: "flex", flexDirection: "row", justifyContent: "center" }}>
+          <FormControl
+            component="fieldset"
+            className={classes.formControl}
+          >
+            <FormLabel style={{ display: 'flex', flexDirection: 'row', justifyContent: "start" }}  >Turma *</FormLabel>
+            <Select
+              styles={customStyles}
+              className="basic-single"
+              classNamePrefix="select"
+              placeholder="Selecione a Turma"
+              value={props?.values?.classroom}
+              options={student.school_identification.classroom}
+              onChange={selectedOption => {
+                setIdClassroom(selectedOption.id)
+              }}
+              getOptionValue={opt => opt.name + ' - ' + opt.school_year}
+              getOptionLabel={opt => opt.name + ' - ' + opt.school_year}
+              required
+            />
+          </FormControl>
+        </Grid>
+        <form onSubmit={e => gerarArray(e)}>
+
           {anwsers?.map((item, index) => {
             return (
               <Grid
                 className={`${classes.contentMain}`}
                 container
                 direction="row"
-                justifyContent="start"
+                justifyContent="center"
                 alignItems="center"
               >
                 <Grid>
@@ -242,7 +243,7 @@ const Home = props => {
                 </Grid>
                 {item.questions.map((question, index) => {
                   return (
-                    <Grid item xs={12}>
+                    <Grid item xs={12} style={{ display: 'flex', flexDirection: 'row', justifyContent: "center" }}>
                       <FormControl
                         component="fieldset"
                         className={classes.formControl}
@@ -309,8 +310,9 @@ const Home = props => {
               </Grid>
             )}
           </Grid>
+
         </form>
-      </Grid>
+      </div>
     </div>
   );
 };
