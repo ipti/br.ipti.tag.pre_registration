@@ -12,12 +12,12 @@ export const Controller = () => {
         (data) => requestSaveRegistration(data),
         {
           onError: (error) => {
-            swal(`${error.response.data.message} \nRepita todo o processo` );
-            //window.location.reload()
+          swal(`${error.response.data.message} \nRepita todo o processo`);
+           window.location.reload()
           },
           onSuccess: (data) => {
             swal("Pré-matricula feita com sucesso!")
-            //history.go('/login')
+            history.push('/login')
           },
         }
       );
@@ -26,15 +26,13 @@ export const Controller = () => {
         (data) => requestSaveRegistration(data),
         {
           onError: (error) => {
-          //  swal(`${error.response.data.message} \nRepita todo o processo` );
-            //window.location.reload()
-
-            console.log(error);
+            swal(`${error.response.data.message} \nRepita todo o processo` );
+            window.location.reload()
           },
           onSuccess: (data) => {
-            console.log(data)
+          //  console.log(data)
             swal("Pré-matricula feita com sucesso!")
-            //history.go('/login')
+           // history.go('/login')
           },
         }
       );

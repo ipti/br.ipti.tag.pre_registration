@@ -18,6 +18,8 @@ import IconStudent from "../../assets/images/student-male-icon.png";
 
 // Styles
 import styles from "./styles";
+import { ArrowBack } from "@material-ui/icons";
+import { useHistory } from "react-router";
 
 const useStyles = makeStyles(styles);
 
@@ -31,7 +33,7 @@ const Home = props => {
   } = props;
   const student = registration ?? [];
 
-
+  const history = useHistory()
 
   console.log(answer)
   const nullableField = "-------------";
@@ -78,6 +80,7 @@ const Home = props => {
 
   return (
     <>
+    <ArrowBack onClick={() => {history.goBack()}} style={{cursor: "pointer"}}/>
       <Grid className={classes.boxTitlePagination} container direction="row">
         <TitleWithLine title="Matrícula" />
       </Grid>

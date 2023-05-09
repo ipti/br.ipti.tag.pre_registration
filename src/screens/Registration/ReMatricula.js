@@ -22,9 +22,12 @@ import { useState } from "react";
 import Select from "react-select";
 import { useFetchRequestSchoolRegistration } from "../../query/registration";
 import styles from "../Classroom/styles";
+import stylesRegistration from "./styles"
 import { useFetchRequestQuiz } from "../../query/quiz";
 
 const useStyles = makeStyles(styles);
+
+const useStylesRegistration = makeStyles(stylesRegistration)
 
 const customStyles = {
   control: base => ({
@@ -43,6 +46,8 @@ const map1 = new Map();
 
 const Home = props => {
   const classes = useStyles();
+
+  const classesRegistration = useStylesRegistration();
   const arrayquiz = [];
   const {
     registration,
@@ -107,18 +112,18 @@ const Home = props => {
 
 
   const gerarArray = e => {
-      // e.preventDefault;
-      // map1.forEach((item, index) => {
-      //   arrayquiz.push(item)
-      // })
-      // handleSubmit(body)
+    console.log(e)
+    e.preventDefault()
+    map1.forEach((item, index) => {
+      arrayquiz.push(item)
+    })
+    handleSubmit(body)
   }
 
 
 
   return (
     <div style={{ height: '100%', padding: '10%', width: '100%' }}>
-
       <Grid className={classes.boxTitlePagination} container direction="row">
         <TitleWithLine title="Matrícula" />
       </Grid>
@@ -202,93 +207,94 @@ const Home = props => {
         </Grid>
       </Grid>
       <div>
-        <Grid style={{ display: "flex", flexDirection: "row", justifyContent: "center" }}>
-          <FormControl
-            component="fieldset"
-            className={classes.formControl}
-          >
-            <FormLabel style={{ display: 'flex', flexDirection: 'row', justifyContent: "start" }}  >Turma *</FormLabel>
-            <Select
-              styles={customStyles}
-              className="basic-single"
-              classNamePrefix="select"
-              placeholder="Selecione a Turma"
-              value={props?.values?.classroom}
-              options={student.school_identification.classroom}
-              onChange={selectedOption => {
-                setIdClassroom(selectedOption.id)
-              }}
-              getOptionValue={opt => opt.name + ' - ' + opt.school_year}
-              getOptionLabel={opt => opt.name + ' - ' + opt.school_year}
-              required
-            />
-          </FormControl>
-        </Grid>
-        <form onSubmit={e => gerarArray(e)}>
-
-          {anwsers?.map((item, index) => {
-            return (
-              <Grid
-                className={`${classes.contentMain}`}
-                container
-                direction="row"
-                justifyContent="center"
-                alignItems="center"
+        <form onSubmit={gerarArray}>
+          <Grid className={`${classesRegistration.contentForm}`}>
+            <Grid style={{ display: "flex", flexDirection: "row", justifyContent: "center" }}>
+              <FormControl
+                component="fieldset"
+                className={classesRegistration.formControl}
               >
-                <Grid>
+                <FormLabel style={{ display: 'flex', flexDirection: 'row', justifyContent: "start" }}  >Turma *</FormLabel>
+                <Select
+                  styles={customStyles}
+                  className="basic-single"
+                  classNamePrefix="select"
+                  placeholder="Selecione a Turma"
+                  value={props?.values?.classroom}
+                  options={student.school_identification.classroom}
+                  onChange={selectedOption => {
+                    setIdClassroom(selectedOption.id)
+                  }}
+                  getOptionValue={opt => opt.name + ' - ' + opt.school_year}
+                  getOptionLabel={opt => opt.name + ' - ' + opt.school_year}
+                  required
+                />
+              </FormControl>
+            </Grid>
+            {anwsers?.map((item, index) => {
+              return (
+                <Grid
+                  className={`${classesRegistration.contentMain}`}
+                  container
+                  direction="row"
+                  justifyContent="center"
+                  alignItems="center"
+                >
                   <Grid>
-                    <h3>{item.name}</h3>
-                    {/* <p>{data.school_year}</p> */}
+                    <Grid>
+                      <h3>{item.name}</h3>
+                      {/* <p>{data.school_year}</p> */}
+                    </Grid>
                   </Grid>
-                </Grid>
-                {item.questions.map((question, index) => {
-                  return (
-                    <Grid item xs={12} style={{ display: 'flex', flexDirection: 'row', justifyContent: "center" }}>
-                      <FormControl
-                        component="fieldset"
-                        className={classes.formControl}
-                      >
-                        <FormLabel>{question.description}</FormLabel>
-                        {question.options.length === 0 ? <TextField
-                          name="name"
-                          variant="outlined"
-                          onBlur={event => updateAnwsers({
-                            quiz_id: item.id,
-                            question_id: question.id,
-                            option_id: null,
-                            seq: 1,
-                            value: event.target.value,
-                          })}
-                          required
-                          className={classes.textField}
-                          autoComplete="off"
-                        /> : <>
-                          <Select
-                            styles={customStyles}
-                            className="basic-single"
-                            classNamePrefix="select"
-                            placeholder="Buscar..."
-                            required
-                            options={question.options}
-                            getOptionValue={opt => opt.id}
-                            getOptionLabel={opt => opt.description}
-                            onChange={event => updateAnwsers({
+                  {item.questions.map((question, index) => {
+                    return (
+                      <Grid item xs={12} style={{ display: 'flex', flexDirection: 'row', justifyContent: "center" }}>
+                        <FormControl
+                          component="fieldset"
+                          className={classesRegistration.formControl}
+                        >
+                          <FormLabel>{question.description}</FormLabel>
+                          {question.options.length === 0 ? <TextField
+                            name="name"
+                            variant="outlined"
+                            onBlur={event => updateAnwsers({
                               quiz_id: item.id,
                               question_id: question.id,
-                              option_id: event.id,
+                              option_id: null,
                               seq: 1,
-                              value: event.answer
+                              value: event.target.value,
                             })}
+                            required
+                            className={classesRegistration.textField}
+                            autoComplete="off"
+                          /> : <>
+                            <Select
+                              styles={customStyles}
+                              className="basic-single"
+                              classNamePrefix="select"
+                              placeholder="Buscar..."
+                              required
+                              options={question.options}
+                              getOptionValue={opt => opt.id}
+                              getOptionLabel={opt => opt.description}
+                              onChange={event => updateAnwsers({
+                                quiz_id: item.id,
+                                question_id: question.id,
+                                option_id: event.id,
+                                seq: 1,
+                                value: event.answer
+                              })}
 
-                          />
-                        </>}
-                      </FormControl>
-                    </Grid>
-                  )
-                })}
-              </Grid>
-            )
-          })}
+                            />
+                          </>}
+                        </FormControl>
+                      </Grid>
+                    )
+                  })}
+                </Grid>
+              )
+            })}
+          </Grid>
           <Grid
             className={classes.boxButtons}
             container

@@ -30,6 +30,7 @@ const ReMatricula = props => {
 
   const onSubmit = (value) => {
 
+    console.log(value)
     if (value?.birthday) {
       value.birthday = value.birthday
         .split("/")

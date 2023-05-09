@@ -66,8 +66,6 @@ const Home = props => {
         .join("-");
     }
 
-    console.log(dataValues)
-
     const parseBool = value =>
       ['true', 'false'].includes(value) ? value === true : null
     if (load) {

@@ -40,7 +40,9 @@ const Quiz = props => {
         map1.set(anwser.question_id, anwser)
     };
 
-    const nextPag = () => {
+    const nextPag = e => {
+        
+        e.preventDefault();
 
         map1.forEach((item, index) => {
             arrayquiz.push(item)
