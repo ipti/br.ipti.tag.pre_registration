@@ -53,7 +53,11 @@ const useStyles = {
   },
   boxDescriptionCalssroom: {
     color: styleBase.colors.grayClear,
-    fontSize: styleBase.typography.font.extraSmall
+    fontSize: styleBase.typography.font.extraSmall,
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: "100%"
   },
   boxDescriptionCalssroomTitle: {
     color: styleBase.colors.gray,
@@ -84,6 +88,7 @@ const useStyles = {
     fontSize: styleBase.typography.font.extraSmall,
     padding: "9px 9px",
     borderRadius: 8,
+    height: "auto",
     marginRight: 8,
     minWidth: 20,
     textAlign: "center"

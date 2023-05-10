@@ -14,6 +14,7 @@ import StepThree from "./StepThree";
 import { ArrowBack } from "@material-ui/icons";
 import { RegistrationContext } from "../../containers/Registration/Context/context";
 import { useContext } from "react";
+import Quiz from "./Quiz";
 
 const Wizard = props => {
 
@@ -28,7 +29,8 @@ const Wizard = props => {
       "2": StepOne,
       "3": StepThree,
       "4": isOfLegalAge === '1' ? StepFour : StepSix,
-      "5": Finish
+      "5": Quiz,
+      "6": Finish
     };
 
     const StepComponent = componentMapping[props.step];

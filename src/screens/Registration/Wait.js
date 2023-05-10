@@ -15,7 +15,7 @@ const Wait = props => {
         className={classes.contentStart}
         container
         direction="row"
-        justify="center"
+        justifyContent="center"
         alignItems="center"
       >
         <Grid item xs={12}>

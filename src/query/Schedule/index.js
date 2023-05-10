@@ -12,7 +12,7 @@ const requestSchools = () => {
     .get(path)
     .then(response => response.data)
     .catch(err => {
-      if(err.response.status){
+      if(err.response.status === 401){
         logout()
         window.location.reload()
       }
@@ -26,7 +26,7 @@ const requestScheculeOne = (id) => {
     .get(path)
     .then(response => response.data)
     .catch(err => {
-      if(err.response.status){
+      if(err.response.status === 401){
         logout()
         window.location.reload()
       }
@@ -40,7 +40,7 @@ const requestStagevsmodality = () => {
     .get(path)
     .then(response => response.data)
     .catch(err => {
-      if(err.response.status){
+      if(err.response.status === 401){
         logout()
         window.location.reload()
       }
@@ -54,7 +54,7 @@ export const requestDeleteSchedule = id => {
     .delete(path)
     .then(response => response.data)
     .catch(err => {
-      if(err.response.status){
+      if(err.response.status === 401){
         logout()
         window.location.reload()
       }
@@ -79,7 +79,7 @@ const requestSchecule = () => {
     })
     .then(response => response.data)
     .catch(err => {
-      if(err.response.status){
+      if(err.response.status === 401){
         logout()
         window.location.reload()
       }
@@ -92,7 +92,7 @@ export const requestSaveEventPre = data => {
     .post("/event-pre-registration", data)
     .then(response => response.data)
     .catch(err => {
-      if(err.response.status){
+      if(err.response.status === 401){
         logout()
         window.location.reload()
       }

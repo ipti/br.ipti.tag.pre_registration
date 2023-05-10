@@ -4,15 +4,17 @@ import styles from "./styles";
 const useStyles = makeStyles(styles);
 
 const BoxDiscriptionClassroom = props => {
-  const { title, registrationConfirmed } = props;
+  const {title, registrationConfirmed, pre_registration} = props;
   const classes = useStyles();
+
+
   return (
     <div
       className={`${classes.boxDescriptionCalssroom} ${classes.floatLeft} ${
         registrationConfirmed ? classes.marginBox : ""
       } `}
     >
-      {title}
+      <p>Inscrições: {pre_registration.length}</p><p>{title}</p> 
     </div>
   );
 };

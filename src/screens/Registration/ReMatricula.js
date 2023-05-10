@@ -17,13 +17,17 @@ import IconMale from "../../assets/images/male-icon.png";
 import IconStudent from "../../assets/images/student-male-icon.png";
 
 // Styles
-import { FormControl, FormLabel } from "@material-ui/core";
+import { FormControl, FormLabel, TextField } from "@material-ui/core";
 import { useState } from "react";
-import ReactSelect from "react-select";
+import Select from "react-select";
 import { useFetchRequestSchoolRegistration } from "../../query/registration";
 import styles from "../Classroom/styles";
+import stylesRegistration from "./styles"
+import { useFetchRequestQuiz } from "../../query/quiz";
 
 const useStyles = makeStyles(styles);
+
+const useStylesRegistration = makeStyles(stylesRegistration)
 
 const customStyles = {
   control: base => ({
@@ -38,11 +42,13 @@ const customStyles = {
   })
 };
 
+const map1 = new Map();
+
 const Home = props => {
   const classes = useStyles();
-  // const [schoolInepFk, setSchoolInepFk] = useState('');
-  // const [inputValueClassroom, setInputValueClassroom] = useState("");
 
+  const classesRegistration = useStylesRegistration();
+  const arrayquiz = [];
   const {
     registration,
     handleSubmit,
@@ -55,7 +61,14 @@ const Home = props => {
     id: student.school_inep_id_fk
   });
 
+  const { data: anwsers } = useFetchRequestQuiz({ id: student ? student.school_inep_id_fk : null })
+
   if (!data) return null
+
+  const updateAnwsers = (anwser) => {
+    map1.set(anwser.question_id, anwser)
+  };
+
 
   const nullableField = "-------------";
 
@@ -91,12 +104,25 @@ const Home = props => {
     school_identification: student.school_identification.inep_id,
     event_pre_registration: parseInt(student.school_identification.event_pre_registration[last_event]),
     classroom: idClassroom,
-    zone: student.school_identification.student_documents_and_address[0].residence_zone
+    zone: student.school_identification.student_documents_and_address[0].residence_zone,
+    answerPreIdentification: arrayquiz,
+    hasQuiz: true
   }
 
 
+
+  const gerarArray = e => {
+    e.preventDefault()
+    map1.forEach((item, index) => {
+      arrayquiz.push(item)
+    })
+    handleSubmit(body)
+  }
+
+
+
   return (
-    <div style={{ height: '100%', padding: '10%' }}>
+    <div style={{ height: '100%', padding: '10%', width: '100%' }}>
       <Grid className={classes.boxTitlePagination} container direction="row">
         <TitleWithLine title="Matrícula" />
       </Grid>
@@ -179,120 +205,120 @@ const Home = props => {
           <div className={classes.lineGrayClean}></div>
         </Grid>
       </Grid>
-      <Grid item xs={12}>
-        <FormControl
-          component="fieldset"
-          className={classes.formControl}
-        >
-          <FormLabel style={{ display: 'flex', flexDirection: 'row', justifyContent: "start" }}  >Turma *</FormLabel>
-          <ReactSelect
-            styles={customStyles}
-            className="basic-single"
-            classNamePrefix="select"
-            placeholder="Selecione a Turma"
-            value={props?.values?.classroom}
-            options={student.school_identification.classroom}
-            onChange={selectedOption => {
-              setIdClassroom(selectedOption.id)
-            }}
-            getOptionValue={opt => opt.name + ' - ' + opt.school_year}
-            getOptionLabel={opt => opt.name + ' - ' + opt.school_year}
-          />
-        </FormControl>
-      </Grid>
-      {/* 
-      <Grid
-        className={`${classes.contentMain} ${classes.marginTop30}`}
-        container
-        direction="row"
-        justifyContent="center"
-        alignItems="center"
-      >
-        <Grid item xs={12}>
-          <Grid item md={6}>
-            <img
-              className={`${classes.floatLeft} ${classes.iconClassroom}`}
-              src={IconClassroom}
-              alt="Icone de Turma"
-            />
-          </Grid>
-          <Grid>
-            <FormControl
-              component="fieldset"
-              className={classes.formControl}
-            >
-
-              <FormLabel>Turma *</FormLabel>
-              <Select
-                styles={customStyles}
-                className="basic-single"
-                classNamePrefix="select"
-                isSearchable={true}
-                placeholder="Selecione a Turma"
-                options={data.classroom}
-                onChange={selectedOption => {
-                  handleChange(selectedOption.id);
-                  setSchoolInepFk(selectedOption.school_inep_fk)
-                }}
-                getOptionValue={opt => opt.classroom}
-                getOptionLabel={opt => opt.name}
-                loadingMessage={() => "Carregando"}
-                noOptionsMessage={obj => {
-                  if (obj.inputValue.trim().length >= 3) {
-                    return "Nenhuma turma encontrada";
-                  } else {
-                    return "Digite 3 ou mais caracteres";
-                  }
-                }}
-              />
-            </FormControl>
-          </Grid>
-          <div className={classes.formFieldError}>
-          </div>
-        </Grid>
-      </Grid> */}
-      {/* <Grid container direction="row" spacing={3}>
-        <Grid item md={5}>
-          <img
-            className={`${classes.floatLeft} ${classes.iconClassroom}`}
-            src={IconClassroom}
-            alt="Icone de Turma"
-          />
-          <div className={classes.floatLeft}>
-            <p className={classes.label}>Turma</p>
-          </div>
-        </Grid>
-        <Grid item md={3}>
-          <p className={classes.label}>Modalidade</p>
-        </Grid>
-        <Grid item md={4}>
-          <p className={classes.label}>Turno</p>
-          Manhã
-        </Grid>
-      </Grid> */}
-
-      <Grid
-        className={classes.boxButtons}
-        container
-        direction="row"
-        spacing={3}
-      >
-        {!props?.loadingIcon ? (
-          <>
-            <Grid item md={3}>
-              <ButtonPurple
-                onClick={() => handleSubmit(body)}
-                type="button"
-                title="Confirmar"
-              />
+      <div>
+        <form onSubmit={gerarArray}>
+          <Grid className={`${classesRegistration.contentForm}`}>
+            <Grid style={{ display: "flex", flexDirection: "row", justifyContent: "center" }}>
+              <FormControl
+                component="fieldset"
+                className={classesRegistration.formControl}
+              >
+                <FormLabel style={{ display: 'flex', flexDirection: 'row', justifyContent: "start" }}  >Turma *</FormLabel>
+                <Select
+                  styles={customStyles}
+                  className="basic-single"
+                  classNamePrefix="select"
+                  placeholder="Selecione a Turma"
+                  value={props?.values?.classroom}
+                  options={student.school_identification.classroom}
+                  onChange={selectedOption => {
+                    setIdClassroom(selectedOption.id)
+                  }}
+                  getOptionValue={opt => opt.name + ' - ' + opt.school_year}
+                  getOptionLabel={opt => opt.name + ' - ' + opt.school_year}
+                  required
+                />
+              </FormControl>
             </Grid>
-          </>
-        ) : (
-          <Grid item md={3}>
-            <Loading />
+            {anwsers?.map((item, index) => {
+              return (
+                <Grid
+                  className={`${classesRegistration.contentMain}`}
+                  container
+                  direction="row"
+                  justifyContent="center"
+                  alignItems="center"
+                  key={index}
+                >
+                  <Grid>
+                    <Grid>
+                      <h3>{item.name}</h3>
+                      {/* <p>{data.school_year}</p> */}
+                    </Grid>
+                  </Grid>
+                  {item.questions.map((question, index) => {
+                    return (
+                      <Grid key={index} item xs={12} style={{ display: 'flex', flexDirection: 'row', justifyContent: "center" }}>
+                        <FormControl
+                          component="fieldset"
+                          className={classesRegistration.formControl}
+                        >
+                          <FormLabel>{question.description}</FormLabel>
+                          {question.options.length === 0 ? <TextField
+                            name="name"
+                            variant="outlined"
+                            onBlur={event => updateAnwsers({
+                              quiz_id: item.id,
+                              question_id: question.id,
+                              option_id: null,
+                              seq: 1,
+                              value: event.target.value,
+                            })}
+                            required
+                            className={classesRegistration.textField}
+                            autoComplete="off"
+                          /> : <>
+                            <Select
+                              styles={customStyles}
+                              className="basic-single"
+                              classNamePrefix="select"
+                              placeholder="Buscar..."
+                              required
+                              options={question.options}
+                              getOptionValue={opt => opt.id}
+                              getOptionLabel={opt => opt.description}
+                              onChange={event => updateAnwsers({
+                                quiz_id: item.id,
+                                question_id: question.id,
+                                option_id: event.id,
+                                seq: 1,
+                                value: event.answer
+                              })}
+
+                            />
+                          </>}
+                        </FormControl>
+                      </Grid>
+                    )
+                  })}
+                </Grid>
+              )
+            })}
           </Grid>
-        )}
-      </Grid>
+          <Grid
+            className={classes.boxButtons}
+            container
+            direction="row"
+            spacing={3}
+          >
+            {!props?.loadingIcon ? (
+              <>
+                <Grid item md={3}>
+                  <ButtonPurple
+                    type="submit"
+                    title="Confirmar"
+                  />
+                </Grid>
+              </>
+            ) : (
+              <Grid item md={3}>
+                <Loading />
+              </Grid>
+            )}
+          </Grid>
+
+        </form>
+      </div>
     </div>
   );
 };

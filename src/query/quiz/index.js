@@ -7,7 +7,7 @@ const requestQuiz = async id => {
       .get("/quizbyschool/" + id)
       .then(response => response.data)
       .catch(err => {
-        if(err.response.status){
+        if(err.response.status === 401){
           logout()
           window.location.reload()
         }

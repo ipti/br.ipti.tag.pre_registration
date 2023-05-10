@@ -20,7 +20,7 @@ const Login = props => {
   let isValid = props.isValid;
 
   return (
-    <Grid className={classes.root} container direction="row" justify="flex-end">
+    <Grid className={classes.root} container direction="row" justifyContent="flex-end">
       <Grid className={classes.contentLeft} item md={8} sm={6} xs={12}>
         <Grid
           className={`${classes.marginTopContentLeft} ${classes.titleBig}`}
@@ -54,7 +54,7 @@ const Login = props => {
       </Grid>
 
       <Grid className={classes.contentRight} item md={4} sm={6} xs={12}>
-        <Grid container direction="row" justify="center" alignItems="center">
+        <Grid container direction="row" justifyContent="center" alignItems="center">
           <Grid item md={12}>
             <p className={classes.titleLogin}>Matricula Online </p>
           </Grid>
@@ -63,7 +63,7 @@ const Login = props => {
           className={classes.imageLogin}
           container
           direction="row"
-          justify="center"
+          justifyContent="center"
           alignItems="center"
         >
           <Grid item md={2}>
@@ -81,7 +81,7 @@ const Login = props => {
           {props => {
             return (
               <Form>
-                <Grid container direction="row" justify="center">
+                <Grid container direction="row" justifyContent="center">
                   <Grid item md={8} sm={8}>
                     <TextField
                       name="username"
@@ -101,7 +101,7 @@ const Login = props => {
                     </div>
                   </Grid>
                 </Grid>
-                <Grid container direction="row" justify="center">
+                <Grid container direction="row" justifyContent="center">
                   <Grid item md={8} sm={8}>
                     <TextField
                       name="password"
@@ -127,7 +127,7 @@ const Login = props => {
                   container
                   direction="row"
                   alignItems="center"
-                  justify="center"
+                  justifyContent="center"
                 >
                   <Grid
                     className={`${classes.boxError} ${classes.textCenter}`}

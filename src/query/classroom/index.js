@@ -14,7 +14,7 @@ const requestClassroom = id => {
     })
     .then(response => response.data)
     .catch(err => {
-      if (err.response.status) {
+      if (err.response.status === 401) {
         logout()
         window.location.reload()
       }
@@ -27,7 +27,7 @@ export const requestCreateClassroom = data => {
     .post("/classroom", data)
     .then(response => response.data)
     .catch(err => {
-      if (err.response.status) {
+      if (err.response.status === 401) {
         logout()
         window.location.reload()
       }
@@ -40,7 +40,7 @@ export const requestDeletePreRegistration = id => {
     .delete("/student-pre-identification/" + id)
     .then(response => response.data)
     .catch(err => {
-      if (err.response.status) {
+      if (err.response.status === 401) {
         logout()
         window.location.reload()
       }
@@ -49,6 +49,7 @@ export const requestDeletePreRegistration = id => {
 };
 
 
+
 export const useFetchRequestClassroom = ({ id }) => {
-  return useQuery(["useRequestClassroom"], () => requestClassroom(id));
+  return useQuery(["useRequestsClassroom"], () => requestClassroom(id));
 };

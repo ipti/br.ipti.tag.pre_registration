@@ -1,5 +1,5 @@
 import { useParams } from "react-router";
-import { useFetchRequestRegistration } from "../../../query/stage";
+import { useFetchRequestAnwser, useFetchRequestRegistration } from "../../../query/stage";
 
 export const StageRegistrationState = () => {
 
@@ -7,7 +7,11 @@ export const StageRegistrationState = () => {
 
     const {data: registration} = useFetchRequestRegistration({id: idRegistration});
 
+    const {data: answer} = useFetchRequestAnwser({id: idRegistration});
+
+
     return {
-        registration
+        registration,
+        answer
     }
 }

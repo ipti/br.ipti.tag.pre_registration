@@ -14,6 +14,18 @@ const useStyles = {
       fontSize: styleBase.typography.font.medium
     }
   },
+  contentForm: {
+    color: styleBase.colors.grayClear,
+    fontFamily: styleBase.typography.types.light,
+    fontSize: styleBase.typography.font.small,
+    "& p": {
+      margin: 0
+    },
+    "& h1": {
+      color: styleBase.colors.gray,
+      fontSize: styleBase.typography.font.medium
+    }
+  },
   marginButtom: {
     marginBottom: 40
   },

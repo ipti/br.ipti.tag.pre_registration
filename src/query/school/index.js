@@ -10,7 +10,7 @@ const requestSchools = () => {
     .get(path)
     .then(response => response.data)
     .catch(err => {
-      if(err.response.status){
+      if(err.response.status === 401){
         logout()
         window.location.reload()
       }
@@ -23,7 +23,7 @@ const requestRegistrations = () => {
     .get("/student-pre-identification")
     .then(response => response.data)
     .catch(err => {
-      if(err.response.status){
+      if(err.response.status === 401){
         logout()
         window.location.reload()
       }
@@ -37,7 +37,7 @@ const requestSchool = id => {
     .get("/school-identification/" + id, getYearClassRoom() !== '' ? {
       params: {
         include: {
-          classroom: { where: { school_year: parseInt(getYearClassRoom() || new Date().getFullYear()) } },
+          classroom: { where: { school_year: parseInt(getYearClassRoom() || new Date().getFullYear()) }, include: { student_pre_identification: true } },
           edcenso_city: true,
           student_documents_and_address: true
         },
@@ -52,7 +52,7 @@ const requestSchool = id => {
     })
     .then(response => response.data)
     .catch(err => {
-      if(err.response.status){
+      if(err.response.status === 401){
         logout()
         window.location.reload()
       }
@@ -76,7 +76,7 @@ const requestStagevsmodality = id => {
     })
     .then(response => response.data)
     .catch(err => {
-      if(err.response.status){
+      if(err.response.status === 401){
         logout()
         window.location.reload()
       }

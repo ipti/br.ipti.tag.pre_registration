@@ -24,6 +24,8 @@ const customStyles = {
     fontFamily: "Roboto, Helvetica, Arial, sans-serif",
   })
 };
+
+
 const Start = props => {
   const classes = useStyles();
   const [startDate, setStartDate] = useState()
@@ -31,12 +33,11 @@ const Start = props => {
   const [isValid, setIsValid] = useState()
   const { setIdEvent, idEvent, setSchool, setYear, schools, school } = useContext(RegistrationContext);
 
-  console.log(school);
   const datenow = Date.now();
   const date = new Date(datenow)
 
   const onButton = () => {
-    if (startDate <= date.getTime() && date.getTime() <= endDate && idEvent !== '') {
+    if (startDate <= date.getTime() && date.getTime() <= (endDate + 87000000) && idEvent !== '') {
       props.setIsActive(true)
       props.next('1', { school_identification: school.inep_id, event_pre_registration: idEvent })
     } else {

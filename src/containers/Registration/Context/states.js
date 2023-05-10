@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Controller } from "../../../controller/registration";
+import { useFetchRequestQuiz } from "../../../query/quiz";
 
 
 export const RegistrationState = () => {
@@ -13,14 +14,19 @@ export const RegistrationState = () => {
     
     const {schoolsList, requestSaveRegistrationMutation} = Controller()
 
+    const { data: anwsers } = useFetchRequestQuiz({ id: school ? school.inep_id : null })
+  
     useEffect(() => {
         if(schoolsList){
             setSchools(schoolsList)
         }
-      }, [schoolsList])
+        if(anwsers){
+            setQuiz(anwsers)
+        }
+      }, [schoolsList, anwsers])
 
 
     return {
-        isOfLegalAge, setIsOfLegalAge, school, schools, setSchool,year, setYear,idEvent, setIdEvent, idClassRoom, setIdClassroom,requestSaveRegistrationMutation
+        isOfLegalAge, setIsOfLegalAge, school, schools, setSchool,year, setYear,idEvent, setIdEvent, idClassRoom, setIdClassroom,requestSaveRegistrationMutation, quiz
     }
 }

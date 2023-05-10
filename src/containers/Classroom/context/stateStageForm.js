@@ -1,10 +1,9 @@
-import { Controller } from "../../../controller/classroom";
+import { ControllerClassroomForm } from "../../../controller/classroom/ClassroomForm";
+
 
 export const StageFormState = () => {
 
-
-
-    const { requestDeletePreRegistrationMutation, classroom, isError, isLoading } = Controller();
+    const { requestDeletePreRegistrationMutation, classroom, isError, isLoading } = ControllerClassroomForm();
 
 
 

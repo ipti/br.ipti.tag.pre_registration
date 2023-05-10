@@ -149,7 +149,7 @@ const Header = ({setIsSidebar, isSidebar}) => {
                 open={open}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleLogout}>Sair</MenuItem>
+                <MenuItem value="sair" onClick={handleLogout}>Sair</MenuItem>
               </Menu>
             </>
           )}

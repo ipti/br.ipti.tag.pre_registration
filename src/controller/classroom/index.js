@@ -1,18 +1,15 @@
 import React from "react";
 
 import Alert from "@material-ui/lab/Alert";
-import { useMutation } from "react-query";
-import { useHistory, useParams } from "react-router";
-import { requestCreateStage, requestEditPreIdentification, requestUpdateRegistration, useFetchRequestClassroom } from "../../query/stage";
-import { requestCreateClassroom, requestDeletePreRegistration } from "../../query/classroom";
 import swal from "@sweetalert/with-react";
+import { useMutation } from "react-query";
+import { useHistory } from "react-router";
+import { requestCreateClassroom } from "../../query/classroom";
+import { requestCreateStage, requestEditPreIdentification, requestUpdateRegistration } from "../../query/stage";
 
 
 export const Controller = () => {
-    const { id } = useParams()
-
-    const { data: classroom, isLoading, isError, refetch } = useFetchRequestClassroom({ id: id })
-
+    
     const history = useHistory()
     const requestUpdateRegistrationMutation = useMutation(
         ({ data, id }) => requestUpdateRegistration(data, id),
@@ -48,6 +45,8 @@ export const Controller = () => {
             },
         }
     );
+
+    
     const requestUpdatePreIdentificationMutation = useMutation(
         ({ data, id }) => requestEditPreIdentification(data, id),
         {
@@ -78,22 +77,10 @@ export const Controller = () => {
         }
     );
 
-    const requestDeletePreRegistrationMutation = useMutation(
-        (data) => requestDeletePreRegistration(data),
-        {
-            onError: (error) => {
-                
-                swal(error.response.data.message);
-            },
-            onSuccess: (data) => {
-                refetch()
-            },
-        }
-    );
+   
 
 
 
 
-
-    return { requestUpdateRegistrationMutation, requestUpdatePreIdentificationMutation, requestCreateStageMutation, requestCreateClassroomMutation, requestDeletePreRegistrationMutation, classroom, isLoading, isError, refetch }
+    return { requestUpdateRegistrationMutation, requestUpdatePreIdentificationMutation, requestCreateStageMutation, requestCreateClassroomMutation }
 } 

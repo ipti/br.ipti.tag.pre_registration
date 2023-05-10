@@ -11,7 +11,7 @@ const Registration = props => {
 
   const { id, idRegistration } = useParams()
 
-  const {registration} = StageRegistrationState()
+  const {registration, answer} = StageRegistrationState()
 
   const handleSubmit = value => {
     requestUpdateRegistrationMutation.mutate({data: value, id: idRegistration})
@@ -29,6 +29,7 @@ const Registration = props => {
         <>
           <RegistrationConfirmed
             registration={registration}
+            answer={answer}
             classroom={id}
             handleRefusePreIdentification={handleRefusePreIdentification}
             handleSubmit={handleSubmit}
