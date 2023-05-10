@@ -1,6 +1,7 @@
 
 import { makeStyles } from "@material-ui/core/styles";
-import React from "react";
+
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 import Grid from "@material-ui/core/Grid";
@@ -16,7 +17,9 @@ const useStyles = makeStyles(styles);
 const BoxRegistration = props => {
   const { name, link, unavailable, sex, md, sm, xs, student_fk, id } = props;
 
+
   const { requestDeletePreRegistrationMutation } = ControllerClassroomForm();
+
   const classes = useStyles();
   const history = useHistory();
 
