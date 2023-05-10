@@ -35,7 +35,6 @@ const Home = props => {
 
   const history = useHistory()
 
-  console.log(answer)
   const nullableField = "-------------";
 
   const studentName = student?.name;
@@ -247,7 +246,7 @@ const Home = props => {
           </Grid>
           {answer.map((item, index) => {
             return (
-              <Grid item md={12}>
+              <Grid item md={12} key={index}>
                 <p className={classes.label}>{item.description}</p>
                 {item.value}
               </Grid>

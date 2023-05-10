@@ -30,7 +30,6 @@ export const Controller = () => {
             window.location.reload()
           },
           onSuccess: (data) => {
-          //  console.log(data)
             swal("Pré-matricula feita com sucesso!")
            // history.go('/login')
           },

@@ -11,7 +11,6 @@ const BoxStudents = ({ student, student_identification }) => {
 
     const filterStudent = student_identification.filter(x => x.id === student.id);
 
-    console.log(filterStudent)
     return (
         <Grid
             className={`${classes.boxStudent}`}

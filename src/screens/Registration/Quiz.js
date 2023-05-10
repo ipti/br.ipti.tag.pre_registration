@@ -62,6 +62,7 @@ const Quiz = props => {
                             direction="row"
                             justifyContent="center"
                             alignItems="center"
+                            key={index}
                         >
                             <Grid>
                                 <Grid>
@@ -71,7 +72,7 @@ const Quiz = props => {
                             </Grid>
                             {item.questions.map((question, index) => {
                                 return (
-                                    <Grid item xs={12}>
+                                    <Grid key={index} item xs={12}>
                                         <FormControl
                                             component="fieldset"
                                             className={classes.formControl}

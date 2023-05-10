@@ -5,10 +5,10 @@ import IconSchedule from "../../components/Svg/IconScheduleWhite";
 const useStyles = makeStyles(styles);
 
 const BoxDiscriptionSchedule = props => {
-  const { title, subtitle, color, textRight} = props;
+  const { title, subtitle, color} = props;
   const classes = useStyles();
   return (
-    <div className={`${classes.boxDescriptionCalssroom} ${classes.floatLeft}`}>
+    <div className={`${classes.boxDescriptionSchedule} ${classes.floatLeft}`}>
       <div
         className={`${classes.boxQuantity} ${classes.floatLeft} ${
           color === "pink"

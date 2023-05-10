@@ -94,8 +94,6 @@ const Home = props => {
     setDataValues(data);
     setStep(step)
 
-    console.log(dataValues)
-
     if (step === 6) {
       onSubmit();
     }

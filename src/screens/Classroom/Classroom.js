@@ -65,7 +65,8 @@ const Classroom = ({ pagination, handlePage, activePage }) => {
           >
             <BoxDiscriptionClassroom
               title={`Ano: ${stage.school_year}`}
-            //  registrationConfirmed={`${stage.student_pre_identification.length}`}
+              pre_registration={stage.student_pre_identification}
+              registrationConfirmed={`${stage.student_pre_identification.length}`}
             />
           </BoxBig>
         </Grid>

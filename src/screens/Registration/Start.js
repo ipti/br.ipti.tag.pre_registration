@@ -37,7 +37,7 @@ const Start = props => {
   const date = new Date(datenow)
 
   const onButton = () => {
-    if (startDate <= date.getTime() && date.getTime() <= endDate && idEvent !== '') {
+    if (startDate <= date.getTime() && date.getTime() <= (endDate + 87000000) && idEvent !== '') {
       props.setIsActive(true)
       props.next('1', { school_identification: school.inep_id, event_pre_registration: idEvent })
     } else {
@@ -78,7 +78,6 @@ const Start = props => {
               options={schools}
               onChange={selectedOption => {
                 setSchool(selectedOption)
-                console.log(selectedOption)
                 setIsValid(true)
                 const last_event = selectedOption.event_pre_registration.length - 1;
                 if (selectedOption.event_pre_registration[last_event]) {

@@ -14,7 +14,7 @@ const NotFound = () => {
         className={classes.contentStart}
         container
         direction="row"
-        justify="center"
+        justifyContent="center"
         alignItems="center"
       >
         <Grid item md={8} sm={12} xs={12}>

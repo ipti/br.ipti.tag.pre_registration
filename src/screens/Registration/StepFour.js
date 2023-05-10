@@ -91,7 +91,6 @@ const StepFour = props => {
   const [openModalCPF, setOpenModalCPF] = useState(false)
   const [openModalCPFResponsable, setOpenModalCPFResponsable] = useState(false)
 
-  console.log(quiz)
 
   const validationSchema = Yup.object().shape({
     responsable_name: Yup.string().required("Campo obrigatório!"),

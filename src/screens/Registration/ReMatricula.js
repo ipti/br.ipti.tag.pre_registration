@@ -112,7 +112,6 @@ const Home = props => {
 
 
   const gerarArray = e => {
-    console.log(e)
     e.preventDefault()
     map1.forEach((item, index) => {
       arrayquiz.push(item)
@@ -239,6 +238,7 @@ const Home = props => {
                   direction="row"
                   justifyContent="center"
                   alignItems="center"
+                  key={index}
                 >
                   <Grid>
                     <Grid>
@@ -248,7 +248,7 @@ const Home = props => {
                   </Grid>
                   {item.questions.map((question, index) => {
                     return (
-                      <Grid item xs={12} style={{ display: 'flex', flexDirection: 'row', justifyContent: "center" }}>
+                      <Grid key={index} item xs={12} style={{ display: 'flex', flexDirection: 'row', justifyContent: "center" }}>
                         <FormControl
                           component="fieldset"
                           className={classesRegistration.formControl}

@@ -37,7 +37,7 @@ const requestSchool = id => {
     .get("/school-identification/" + id, getYearClassRoom() !== '' ? {
       params: {
         include: {
-          classroom: { where: { school_year: parseInt(getYearClassRoom() || new Date().getFullYear()) } },
+          classroom: { where: { school_year: parseInt(getYearClassRoom() || new Date().getFullYear()) }, include: { student_pre_identification: true } },
           edcenso_city: true,
           student_documents_and_address: true
         },

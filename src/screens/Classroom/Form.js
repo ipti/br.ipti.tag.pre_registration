@@ -14,11 +14,15 @@ import { TitleWithLine } from "../../components/Titles";
 
 // Styles
 import styles from "./styles";
+import { ArrowBack } from "@material-ui/icons";
+import { useHistory } from "react-router";
 
 const useStyles = makeStyles(theme => styles);
 
 const Create = props => {
   const classes = useStyles();
+
+  const history = useHistory()
 
   const {
     data,
@@ -26,7 +30,6 @@ const Create = props => {
   } = props;
 
 
-  console.log(data)
   const registrations = () => {
     const registrationList = data?.student_pre_identification ?? [];
 
@@ -50,6 +53,7 @@ const Create = props => {
 
   return (
     <>
+    <ArrowBack onClick={() => {history.goBack()}} style={{cursor: "pointer"}}/>
       <Grid container direction="row">
         <TitleWithLine title={data && data.name} />
       </Grid>

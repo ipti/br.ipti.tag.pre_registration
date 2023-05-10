@@ -18,7 +18,6 @@ const requestClassrooms = () => {
 };
 
 const requestClassroom = id => {
-  console.log('oiiiiiiiiiiiiiiiiii')
   return api
     .get("/classroom/" + id, {
       params: {

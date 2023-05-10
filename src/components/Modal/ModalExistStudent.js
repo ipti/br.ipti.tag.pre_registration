@@ -46,7 +46,7 @@ const ModalExistStudent = ({ openModal, setOpen, student, school }) => {
                     <h3 style={{fontFamily: 'Poppins SemiBold', fontSize: 17}}>Já temos um cadastro com esse CPF</h3>
                     {student.map((student, i) => {
                         return (
-                            <BoxStudents student={student} student_identification={school.student_identification} />
+                            <BoxStudents key={i} student={student} student_identification={school.student_identification} />
                         )
                     })}
                 </Grid> : null}
