@@ -3,6 +3,7 @@ import React from "react";
 // Routes
 import Routes from "./routes";
 
+
 // Styles
 import styleBase from "./styles";
 import "./assets/css/styles.css";
@@ -13,6 +14,8 @@ import {
 } from "@material-ui/core/styles";
 import { QueryClientProvider } from "react-query";
 import queryClient from "./services/query";
+
+
 
 const theme = createTheme({
   palette: {

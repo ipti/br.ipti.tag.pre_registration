@@ -90,7 +90,7 @@ const Login = props => {
                       placeholder="Usuário"
                       InputProps={{
                         startAdornment: (
-                          <InputAdornment position="start">
+                          <InputAdornment  position="start">
                             <PersonOutline className={classes.colorIcon} />
                           </InputAdornment>
                         )
@@ -102,8 +102,9 @@ const Login = props => {
                   </Grid>
                 </Grid>
                 <Grid container direction="row" justifyContent="center">
-                  <Grid item md={8} sm={8}>
+                  <Grid item md={8} sm={8} className="t-field-text">
                     <TextField
+                      className="t-field-text"
                       name="password"
                       onChange={props.handleChange}
                       variant="outlined"
@@ -114,7 +115,8 @@ const Login = props => {
                           <InputAdornment position="start">
                             <LockOpen className={classes.colorIcon} />
                           </InputAdornment>
-                        )
+                        ),
+                        className: "t-field-text__input",
                       }}
                     />
                     <div className={classes.formFieldError}>
@@ -123,24 +125,27 @@ const Login = props => {
                   </Grid>
                 </Grid>
                 <Grid
-                  className={classes.buttonLogin}
                   container
                   direction="row"
                   alignItems="center"
                   justifyContent="center"
                 >
-                  <Grid
-                    className={`${classes.boxError} ${classes.textCenter}`}
-                    item
-                    md={12}
-                    sm={12}
-                  >
-                    <div>
-                      {!isValid ? "Usuário ou senha inválido" : ""}
-                    </div>
-                  </Grid>
-                  <Grid item md={6} sm={6}>
+                  {
+                    !isValid ? <Grid
+                      className={`${classes.boxError} ${classes.textCenter}`}
+                      item
+                      md={12}
+                      sm={12}
+                    >
+                      <div>
+                        {!isValid ? "Usuário ou senha inválido" : ""}
+                      </div>
+                    </Grid> : null
+                  }
+
+                  <Grid item md={8} sm={8}>
                     <ButtonPurple
+                      className={"t-button-primary"}
                       onClick={props.handleSubmit}
                       type="submit"
                       title="Entrar"

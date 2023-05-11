@@ -39,10 +39,10 @@ export const requestStudentOne = async id => {
       })
     .then(response => response.data)
     .catch(err => {
-      if (err.response.status === 401) {
-        logout()
-        window.location.reload()
-      }
+      // if (err.response.status === 401) {
+      //   logout()
+      //   window.location.reload()
+      // }
       throw err;
     });
 };
@@ -58,10 +58,10 @@ export const requestSchoolStages = async (id, year) => {
       })
     .then(response => response.data === 401)
     .catch(err => {
-      if (err.response.status) {
-        logout()
-        window.location.reload()
-      }
+      // if (err.response.status) {
+      //   logout()
+      //   window.location.reload()
+      // }
       throw err;
     });
 };
@@ -99,10 +99,10 @@ const requestSchoolList = async () => {
     })
     .then(response => response.data)
     .catch(err => {
-      if(err.response.status === 401){
-        logout()
-        window.location.reload()
-      }
+      // if(err.response.status === 401){
+      //   logout()
+      //   window.location.reload()
+      // }
       throw err;
     });
 };
