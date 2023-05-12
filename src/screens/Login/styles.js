@@ -19,7 +19,7 @@ const useStyles = {
     fontSize: "30px",
     marginTop: 80,
     marginBottom: 60,
-    color: styleBase.colors.purple
+    color: styleBase.colors.colorsBaseProductNormal
   },
   imageLogin: {
     marginBottom: 40
@@ -32,7 +32,7 @@ const useStyles = {
     backgroundColor: styleBase.colors.white,
     border: "none",
     borderRadius: "5px",
-    color: styleBase.colors.purple,
+    color: styleBase.colors.colorsBaseProductNormal,
     fontSize: styleBase.typography.font.small,
     fontFamily: styleBase.typography.types.bold,
     padding: "10px 20px",

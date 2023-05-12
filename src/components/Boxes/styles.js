@@ -4,7 +4,7 @@ const useStyles = {
   contentBox: {
     border: "1px solid",
     borderRadius: "8px",
-    borderColor: styleBase.colors.purple,
+    borderColor: styleBase.colors.colorsBaseProductNormal,
     padding: "20px",
     width: "88%",
     textDecoration: "none"
@@ -16,7 +16,7 @@ const useStyles = {
     float: "right"
   },
   textRight: {
-    backgroundColor: styleBase.colors.purple,
+    backgroundColor: styleBase.colors.colorsBaseProductNormal,
     color: styleBase.colors.white,
     padding: "0px 15px",
     borderRadius: "50px",
@@ -75,7 +75,7 @@ const useStyles = {
     marginRight: 10
   },
   boxQuantityBackgroundPurple: {
-    backgroundColor: styleBase.colors.purple
+    backgroundColor: styleBase.colors.colorsBaseProductNormal
   },
   boxQuantityBackgroundPink: {
     backgroundColor: styleBase.colors.pink
@@ -103,7 +103,7 @@ const useStyles = {
     backgroundColor: styleBase.colors.blue
   },
   backgroundPurple: {
-    backgroundColor: styleBase.colors.purple
+    backgroundColor: styleBase.colors.colorsBaseProductNormal
   },
   backgroundPink: {
     backgroundColor: styleBase.colors.pink
@@ -129,7 +129,7 @@ const useStyles = {
   boxStudent: {
     border: "1px solid",
     borderRadius: "8px",
-    borderColor: styleBase.colors.purple,
+    borderColor: styleBase.colors.colorsBaseProductNormal,
     fontFamily: styleBase.typography.types.light,
     width: "80%",
     padding: "10px",
@@ -141,7 +141,7 @@ const useStyles = {
   boxStudentConfirmation: {
     border: "1px solid",
     borderRadius: "8px",
-    borderColor: styleBase.colors.purple,
+    borderColor: styleBase.colors.colorsBaseProductNormal,
     fontFamily: styleBase.typography.types.light,
     width: "100%",
     padding: "10px",
@@ -178,8 +178,8 @@ const useStyles = {
   boxStatusStudent: {
     border: "1px solid",
     borderRadius: "30px",
-    borderColor: styleBase.colors.purple,
-    color: styleBase.colors.purple,
+    borderColor: styleBase.colors.colorsBaseProductNormal,
+    color: styleBase.colors.colorsBaseProductNormal,
     textAlign: "center",
     paddingTop: 10,
     paddingBottom: 10,
@@ -195,7 +195,7 @@ const useStyles = {
     // }
   },
   button: {
-    backgroundColor: styleBase.colors.purple,
+    backgroundColor: styleBase.colors.colorsBaseProductNormal,
     margin: 'auto 0px',
     border: "none",
     borderRadius: "50px",
@@ -208,7 +208,7 @@ const useStyles = {
     padding: "8px 18px",
     outline: 'none',
     '&:hover': {
-      backgroundColor: styleBase.colors.purpleDark
+      backgroundColor: styleBase.colors.colorsBaseProductNormalHover
     }
   }
 };

@@ -13,7 +13,7 @@ const IconSchoolActive = props => {
         <style>
           {`.cls-school-active {
         fill: none;
-        stroke: ${styleBase.colors.purple};
+        stroke: ${styleBase.colors.colorsBaseProductNormalHover};
         stroke-linecap: round;
         stroke-linejoin: round;
         stroke-width: 2px;

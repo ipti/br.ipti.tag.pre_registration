@@ -142,7 +142,7 @@ const StepFive = props => {
   const PurpleRadio = withStyles({
     root: {
       "&$checked": {
-        color: styleBase.colors.purple
+        color: styleBase.colors.colorsBaseProductNormal
       }
     },
     checked: {}
@@ -415,6 +415,7 @@ const StepFive = props => {
                   {!loadingButtom ? (
                     <ButtonPurple
                       onClick={props.handleSubmit}
+                      className="t-button-primary"
                       type="submit"
                       title="Continuar"
                     />

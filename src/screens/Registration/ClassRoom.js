@@ -90,6 +90,7 @@ const Classroom = props => {
                 <Grid item xs={6}>
                     <ButtonPurple
                         type="button"
+                        className="t-button-primary"
                         onClick={onButton}
                         title="Continuar"
                         disabled={!isValid}

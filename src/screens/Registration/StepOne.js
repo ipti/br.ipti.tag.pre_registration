@@ -60,6 +60,7 @@ const Student = props => {
             onClick={() => props.next(3)}
             type="button"
             title="Iniciar"
+            className="t-button-primary"
           />
         </Grid>
       </Grid>

@@ -16,7 +16,7 @@ const useStyles = {
       textDecoration: "none",
       border: "1px solid",
       borderRadius: "6px",
-      borderColor: styleBase.colors.purple,
+      borderColor: styleBase.colors.colorsBaseProductNormal,
       color: styleBase.colors.gray,
       padding: "3px 6px",
       fontSize: styleBase.typography.font.small,
@@ -28,15 +28,15 @@ const useStyles = {
       outline: 'none',
       transition: 'ease-in',
       "&:hover": {
-        background: styleBase.colors.purple,
+        background: styleBase.colors.colorsBaseProductNormal,
         color: styleBase.colors.white
       },
       "&.active": {
-        background: styleBase.colors.purple,
+        background: styleBase.colors.colorsBaseProductNormal,
         color: `${styleBase.colors.white} !important`,
 
         "&:hover": {
-          background: styleBase.colors.purpleDark,
+          background: styleBase.colors.colorsBaseProductNormalHover,
           color: styleBase.colors.white
         },
       },
@@ -49,7 +49,7 @@ const useStyles = {
       "&:first-child, &:last-child": {
         borderColor: styleBase.colors.white,
         fontSize: styleBase.typography.font.large,
-        color: styleBase.colors.purple,
+        color: styleBase.colors.colorsBaseProductNormal,
         textIndent: "-99999em",
         padding: "unset",
         height: "26px",

@@ -20,7 +20,10 @@ import queryClient from "./services/query";
 const theme = createTheme({
   palette: {
     primary: {
-      main: styleBase.colors.purple
+      main: styleBase.colors.colorsBaseProductNormal
+    },
+    secondary: {
+      main: styleBase.colors.colorsBaseProductNormalHover
     }
   }
 });

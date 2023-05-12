@@ -113,6 +113,7 @@ const StepTwo = props => {
                       onClick={()=> history.push(`/matricula/${values.numRegistration}`)}
                       type="submit"
                       title="Continuar"
+                      className="t-button-primary"
                     />
                   ) : (
                     <Loading />

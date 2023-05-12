@@ -50,7 +50,7 @@ body {
   padding: 10.5px;
 }
 
-  input[type="text"],
+  /* input[type="text"],
   input[type="password"],
   input[type="datetime"],
   input[type="datetime-local"],
@@ -75,9 +75,6 @@ body {
     -moz-transition: border linear .2s, box-shadow linear .2s;
     -o-transition: border linear .2s, box-shadow linear .2s;
     transition: border linear .2s, box-shadow linear .2s;
-    
-  }
+  } */
 
-  .t-menu-item {
-    width: 100%;
-  }
+ 

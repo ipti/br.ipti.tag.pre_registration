@@ -50,8 +50,9 @@ const useStyles = makeStyles({
   title: {
     margin: '8px 15px',
     flexGrow: 1,
-    color: styleBase.colors.purple,
-    fontFamily: styleBase.typography.types.extraLight
+    color: styleBase.colors.colorsBaseProductNormal,
+    fontFamily: styleBase.typography.types.extraLight,
+    fontSize: styleBase.typography.font.medium
   },
   accountButton: {
     color: styleBase.colors.grayClear

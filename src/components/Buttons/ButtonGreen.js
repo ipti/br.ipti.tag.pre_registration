@@ -7,7 +7,7 @@ const useStyles = makeStyles(styles);
 const ButtonGreen = props => {
   const classes = useStyles();
   return (
-    <button className={`${classes.buttomGreen}`} {...props}>
+    <button className={`${classes.buttomGreen}` } {...props}>
       {props.title}
     </button>
   );

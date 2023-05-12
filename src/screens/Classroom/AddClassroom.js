@@ -282,6 +282,7 @@ const Create = props => {
                     {!loadingIcon ? (
                       <ButtonPurple
                         onClick={props.handleSubmit}
+                        className="t-button-primary"
                         type="submit"
                         title={isEdit ? "Editar" : "Salvar"}
                       />

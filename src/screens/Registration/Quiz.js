@@ -131,6 +131,7 @@ const Quiz = props => {
                             type="submit"
                             // onClick={nextPag}
                             title="Finalizar"
+                            className="t-button-primary"
                         // disabled={!isValid}
                         />
                     </Grid>

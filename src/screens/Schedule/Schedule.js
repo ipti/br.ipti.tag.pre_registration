@@ -9,7 +9,9 @@ import Alert from "@material-ui/lab/Alert";
 
 import {
   makeStyles,
-  createMuiTheme,
+} from "@material-ui/core/styles";
+import {
+  createTheme,
   ThemeProvider
 } from "@material-ui/core/styles";
 
@@ -27,10 +29,10 @@ import styles from "./styles";
 
 const useStyles = makeStyles(styles);
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
-      main: styleBase.colors.purple
+      main: styleBase.colors.colorsBaseProductNormal
     }
   }
 });
@@ -79,13 +81,7 @@ const Schedule = ({ activePage, data, pagination, handlePage, deleteSchedule }) 
           <h1 className={`${classes.title} ${classes.floatLeft}`}>
             Cronograma
           </h1>
-          <div className={`${classes.floatRight}`}>
-            <Paginator
-              activePage={activePage}
-              pagination={pagination}
-              handlePage={handlePage}
-            />
-          </div>
+          
         </Grid>
       </Grid>
 

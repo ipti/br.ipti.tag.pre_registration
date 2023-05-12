@@ -107,6 +107,7 @@ const Start = props => {
           <ButtonPurple
             type="button"
             onClick={onButton}
+            className="t-button-primary"
             title="Iniciar"
             disabled={!isValid}
           />

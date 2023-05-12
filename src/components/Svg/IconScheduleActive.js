@@ -13,7 +13,7 @@ const IconScheduleActive = props => {
         <style>
           {`.cls-schedule-active {
         fill: none;
-        stroke: ${styleBase.colors.purple};
+        stroke: ${styleBase.colors.colorsBaseProductNormal};
         stroke-linecap: round;
         stroke-linejoin: round;
         stroke-width: 2px;

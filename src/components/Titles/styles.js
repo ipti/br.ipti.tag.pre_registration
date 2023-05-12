@@ -13,7 +13,7 @@ const useStyles = {
   linePurple: {
     width: 90,
     height: 5,
-    backgroundColor: styleBase.colors.purple,
+    backgroundColor: styleBase.colors.colorsBaseProductNormal,
     borderRadius: 50,
     display: "block"
   }
