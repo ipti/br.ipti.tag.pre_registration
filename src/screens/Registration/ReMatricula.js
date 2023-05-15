@@ -305,6 +305,7 @@ const Home = props => {
               <>
                 <Grid item md={3}>
                   <ButtonPurple
+                    className="t-button-primary"
                     type="submit"
                     title="Confirmar"
                   />

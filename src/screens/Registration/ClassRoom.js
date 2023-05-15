@@ -3,7 +3,7 @@ import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import React, { useContext } from "react";
 import Select from "react-select";
-import homeImg from "../../assets/images/illustration-home.png";
+import homeImg from "../../assets/images/Capelo.svg";
 import { ButtonPurple } from "../../components/Buttons";
 import { RegistrationContext } from "../../containers/Registration/Context/context";
 import styles from "./styles";
@@ -48,7 +48,7 @@ const Classroom = props => {
                 alignItems="center"
             >
                 <Grid item xs={12}>
-                    <img src={homeImg} alt="" />
+                    <img className={classes.imageRegistration} src={homeImg} alt="" />
                 </Grid>
                 <Grid item xs={12}>
                     <h1>Matrícula Online</h1>
@@ -81,7 +81,7 @@ const Classroom = props => {
                 </Grid>
             </Grid>
             <Grid
-                className={`${classes.marginTop}`}
+                className={`${classes.marginTop} ${classes.marginButtom}`}
                 container
                 direction="row"
                 justifyContent="center"

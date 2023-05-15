@@ -12,7 +12,10 @@ const color = {
   green: "#05ec02",
   blueClear: "#dcefed",
   colorsBaseProductNormal: "#3f45ea",
-  colorsBaseProductNormalHover: "#2e33b7"
+  colorsBaseProductNormalHover: "#2e33b7",
+  colorsBaseInkNormal: "#252A31",
+  colorsBaseInkLight: "#5F738C",
+  colorsBaseProductDarkHover: "#1C1F7F"
 
 };
 

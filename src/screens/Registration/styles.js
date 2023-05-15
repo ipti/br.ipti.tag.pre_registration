@@ -26,6 +26,10 @@ const useStyles = {
       fontSize: styleBase.typography.font.medium
     }
   },
+  imageRegistration: {
+    height: "100%",
+    width: "80%"
+  },
   marginButtom: {
     marginBottom: 40
   },

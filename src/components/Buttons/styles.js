@@ -19,7 +19,6 @@ const useStyles = {
     color: styleBase.colors.white,
     fontSize: styleBase.typography.font.medium,
     fontFamily: styleBase.typography.types.light,
-    width: "100%",
     textAlign: "center",
     padding: "8px 18px",
     cursor: 'pointer',

@@ -55,7 +55,7 @@ const useStyles = {
     display: "none"
   },
   span: {
-    marginLeft: 10
+    marginLeft: 10,
   },
   activeLink: {
     color: styleBase.colors.gray,
@@ -67,7 +67,8 @@ const useStyles = {
     }
   },
   floatLeft: {
-    float: "left"
+    float: "left",
+    marginTop: "-3px"
   },
   // "@media(max-width: 600px)": {
   //   menu: {

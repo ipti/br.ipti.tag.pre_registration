@@ -8,21 +8,41 @@ const useStyles = {
       marginBottom: "10px"
     },
     minHeight: "100%",
-    background: `${styleBase.colors.blue} url(${Background})`,
+    background: `${styleBase.colors.colorsBaseProductNormal}`,
     fontFamily: styleBase.typography.types.light
   },
   marginTopContentLeft: {
-    marginTop: 264
+    marginTop: 128,
+    margin: "auto"
   },
   titleLogin: {
     textAlign: "center",
-    fontSize: "30px",
-    marginTop: 80,
-    marginBottom: 60,
-    color: styleBase.colors.colorsBaseProductNormal
+    fontSize: "24px",
+    marginBottom: "-15px",
+    color: styleBase.colors.colorsBaseInkNormal,
+    fontFamily: styleBase.typography.types.inter,
+  },
+  subTitleLogin: {
+    textAlign: "center",
+    fontStyle: "normal",
+    fontWeight: "400",
+    fontSize: "14px",
+    lineHeight: "21px",
+    fontFamily: styleBase.typography.types.inter,
+    color: styleBase.colors.colorsBaseInkLight
   },
   imageLogin: {
-    marginBottom: 40
+    marginBottom: 20,
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "end",
+    marginLeft: "auto",
+  },
+  imageLoginStyle: {
+
+  },
+  imageTagna: {
+    marginBottom: 20,
   },
   textCenter: {
     textAlign: "center"
@@ -43,7 +63,9 @@ const useStyles = {
   },
   contentLeft: {
     fontSize: styleBase.typography.font.small,
-    color: styleBase.colors.white
+    color: styleBase.colors.white,
+    display: "flex",
+    flexDirection: "row"
   },
   contentRight: { backgroundColor: styleBase.colors.white },
   titleBig: {
@@ -75,12 +97,32 @@ const useStyles = {
     display: "block",
     marginBottom: 5
   },
-  "@media(max-width: 600px)": {
-    marginTopContentLeft: {
-      marginTop: 20
+  "@media(max-width: 960px)": {
+    imageTagna: {
+      width: "300px",
+      height: "100%"
     },
-    contentLeft: {
-      marginLeft: 20
+    titleBig: {
+      fontSize: "20px"
+    },
+    imageLoginStyle: {
+      width: "80%",
+      height: "80%",
+      marginLeft: "20%"
+    },
+    marginTopContentLeft: {
+      margin: "auto auto",
+    },
+  },
+  "@media(max-width: 600px)": {
+    imageTagna: {
+      width: "100%",
+      height: "100%"
+    },
+
+    marginTopContentLeft: {
+      margin: "auto 0px",
+      marginLeft: "0px"
     },
     boxRegister: {
       marginBottom: 40

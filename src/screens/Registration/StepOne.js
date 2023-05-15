@@ -1,7 +1,7 @@
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import React from "react";
-import homeImg from "../../assets/images/illustration-home.png";
+import homeImg from "../../assets/images/Capelo.svg"
 import { ButtonLinePurple } from "../../components/Buttons";
 import styles from "./styles";
 
@@ -20,7 +20,7 @@ const Student = props => {
         alignItems="center"
       >
         <Grid item xs={12}>
-          <img src={homeImg} alt="" />
+          <img className={classes.imageRegistration} src={homeImg} alt="" />
         </Grid>
         {/* <Grid item xs={10}>
           <h1>Possui Vínculo</h1>
@@ -47,7 +47,7 @@ const Student = props => {
           <p>Confira todos os campos</p>
         </Grid>
       </Grid>
-      <Grid className={`${classes.marginTop}`} container justifyContent="center" alignItems="center" >
+      <Grid className={`${classes.marginTop} ${classes.marginButtom}`} container justifyContent="center" alignItems="center" >
         {/* <Grid item xs={4}>
           <ButtonPurple
             type="button"

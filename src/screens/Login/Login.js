@@ -5,35 +5,44 @@ import PersonOutline from "@material-ui/icons/PersonOutline";
 import LockOpen from "@material-ui/icons/LockOpen";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Grid from "@material-ui/core/Grid";
-import LoginImg from "../../assets/images/security-login.png";
+import LoginImg from "../../assets/images/fadedlogo.svg";
+import Tagna from "../../assets/images/tagná.svg";
 import { makeStyles } from "@material-ui/core/styles";
 import { Formik, Form } from "formik";
 import { ButtonPurple } from "../../components/Buttons";
 import { Link } from "react-router-dom";
 
 import styles from "./styles";
+import { useMediaQuery } from "@material-ui/core";
 
 const useStyles = makeStyles(styles);
 
 const Login = props => {
   const classes = useStyles();
   let isValid = props.isValid;
+  const matches = useMediaQuery('(max-width:1032px)')
 
   return (
     <Grid className={classes.root} container direction="row" justifyContent="flex-end">
       <Grid className={classes.contentLeft} item md={8} sm={6} xs={12}>
+        <div style={{ width: "30%" }}>
+          <img className={classes.imageTagna} src={Tagna} alt="" />
+        </div> 
         <Grid
           className={`${classes.marginTopContentLeft} ${classes.titleBig}`}
-          container
-          alignItems="center"
         >
-          <Grid item md={2} sm={2} xs={2}></Grid>
-          <Grid className={`${classes.titleBig}`} item md={9} sm={9} xs={12}>
+          <Grid item md={9} sm={9} xs={12}>
             Bem-Vindo
           </Grid>
-          <Grid item md={2} sm={2} xs={2}></Grid>
-          <Grid className={classes.titleBig} item md={9} sm={9} xs={12}>
+          <Grid item md={12} sm={12} xs={12}>
             ao Matrícula Online
+          </Grid>
+          <Grid className={classes.boxRegister} container direction="row">
+            <Grid item md={9}>
+              <Link className={classes.linkRegister} to="/matricula">
+                Iniciar Matrícula
+              </Link>
+            </Grid>
           </Grid>
         </Grid>
         {/* <Grid container direction="row">
@@ -43,33 +52,24 @@ const Login = props => {
 
           </Grid>
         </Grid> */}
-        <Grid className={classes.boxRegister} container direction="row">
-          <Grid item md={2} sm={2}></Grid>
-          <Grid item md={9}>
-            <Link className={classes.linkRegister} to="/matricula">
-              Iniciar Matrícula
-            </Link>
-          </Grid>
-        </Grid>
       </Grid>
-
       <Grid className={classes.contentRight} item md={4} sm={6} xs={12}>
-        <Grid container direction="row" justifyContent="center" alignItems="center">
-          <Grid item md={12}>
-            <p className={classes.titleLogin}>Matricula Online </p>
-          </Grid>
-        </Grid>
         <Grid
           className={classes.imageLogin}
-          container
           direction="row"
-          justifyContent="center"
+          justifyContent="end"
           alignItems="center"
         >
-          <Grid item md={2}>
+          <Grid >
             <div>
-              <img src={LoginImg} alt="" />
+              <img className={classes.imageLoginStyle} src={LoginImg} alt="" />
             </div>
+          </Grid>
+        </Grid>
+        <Grid>
+          <Grid>
+            <p className={classes.titleLogin}>Matricula Online </p>
+            <p className={classes.subTitleLogin}>Entre com as suas credenciais </p>
           </Grid>
         </Grid>
         <Formik
@@ -82,7 +82,7 @@ const Login = props => {
             return (
               <Form>
                 <Grid container direction="row" justifyContent="center">
-                  <Grid item md={8} sm={8}>
+                  <Grid item  xs={8}>
                     <TextField
                       name="username"
                       onChange={props.handleChange}
@@ -90,7 +90,7 @@ const Login = props => {
                       placeholder="Usuário"
                       InputProps={{
                         startAdornment: (
-                          <InputAdornment  position="start">
+                          <InputAdornment position="start">
                             <PersonOutline className={classes.colorIcon} />
                           </InputAdornment>
                         )
@@ -102,7 +102,7 @@ const Login = props => {
                   </Grid>
                 </Grid>
                 <Grid container direction="row" justifyContent="center">
-                  <Grid item md={8} sm={8} className="t-field-text">
+                  <Grid item  xs={8} className="t-field-text">
                     <TextField
                       className="t-field-text"
                       name="password"
@@ -124,13 +124,7 @@ const Login = props => {
                     </div>
                   </Grid>
                 </Grid>
-                <Grid
-                  container
-                  direction="row"
-                  alignItems="center"
-                  justifyContent="center"
-                >
-                  {
+                {
                     !isValid ? <Grid
                       className={`${classes.boxError} ${classes.textCenter}`}
                       item
@@ -142,8 +136,15 @@ const Login = props => {
                       </div>
                     </Grid> : null
                   }
+                <Grid
+                  container
+                  direction="row"
+                  alignItems="center"
+                  justifyContent="center"
+                >
+                  
 
-                  <Grid item md={8} sm={8}>
+                  <Grid item xs={8}>
                     <ButtonPurple
                       className={"t-button-primary"}
                       onClick={props.handleSubmit}
