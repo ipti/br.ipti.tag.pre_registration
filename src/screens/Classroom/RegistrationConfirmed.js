@@ -20,6 +20,7 @@ import IconStudent from "../../assets/images/student-male-icon.png";
 import styles from "./styles";
 import { ArrowBack } from "@material-ui/icons";
 import { useHistory } from "react-router";
+import { TextField } from "@material-ui/core";
 
 const useStyles = makeStyles(styles);
 
@@ -32,6 +33,8 @@ const Home = props => {
     answer
   } = props;
   const student = registration ?? [];
+
+  console.log(student)
 
   const history = useHistory()
 
@@ -79,64 +82,56 @@ const Home = props => {
 
   return (
     <>
-    <ArrowBack onClick={() => {history.goBack()}} style={{cursor: "pointer"}}/>
+      <ArrowBack onClick={() => { history.goBack() }} style={{ cursor: "pointer" }} />
+      <h1>{student && student.classroom.name}</h1>
       <Grid className={classes.boxTitlePagination} container direction="row">
-        <TitleWithLine title="Matrícula" />
+        <h1>Matrículas</h1>
+
       </Grid>
-      <Grid container direction="row" spacing={3}>
-        <Grid item md={5}>
-          <img
-            className={`${classes.floatLeft} ${classes.iconStudent}`}
-            src={IconStudent}
-            alt="Icone de aluno"
-          />
-          <div className={classes.floatLeft}>
-            <p className={classes.label}>Aluno</p>
-            {studentName}
-          </div>
+      <h2> Dados básicos </h2>
+      <Grid container direction="row" spacing={2}>
+        <Grid item md={6}>
+          <p className={classes.label}>Name</p>
+          <TextField className={classes.inputStudent} value={studentName} variant="outlined" disabled />
         </Grid>
-        <Grid item md={3}>
-          <p className={classes.label}>Nascimento</p>
-          {studentBirthday}
+        <Grid item md={6}>
+          <p className={classes.label}>Sexo</p>
+          <TextField className={classes.inputStudent} value={student?.sex === 1 ? 'Maculino' : student?.sex === 2 ? 'Femenino' : ''} variant="outlined" disabled />
         </Grid>
-        <Grid item md={4}>
+        <Grid item md={6}>
+          <p className={classes.label}>Data de Nascimento</p>
+          <TextField className={classes.inputStudent} value={studentBirthday} variant="outlined" disabled />
+        </Grid>
+        <Grid item md={6}>
+          <p className={classes.label}>Cor/Raça</p>
+          <TextField className={classes.inputStudent} value={color_race} variant="outlined" disabled />
+        </Grid>
+        <Grid item md={6}>
+          <p className={classes.label}>CPF</p>
+          <TextField className={classes.inputStudent} value={cpf ? cpf : "Sem cpf"} variant="outlined" disabled />
+        </Grid>
+        {/* <Grid item md={4}>
           <BoxStatus title={student.student_fk ? "Transferência" : "Novo Aluno"} />
         </Grid>
-        <Grid item md={3}>
-          <p className={classes.label}>CPF</p>
-          {cpf}
-        </Grid>
-        <Grid item md={3}>
-          <p className={classes.label}>Cor/Raça</p>
-          {color_race}
-        </Grid>
-        <Grid item md={3}>
-          <p className={classes.label}>Sexo</p>
-          {student?.sex === 1 ? 'Maculino' : student?.sex === 2 ? 'Femenino' : ''}
-        </Grid>
-        <Grid item md={3}>
+         */}
+
+
+        <Grid item md={6}>
           <p className={classes.label}>Possui Deficiência</p>
-          {deficiency}
-        </Grid>
-        <Grid item md={12}>
-          <div className={classes.lineGrayClean}></div>
+          <TextField className={classes.inputStudent} value={deficiency} variant="outlined" disabled />
         </Grid>
       </Grid>
-      <Grid container direction="row" spacing={3}>
-        <Grid item md={5}>
-          <img
-            className={`${classes.floatLeft} ${classes.iconResponsable}`}
-            src={IconMale}
-            alt="Icone de Responsável"
-          />
+      <h2> Dados do Responsável </h2>
+      <Grid container direction="row" spacing={2}>
+        <Grid item md={6}>
           <div className={classes.floatLeft}>
             <p className={classes.label}>Responsável</p>
-            {responsableName}
+            <TextField className={classes.inputStudent} value={responsableName} variant="outlined" disabled />
           </div>
         </Grid>
-        <Grid item md={4}>
+        <Grid item md={6}>
           <p className={classes.label}>CPF</p>
-          {responsableCpf}
+          <TextField className={classes.inputStudent} value={responsableCpf} variant="outlined" disabled />
         </Grid>
         <Grid item md={3}>
           <p className={classes.label}>Telefone</p>
@@ -229,7 +224,7 @@ const Home = props => {
           Manhã
         </Grid> */}
       </Grid>
-      {answer ?<> {answer.length > 0 ? <>
+      {answer ? <> {answer.length > 0 ? <>
         <Grid item md={12}>
           <div className={classes.lineGrayClean}></div>
         </Grid>

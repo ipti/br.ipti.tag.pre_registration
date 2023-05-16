@@ -55,7 +55,7 @@ const useStyles = makeStyles({
     fontSize: styleBase.typography.font.medium
   },
   accountButton: {
-    color: styleBase.colors.grayClear
+    color: styleBase.colors.colorsBaseProductNormal
   },
   "@media(max-width: 600px)": {
     menuButton: {

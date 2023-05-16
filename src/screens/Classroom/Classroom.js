@@ -61,11 +61,10 @@ const Classroom = ({ pagination, handlePage, activePage }) => {
     return stages.map((stage, index) => {
 
       return (
-        <Grid key={index} item md={4} sm={4} xs={12}>
+        <Grid key={index} item md={4} sm={3} xs={12}>
           <BoxBig
             link={`turmas/${stage.id}`}
             title={stage.name}
-            subtitle="Turma"
             addCursor={true}
             textRight=""
           >
@@ -104,8 +103,6 @@ const Classroom = ({ pagination, handlePage, activePage }) => {
                     yearClassroom(selectedOption.year)
                     window.location.reload()
                   }
-
-
                 }}
                 getOptionValue={opt => opt.year}
                 getOptionLabel={opt => opt.year}

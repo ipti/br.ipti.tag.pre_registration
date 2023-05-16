@@ -15,8 +15,8 @@ const color = {
   colorsBaseProductNormalHover: "#2e33b7",
   colorsBaseInkNormal: "#252A31",
   colorsBaseInkLight: "#5F738C",
-  colorsBaseProductDarkHover: "#1C1F7F"
-
+  colorsBaseProductDarkHover: "#1C1F7F",
+  colorsBaseInkNormalActive: "#0B0C0F"
 };
 
 export default color;

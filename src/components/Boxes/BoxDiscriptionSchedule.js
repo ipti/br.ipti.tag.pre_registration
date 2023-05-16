@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import styles from "./styles";
-import IconSchedule from "../../components/Svg/IconScheduleWhite";
+import IconSchedule from "../../assets/images/calendarSchedule.svg";
 const useStyles = makeStyles(styles);
 
 const BoxDiscriptionSchedule = props => {
@@ -16,7 +16,7 @@ const BoxDiscriptionSchedule = props => {
             : classes.boxQuantityBackgroundPurple
         }`}
       >
-        <IconSchedule />
+        <img src={IconSchedule} alt="" />
       </div>
       <div className={classes.floatLeft}>
         <div className={classes.boxDescriptionSchedule}>{title}</div>

@@ -7,8 +7,8 @@ import { useHistory } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import { Clear } from "@material-ui/icons";
 import swal from "@sweetalert/with-react";
-import IconMale from "../../assets/images/student-male-icon.png";
-import IconWoman from "../../assets/images/student-woman-icon.png";
+import IconActive from "../../assets/images/activeRegistration.svg";
+import IconNotActive from "../../assets/images/notactiveRegistration.svg";
 import { ControllerClassroomForm } from "../../controller/classroom/ClassroomForm";
 import styles from "./styles";
 
@@ -25,15 +25,15 @@ const BoxRegistration = props => {
 
   const toLink = (e) => {
 
-      history.push(link)
-    
+    history.push(link)
 
-      history.push(link)
+
+    history.push(link)
 
   }
 
   const deletePreRegistration = (e, id) => {
-    e.stopPropagation() 
+    e.stopPropagation()
     if (id) {
       return swal({
         title: "Excluir pré matricula?",
@@ -49,30 +49,22 @@ const BoxRegistration = props => {
         });
 
     }
-    
+
   }
 
   return (
     <Grid item md={md ? md : 4} sm={sm ? sm : 4} xs={xs ? xs : 12}>
-      <Grid onClick={toLink} className={`${classes.boxStudentConfirmation} ${classes.floatLeft}`}>
-        <div className={classes.iconStudent}>
-          <img src={sex === "1" ? IconMale : IconWoman} alt="Icone de aluno" />
-          <Clear onClick={e => deletePreRegistration(e, id)} style={{cursor: 'pointer'}}/>
-        </div>
+      <Grid onClick={toLink} className={`${classes.boxStudentConfirmation}`}>
         <div className={`${classes.floatLeft} ${classes.nameStudent}`}>
-          <div title={name} className={`${classes.truncate}`}>
+          <span className={classes.subtitleStudent}>Aluno - {student_fk ? "Rematricula" : "Matricula"}</span>
+          <Clear onClick={e => deletePreRegistration(e, id)} style={{ cursor: 'pointer' }} />
+        </div>
+        <div className={classes.iconStudent}>
+          <img src={unavailable ? IconActive : IconNotActive} alt="Icone de aluno" />
+          <div title={name} style={{margin: "auto 10px"}} className={`${classes.title}`}>
             {name}
           </div>
-          <span className={classes.subtitleStudent}>Aluno - </span>
-          <span> {student_fk ? "Rematricula" : "Matricula"}</span>
-
         </div>
-        {unavailable === true && (
-          <span className={`${classes.confimedCicle}`}></span>
-        )}
-        {unavailable === false && (
-          <span className={`${classes.refusedCicle}`}></span>
-        )}
       </Grid>
     </Grid>
   );

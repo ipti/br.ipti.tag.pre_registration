@@ -4,7 +4,7 @@ const useStyles = {
   contentBox: {
     border: "1px solid",
     borderRadius: "8px",
-    borderColor: styleBase.colors.colorsBaseProductNormal,
+    borderColor: styleBase.colors.colorsBaseInkLight,
     padding: "20px",
     width: "88%",
     textDecoration: "none"
@@ -42,11 +42,9 @@ const useStyles = {
     textOverflow: "ellipsis"
   },
   title: {
+    color: styleBase.colors.colorsBaseInkNormalActive,
     fontSize: styleBase.typography.font.small,
-    color: styleBase.colors.gray,
-    whiteSpace: "nowrap",
-    overflow: "hidden",
-    textOverflow: "ellipsis"
+    fontFamily: styleBase.typography.types.regular
   },
   boxWithoutImage: {
     marginBottom: 20
@@ -57,15 +55,19 @@ const useStyles = {
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
-    width: "100%"
+    
   },
   boxDescriptionCalssroomTitle: {
     color: styleBase.colors.gray,
-    fontSize: styleBase.typography.font.extraSmall
+    fontSize: styleBase.typography.font.extraSmall,
+    fontFamily: styleBase.typography.types.regular
   },
   boxDescriptionSchedule: {
-    color: styleBase.colors.grayClear,
-    fontSize: styleBase.typography.font.extraSmall
+    color: styleBase.colors.colorsBaseInkNormalActive,
+    fontSize: styleBase.typography.font.extraSmall,
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   boxDescriptionScheduleSubtitle: {
     color: styleBase.colors.gray,
@@ -119,10 +121,7 @@ const useStyles = {
   iconStudent: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-between',
     "& img": {
-      borderRadius: "6px",
-      backgroundColor: styleBase.colors.blueClear,
       width: "45px"
     }
   },
@@ -143,13 +142,16 @@ const useStyles = {
     borderRadius: "8px",
     borderColor: styleBase.colors.colorsBaseProductNormal,
     fontFamily: styleBase.typography.types.light,
-    width: "100%",
-    padding: "10px",
-    position: "relative",
-    cursor: 'pointer'
+    padding: "20px",
+    cursor: 'pointer',
+    display: "flex",
+    flexDirection: "column"
   },
   subtitleStudent: {
-    color: styleBase.colors.grayClear
+    color: styleBase.colors.colorsBaseInkNormalActive,
+    fontSize: styleBase.typography.font.small,
+    fontFamily: styleBase.typography.types.regular,
+    marginBottom: 10
   },
   confimedCicle: {
     width: 10,
@@ -171,7 +173,9 @@ const useStyles = {
     backgroundColor: styleBase.colors.red
   },
   nameStudent: {
-    width: "80%",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
     fontSize: styleBase.typography.font.small,
     color: styleBase.colors.gray
   },

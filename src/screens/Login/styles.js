@@ -1,4 +1,4 @@
-import Background from "../../assets/images/login-banckground.jpg";
+import Background from "../../assets/images/backgroud-login.svg";
 import styleBase from "../../styles";
 
 const useStyles = {
@@ -8,7 +8,8 @@ const useStyles = {
       marginBottom: "10px"
     },
     minHeight: "100%",
-    background: `${styleBase.colors.colorsBaseProductNormal}`,
+    background:  `linear-gradient(0deg, #3F45EA, #3F45EA) url(${Background})`, 
+    //backgroundImage: ,
     fontFamily: styleBase.typography.types.light
   },
   marginTopContentLeft: {

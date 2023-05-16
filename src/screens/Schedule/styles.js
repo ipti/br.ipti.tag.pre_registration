@@ -14,7 +14,9 @@ const useStyles = {
   title: {
     marginTop: 0,
     marginBottom: 3,
-    fontFamily: styleBase.typography.types.light,
+    color: styleBase.colors.colorsBaseInkNormalActive,
+    fontSize: "4vh",
+    fontFamily: styleBase.typography.types.inter,
     fontWeight: "unset"
   },
   boxTitlePagination: {

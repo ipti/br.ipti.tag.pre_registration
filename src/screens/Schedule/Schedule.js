@@ -64,7 +64,7 @@ const Schedule = ({ activePage, data, pagination, handlePage, deleteSchedule }) 
           >
             <BoxDiscriptionSchedule
               title={`Novas Alunos - ${schedule.school_identification.name}`}
-              color="pink"
+              color={styleBase.colors.colorsBaseProductNormal}
               textRight={schedule.year}
               subtitle={`${internalTransferDateStart} - ${internalTransferDateEnd}`}
             />
