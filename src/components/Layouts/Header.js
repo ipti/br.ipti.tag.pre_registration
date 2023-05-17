@@ -131,6 +131,7 @@ const Header = ({setIsSidebar, isSidebar}) => {
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
                 onClick={handleMenu}
+                fontSize="large"
                 className={classes.accountButton}
               >
                 <AccountCircle />

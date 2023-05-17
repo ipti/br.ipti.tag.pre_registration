@@ -80,8 +80,7 @@ const useStyles = {
   },
   boxButtons: {
     marginTop: 100,
-    justifyContent: 'end' 
-
+    justifyContent: 'start' 
   },
   spaceBetween: {
     display: 'flex',

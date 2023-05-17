@@ -183,6 +183,7 @@ const Create = props => {
                   <Grid item md={2} sm={2}>
                     {!loadingIcon ? (
                       <ButtonPurple
+                        className="t-button-primary"
                         onClick={props.handleSubmit}
                         type="submit"
                         title={isEdit ? "Editar" : "Salvar"}

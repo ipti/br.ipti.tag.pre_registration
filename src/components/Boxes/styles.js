@@ -90,7 +90,7 @@ const useStyles = {
     fontSize: styleBase.typography.font.extraSmall,
     padding: "9px 9px",
     borderRadius: 8,
-    height: "auto",
+    height: "20px",
     marginRight: 8,
     minWidth: 20,
     textAlign: "center"

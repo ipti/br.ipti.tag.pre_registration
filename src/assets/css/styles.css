@@ -50,6 +50,9 @@ body {
   padding: 10.5px;
 }
 
+.t-background {
+  background: linear-gradient(0deg, #3F45EA, #3F45EA), url("../../assets/images/backgroud-login.svg");
+}
 
 
   /* input[type="text"],

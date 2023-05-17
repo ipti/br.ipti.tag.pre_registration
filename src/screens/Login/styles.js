@@ -8,8 +8,8 @@ const useStyles = {
       marginBottom: "10px"
     },
     minHeight: "100%",
-    background:  `linear-gradient(0deg, #3F45EA, #3F45EA) url(${Background})`, 
-    //backgroundImage: ,
+    position: "fixed",
+    // backgroundImage: ,
     fontFamily: styleBase.typography.types.light
   },
   marginTopContentLeft: {
@@ -65,6 +65,8 @@ const useStyles = {
   contentLeft: {
     fontSize: styleBase.typography.font.small,
     color: styleBase.colors.white,
+    background:  `url(${Background})`, 
+    backgroundColor: "linear-gradient(0deg, #3F45EA, #3F45EA)",
     display: "flex",
     flexDirection: "row"
   },
