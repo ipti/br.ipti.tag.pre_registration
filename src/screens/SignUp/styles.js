@@ -13,10 +13,6 @@ const useStyles = {
     marginTopContentLeft: {
         marginTop: "200px",
         height: "100%",
-        width: "100%",
-    },
-    divtagna: {
-        width: "100%"
     },
     textCenter: {
         textAlign: "center"

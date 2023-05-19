@@ -1,4 +1,4 @@
-import Background from "../../assets/images/backgroud-login.svg";
+import LoginImg from "../../assets/images/fadedlogo.svg";
 import styleBase from "../../styles";
 
 const useStyles = {
@@ -8,7 +8,8 @@ const useStyles = {
       marginBottom: "10px"
     },
     minHeight: "100%",
-    fontFamily: styleBase.typography.types.light
+    fontFamily: styleBase.typography.types.light,
+    
   },
   titleLogin: {
     textAlign: "center",
@@ -56,7 +57,7 @@ const useStyles = {
   colorIcon: {
     color: styleBase.colors.grayClear
   },
-  contentRight: { backgroundColor: styleBase.colors.white, width: "100%" },
+  contentRight: { BackgroundImage: `url(${LoginImg})`, width: "100%" },
   titleBig: {
     fontSize: styleBase.typography.font.extraLarge,
     fontFamily: styleBase.typography.types.regular

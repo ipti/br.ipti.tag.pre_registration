@@ -6,11 +6,13 @@ import { useHistory } from "react-router-dom";
 
 import Grid from "@material-ui/core/Grid";
 import { Clear } from "@material-ui/icons";
-import swal from "@sweetalert/with-react";
+import styled from "../../styles"
+import image from "../../assets/images/AtencaoModal.svg"
 import IconActive from "../../assets/images/activeRegistration.svg";
 import IconNotActive from "../../assets/images/notactiveRegistration.svg";
 import { ControllerClassroomForm } from "../../controller/classroom/ClassroomForm";
 import styles from "./styles";
+import Swal from "sweetalert2";
 
 const useStyles = makeStyles(styles);
 
@@ -35,21 +37,25 @@ const BoxRegistration = props => {
   const deletePreRegistration = (e, id) => {
     e.stopPropagation()
     if (id) {
-      return swal({
+
+
+      return Swal.fire({
         title: "Excluir pré matricula?",
         text: "Essa ação é irreversível não pode ser desfeita",
-        icon: "warning",
-        buttons: true,
-        confirm: true,
+        imageUrl: image,
+        imageHeight: 250,
+        showCancelButton: true,
+        confirmButtonColor: styled.colors.colorsBaseProductNormal,
+        cancelButtonColor: styled.colors.colorsBaseCloudNormal,
+        confirmButtonText: 'Aceitar',
+        reverseButtons: true,
+        cancelButtonText: `<div style="color:black" >Cancelar</div>`
+      }).then((result) => {
+        if (result.isConfirmed) {
+          requestDeletePreRegistrationMutation.mutate(id)
+        }
       })
-        .then((willDelete) => {
-          if (willDelete) {
-            requestDeletePreRegistrationMutation.mutate(id)
-          }
-        });
-
     }
-
   }
 
   return (
@@ -61,7 +67,7 @@ const BoxRegistration = props => {
         </div>
         <div className={classes.iconStudent}>
           <img src={unavailable ? IconActive : IconNotActive} alt="Icone de aluno" />
-          <div title={name} style={{margin: "auto 10px"}} className={`${classes.title}`}>
+          <div title={name} style={{ margin: "auto 10px" }} className={`${classes.title}`}>
             {name}
           </div>
         </div>

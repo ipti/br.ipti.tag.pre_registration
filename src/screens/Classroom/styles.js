@@ -25,6 +25,9 @@ const useStyles = {
   inputStudent: {
     width: "100%"
   },
+  marginTop: {
+    marginTop: "20px"
+  },
   boxContentRegistration: {
     marginTop: 90,
     marginBottom: 30

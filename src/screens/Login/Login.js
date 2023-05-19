@@ -22,18 +22,6 @@ const Login = props => {
   return (
     <Grid className={classes.root} container direction="row" justifyContent="flex-end">
       <Grid className={classes.contentRight} item md={12} sm={12} xs={12}>
-        <Grid
-          className={classes.imageLogin}
-          direction="row"
-          justifyContent="end"
-          alignItems="center"
-        >
-          <Grid >
-            <div>
-              <img className={classes.imageLoginStyle} src={LoginImg} alt="" />
-            </div>
-          </Grid>
-        </Grid>
         <Grid>
           <Grid>
             <p className={classes.titleLogin}>Matricula Online </p>

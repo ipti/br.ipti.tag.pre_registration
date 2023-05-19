@@ -64,6 +64,7 @@ const Create = props => {
             <Form>
               <MuiPickersUtilsProvider locale={brLocale} utils={DateFnsUtils}>
                 <Grid item md={12} sm={12}>
+
                   <Grid
                     container
                     direction="row"
@@ -75,7 +76,7 @@ const Create = props => {
                         component="fieldset"
                         className={classes.formControl}
                       >
-                        <FormLabel>Ano</FormLabel>
+                        <FormLabel>Ano de Referência*</FormLabel>
                         <TextField
                           name="year"
                           value={props.values.year}
@@ -83,6 +84,7 @@ const Create = props => {
                           id="outlined-size-small"
                           variant="outlined"
                           className={classes.textField}
+                          required
                         />
 
                         <div className={classes.formFieldError}>
@@ -98,15 +100,12 @@ const Create = props => {
                   direction="row"
                   spacing={2}
                 >
-                  <Grid item md={12} sm={12}>
-                    <TitleWithLine title="Novos Alunos" />
-                  </Grid>
                   <Grid item md={4} sm={4}>
                     <FormControl
                       component="fieldset"
                       className={classes.formControl}
                     >
-                      <FormLabel>Data Início</FormLabel>
+                      <FormLabel>Data Início*</FormLabel>
                       <KeyboardDatePicker
                         disableToolbar
                         name="start_date"
@@ -114,6 +113,7 @@ const Create = props => {
                         inputVariant="outlined"
                         format="dd/MM/yyyy"
                         margin="normal"
+                        required
                         onChange={value =>
                           props.setFieldValue("start_date", value)
                         }
@@ -132,7 +132,7 @@ const Create = props => {
                       component="fieldset"
                       className={classes.formControl}
                     >
-                      <FormLabel>Data Fim</FormLabel>
+                      <FormLabel>Data Fim*</FormLabel>
                       <KeyboardDatePicker
                         disableToolbar
                         name="end_date"
@@ -140,6 +140,7 @@ const Create = props => {
                         inputVariant="outlined"
                         format="dd/MM/yyyy"
                         margin="normal"
+                        required
                         onChange={value =>
                           props.setFieldValue("end_date", value)
                         }
@@ -160,6 +161,7 @@ const Create = props => {
                     direction="row"
                     alignItems="center"
                     spacing={2}
+                    className={`${classes.marginButtom}`}
                   >
                     <Grid item md={6} sm={6}>
                       <FormControl
@@ -169,14 +171,14 @@ const Create = props => {
                         <FormLabel>Projetos</FormLabel>
                         <FormControlLabel
                           label="Criar em todas as projetos"
-                          control={<Checkbox value={allSchool} onChange={e => setAllSchool(e.target.checked)}/>}
+                          control={<Checkbox value={allSchool} onChange={e => setAllSchool(e.target.checked)} />}
                         />
                       </FormControl>
                     </Grid>
                   </Grid>
                 </Grid>
                 <Grid
-                  className={classes.marginButtom}
+                  className={`${classes.marginButtom}`}
                   container
                   direction="row"
                 >

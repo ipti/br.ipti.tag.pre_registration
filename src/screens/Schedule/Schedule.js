@@ -1,18 +1,16 @@
-import React from "react";
 import { format, parseISO } from "date-fns";
+import React from "react";
 
 // Material UI
-import Grid from "@material-ui/core/Grid";
 import Fab from "@material-ui/core/Fab";
+import Grid from "@material-ui/core/Grid";
 import AddIcon from "@material-ui/icons/Add";
 import Alert from "@material-ui/lab/Alert";
 
 import {
-  makeStyles,
-} from "@material-ui/core/styles";
-import {
   createTheme,
-  ThemeProvider
+  makeStyles,
+  ThemeProvider,
 } from "@material-ui/core/styles";
 
 // Third party
@@ -20,7 +18,6 @@ import { Link } from "react-router-dom";
 
 // Components
 import { BoxBig, BoxDiscriptionSchedule } from "../../components/Boxes";
-import { Paginator } from "../../components/Paginator";
 import List from "../../components/List";
 
 // Styles
