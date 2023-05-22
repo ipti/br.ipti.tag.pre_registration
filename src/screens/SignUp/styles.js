@@ -7,7 +7,6 @@ const useStyles = {
             width: "100%",
             marginBottom: "10px"
         },
-       // position: "fixed",
         fontFamily: styleBase.typography.types.light
     },
     marginTopContentLeft: {
@@ -34,11 +33,9 @@ const useStyles = {
     contentLeft: {
         fontSize: styleBase.typography.font.small,
         color: styleBase.colors.white,
-        height: "auto",
         background: `url(${Background})`,
         backgroundRepeat: "norepeat",
         display: "flex",
-        flexDirection: "row"
     },
     titleBig: {
         fontSize: styleBase.typography.font.extraLarge,
@@ -47,7 +44,8 @@ const useStyles = {
     boxLeft: {
         position: "absolute",
         zIndex: "100",
-        display: "flex"
+        display: "flex",
+        flexDirection: "row"
     },
     boxRegister: {
         marginTop: 30
@@ -73,43 +71,48 @@ const useStyles = {
             marginTop: "20%",
             width: "100%",
         },
+        marginTopContentLeft: {
+            width: "100%",
+        },
         titleBig: {
             fontSize: "22px"
         },
-        imageLoginStyle: {
-            width: "80%",
-            height: "80%",
-            marginLeft: "20%"
-        },
     },
     "@media(max-width: 800px)": {
-        imageTagna: {
-            marginTop: "40%",
-            width: "100%",
+        divtagna: {
+            display: "none"
+         },
+         welcome: {
+            margin: "auto"
         },
         marginTopContentLeft: {
-            margin: "auto 0px",
-            marginLeft: "0px"
+            display: "flex",
+            flexDirection: "row",
+            height: "100vh",
+            width: "100vw",
         },
         boxRegister: {
             marginBottom: 40
         }
     },
-    "@media(max-width: 687px)": {
-        imageTagna: {
-          width: "120px",
-        //  display: "none"
-        },
+    "@media(max-width: 600px)": {
         divtagna: {
-          //  display: "none"
+           display: "none"
         },
         // contentLeft: {
         //   minHeight: "170px",
         //   height: "auto",
         //   maxHeight: "200px"
         // },
+        welcome: {
+            margin: "auto"
+        },
         marginTopContentLeft: {
-            margin: "15px 20px",
+            display: "flex",
+            flexDirection: "column",
+            height: "100vh",
+            width: "100vw",
+           
         },
         boxRegister: {
             marginBottom: 40

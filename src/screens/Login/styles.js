@@ -7,9 +7,11 @@ const useStyles = {
       width: "100%",
       marginBottom: "10px"
     },
-    minHeight: "100%",
+    width: "100%",
     fontFamily: styleBase.typography.types.light,
-    
+    background: `url(${LoginImg})`,
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: 'right top'
   },
   titleLogin: {
     textAlign: "center",
@@ -57,7 +59,7 @@ const useStyles = {
   colorIcon: {
     color: styleBase.colors.grayClear
   },
-  contentRight: { BackgroundImage: `url(${LoginImg})`, width: "100%" },
+  containerMain: {width: "100%" },
   titleBig: {
     fontSize: styleBase.typography.font.extraLarge,
     fontFamily: styleBase.typography.types.regular
