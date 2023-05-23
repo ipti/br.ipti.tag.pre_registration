@@ -51,8 +51,8 @@ body {
 }
 
 
-.t-background {
-  background: linear-gradient(0deg, #3F45EA, #3F45EA), url("../../assets/images/backgroud-login.svg");
+.row{
+  width: 100%;
 }
 
 

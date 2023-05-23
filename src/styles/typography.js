@@ -10,6 +10,7 @@ const typography = {
   types: {
     light: "Poppins Light",
     regular: "Poppins Regular",
+    medium: "Poppins Medium",
     extraLight: "Poppins ExtraLight",
     semiBold: "Poppins Bold",
     bold: "Poppins SemiBold",
