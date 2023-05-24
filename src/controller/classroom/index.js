@@ -1,21 +1,22 @@
 import React from "react";
 
 import Alert from "@material-ui/lab/Alert";
-import swal from "@sweetalert/with-react";
 import { useMutation } from "react-query";
 import { useHistory } from "react-router";
 import { requestCreateClassroom } from "../../query/classroom";
 import { requestCreateStage, requestEditPreIdentification, requestUpdateRegistration } from "../../query/stage";
+import Swal from "sweetalert2";
+import styled from "../../styles"
 
 
 export const Controller = () => {
-    
+
     const history = useHistory()
     const requestUpdateRegistrationMutation = useMutation(
         ({ data, id }) => requestUpdateRegistration(data, id),
         {
             onError: (error) => {
-                swal(error.response.data.message);
+                Swal(error.response.data.message);
             },
             onSuccess: (data) => {
                 history.goBack()
@@ -32,7 +33,7 @@ export const Controller = () => {
         (data) => requestCreateStage(data),
         {
             onError: (error) => {
-                swal(error.response.data.message);
+                Swal(error.response.data.message);
             },
             onSuccess: (data) => {
                 history.goBack()
@@ -46,12 +47,12 @@ export const Controller = () => {
         }
     );
 
-    
+
     const requestUpdatePreIdentificationMutation = useMutation(
         ({ data, id }) => requestEditPreIdentification(data, id),
         {
             onError: (error) => {
-                swal(error.response.data.message);
+                Swal(error.response.data.message);
             },
             onSuccess: (data) => {
                 history.goBack()
@@ -69,15 +70,23 @@ export const Controller = () => {
         (data) => requestCreateClassroom(data),
         {
             onError: (error) => {
-                swal(error.response.data.message);
+                Swal(error.response.data.message);
             },
             onSuccess: (data) => {
-                history.push('/turmas')
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Turma criada com sucesso!',
+                    confirmButtonColor: styled.colors.colorsBaseProductNormal,
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        history.push('/turmas')
+                    }
+                })
             },
         }
     );
 
-   
+
 
 
 

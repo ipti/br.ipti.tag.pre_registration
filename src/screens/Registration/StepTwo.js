@@ -19,7 +19,7 @@ import { ButtonPurple } from "../../components/Buttons";
 import Loading from "../../components/Loading/CircularLoadingButtomActions";
 
 // Assets
-import homeImg from "../../assets/images/illustration-home.png";
+import homeImg from "../../assets/images/Capelo.svg";
 
 // Styles
 import styles from "./styles";
@@ -48,7 +48,7 @@ const StepTwo = props => {
         alignItems="center"
       >
         <Grid item xs={12}>
-          <img src={homeImg} alt="" />
+          <img className={classes.imageRegistration} src={homeImg} alt="" />
         </Grid>
         <Grid item xs={12}>
           <h1>Possui Vínculo</h1>
@@ -113,6 +113,7 @@ const StepTwo = props => {
                       onClick={()=> history.push(`/matricula/${values.numRegistration}`)}
                       type="submit"
                       title="Continuar"
+                      className="t-button-primary"
                     />
                   ) : (
                     <Loading />

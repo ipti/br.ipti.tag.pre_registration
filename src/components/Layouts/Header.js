@@ -50,11 +50,12 @@ const useStyles = makeStyles({
   title: {
     margin: '8px 15px',
     flexGrow: 1,
-    color: styleBase.colors.purple,
-    fontFamily: styleBase.typography.types.extraLight
+    color: styleBase.colors.colorsBaseProductDarkHover,
+    fontFamily: styleBase.typography.types.inter,
+    fontSize: styleBase.typography.font.medium
   },
   accountButton: {
-    color: styleBase.colors.grayClear
+    color: styleBase.colors.colorsBaseProductNormal
   },
   "@media(max-width: 600px)": {
     menuButton: {
@@ -130,6 +131,7 @@ const Header = ({setIsSidebar, isSidebar}) => {
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
                 onClick={handleMenu}
+                fontSize="large"
                 className={classes.accountButton}
               >
                 <AccountCircle />

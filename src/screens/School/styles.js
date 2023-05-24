@@ -39,7 +39,7 @@ const useStyles = {
   linePurple: {
     width: 90,
     height: 5,
-    backgroundColor: styleBase.colors.purple,
+    backgroundColor: styleBase.colors.colorsBaseProductNormal,
     borderRadius: 50,
     display: "block"
   },
@@ -65,7 +65,7 @@ const useStyles = {
     margin: "30px 0"
   },
   boxImageMale: {
-    backgroundColor: styleBase.colors.purple,
+    backgroundColor: styleBase.colors.colorsBaseProductNormal,
     width: 32,
     paddingTop: 2,
     padding: "15px 10px 0px 10px",
@@ -86,7 +86,7 @@ const useStyles = {
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: "6px",
-    backgroundColor: styleBase.colors.purple,
+    backgroundColor: styleBase.colors.colorsBaseProductNormal,
     padding: "6px 6px",
     marginRight: 15,
     width: 43

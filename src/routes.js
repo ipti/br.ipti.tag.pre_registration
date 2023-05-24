@@ -9,6 +9,7 @@ import CircularLoading from "./components/Loading/CircularLoading";
 import ReMatricula from "./containers/Registration/ReMatricula";
 import { Classroom, ClassroomForm } from "./containers/Classroom";
 import CreateClassroom from "./containers/Classroom/AddClassroom";
+import Register from "./containers/Register";
 
 //const Home = lazy(() => import("./containers/Home"));
 const Schedule = lazy(() => import("./containers/Schedule/Schedule"));
@@ -47,6 +48,7 @@ const Routes = () => (
   <HashRouter>
     <Switch>
       <Route path="/login" exact component={Login} />
+      <Route path="/register" exact component={Register} />
       <Route path="/matricula" exact component={RegistrationHome} />
       <Route path="/matricula/:id" exact component={ReMatricula} />
       <PrivateRoute exact path="/" component={Schedule} />

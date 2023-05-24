@@ -5,21 +5,16 @@ import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 
 // Components
-import { BoxStatus } from "../../components/Boxes";
 import { ButtonLinePurple, ButtonPurple } from "../../components/Buttons";
 import Loading from "../../components/Loading/CircularLoadingButtomActions";
-import { TitleWithLine } from "../../components/Titles";
 
 // Assets
-import IconClassroom from "../../assets/images/classroom-icon.png";
-import IconHouse from "../../assets/images/house-icon.png";
-import IconMale from "../../assets/images/male-icon.png";
-import IconStudent from "../../assets/images/student-male-icon.png";
 
 // Styles
-import styles from "./styles";
+import { TextField } from "@material-ui/core";
 import { ArrowBack } from "@material-ui/icons";
 import { useHistory } from "react-router";
+import styles from "./styles";
 
 const useStyles = makeStyles(styles);
 
@@ -32,7 +27,7 @@ const Home = props => {
     answer
   } = props;
   const student = registration ?? [];
-
+  
   const history = useHistory()
 
   const nullableField = "-------------";
@@ -73,182 +68,123 @@ const Home = props => {
   const body = !student.student_fk ? {
     classroom: student?.classroom_fk,
     year: student?.classroom.school_year
-  } : { student_fk: student.student_fk };
+  } : { student_fk: student.student_fk, classroom: student?.classroom_fk };
 
 
 
   return (
     <>
-    <ArrowBack onClick={() => {history.goBack()}} style={{cursor: "pointer"}}/>
+      <ArrowBack onClick={() => { history.goBack() }} style={{ cursor: "pointer" }} />
+      <h1>{student && student.classroom.name}</h1>
       <Grid className={classes.boxTitlePagination} container direction="row">
-        <TitleWithLine title="Matrícula" />
+        <h1>Matrículas</h1>
       </Grid>
-      <Grid container direction="row" spacing={3}>
-        <Grid item md={5}>
-          <img
-            className={`${classes.floatLeft} ${classes.iconStudent}`}
-            src={IconStudent}
-            alt="Icone de aluno"
-          />
-          <div className={classes.floatLeft}>
-            <p className={classes.label}>Aluno</p>
-            {studentName}
-          </div>
+      <h2> Dados básicos </h2>
+      <Grid container direction="row" spacing={2}>
+        <Grid item md={6}>
+          <p className={classes.label}>Name</p>
+          <TextField className={classes.inputStudent} value={studentName} variant="outlined" disabled />
         </Grid>
-        <Grid item md={3}>
-          <p className={classes.label}>Nascimento</p>
-          {studentBirthday}
+        <Grid item md={6}>
+          <p className={classes.label}>Sexo</p>
+          <TextField className={classes.inputStudent} value={student?.sex === 1 ? 'Maculino' : student?.sex === 2 ? 'Femenino' : ''} variant="outlined" disabled />
         </Grid>
-        <Grid item md={4}>
+        <Grid item md={6}>
+          <p className={classes.label}>Data de Nascimento</p>
+          <TextField className={classes.inputStudent} value={studentBirthday} variant="outlined" disabled />
+        </Grid>
+        <Grid item md={6}>
+          <p className={classes.label}>Cor/Raça</p>
+          <TextField className={classes.inputStudent} value={color_race} variant="outlined" disabled />
+        </Grid>
+        <Grid item md={6}>
+          <p className={classes.label}>CPF</p>
+          <TextField className={classes.inputStudent} value={cpf ? cpf : "Sem cpf"} variant="outlined" disabled />
+        </Grid>
+        {/* <Grid item md={4}>
           <BoxStatus title={student.student_fk ? "Transferência" : "Novo Aluno"} />
         </Grid>
-        <Grid item md={3}>
-          <p className={classes.label}>CPF</p>
-          {cpf}
-        </Grid>
-        <Grid item md={3}>
-          <p className={classes.label}>Cor/Raça</p>
-          {color_race}
-        </Grid>
-        <Grid item md={3}>
-          <p className={classes.label}>Sexo</p>
-          {student?.sex === 1 ? 'Maculino' : student?.sex === 2 ? 'Femenino' : ''}
-        </Grid>
-        <Grid item md={3}>
+         */}
+        <Grid item md={6}>
           <p className={classes.label}>Possui Deficiência</p>
-          {deficiency}
-        </Grid>
-        <Grid item md={12}>
-          <div className={classes.lineGrayClean}></div>
+          <TextField className={classes.inputStudent} value={deficiency} variant="outlined" disabled />
         </Grid>
       </Grid>
-      <Grid container direction="row" spacing={3}>
-        <Grid item md={5}>
-          <img
-            className={`${classes.floatLeft} ${classes.iconResponsable}`}
-            src={IconMale}
-            alt="Icone de Responsável"
-          />
-          <div className={classes.floatLeft}>
-            <p className={classes.label}>Responsável</p>
-            {responsableName}
-          </div>
+      <h2> Dados do Responsável </h2>
+      <Grid container direction="row" spacing={2}>
+        <Grid item md={6}>
+          <p className={classes.label}>Responsável</p>
+          <TextField className={classes.inputStudent} value={responsableName} variant="outlined" disabled />
         </Grid>
-        <Grid item md={4}>
+        <Grid item md={6}>
           <p className={classes.label}>CPF</p>
-          {responsableCpf}
+          <TextField className={classes.inputStudent} value={responsableCpf} variant="outlined" disabled />
         </Grid>
-        <Grid item md={3}>
+        <Grid item md={6}>
           <p className={classes.label}>Telefone</p>
-          {student?.responsable_telephone}
-        </Grid>
-        <Grid item md={12}>
-          <div className={classes.lineGrayClean}></div>
+          <TextField className={classes.inputStudent} value={student?.responsable_telephone} variant="outlined" disabled />
         </Grid>
       </Grid>
+      <h2> Endereço </h2>
       <Grid container direction="row" spacing={3}>
-        <Grid item md={5}>
-          <img
-            className={`${classes.floatLeft} ${classes.iconHouse}`}
-            src={IconHouse}
-            alt="Icone de Endereço"
-          />
-          <div className={classes.floatLeft}>
-            <p className={classes.label}>Endereço</p>
-            {address}
-          </div>
+        <Grid item md={6}>
+          <p className={classes.label}>Endereço</p>
+          <TextField className={classes.inputStudent} value={address} variant="outlined" disabled />
         </Grid>
-        <Grid item md={4}>
+        <Grid item md={6}>
           <p className={classes.label}>Bairro</p>
-          {neighborhood}
+          <TextField className={classes.inputStudent} value={neighborhood} variant="outlined" disabled />
         </Grid>
-
-        <Grid item md={3}>
+        <Grid item md={6}>
           <p className={classes.label}>Número</p>
-          {number}
+          <TextField className={classes.inputStudent} value={number} variant="outlined" disabled />
         </Grid>
-        <Grid item md={3}>
+        <Grid item md={6}>
           <p className={classes.label}>Complemento</p>
-          {complement}
+          <TextField className={classes.inputStudent} value={complement} variant="outlined" disabled />
         </Grid>
-        <Grid item md={3}>
+        <Grid item md={6}>
           <p className={classes.label}>CEP</p>
-          {cep}
+          <TextField className={classes.inputStudent} value={cep} variant="outlined" disabled />
         </Grid>
-        <Grid item md={3}>
+        <Grid item md={6}>
           <p className={classes.label}>Cidade</p>
-          {city}
+          <TextField className={classes.inputStudent} value={city} variant="outlined" disabled />
         </Grid>
-        <Grid item md={3}>
+        <Grid item md={6}>
           <p className={classes.label}>Estado</p>
-          {state}
+          <TextField className={classes.inputStudent} value={state} variant="outlined" disabled />
         </Grid>
-        <Grid item md={2}>
-          <BoxStatus title={student?.zone === 2 ? "Urbana" : student?.zone === 1 ? "Rural" : ''} />
+        <Grid item md={6}>
+          <p className={classes.label}>Local de Moradia</p>
+          <TextField className={classes.inputStudent} value={student?.zone === 2 ? "Urbana" : student?.zone === 1 ? "Rural" : ''} variant="outlined" disabled />
         </Grid>
         <Grid item md={12}>
           <div className={classes.lineGrayClean}></div>
         </Grid>
       </Grid>
       <Grid container direction="row" spacing={3}>
-        <Grid item md={5}>
-          <img
-            className={`${classes.floatLeft} ${classes.iconClassroom}`}
-            src={IconClassroom}
-            alt="Icone de Turma"
-          />
+        <Grid item md={6}>
           <p className={classes.label}>Turma</p>
-          {student?.classroom?.name}
-          {/* <FormControl
-            component="fieldset"
-            className={classes.formControl}
-          >
-            <FormLabel>Turma *</FormLabel>
-            <Select
-              styles={customStyles}
-              className="basic-single"
-              classNamePrefix="select"
-              placeholder="Selecione a Turma"
-              // options={data.classroom}
-              // onChange={selectedOption => {
-              //   handleChange(selectedOption.id);
-              //   setSchoolInepFk(selectedOption.school_inep_fk)
-              //   setInepId(selectedOption.inep_id)
-              // }}
-              // getOptionValue={opt => opt.classroom}
-              // getOptionLabel={opt => opt.name}
-            />
-          </FormControl> */}
+          <TextField className={classes.inputStudent} value={student?.classroom?.name} variant="outlined" disabled />
         </Grid>
-        {/* <Grid item md={3}>
-          <p className={classes.label}>Modalidade</p>
-          {modality}
-        </Grid>
-        <Grid item md={4}>
-          <p className={classes.label}>Turno</p>
-          Manhã
-        </Grid> */}
       </Grid>
-      {answer ?<> {answer.length > 0 ? <>
-        <Grid item md={12}>
-          <div className={classes.lineGrayClean}></div>
-        </Grid>
+      <Grid item md={12}>
+        <div className={classes.lineGrayClean}></div>
+      </Grid>
+      {answer ? <> {answer.length > 0 ? <>
         <Grid container direction="row" spacing={3}>
           <Grid item md={5}>
-            <img
-              className={`${classes.floatLeft} ${classes.iconHouse}`}
-              src={IconClassroom}
-              alt="Icone de Endereço"
-            />
             <div className={classes.floatLeft}>
-              <p className={classes.label}>Formulario</p>
+              <h2> Formulário </h2>
             </div>
           </Grid>
           {answer.map((item, index) => {
             return (
               <Grid item md={12} key={index}>
                 <p className={classes.label}>{item.description}</p>
-                {item.value}
+                <TextField className={classes.inputStudent} value={item.value} variant="outlined" disabled />
+
               </Grid>
             )
           })}
@@ -267,12 +203,14 @@ const Home = props => {
           <>
             {!student?.unavailable ? <Grid item md={3}>
               <ButtonPurple
+                className="t-button-primary"
                 onClick={() => handleSubmit(body)}
                 type="button"
                 title="Confirmar Matricula"
               />
             </Grid> : <Grid item md={3}>
               <ButtonLinePurple
+                className="t-button-primary"
                 type="button"
                 title="Já Matriculado"
               />

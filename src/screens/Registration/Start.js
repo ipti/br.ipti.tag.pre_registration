@@ -3,7 +3,7 @@ import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import React, { useContext, useState } from "react";
 import Select from "react-select";
-import homeImg from "../../assets/images/illustration-home.png";
+import homeImg from "../../assets/images/Capelo.svg";
 import { ButtonPurple } from "../../components/Buttons";
 import { RegistrationContext } from "../../containers/Registration/Context/context";
 import styles from "./styles";
@@ -51,10 +51,10 @@ const Start = props => {
         container
         direction="row"
         justifyContent="center"
-      //  alignItems="center"
+        alignItems="center"
       >
         <Grid item xs={12}>
-          <img src={homeImg} alt="" />
+          <img className={classes.imageRegistration} src={homeImg} alt="" />
         </Grid>
         <Grid item xs={12}>
           <h1>Matrícula Online</h1>
@@ -97,16 +97,17 @@ const Start = props => {
 
       </Grid>
       <Grid
-        className={`${classes.marginTop}`}
-        container
-        direction="row"
+        className={`${classes.marginTop} ${classes.marginButtom}`}
         justifyContent="center"
         alignItems="center"
+        container
+        direction="row"
       >
         <Grid item xs={6}>
           <ButtonPurple
             type="button"
             onClick={onButton}
+            className="t-button-primary"
             title="Iniciar"
             disabled={!isValid}
           />

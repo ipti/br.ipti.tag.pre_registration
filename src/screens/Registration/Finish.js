@@ -30,6 +30,7 @@ const Finish = props => {
         </Grid>
       </Grid><div style={{ margin: 'auto', marginTop: '20px', width: '300px' }}>
         <ButtonGreen
+          className="t-button-primary"
           type="button"
           onClick={() => window.location.reload()}
           title="Voltar para o inicio"

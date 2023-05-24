@@ -22,7 +22,7 @@ const useStyles = makeStyles(styles);
 const PurpleRadio = withStyles({
   root: {
     "&$checked": {
-      color: styleBase.colors.purple
+      color: styleBase.colors.colorsBaseProductNormal
     }
   },
   checked: {}
@@ -210,6 +210,7 @@ const StepThree = props => {
                     onClick={handleSubmit}
                     type="submit"
                     title="Continuar"
+                    className="t-button-primary"
                   />
                 </Grid>
               </Grid>

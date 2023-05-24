@@ -1,7 +1,7 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
-import homeImg from "../../assets/images/illustration-home.png";
+import homeImg from "../../assets/images/cadernoImage.svg";
 import styles from "./styles";
 
 const useStyles = makeStyles(styles);
@@ -19,7 +19,7 @@ const Wait = props => {
         alignItems="center"
       >
         <Grid item xs={12}>
-          <img src={homeImg} alt="Ilustração" />
+          <img className={classes.imageRegistration} src={homeImg} alt="Ilustração" />
         </Grid>
         <Grid item xs={12}>
           <h1>Matrícula Online</h1>

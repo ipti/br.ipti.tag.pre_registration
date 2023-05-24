@@ -22,8 +22,8 @@ import PropTypes from "prop-types";
 import React, { useContext } from "react";
 import { ButtonPurple } from "../../components/Buttons";
 import Loading from "../../components/Loading/CircularLoadingButtomActions";
-import { TitleWithLine } from "../../components/Titles";
 import { CreateClassroomContext } from "../../containers/Classroom/context/contextAddClassroom";
+import * as Yup from "yup";
 import styles from "./styles";
 
 const useStyles = makeStyles(theme => styles);
@@ -39,7 +39,11 @@ const Create = props => {
   } = props;
 
 
-
+  const validationSchema = Yup.object().shape({
+    name: Yup.string()
+      .nullable()
+      .required("Campo obrigatório!"),
+  });
   const { initialValue, setInitial_hour, setInitial_min, setFinal_hour, setFinal_min } = useContext(CreateClassroomContext)
 
   return (
@@ -62,6 +66,7 @@ const Create = props => {
         initialValues={initialValue}
         onSubmit={handleSubmit}
         validateOnChange={false}
+        validationSchema={validationSchema}
         enableReinitialize
       >
         {props => {
@@ -75,9 +80,6 @@ const Create = props => {
                     alignItems="center"
                     spacing={2}
                   >
-                    <Grid item md={12} sm={12}>
-                      <TitleWithLine title="Turma" />
-                    </Grid>
                     <Grid item md={5} sm={5}>
                       <FormControl
                         component="fieldset"
@@ -166,14 +168,18 @@ const Create = props => {
                     </Grid>
                   </Grid>
                 </Grid>
-                <Grid
-                  className={classes.marginButtom}
-                  container
-                  direction="column"
-                  spacing={2}
-                >
+                <Grid>
                   <FormLabel>Dias da Semana *</FormLabel>
-                  <Grid item md={5} sm={5}>
+                </Grid>
+                <Grid
+                  className={`${classes.marginTop}`}
+                  container
+                  direction="row"
+                  spacing={0}
+                >
+
+                  <Grid container
+                    direction="row" md={12} sm={12}>
                     <FormGroup>
                       <FormControlLabel
                         // disabled={cegueiraDisabled}
@@ -183,11 +189,10 @@ const Create = props => {
                             onChange={props.handleChange}
                           />}
                         name='week_days_monday'
-                        label="Segunda-Feira"
+                        labelPlacement="top"
+                        label="S"
                       />
                     </ FormGroup>
-                  </Grid>
-                  <Grid item md={5} sm={5}>
                     <FormGroup>
                       <FormControlLabel
                         // disabled={cegueiraDisabled}
@@ -197,11 +202,10 @@ const Create = props => {
                             onChange={props.handleChange}
                           />}
                         name='week_days_tuesday'
-                        label="Terça-Feira"
+                        labelPlacement="top"
+                        label="T"
                       />
                     </ FormGroup>
-                  </Grid>
-                  <Grid item md={5} sm={5}>
                     <FormGroup>
                       <FormControlLabel
                         // disabled={cegueiraDisabled}
@@ -211,11 +215,10 @@ const Create = props => {
                             onChange={props.handleChange}
                           />}
                         name='week_days_wednesday'
-                        label="Quarta-Feira"
+                        labelPlacement="top"
+                        label="Q"
                       />
                     </ FormGroup>
-                  </Grid>
-                  <Grid item md={5} sm={5}>
                     <FormGroup>
                       <FormControlLabel
                         // disabled={cegueiraDisabled}
@@ -225,11 +228,10 @@ const Create = props => {
                             onChange={props.handleChange}
                           />}
                         name='week_days_thursday'
-                        label="Quinta-Feira"
+                        labelPlacement="top"
+                        label="Q"
                       />
                     </ FormGroup>
-                  </Grid>
-                  <Grid item md={5} sm={5}>
                     <FormGroup>
                       <FormControlLabel
                         // disabled={cegueiraDisabled}
@@ -239,11 +241,10 @@ const Create = props => {
                             onChange={props.handleChange}
                           />}
                         name='week_days_friday'
-                        label="Sexta-Feira"
+                        labelPlacement="top"
+                        label="S"
                       />
                     </ FormGroup>
-                  </Grid>
-                  <Grid item md={5} sm={5}>
                     <FormGroup>
                       <FormControlLabel
                         // disabled={cegueiraDisabled}
@@ -253,11 +254,10 @@ const Create = props => {
                             onChange={props.handleChange}
                           />}
                         name='week_days_saturday'
-                        label="Sábado"
+                        labelPlacement="top"
+                        label="S"
                       />
                     </ FormGroup>
-                  </Grid>
-                  <Grid item md={5} sm={5}>
                     <FormGroup>
                       <FormControlLabel
                         // disabled={cegueiraDisabled}
@@ -267,7 +267,8 @@ const Create = props => {
                             onChange={props.handleChange}
                           />}
                         name='week_days_sunday'
-                        label="Domingo"
+                        labelPlacement="top"
+                        label="D"
                       />
                     </ FormGroup>
                   </Grid>
@@ -282,6 +283,7 @@ const Create = props => {
                     {!loadingIcon ? (
                       <ButtonPurple
                         onClick={props.handleSubmit}
+                        className="t-button-primary"
                         type="submit"
                         title={isEdit ? "Editar" : "Salvar"}
                       />

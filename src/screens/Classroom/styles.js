@@ -4,7 +4,9 @@ const useStyles = {
   title: {
     marginTop: 0,
     marginBottom: 3,
-    fontFamily: styleBase.typography.types.light,
+    color: styleBase.colors.colorsBaseInkNormalActive,
+    fontSize: "4vh",
+    fontFamily: styleBase.typography.types.inter,
     fontWeight: "unset"
   },
   boxTitlePagination: {
@@ -19,6 +21,12 @@ const useStyles = {
   },
   boxContent: {
     marginTop: 30
+  },
+  inputStudent: {
+    width: "100%"
+  },
+  marginTop: {
+    marginTop: "20px"
   },
   boxContentRegistration: {
     marginTop: 90,
@@ -75,8 +83,7 @@ const useStyles = {
   },
   boxButtons: {
     marginTop: 100,
-    justifyContent: 'end' 
-
+    justifyContent: 'start' 
   },
   spaceBetween: {
     display: 'flex',

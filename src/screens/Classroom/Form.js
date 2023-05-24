@@ -53,23 +53,9 @@ const Create = props => {
 
   return (
     <>
-    <ArrowBack onClick={() => {history.goBack()}} style={{cursor: "pointer"}}/>
-      <Grid container direction="row">
-        <TitleWithLine title={data && data.name} />
-      </Grid>
-      <Grid>
-        <Grid>
-          <h3>Ano da Turma</h3>
-          {/* <p>{data.school_year}</p> */}
-        </Grid>
-      </Grid>
-      <Grid
-        className={classes.boxContentRegistration}
-        container
-        direction="row"
-      >
-        <TitleWithLine title="Matrículas" />
-      </Grid>
+      <ArrowBack onClick={() => { history.goBack() }} style={{ cursor: "pointer" }} />
+        <h1>{data && data.name}</h1>
+        <h3>Candidatos</h3>
       <Grid container direction="row" spacing={4}>
         <List items={registrations()}>
           <Grid item xs={12}>

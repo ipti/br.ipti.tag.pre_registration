@@ -10,9 +10,8 @@ const BoxDiscriptionClassroom = props => {
 
   return (
     <div
-      className={`${classes.boxDescriptionCalssroom} ${classes.floatLeft} ${
-        registrationConfirmed ? classes.marginBox : ""
-      } `}
+      className={`${classes.boxDescriptionCalssroom} `}
+      style={{marginBottom: "-10px"}}
     >
       <p>Inscrições: {pre_registration.length}</p><p>{title}</p> 
     </div>

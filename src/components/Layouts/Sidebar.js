@@ -1,14 +1,8 @@
 import { makeStyles } from "@material-ui/core/styles";
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
-import {
-  //IconHouse,
-  //IconHouseActive,
-  IconClassroom,
-  IconClassroomActive,
-  IconSchedule,
-  IconScheduleActive
-} from "../Svg";
+import cronogramaSvg from "../../assets/images/bluel.svg";
+import turmaSvg from "../../assets/images/gray.svg";
 
 import { useMediaQuery } from "@material-ui/core";
 import styles from "./styles";
@@ -30,8 +24,8 @@ const Sidebar = ({isSidebar}) => {
       to: "/cronograma",
       name: "Cronograma",
       exact: false,
-      IconActive: <IconScheduleActive />,
-      Icon: <IconSchedule />
+      IconActive: <img src={cronogramaSvg} alt=""></img>,
+      Icon: <img src={cronogramaSvg} alt=""></img>
     },
     // {
     //   to: "/escolas",
@@ -44,8 +38,8 @@ const Sidebar = ({isSidebar}) => {
       to: "/turmas",
       name: "Turmas",
       exact: false,
-      IconActive: <IconClassroomActive />,
-      Icon: <IconClassroom />
+      IconActive: <img src={turmaSvg} alt=""></img>,
+      Icon: <img src={turmaSvg} alt=""></img>
     }
   ];
 

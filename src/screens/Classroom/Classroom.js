@@ -2,7 +2,11 @@ import React from "react";
 
 // Material UI
 import Grid from "@material-ui/core/Grid";
-import { ThemeProvider, createMuiTheme, makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
+import {
+  createTheme,
+  ThemeProvider
+} from "@material-ui/core/styles";
 import Alert from "@material-ui/lab/Alert";
 
 import Select from "react-select";
@@ -12,7 +16,7 @@ import List from "../../components/List";
 import { Paginator } from "../../components/Paginator";
 
 // Styles
-import { Fab } from "@material-ui/core";
+import { Fab, useMediaQuery } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
@@ -21,10 +25,10 @@ import { getYearClassRoom, yearClassroom } from "../../services/auth";
 import styleBase from "../../styles";
 import styles from "./styles";
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
-      main: styleBase.colors.purple
+      main: styleBase.colors.colorsBaseProductNormal
     }
   }
 });
@@ -34,7 +38,9 @@ const useStyles = makeStyles(theme => styles);
 
 const Classroom = ({ pagination, handlePage, activePage }) => {
 
-  const {classrooms: stages} = useContext(StageContext)
+  const { classrooms: stages } = useContext(StageContext)
+
+  const matches = useMediaQuery('(max-width:600px)')
 
   const classes = useStyles();
 
@@ -49,17 +55,16 @@ const Classroom = ({ pagination, handlePage, activePage }) => {
     id: i
   }));
 
-  const year_classrrom = [{year: "Todos", id: 11}, ...yearArray];
-  
+  const year_classrrom = [{ year: "Todos", id: 11 }, ...yearArray];
+
   const stage = () => {
     return stages.map((stage, index) => {
 
-     return (
-        <Grid key={index} item md={4} sm={4} xs={12}>
+      return (
+        <Grid key={index} item md={4} sm={3} xs={12}>
           <BoxBig
             link={`turmas/${stage.id}`}
             title={stage.name}
-            subtitle="Turma"
             addCursor={true}
             textRight=""
           >
@@ -83,7 +88,7 @@ const Classroom = ({ pagination, handlePage, activePage }) => {
             {/* <p style={{marginLeft: 'auto'}}> Será valido o último ano escolar para cada estagio</p> */}
           </div>
           <div className={`${classes.spaceBetween}`}>
-            <div style={{ width: '200px' }}>
+            <div style={{ width: matches ? "80%" :'50%' }}>
               <Select
                 className="basic-single"
                 classNamePrefix="select"
@@ -91,25 +96,18 @@ const Classroom = ({ pagination, handlePage, activePage }) => {
                 options={year_classrrom}
                 defaultValue={getYearClassRoom()}
                 onChange={selectedOption => {
-                  if(selectedOption.year === 'Todos'){
+                  if (selectedOption.year === 'Todos') {
                     yearClassroom('');
                     window.location.reload()
-                  }else{
+                  } else {
                     yearClassroom(selectedOption.year)
                     window.location.reload()
                   }
-                  
-                  
                 }}
                 getOptionValue={opt => opt.year}
                 getOptionLabel={opt => opt.year}
               />
             </div>
-            <Paginator
-              pagination={pagination}
-              handlePage={handlePage}
-              activePage={activePage}
-            />
           </div>
         </Grid>
       </Grid>

@@ -4,7 +4,7 @@ const useStyles = {
   contentBox: {
     border: "1px solid",
     borderRadius: "8px",
-    borderColor: styleBase.colors.purple,
+    borderColor: styleBase.colors.colorsBaseInkLight,
     padding: "20px",
     width: "88%",
     textDecoration: "none"
@@ -16,7 +16,7 @@ const useStyles = {
     float: "right"
   },
   textRight: {
-    backgroundColor: styleBase.colors.purple,
+    backgroundColor: styleBase.colors.colorsBaseProductNormal,
     color: styleBase.colors.white,
     padding: "0px 15px",
     borderRadius: "50px",
@@ -42,11 +42,9 @@ const useStyles = {
     textOverflow: "ellipsis"
   },
   title: {
+    color: styleBase.colors.colorsBaseInkNormalActive,
     fontSize: styleBase.typography.font.small,
-    color: styleBase.colors.gray,
-    whiteSpace: "nowrap",
-    overflow: "hidden",
-    textOverflow: "ellipsis"
+    fontFamily: styleBase.typography.types.regular
   },
   boxWithoutImage: {
     marginBottom: 20
@@ -57,15 +55,19 @@ const useStyles = {
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
-    width: "100%"
+    
   },
   boxDescriptionCalssroomTitle: {
     color: styleBase.colors.gray,
-    fontSize: styleBase.typography.font.extraSmall
+    fontSize: styleBase.typography.font.extraSmall,
+    fontFamily: styleBase.typography.types.regular
   },
   boxDescriptionSchedule: {
-    color: styleBase.colors.grayClear,
-    fontSize: styleBase.typography.font.extraSmall
+    color: styleBase.colors.colorsBaseInkNormalActive,
+    fontSize: styleBase.typography.font.extraSmall,
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   boxDescriptionScheduleSubtitle: {
     color: styleBase.colors.gray,
@@ -75,7 +77,7 @@ const useStyles = {
     marginRight: 10
   },
   boxQuantityBackgroundPurple: {
-    backgroundColor: styleBase.colors.purple
+    backgroundColor: styleBase.colors.colorsBaseProductNormal
   },
   boxQuantityBackgroundPink: {
     backgroundColor: styleBase.colors.pink
@@ -88,7 +90,7 @@ const useStyles = {
     fontSize: styleBase.typography.font.extraSmall,
     padding: "9px 9px",
     borderRadius: 8,
-    height: "auto",
+    height: "20px",
     marginRight: 8,
     minWidth: 20,
     textAlign: "center"
@@ -103,7 +105,7 @@ const useStyles = {
     backgroundColor: styleBase.colors.blue
   },
   backgroundPurple: {
-    backgroundColor: styleBase.colors.purple
+    backgroundColor: styleBase.colors.colorsBaseProductNormal
   },
   backgroundPink: {
     backgroundColor: styleBase.colors.pink
@@ -119,17 +121,14 @@ const useStyles = {
   iconStudent: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-between',
     "& img": {
-      borderRadius: "6px",
-      backgroundColor: styleBase.colors.blueClear,
       width: "45px"
     }
   },
   boxStudent: {
     border: "1px solid",
     borderRadius: "8px",
-    borderColor: styleBase.colors.purple,
+    borderColor: styleBase.colors.colorsBaseProductNormal,
     fontFamily: styleBase.typography.types.light,
     width: "80%",
     padding: "10px",
@@ -141,15 +140,18 @@ const useStyles = {
   boxStudentConfirmation: {
     border: "1px solid",
     borderRadius: "8px",
-    borderColor: styleBase.colors.purple,
+    borderColor: styleBase.colors.colorsBaseProductNormal,
     fontFamily: styleBase.typography.types.light,
-    width: "100%",
-    padding: "10px",
-    position: "relative",
-    cursor: 'pointer'
+    padding: "20px",
+    cursor: 'pointer',
+    display: "flex",
+    flexDirection: "column"
   },
   subtitleStudent: {
-    color: styleBase.colors.grayClear
+    color: styleBase.colors.colorsBaseInkNormalActive,
+    fontSize: styleBase.typography.font.small,
+    fontFamily: styleBase.typography.types.regular,
+    marginBottom: 10
   },
   confimedCicle: {
     width: 10,
@@ -171,15 +173,17 @@ const useStyles = {
     backgroundColor: styleBase.colors.red
   },
   nameStudent: {
-    width: "80%",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
     fontSize: styleBase.typography.font.small,
     color: styleBase.colors.gray
   },
   boxStatusStudent: {
     border: "1px solid",
     borderRadius: "30px",
-    borderColor: styleBase.colors.purple,
-    color: styleBase.colors.purple,
+    borderColor: styleBase.colors.colorsBaseProductNormal,
+    color: styleBase.colors.colorsBaseProductNormal,
     textAlign: "center",
     paddingTop: 10,
     paddingBottom: 10,
@@ -195,7 +199,7 @@ const useStyles = {
     // }
   },
   button: {
-    backgroundColor: styleBase.colors.purple,
+    backgroundColor: styleBase.colors.colorsBaseProductNormal,
     margin: 'auto 0px',
     border: "none",
     borderRadius: "50px",
@@ -208,7 +212,7 @@ const useStyles = {
     padding: "8px 18px",
     outline: 'none',
     '&:hover': {
-      backgroundColor: styleBase.colors.purpleDark
+      backgroundColor: styleBase.colors.colorsBaseProductNormalHover
     }
   }
 };

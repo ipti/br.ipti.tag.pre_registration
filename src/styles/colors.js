@@ -10,7 +10,14 @@ const color = {
   blue: "#7070FC",
   red: "#ED5A68",
   green: "#05ec02",
-  blueClear: "#dcefed"
+  blueClear: "#dcefed",
+  colorsBaseProductNormal: "#3f45ea",
+  colorsBaseProductNormalHover: "#2e33b7",
+  colorsBaseInkNormal: "#252A31",
+  colorsBaseInkLight: "#5F738C",
+  colorsBaseCloudNormal: "#EFF2F5",
+  colorsBaseProductDarkHover: "#1C1F7F",
+  colorsBaseInkNormalActive: "#0B0C0F"
 };
 
 export default color;

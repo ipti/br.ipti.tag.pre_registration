@@ -1,4 +1,4 @@
-import Background from "../../assets/images/login-banckground.jpg";
+import LoginImg from "../../assets/images/fadedlogo.svg";
 import styleBase from "../../styles";
 
 const useStyles = {
@@ -7,22 +7,40 @@ const useStyles = {
       width: "100%",
       marginBottom: "10px"
     },
-    minHeight: "100%",
-    background: `${styleBase.colors.blue} url(${Background})`,
-    fontFamily: styleBase.typography.types.light
-  },
-  marginTopContentLeft: {
-    marginTop: 264
+    width: "100%",
+    fontFamily: styleBase.typography.types.light,
+    background: `url(${LoginImg})`,
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: 'right top'
   },
   titleLogin: {
     textAlign: "center",
-    fontSize: "30px",
-    marginTop: 80,
-    marginBottom: 60,
-    color: styleBase.colors.purple
+    fontSize: "24px",
+    marginBottom: "-15px",
+    color: styleBase.colors.colorsBaseInkNormal,
+    fontFamily: styleBase.typography.types.inter,
+  },
+  subTitleLogin: {
+    textAlign: "center",
+    fontStyle: "normal",
+    fontWeight: "400",
+    fontSize: "14px",
+    lineHeight: "21px",
+    fontFamily: styleBase.typography.types.inter,
+    color: styleBase.colors.colorsBaseInkLight
   },
   imageLogin: {
-    marginBottom: 40
+    marginBottom: 20,
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "end",
+    marginLeft: "auto",
+  },
+  divtagna: {
+    width: "100%"
+  },
+  imageTagna: {
+    marginBottom: 20,
   },
   textCenter: {
     textAlign: "center"
@@ -32,7 +50,7 @@ const useStyles = {
     backgroundColor: styleBase.colors.white,
     border: "none",
     borderRadius: "5px",
-    color: styleBase.colors.purple,
+    color: styleBase.colors.colorsBaseProductNormal,
     fontSize: styleBase.typography.font.small,
     fontFamily: styleBase.typography.types.bold,
     padding: "10px 20px",
@@ -41,11 +59,7 @@ const useStyles = {
   colorIcon: {
     color: styleBase.colors.grayClear
   },
-  contentLeft: {
-    fontSize: styleBase.typography.font.small,
-    color: styleBase.colors.white
-  },
-  contentRight: { backgroundColor: styleBase.colors.white },
+  containerMain: {width: "100%" },
   titleBig: {
     fontSize: styleBase.typography.font.extraLarge,
     fontFamily: styleBase.typography.types.regular
@@ -56,6 +70,11 @@ const useStyles = {
     marginTop: 30,
     marginBottom: 30,
     width: "100%"
+  },
+  boxLeft: {
+    position: "absolute",
+    zIndex: "100",
+    display: "flex"
   },
   boxRegister: {
     marginTop: 30
@@ -75,12 +94,50 @@ const useStyles = {
     display: "block",
     marginBottom: 5
   },
-  "@media(max-width: 600px)": {
-    marginTopContentLeft: {
-      marginTop: 20
+  "@media(max-width: 1020px)": {
+    imageTagna: {
+      width: "400px",
     },
-    contentLeft: {
-      marginLeft: 20
+    titleBig: {
+      fontSize: "22px"
+    },
+    imageLoginStyle: {
+      width: "80%",
+      height: "80%",
+      marginLeft: "20%"
+    },
+  },
+  "@media(max-width: 800px)": {
+    // imageTagna: {
+    //   width: "300px",
+    //   height: "100%"
+    // },
+    // divtagna: {
+
+    // },
+    marginTopContentLeft: {
+      margin: "auto 0px",
+      marginLeft: "0px"
+    },
+    boxRegister: {
+      marginBottom: 40
+    }
+  },
+  "@media(max-width: 600px)": {
+    // imageTagna: {
+    //   width: "120px",
+    //   display: "none"
+    // },
+    divtagna: {
+      display: "none"
+    },
+    // contentLeft: {
+    //   minHeight: "170px",
+    //   height: "auto",
+    //   maxHeight: "200px"
+    // },
+    marginTopContentLeft: {
+      margin: "15px 20px",
     },
     boxRegister: {
       marginBottom: 40

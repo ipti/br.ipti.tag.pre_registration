@@ -35,9 +35,12 @@ const Wizard = props => {
 
     const StepComponent = componentMapping[props.step];
 
+
+    
+
     return (
       <Grid item xs={12}>
-          {props.step === 6 ? null : <ArrowBack onClick={props.backStep} style={{cursor: 'pointer', marginTop: '20px'}}/> }
+          {props.step === 6 ? null : <ArrowBack onClick={props.backStep} fontSize="large" style={{cursor: 'pointer', marginTop: '20px'}}/> }
         <StepComponent {...props} nextStep={nextStep} />
       </Grid>
     );

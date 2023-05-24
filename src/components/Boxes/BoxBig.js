@@ -28,7 +28,7 @@ const BoxBig = props => {
       {!textRight && (
         <>
           <div className={classes.title} title={title}>{title}</div>
-          <div className={classes.subtitle} title={subtitle}>{subtitle}</div>
+          <div className={classes.title} title={subtitle}>{subtitle}</div>
         </>
       )}
       {textRight && (

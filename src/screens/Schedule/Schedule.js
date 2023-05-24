@@ -1,16 +1,16 @@
-import React from "react";
 import { format, parseISO } from "date-fns";
+import React from "react";
 
 // Material UI
-import Grid from "@material-ui/core/Grid";
 import Fab from "@material-ui/core/Fab";
+import Grid from "@material-ui/core/Grid";
 import AddIcon from "@material-ui/icons/Add";
 import Alert from "@material-ui/lab/Alert";
 
 import {
+  createTheme,
   makeStyles,
-  createMuiTheme,
-  ThemeProvider
+  ThemeProvider,
 } from "@material-ui/core/styles";
 
 // Third party
@@ -18,7 +18,6 @@ import { Link } from "react-router-dom";
 
 // Components
 import { BoxBig, BoxDiscriptionSchedule } from "../../components/Boxes";
-import { Paginator } from "../../components/Paginator";
 import List from "../../components/List";
 
 // Styles
@@ -27,10 +26,10 @@ import styles from "./styles";
 
 const useStyles = makeStyles(styles);
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
-      main: styleBase.colors.purple
+      main: styleBase.colors.colorsBaseProductNormal
     }
   }
 });
@@ -62,7 +61,7 @@ const Schedule = ({ activePage, data, pagination, handlePage, deleteSchedule }) 
           >
             <BoxDiscriptionSchedule
               title={`Novas Alunos - ${schedule.school_identification.name}`}
-              color="pink"
+              color={styleBase.colors.colorsBaseProductNormal}
               textRight={schedule.year}
               subtitle={`${internalTransferDateStart} - ${internalTransferDateEnd}`}
             />
@@ -79,13 +78,7 @@ const Schedule = ({ activePage, data, pagination, handlePage, deleteSchedule }) 
           <h1 className={`${classes.title} ${classes.floatLeft}`}>
             Cronograma
           </h1>
-          <div className={`${classes.floatRight}`}>
-            <Paginator
-              activePage={activePage}
-              pagination={pagination}
-              handlePage={handlePage}
-            />
-          </div>
+          
         </Grid>
       </Grid>
 
