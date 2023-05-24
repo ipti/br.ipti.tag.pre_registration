@@ -16,7 +16,12 @@ import { Controller } from "../../controller/registration";
 import RegistrationContextProvider, { RegistrationContext } from "./Context/context";
 import { useContext } from "react";
 
+import styles from "../../screens/Registration/styles";
+import { makeStyles } from "@material-ui/core/styles";
+const useStyles = makeStyles(styles);
+
 const Home = props => {
+  const classes = useStyles();
   const [load, setLoad] = useState(true)
   const [open, setOpen] = useState(false);
   const [step, setStep] = useState(0);
@@ -59,13 +64,6 @@ const Home = props => {
 
   const onSubmit = () => {
 
-    if (dataValues?.birthday) {
-      dataValues.birthday = dataValues.birthday
-        .split("/")
-        .reverse()
-        .join("-");
-    }
-
     const parseBool = value =>
       ['true', 'false'].includes(value) ? value === true : null
     if (load) {
@@ -73,6 +71,7 @@ const Home = props => {
         {
           ...dataValues, sex: parseInt(dataValues.sex),
           zone: parseInt(dataValues.zone),
+          birthday: dataValues.birthday,
           deficiency: parseBool(dataValues.deficiency),
           cpf: dataValues.cpf ? dataValues.cpf.replace(/\D/g, '') : null,
           responsable_cpf: dataValues.responsable_cpf ? dataValues.responsable_cpf.replace(/\D/g, '') : "",
@@ -154,33 +153,33 @@ const Home = props => {
     //   props.loading;
     return (
       <RegistrationContextProvider>
-           <Grid
-        container
-        justifyContent="center"
-        //alignItems="center"
-        style={{ minWidth: "100%", marginTop: 30 }}
-      >
-        <Grid item lg={4} md={5} xs={10}>
-          {isActive ? (
-            <Wizard
-              schools={schools}
-              next={next}
-              step={step}
-              handleStudent={handleStudent}
-              loadingButtom={props.loading}
-              setIsActive={setIsActive}
-              handleSubmit={onSubmit}
-              backStep={backStep}
-              nextStep={nextStep}
-              values={dataValues}
-            />
-          ) : (
-            <Wait />
-          )}
+        <Grid
+          className={classes.backgroundForm}
+          container
+          justifyContent="center"
+          //alignItems="center"
+        >
+          <Grid item lg={4} md={5} xs={10}>
+            {isActive ? (
+              <Wizard
+                schools={schools}
+                next={next}
+                step={step}
+                handleStudent={handleStudent}
+                loadingButtom={props.loading}
+                setIsActive={setIsActive}
+                handleSubmit={onSubmit}
+                backStep={backStep}
+                nextStep={nextStep}
+                values={dataValues}
+              />
+            ) : (
+              <Wait />
+            )}
+          </Grid>
         </Grid>
-      </Grid>
       </RegistrationContextProvider>
-     
+
     );
   };
 

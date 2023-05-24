@@ -68,7 +68,7 @@ const Home = props => {
   const body = !student.student_fk ? {
     classroom: student?.classroom_fk,
     year: student?.classroom.school_year
-  } : { student_fk: student.student_fk };
+  } : { student_fk: student.student_fk, classroom: student?.classroom_fk };
 
 
 

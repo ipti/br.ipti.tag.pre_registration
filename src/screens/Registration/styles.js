@@ -1,6 +1,13 @@
 import styleBase from "../../styles";
-
+import LoginImg from "../../assets/images/fadedlogo.svg";
 const useStyles = {
+  backgroundForm: {
+    minWidth: "100%",
+    fontFamily: styleBase.typography.types.light,
+    background: `url(${LoginImg})`,
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: 'right top'
+  },
   contentStart: {
     color: styleBase.colors.grayClear,
     fontFamily: styleBase.typography.types.light,

@@ -1,8 +1,9 @@
+import { useMediaQuery } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import React from "react";
-import styles from "./styles";
-import Tagna from "../../assets/images/ÍviaNotebook.svg"
 import { Link } from "react-router-dom";
+import Tagna from "../../assets/images/ÍviaNotebook.svg";
+import styles from "./styles";
 
 const useStyles = makeStyles(styles);
 
@@ -11,15 +12,15 @@ const SignUp = () => {
     return (
         <div className="row align-items--center">
             <div className={classes.contentLeft}>
-                <div className="row" style={{ background: "linear-gradient(0deg, #3F45EA, #3F45EA)", width: "100%", opacity: 0.94, height: "auto" }}>
-
+                <div className={`row ${classes.box}`} >
+                    <div className={classes.divBlue} />
                     <div className={classes.divImage}>
                         <img className={classes.imgTagna} src={Tagna} alt="" />
                     </div>
                     <div
                         className={classes.formSignUp}
                     >
-                        <div>
+                        <div className={classes.textTitle}>
                             <div>
                                 Bem-Vindo
                             </div>
@@ -45,12 +46,6 @@ const SignUp = () => {
                         </div>
                     </div>
                 </div>
-                {/* <div className={classes.boxLeft}>
-                    
-                    
-                </div>
-                <div style={{ background: "linear-gradient(0deg, #3F45EA, #3F45EA)", width: "100%", opacity: 0.94, height: "auto" }}>
-                </div> */}
             </div>
         </div>
 
