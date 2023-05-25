@@ -10,6 +10,7 @@ const useStyles = {
         background: `url(${Background})`,
         backgroundRepeat: "norepeat",
         display: "flex",
+        position: "fixed"
     },
     box: {
         
