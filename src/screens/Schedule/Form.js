@@ -17,7 +17,6 @@ import PropTypes from "prop-types";
 import React from "react";
 import { ButtonPurple } from "../../components/Buttons";
 import Loading from "../../components/Loading/CircularLoadingButtomActions";
-import { TitleWithLine } from "../../components/Titles";
 import styles from "./styles";
 
 const useStyles = makeStyles(theme => styles);
@@ -63,37 +62,28 @@ const Create = props => {
           return (
             <Form>
               <MuiPickersUtilsProvider locale={brLocale} utils={DateFnsUtils}>
-                <Grid item md={12} sm={12}>
 
-                  <Grid
-                    container
-                    direction="row"
-                    alignItems="center"
-                    spacing={2}
-                  >
-                    <Grid item md={3} sm={3}>
-                      <FormControl
-                        component="fieldset"
-                        className={classes.formControl}
-                      >
-                        <FormLabel>Ano de Referência*</FormLabel>
-                        <TextField
-                          name="year"
-                          value={props.values.year}
-                          onChange={props.handleChange}
-                          id="outlined-size-small"
-                          variant="outlined"
-                          className={classes.textField}
-                          required
-                        />
+                  <Grid item md={4} sm={4}>
+                    <FormControl
+                      component="fieldset"
+                      className={classes.formControl}
+                    >
+                      <FormLabel>Ano de Referência*</FormLabel>
+                      <TextField
+                        name="year"
+                        value={props.values.year}
+                        onChange={props.handleChange}
+                        margin="normal"
+                        id="outlined-size-small"
+                        variant="outlined"
+                        required
+                      />
 
-                        <div className={classes.formFieldError}>
-                          {props.errors.year}
-                        </div>
-                      </FormControl>
-                    </Grid>
+                      <div className={classes.formFieldError}>
+                        {props.errors.year}
+                      </div>
+                    </FormControl>
                   </Grid>
-                </Grid>
                 <Grid
                   className={classes.marginButtom}
                   container

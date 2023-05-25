@@ -2,18 +2,13 @@ import React from "react";
 
 // Material UI
 import Grid from "@material-ui/core/Grid";
-import { makeStyles } from "@material-ui/core/styles";
-import {
-  createTheme,
-  ThemeProvider
-} from "@material-ui/core/styles";
+import { createTheme, makeStyles, ThemeProvider } from "@material-ui/core/styles";
 import Alert from "@material-ui/lab/Alert";
 
 import Select from "react-select";
 
 import { BoxBig, BoxDiscriptionClassroom } from "../../components/Boxes";
 import List from "../../components/List";
-import { Paginator } from "../../components/Paginator";
 
 // Styles
 import { Fab, useMediaQuery } from "@material-ui/core";

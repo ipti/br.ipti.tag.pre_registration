@@ -1,7 +1,7 @@
 import { Controller } from "../../../controller/Schedule";
 import Swal from "sweetalert2";
 import styled from "../../../styles"
-import image from "../../../assets/images/AtencaoModal.svg"
+import image from "../../../assets/images/Atenção-img.png"
 
 
 

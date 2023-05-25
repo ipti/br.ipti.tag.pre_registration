@@ -1,5 +1,5 @@
 import styleBase from "../../styles";
-import LoginImg from "../../assets/images/fadedlogo.svg";
+import LoginImg from "../../assets/images/faded-logo.png";
 const useStyles = {
   backgroundForm: {
     minWidth: "100%",
@@ -34,8 +34,8 @@ const useStyles = {
     }
   },
   imageRegistration: {
-    height: "100%",
-    width: "80%"
+    height: "50%",
+    width: "50%"
   },
   marginButtom: {
     marginBottom: 40
@@ -89,6 +89,11 @@ const useStyles = {
     paddingTop: 10,
     paddingBottom: 10,
     marginTop: 80
+  },
+  "@media(max-width: 600px)": {
+    backgroundForm: {
+      backgroundSize: "50%"
+    },
   }
 };
 

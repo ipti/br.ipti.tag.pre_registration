@@ -1,7 +1,7 @@
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import React from "react";
-import homeImg from "../../assets/images/cadernoImage.svg"
+import homeImg from "../../assets/images/Caderno.png"
 import { ButtonLinePurple } from "../../components/Buttons";
 import styles from "./styles";
 

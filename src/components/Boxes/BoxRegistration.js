@@ -1,23 +1,23 @@
 
 import { makeStyles } from "@material-ui/core/styles";
 
-import React, { useState } from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
 
 import Grid from "@material-ui/core/Grid";
 import { Clear } from "@material-ui/icons";
-import styled from "../../styles"
-import image from "../../assets/images/AtencaoModal.svg"
+import Swal from "sweetalert2";
+import image from "../../assets/images/Atenção-img.png";
 import IconActive from "../../assets/images/activeRegistration.svg";
 import IconNotActive from "../../assets/images/notactiveRegistration.svg";
 import { ControllerClassroomForm } from "../../controller/classroom/ClassroomForm";
+import styled from "../../styles";
 import styles from "./styles";
-import Swal from "sweetalert2";
 
 const useStyles = makeStyles(styles);
 
 const BoxRegistration = props => {
-  const { name, link, unavailable, sex, md, sm, xs, student_fk, id } = props;
+  const { name, link, unavailable, md, sm, xs, student_fk, id } = props;
 
 
   const { requestDeletePreRegistrationMutation } = ControllerClassroomForm();
