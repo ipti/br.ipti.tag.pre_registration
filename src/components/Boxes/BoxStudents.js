@@ -25,7 +25,7 @@ const BoxStudents = ({ student, student_identification }) => {
                     Nascimento: {filterStudent[0].birthday}
                 </h4>
             </div>
-            <button onClick={() => history.push(`/matricula/${filterStudent[0].id}`)} className={`${classes.button}`}> Confirmar</button>
+            <button onClick={() => history.push(`/matricula/${filterStudent[0].id}`)} className={`t-button-primary`}> Confirmar</button>
         </Grid>
     )
 }

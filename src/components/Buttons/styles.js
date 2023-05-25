@@ -49,7 +49,6 @@ const useStyles = {
   },
   buttomLinePurple: {
     border: "1px solid",
-    borderRadius: "50px",
     backgroundColor: styleBase.colors.white,
     borderColor: styleBase.colors.colorsBaseProductNormal,
     color: styleBase.colors.colorsBaseProductNormal,
