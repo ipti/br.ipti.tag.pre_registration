@@ -19,7 +19,7 @@ import { ButtonPurple } from "../../components/Buttons";
 import Loading from "../../components/Loading/CircularLoadingButtomActions";
 
 // Assets
-import homeImg from "../../assets/images/Capelo.svg";
+import homeImg from "../../assets/images/Capelo.png";
 
 // Styles
 import styles from "./styles";

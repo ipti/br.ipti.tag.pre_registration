@@ -1,4 +1,4 @@
-import LoginImg from "../../assets/images/fadedlogo.svg";
+import LoginImg from "../../assets/images/faded-logo.png";
 import styleBase from "../../styles";
 
 const useStyles = {
@@ -108,13 +108,6 @@ const useStyles = {
     },
   },
   "@media(max-width: 800px)": {
-    // imageTagna: {
-    //   width: "300px",
-    //   height: "100%"
-    // },
-    // divtagna: {
-
-    // },
     marginTopContentLeft: {
       margin: "auto 0px",
       marginLeft: "0px"
@@ -124,18 +117,9 @@ const useStyles = {
     }
   },
   "@media(max-width: 600px)": {
-    // imageTagna: {
-    //   width: "120px",
-    //   display: "none"
-    // },
     divtagna: {
       display: "none"
     },
-    // contentLeft: {
-    //   minHeight: "170px",
-    //   height: "auto",
-    //   maxHeight: "200px"
-    // },
     marginTopContentLeft: {
       margin: "15px 20px",
     },

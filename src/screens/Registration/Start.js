@@ -3,7 +3,7 @@ import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import React, { useContext, useState } from "react";
 import Select from "react-select";
-import homeImg from "../../assets/images/Capelo.svg";
+import homeImg from "../../assets/images/Capelo.png";
 import { ButtonPurple } from "../../components/Buttons";
 import { RegistrationContext } from "../../containers/Registration/Context/context";
 import styles from "./styles";

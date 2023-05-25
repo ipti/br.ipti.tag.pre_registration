@@ -1,4 +1,4 @@
-import Background from "../../assets/images/background-login.svg";
+import Background from "../../assets/images/background-signup.png";
 import styleBase from "../../styles";
 
 const useStyles = {

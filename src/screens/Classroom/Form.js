@@ -2,7 +2,6 @@ import React from "react";
 
 // Material UI
 import Grid from "@material-ui/core/Grid";
-import { makeStyles } from "@material-ui/core/styles";
 import Alert from "@material-ui/lab/Alert";
 
 // Third party
@@ -10,17 +9,12 @@ import Alert from "@material-ui/lab/Alert";
 // Components
 import { BoxRegistration } from "../../components/Boxes";
 import List from "../../components/List";
-import { TitleWithLine } from "../../components/Titles";
 
 // Styles
-import styles from "./styles";
 import { ArrowBack } from "@material-ui/icons";
 import { useHistory } from "react-router";
 
-const useStyles = makeStyles(theme => styles);
-
 const Create = props => {
-  const classes = useStyles();
 
   const history = useHistory()
 

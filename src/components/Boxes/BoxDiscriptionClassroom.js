@@ -4,7 +4,7 @@ import styles from "./styles";
 const useStyles = makeStyles(styles);
 
 const BoxDiscriptionClassroom = props => {
-  const {title, registrationConfirmed, pre_registration} = props;
+  const {title, pre_registration} = props;
   const classes = useStyles();
 
 
