@@ -13,11 +13,10 @@ export const Controller = () => {
         {
           onError: (error) => {
           swal(`${error.response.data.message} \nRepita todo o processo`);
-           window.location.reload()
           },
           onSuccess: (data) => {
             swal("Pré-matricula feita com sucesso!")
-            history.push('/login')
+            history.push('/register')
           },
         }
       );

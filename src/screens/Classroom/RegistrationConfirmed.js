@@ -27,7 +27,7 @@ const Home = props => {
     answer
   } = props;
   const student = registration ?? [];
-  
+
   const history = useHistory()
 
   const nullableField = "-------------";
@@ -169,11 +169,12 @@ const Home = props => {
           <TextField className={classes.inputStudent} value={student?.classroom?.name} variant="outlined" disabled />
         </Grid>
       </Grid>
-      <Grid item md={12}>
-        <div className={classes.lineGrayClean}></div>
-      </Grid>
+
       {answer ? <> {answer.length > 0 ? <>
         <Grid container direction="row" spacing={3}>
+          <Grid item md={12}>
+            <div className={classes.lineGrayClean}></div>
+          </Grid>
           <Grid item md={5}>
             <div className={classes.floatLeft}>
               <h2> Formulário </h2>
@@ -210,8 +211,8 @@ const Home = props => {
               />
             </Grid> : <Grid item md={3}>
               <ButtonLinePurple
-                className="t-button-primary"
                 type="button"
+                disabled
                 title="Já Matriculado"
               />
             </Grid>}
