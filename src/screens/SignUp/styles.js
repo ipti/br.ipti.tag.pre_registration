@@ -13,7 +13,7 @@ const useStyles = {
         position: "fixed"
     },
     box: {
-        
+
     },
     divBlue: {
         background: "linear-gradient(0deg, #3F45EA, #3F45EA)",
@@ -42,7 +42,10 @@ const useStyles = {
     },
     resetPassword: {
         color: styleBase.colors.white,
-
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "end",
+        position: "relative", zIndex: "100",
         fontSize: styleBase.typography.font.small,
         marginTop: 30,
         marginBottom: 30,
@@ -72,6 +75,13 @@ const useStyles = {
         padding: "10px 20px",
         textDecoration: "none"
     },
+    "@media(max-width: 1300px)": {
+        resetPassword: {
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "start"
+        },
+    },
     "@media(max-width: 740px)": {
         divImage: {
             width: "80%"
@@ -83,6 +93,11 @@ const useStyles = {
         },
     },
     "@media(max-width: 639px)": {
+        resetPassword: {
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center"
+        },
         box: {
             flexDirection: "column-reverse"
         }
