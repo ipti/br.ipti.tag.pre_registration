@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 
 import { Grid, useMediaQuery } from "@material-ui/core";
@@ -10,6 +10,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import { makeStyles } from "@material-ui/core/styles";
 import { MenuTwoTone } from "@material-ui/icons";
 import AccountCircle from "@material-ui/icons/AccountCircle";
+import { CircularProgress } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import Select from "react-select";
 import { useFetchRequestSchoolList } from "../../query/registration";
@@ -64,7 +65,8 @@ const useStyles = makeStyles({
   }
 });
 
-const Header = ({setIsSidebar, isSidebar}) => {
+const Header = ({ setIsSidebar, isSidebar }) => {
+  const [school, setSchool] = useState([])
   const classes = useStyles();
   let history = useHistory();
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -84,45 +86,52 @@ const Header = ({setIsSidebar, isSidebar}) => {
     history.push("/login");
   };
 
-  const { data } = useFetchRequestSchoolList();
+  const { data: schoolRequest, isLoading } = useFetchRequestSchoolList();
+
+  useEffect(() => {
+    if (schoolRequest) {
+      setSchool(schoolRequest)
+    }
+  }, [schoolRequest])
 
 
-  if(!data) return null
-  const schoolSelection = data.find(x => x.inep_id === getIdSchool())
+
 
   return (
     <AppBar classes={{ root: classes.root }} position="static">
       <Toolbar className={classes.tooBar} disableGutters>
         {matches ? <MenuTwoTone onClick={
           () => {
-            if(isSidebar){
+            if (isSidebar) {
               setIsSidebar(false)
-            }else{
+            } else {
               setIsSidebar(true)
             }
           }
-        } 
-        
-        style={{color: 'black', marginLeft: '10px'}}/> : null}
+        }
+
+          style={{ color: 'black', marginLeft: '10px' }} /> : null}
         <h2 className={classes.title}>Matrícula</h2>
         <>
-          <Grid item xs={3}>
-            <Select
-              styles={customStyles}
-              className="basic-single"
-              placeholder="Selecione a Escola"
-              options={data}
-              onChange={selectedOption => {
-                idSchool(selectedOption.inep_id);
-                history.push("/")
-                window.location.reload()
-               
-              }}
-              defaultValue={schoolSelection}
-              getOptionValue={opt => opt.inep_id}
-              getOptionLabel={opt => opt.inep_id + " - " + opt.name}
-            />
-          </Grid>
+
+          {!isLoading ? <Grid item xs={3}> <Select
+            styles={customStyles}
+            className="basic-single"
+            placeholder="Selecione a Escola"
+            options={school}
+            loadingMessage={isLoading ? "Carregando..." : null}
+            onChange={selectedOption => {
+              idSchool(selectedOption.inep_id);
+              history.push("/")
+              window.location.reload()
+
+            }}
+            defaultValue={schoolRequest.find(x => x.inep_id === getIdSchool())}
+            getOptionValue={opt => opt.inep_id}
+            getOptionLabel={opt => opt.inep_id + " - " + opt.name}
+          />  </Grid> : <div style={{ margin: "auto" }}><CircularProgress /></div>}
+
+
 
           {isAuthenticated() && (
             <>

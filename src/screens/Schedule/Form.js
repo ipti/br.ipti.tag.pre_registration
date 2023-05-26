@@ -62,7 +62,11 @@ const Create = props => {
           return (
             <Form>
               <MuiPickersUtilsProvider locale={brLocale} utils={DateFnsUtils}>
-
+                <Grid
+                  className={classes.marginButtom}
+                  container
+                  direction="column"
+                >
                   <Grid item md={4} sm={4}>
                     <FormControl
                       component="fieldset"
@@ -84,6 +88,7 @@ const Create = props => {
                       </div>
                     </FormControl>
                   </Grid>
+                </Grid>
                 <Grid
                   className={classes.marginButtom}
                   container
