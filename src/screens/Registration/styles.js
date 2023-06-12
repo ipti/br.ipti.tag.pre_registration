@@ -34,8 +34,8 @@ const useStyles = {
     }
   },
   imageRegistration: {
-    height: "50%",
-    width: "50%"
+    height: "60%",
+    width: "60%"
   },
   marginButtom: {
     marginBottom: 40

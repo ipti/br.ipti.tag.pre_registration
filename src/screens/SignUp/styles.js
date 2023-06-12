@@ -42,13 +42,16 @@ const useStyles = {
     },
     resetPassword: {
         color: styleBase.colors.white,
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "end",
         position: "relative", zIndex: "100",
         fontSize: styleBase.typography.font.small,
         marginTop: 30,
         marginBottom: 30,
+    },
+    buttonLogin: {
+        borderStyle: "solid",
+        border: "1px",
+        borderRadius: "25px",
+        padding: "10px"
     },
     textTitle: {
         fontFamily: styleBase.typography.types.regular,
@@ -60,7 +63,7 @@ const useStyles = {
     },
     link: {
         fontFamily: styleBase.typography.types.bold,
-        color: styleBase.colors.red,
+        color: styleBase.colors.white,
         textDecoration: "none",
         marginLeft: 5
     },
