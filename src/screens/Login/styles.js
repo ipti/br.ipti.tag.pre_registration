@@ -8,10 +8,35 @@ const useStyles = {
       marginBottom: "10px"
     },
     width: "100%",
+    height: "100%",
     fontFamily: styleBase.typography.types.light,
     background: `url(${LoginImg})`,
     backgroundRepeat: "no-repeat",
-    backgroundPosition: 'right top'
+    backgroundPosition: 'right top',
+    position: "fixed"
+  },
+  divLogin:{
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems:"center",
+    height: "100%"
+  },
+  margin: {
+    margin: "20px"
+  },
+  marginMobile: {
+    margin: 0
+  },
+  marginMobile20: {
+    margin: 0
+  },
+  topBar: {
+    width: "25%",
+    height: "4px"
+  },
+  divInpus: {
+    width: "30%",
   },
   titleLogin: {
     textAlign: "center",
@@ -19,6 +44,7 @@ const useStyles = {
     marginBottom: "-15px",
     color: styleBase.colors.colorsBaseInkNormal,
     fontFamily: styleBase.typography.types.inter,
+    fontWeight: "bold"
   },
   subTitleLogin: {
     textAlign: "center",
@@ -27,7 +53,8 @@ const useStyles = {
     fontSize: "14px",
     lineHeight: "21px",
     fontFamily: styleBase.typography.types.inter,
-    color: styleBase.colors.colorsBaseInkLight
+    color: styleBase.colors.colorsBaseInkLight,
+    
   },
   imageLogin: {
     marginBottom: 20,
@@ -69,7 +96,8 @@ const useStyles = {
     fontSize: styleBase.typography.font.small,
     marginTop: 30,
     marginBottom: 30,
-    width: "100%"
+    width: "100%",
+   
   },
   boxLeft: {
     position: "absolute",
@@ -114,6 +142,18 @@ const useStyles = {
     },
     boxRegister: {
       marginBottom: 40
+    },
+    divInpus: {
+      width: "90%"
+    },
+    marginMobile20: {
+      margin: "20px"
+    },
+    marginMobile: {
+      margin: "40px"
+    },
+    divLogin: {
+      justifyContent: "start"
     }
   },
   "@media(max-width: 600px)": {

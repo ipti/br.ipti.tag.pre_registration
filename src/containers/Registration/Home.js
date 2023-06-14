@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-
+import TagImage from "../../assets/images/taglogin.svg"
 
 // Redux
 
@@ -21,6 +21,7 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles(styles);
 
 const Home = props => {
+
   const classes = useStyles();
   const [load, setLoad] = useState(true)
   const [open, setOpen] = useState(false);
@@ -153,11 +154,19 @@ const Home = props => {
     //   props.loading;
     return (
       <RegistrationContextProvider>
+        <div style={{ display: "flex", flexDirection: "column"}} className={classes.backgroundForm}>
+        <div style={{ display: "flex", flexDirection: "row" }}>
+          <div className={classes.topBar} style={{ backgroundColor: "#667DF4" }} />
+          <div className={classes.topBar} style={{ backgroundColor: "#F45A5A" }} />
+          <div className={classes.topBar} style={{ backgroundColor: "#66D654" }} />
+          <div className={classes.topBar} style={{ backgroundColor: "#EADA48" }} />
+        </div>
+        <img className={classes.imgTag} src={TagImage} alt=""></img>
         <Grid
-          className={classes.backgroundForm}
+          
           container
           justifyContent="center"
-          //alignItems="center"
+        //alignItems="center"
         >
           <Grid item lg={4} md={5} xs={10}>
             {isActive ? (
@@ -178,6 +187,8 @@ const Home = props => {
             )}
           </Grid>
         </Grid>
+          
+        </div>
       </RegistrationContextProvider>
 
     );

@@ -35,8 +35,8 @@ const SignUp = () => {
                                 </div>
                             </div>
                         </div>
-
                     </div>
+
                     <div
                         className={`${classes.resetPassword} ${classes.textCenter}`}
                     >
@@ -46,7 +46,6 @@ const SignUp = () => {
                                 clique aqui
                             </Link>
                         </div>
-
                     </div>
                 </div>
             </div>

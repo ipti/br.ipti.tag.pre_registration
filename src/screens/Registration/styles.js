@@ -37,6 +37,15 @@ const useStyles = {
     height: "60%",
     width: "60%"
   },
+  imgTag: {
+    width: "5%",
+    margin: "20px",
+    position: "absolute"
+  },
+  topBar: {
+    width: "25%",
+    height: "4px"
+  },
   marginButtom: {
     marginBottom: 40
   },
@@ -94,6 +103,13 @@ const useStyles = {
     backgroundForm: {
       backgroundSize: "50%"
     },
+    imgTag: {
+      width: "15%"
+    },
+    imageRegistration: {
+      height: "80%",
+    width: "80%"
+    }
   }
 };
 

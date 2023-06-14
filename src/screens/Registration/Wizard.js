@@ -15,35 +15,48 @@ import { ArrowBack } from "@material-ui/icons";
 import { RegistrationContext } from "../../containers/Registration/Context/context";
 import { useContext } from "react";
 import Quiz from "./Quiz";
+import { ButtonLinePurple } from "../../components/Buttons";
+import { makeStyles } from "@material-ui/core/styles";
+import styles from "./styles";
 
+const useStyles = makeStyles(styles);
 const Wizard = props => {
+  const classes = useStyles();
 
   const nextStep = step => {
     props.next(step);
   };
 
-  const {isOfLegalAge} = useContext(RegistrationContext);
-    const componentMapping = {
-      "0": Start,
-      "1": Classroom,
-      "2": StepOne,
-      "3": StepThree,
-      "4": isOfLegalAge === '1' ? StepFour : StepSix,
-      "5": Quiz,
-      "6": Finish
-    };
+  const { isOfLegalAge } = useContext(RegistrationContext);
+  const componentMapping = {
+    "0": Start,
+    "1": Classroom,
+    "2": StepOne,
+    "3": StepThree,
+    "4": isOfLegalAge === '1' ? StepFour : StepSix,
+    "5": Quiz,
+    "6": Finish
+  };
 
-    const StepComponent = componentMapping[props.step];
+  const StepComponent = componentMapping[props.step];
 
 
-    
 
-    return (
-      <Grid item xs={12}>
-          {props.step === 6 ? null : <ArrowBack onClick={props.backStep} fontSize="large" style={{cursor: 'pointer', marginTop: '20px'}}/> }
-        <StepComponent {...props} nextStep={nextStep} />
+
+  return (
+    <Grid item xs={12}>
+      {/* {props.step === 6 ? null : <ArrowBack onClick={props.backStep} fontSize="large" style={{cursor: 'pointer', marginTop: '20px'}}/> } */}
+      <StepComponent {...props} nextStep={nextStep} />
+      <Grid className={classes.marginLeftButton} item xs={4}>
+        <ButtonLinePurple
+          onClick={() => props.next(3)}
+          type="button"
+          title="Voltar"
+          className="t-button-primary"
+        />
       </Grid>
-    );
+    </Grid>
+  );
 
 }
 

@@ -12,9 +12,6 @@ const useStyles = {
         display: "flex",
         position: "fixed"
     },
-    box: {
-
-    },
     divBlue: {
         background: "linear-gradient(0deg, #3F45EA, #3F45EA)",
         opacity: 0.94,
@@ -44,8 +41,8 @@ const useStyles = {
         color: styleBase.colors.white,
         position: "relative", zIndex: "100",
         fontSize: styleBase.typography.font.small,
-        marginTop: 30,
-        marginBottom: 30,
+        paddingTop: 40,
+        paddingBottom: 40,
     },
     buttonLogin: {
         borderStyle: "solid",
@@ -87,7 +84,8 @@ const useStyles = {
     },
     "@media(max-width: 740px)": {
         divImage: {
-            width: "80%"
+            width: "100%",
+            position: "relative"
         },
         textTitle: {
             fontFamily: styleBase.typography.types.regular,
@@ -99,15 +97,35 @@ const useStyles = {
         resetPassword: {
             display: "flex",
             flexDirection: "row",
-            justifyContent: "center"
+            justifyContent: "center",
+            alignItems: "end",
+            background: "linear-gradient(180deg, rgba(71, 77, 232, 0) 0%, #474DE8 100%)",
+            padding: "20px 0px",
+            height: "200px"
         },
-        box: {
-            flexDirection: "column-reverse"
+        divImage: {
+            height: "100%",
+            marginTop: "auto",
+            position: "absolute",
+        },
+        imgTagna: {
+            width: "460px",
+        },
+        textTitle: {
+            fontFamily: styleBase.typography.types.normal,
+            fontWeight: "500",
+            color: styleBase.colors.white,
+            fontSize: 42,
+            textAlign: "center"
+        },
+        formSignUp: {
+             justifyContent: "start",
+            marginTop: "20%",
         }
     },
     "@media(max-width: 1020px)": {
         divImage: {
-            width: "70%"
+            width: "100%"
         },
         textTitle: {
             fontFamily: styleBase.typography.types.regular,
@@ -115,8 +133,7 @@ const useStyles = {
             fontSize: 25,
         },
         imageLoginStyle: {
-            width: "80%",
-            height: "80%",
+            width: "100%",
             marginLeft: "20%"
         },
     },
