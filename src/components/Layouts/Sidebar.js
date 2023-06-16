@@ -1,8 +1,11 @@
 import { makeStyles } from "@material-ui/core/styles";
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
-import cronogramaSvg from "../../assets/images/bluel.svg";
-import turmaSvg from "../../assets/images/gray.svg";
+import cronogramaBlueSvg from "../../assets/images/cronograma-blue.svg";
+import cronogramaGraySvg from "../../assets/images/cronograma-gray.svg";
+
+import turmaGraySvg from "../../assets/images/classroom-gray.svg";
+import turmaBlueSvg from "../../assets/images/classroom-blue.svg";
 
 import { useMediaQuery } from "@material-ui/core";
 import styles from "./styles";
@@ -24,8 +27,8 @@ const Sidebar = ({isSidebar}) => {
       to: "/cronograma",
       name: "Cronograma",
       exact: false,
-      IconActive: <img src={cronogramaSvg} alt=""></img>,
-      Icon: <img src={cronogramaSvg} alt=""></img>
+      IconActive: <img src={cronogramaBlueSvg} alt=""></img>,
+      Icon: <img src={cronogramaGraySvg} alt=""></img>
     },
     // {
     //   to: "/escolas",
@@ -38,8 +41,8 @@ const Sidebar = ({isSidebar}) => {
       to: "/turmas",
       name: "Turmas",
       exact: false,
-      IconActive: <img src={turmaSvg} alt=""></img>,
-      Icon: <img src={turmaSvg} alt=""></img>
+      IconActive: <img src={turmaBlueSvg} alt=""></img>,
+      Icon: <img src={turmaGraySvg} alt=""></img>
     }
   ];
 

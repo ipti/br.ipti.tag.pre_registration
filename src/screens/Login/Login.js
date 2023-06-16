@@ -29,14 +29,14 @@ const Login = props => {
       </div>
       <img className={classes.margin} src={TagImage} alt=""></img>
       <Grid className={classes.divLogin} >
-        <div className={classes.marginMobile20} />
+        {/* <div className={classes.marginMobile20} /> */}
         <Grid>
           <Grid>
             <p className={classes.titleLogin}>Matricula Online </p>
             <p className={classes.subTitleLogin}>Entre com as suas credenciais </p>
           </Grid>
         </Grid>
-        <div className={classes.marginMobile} />
+        {/* <div className={classes.marginMobile} /> */}
         <Formik
           initialValues={props.initialValues}
           onSubmit={props.onSubmit}

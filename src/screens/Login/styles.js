@@ -20,10 +20,13 @@ const useStyles = {
     flexDirection: "column",
     justifyContent: "center",
     alignItems:"center",
-    height: "100%"
+    height: "100%",
+    width: "100%",
+    position: "relative"
   },
   margin: {
-    margin: "20px"
+    margin: "20px",
+    position: "absolute"
   },
   marginMobile: {
     margin: 0
@@ -153,10 +156,13 @@ const useStyles = {
       margin: "40px"
     },
     divLogin: {
-      justifyContent: "start"
+      justifyContent: "center"
     }
   },
   "@media(max-width: 600px)": {
+    root: {
+      backgroundSize: "60%"
+    },
     divtagna: {
       display: "none"
     },

@@ -5,7 +5,7 @@ import IconSchedule from "../../assets/images/calendarSchedule.svg";
 const useStyles = makeStyles(styles);
 
 const BoxDiscriptionSchedule = props => {
-  const { title, subtitle, color } = props;
+  const { title, subtitle } = props;
   const classes = useStyles();
   return (
     <div className={`${classes.boxDescriptionSchedule} ${classes.floatLeft}`}>

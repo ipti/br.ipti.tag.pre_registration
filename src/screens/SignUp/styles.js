@@ -35,14 +35,21 @@ const useStyles = {
         position: "relative", zIndex: "100"
     },
     imgTagna: {
-        width: "100%",
+        width: "90%",
     },
     resetPassword: {
         color: styleBase.colors.white,
-        position: "relative", zIndex: "100",
+        zIndex: "100",
         fontSize: styleBase.typography.font.small,
         paddingTop: 40,
         paddingBottom: 40,
+        marginRight: 20,
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "start",
+        position: "absolute",
+        alignItems: "end",
+        width: "98%"
     },
     buttonLogin: {
         borderStyle: "solid",
@@ -79,7 +86,11 @@ const useStyles = {
         resetPassword: {
             display: "flex",
             flexDirection: "column",
-            justifyContent: "start"
+            justifyContent: "start",
+            fontSize: 14,
+            position: "absolute",
+            alignItems: "end",
+            width: "98%"
         },
     },
     "@media(max-width: 740px)": {
@@ -101,7 +112,9 @@ const useStyles = {
             alignItems: "end",
             background: "linear-gradient(180deg, rgba(71, 77, 232, 0) 0%, #474DE8 100%)",
             padding: "20px 0px",
-            height: "200px"
+            height: "200px",
+            position: "relative",
+            width: "100%"
         },
         divImage: {
             height: "100%",
@@ -119,13 +132,19 @@ const useStyles = {
             textAlign: "center"
         },
         formSignUp: {
-             justifyContent: "start",
-            marginTop: "20%",
-        }
+            justifyContent: "start",
+            marginTop: "25vh",
+        },
+        "@media(max-height: 700px)": {
+            formSignUp: {
+                marginTop: "10vh",
+            }
+        },
     },
+
     "@media(max-width: 1020px)": {
         divImage: {
-            width: "100%"
+            width: "70%"
         },
         textTitle: {
             fontFamily: styleBase.typography.types.regular,

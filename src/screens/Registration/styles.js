@@ -34,13 +34,19 @@ const useStyles = {
     }
   },
   imageRegistration: {
-    height: "60%",
-    width: "60%"
+    height: "50%",
+    width: "50%"
   },
   imgTag: {
     width: "5%",
     margin: "20px",
-    position: "absolute"
+    position: "relative"
+  },
+  backButton: {
+    width: "2%",
+    marginLeft: "20px",
+    position: "relative",
+    cursor: "pointer"
   },
   topBar: {
     width: "25%",
@@ -81,7 +87,8 @@ const useStyles = {
     marginTop: 20,
     "& label": {
       marginBottom: 10
-    }
+    },
+    background: "white",
   },
   formControl: {
     width: "100%",
@@ -105,6 +112,11 @@ const useStyles = {
     },
     imgTag: {
       width: "15%"
+    },
+    backButton: {
+      width: "8%",
+      marginLeft: "20px",
+      position: "relative"
     },
     imageRegistration: {
       height: "80%",

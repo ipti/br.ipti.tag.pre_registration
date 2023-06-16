@@ -74,8 +74,8 @@ const Start = props => {
               className="basic-single"
               classNamePrefix="select"
               placeholder="Digite o nome da projeto"
-              //  value={schools}
               options={schools}
+              isLoading={!schools}
               onChange={selectedOption => {
                 setSchool(selectedOption)
                 setIsValid(true)
@@ -94,7 +94,6 @@ const Start = props => {
             />
           </FormControl>
         </Grid>
-
       </Grid>
       <Grid
         className={`${classes.marginTop} ${classes.marginButtom}`}

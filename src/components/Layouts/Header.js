@@ -85,6 +85,8 @@ const Header = ({ setIsSidebar, isSidebar }) => {
   const handleLogout = () => {
     localStorage.clear();
     history.push("/login");
+    window.location.reload()
+
   };
 
   const { data: schoolRequest, isLoading } = useFetchRequestSchoolList();
