@@ -1,7 +1,8 @@
 import DateFnsUtils from "@date-io/date-fns";
 import {
   Checkbox,
-  FormControl, FormControlLabel, FormGroup, FormLabel
+  FormControl, FormControlLabel,
+  FormLabel
 } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
@@ -20,10 +21,10 @@ import dayjs from "dayjs";
 import { Form, Formik } from "formik";
 import PropTypes from "prop-types";
 import React, { useContext } from "react";
+import * as Yup from "yup";
 import { ButtonPurple } from "../../components/Buttons";
 import Loading from "../../components/Loading/CircularLoadingButtomActions";
 import { CreateClassroomContext } from "../../containers/Classroom/context/contextAddClassroom";
-import * as Yup from "yup";
 import styles from "./styles";
 
 const useStyles = makeStyles(theme => styles);
@@ -180,97 +181,83 @@ const Create = props => {
 
                   <Grid container
                     direction="row" md={12} sm={12}>
-                    <FormGroup>
-                      <FormControlLabel
-                        // disabled={cegueiraDisabled}
-                        control={
-                          <Checkbox
-                            checked={props.values.week_days_monday}
-                            onChange={props.handleChange}
-                          />}
-                        name='week_days_monday'
-                        labelPlacement="top"
-                        label="S"
-                      />
-                    </ FormGroup>
-                    <FormGroup>
-                      <FormControlLabel
-                        // disabled={cegueiraDisabled}
-                        control={
-                          <Checkbox
-                            checked={props.values.week_days_tuesday}
-                            onChange={props.handleChange}
-                          />}
-                        name='week_days_tuesday'
-                        labelPlacement="top"
-                        label="T"
-                      />
-                    </ FormGroup>
-                    <FormGroup>
-                      <FormControlLabel
-                        // disabled={cegueiraDisabled}
-                        control={
-                          <Checkbox
-                            checked={props.values.week_days_wednesday}
-                            onChange={props.handleChange}
-                          />}
-                        name='week_days_wednesday'
-                        labelPlacement="top"
-                        label="Q"
-                      />
-                    </ FormGroup>
-                    <FormGroup>
-                      <FormControlLabel
-                        // disabled={cegueiraDisabled}
-                        control={
-                          <Checkbox
-                            checked={props.values.week_days_thursday}
-                            onChange={props.handleChange}
-                          />}
-                        name='week_days_thursday'
-                        labelPlacement="top"
-                        label="Q"
-                      />
-                    </ FormGroup>
-                    <FormGroup>
-                      <FormControlLabel
-                        // disabled={cegueiraDisabled}
-                        control={
-                          <Checkbox
-                            checked={props.values.week_days_friday}
-                            onChange={props.handleChange}
-                          />}
-                        name='week_days_friday'
-                        labelPlacement="top"
-                        label="S"
-                      />
-                    </ FormGroup>
-                    <FormGroup>
-                      <FormControlLabel
-                        // disabled={cegueiraDisabled}
-                        control={
-                          <Checkbox
-                            checked={props.values.week_days_saturday}
-                            onChange={props.handleChange}
-                          />}
-                        name='week_days_saturday'
-                        labelPlacement="top"
-                        label="S"
-                      />
-                    </ FormGroup>
-                    <FormGroup>
-                      <FormControlLabel
-                        // disabled={cegueiraDisabled}
-                        control={
-                          <Checkbox
-                            checked={props.values.week_days_sunday}
-                            onChange={props.handleChange}
-                          />}
-                        name='week_days_sunday'
-                        labelPlacement="top"
-                        label="D"
-                      />
-                    </ FormGroup>
+                    <FormControlLabel
+                      className={classes.marginZero}
+                      control={
+                        <Checkbox
+                          checked={props.values.week_days_monday}
+                          onChange={props.handleChange}
+                        />}
+                      name='week_days_monday'
+                      labelPlacement="top"
+                      label="S"
+                    />
+                    <FormControlLabel
+                      className={classes.marginZero}
+                      control={
+                        <Checkbox
+                          checked={props.values.week_days_tuesday}
+                          onChange={props.handleChange}
+                        />}
+                      name='week_days_tuesday'
+                      labelPlacement="top"
+                      label="T"
+                    />
+                    <FormControlLabel
+                      className={classes.marginZero}
+                       control={
+                        <Checkbox
+                          checked={props.values.week_days_wednesday}
+                          onChange={props.handleChange}
+                        />}
+                      name='week_days_wednesday'
+                      labelPlacement="top"
+                      label="Q"
+                    />
+                    <FormControlLabel
+                      className={classes.marginZero}
+                      control={
+                        <Checkbox
+                          checked={props.values.week_days_thursday}
+                          onChange={props.handleChange}
+                        />}
+                      name='week_days_thursday'
+                      labelPlacement="top"
+                      label="Q"
+                    />
+                    <FormControlLabel
+                      className={classes.marginZero}
+                      control={
+                        <Checkbox
+                          checked={props.values.week_days_friday}
+                          onChange={props.handleChange}
+                        />}
+                      name='week_days_friday'
+                      labelPlacement="top"
+                      label="S"
+                    />
+                    <FormControlLabel
+                      className={classes.marginZero}
+                      control={
+                        <Checkbox
+                          checked={props.values.week_days_saturday}
+                          onChange={props.handleChange}
+                        />}
+                      name='week_days_saturday'
+                      labelPlacement="top"
+                      label="S"
+                    />
+                    <FormControlLabel
+                      className={classes.marginZero}
+                      control={
+                        <Checkbox
+                          checked={props.values.week_days_sunday}
+                          onChange={props.handleChange}
+                        />}
+                      name='week_days_sunday'
+                      labelPlacement="top"
+                      label="D"
+                    />
                   </Grid>
                 </Grid>
                 <Grid

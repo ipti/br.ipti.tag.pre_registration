@@ -44,6 +44,13 @@ body {
   src: local("Poppins Bold"), url("../fonts/Poppins-Bold.woff") format("woff");
 }
 
+@font-face {
+  font-family: "Inter Regular";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Inter Regular"), url("../fonts/Inter-Regular.ttf") format("truetype");
+}
+
 .t-button-primary {
   width: 100%;
   border: none;

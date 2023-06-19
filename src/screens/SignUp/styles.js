@@ -41,6 +41,7 @@ const useStyles = {
         color: styleBase.colors.white,
         zIndex: "100",
         fontSize: styleBase.typography.font.small,
+        fontFamily: styleBase.typography.types.inter,
         paddingTop: 40,
         paddingBottom: 40,
         marginRight: 20,
@@ -55,7 +56,8 @@ const useStyles = {
         borderStyle: "solid",
         border: "1px",
         borderRadius: "25px",
-        padding: "10px"
+        padding: "10px",
+        fontFamily: styleBase.typography.types.regular,
     },
     textTitle: {
         fontFamily: styleBase.typography.types.regular,
