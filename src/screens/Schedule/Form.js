@@ -1,10 +1,9 @@
 import DateFnsUtils from "@date-io/date-fns";
 import {
-  Checkbox,
-  FormControl, FormControlLabel, FormLabel
+  FormControl,
+  FormLabel
 } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
-import TextField from "@material-ui/core/TextField";
 import {
   makeStyles
 } from "@material-ui/core/styles";
@@ -29,8 +28,6 @@ const Create = props => {
     validationSchema,
     isEdit,
     loadingIcon,
-    allSchool,
-    setAllSchool
   } = props;
 
 
@@ -59,6 +56,8 @@ const Create = props => {
       >
         {props => {
 
+          console.log(props.values)
+
           return (
             <Form>
               <MuiPickersUtilsProvider locale={brLocale} utils={DateFnsUtils}>
@@ -73,16 +72,26 @@ const Create = props => {
                       className={classes.formControl}
                     >
                       <FormLabel>Ano de Referência*</FormLabel>
-                      <TextField
+                      <KeyboardDatePicker
+                        disableToolbar
                         name="year"
-                        value={props.values.year}
-                        onChange={props.handleChange}
+                         value={props.values.year}
+                        inputVariant="outlined"
+                        format="yyyy"
+                        views={["year"]}
                         margin="normal"
-                        id="outlined-size-small"
-                        variant="outlined"
                         required
-                      />
+                        onChange={value => {
+                           console.log(value.getFullYear())
+                            props.setFieldValue("year", value ? value : null)
 
+                        }
+                        }
+                        // openTo="year"
+                        // KeyboardButtonProps={{
+                        //   "aria-label": "Alterar data"
+                        // }}
+                      />
                       <div className={classes.formFieldError}>
                         {props.errors.year}
                       </div>
@@ -116,7 +125,6 @@ const Create = props => {
                           "aria-label": "Alterar data"
                         }}
                       />
-
                       <div className={classes.formFieldError}>
                         {props.errors.start_date}
                       </div>
@@ -143,14 +151,14 @@ const Create = props => {
                           "aria-label": "Alterar data"
                         }}
                       />
-
                       <div className={classes.formFieldError}>
                         {props.errors.end_date}
                       </div>
                     </FormControl>
                   </Grid>
                 </Grid>
-                <Grid item md={12} sm={12}>
+
+                {/* <Grid item md={12} sm={12}>
                   <Grid
                     container
                     direction="row"
@@ -171,7 +179,7 @@ const Create = props => {
                       </FormControl>
                     </Grid>
                   </Grid>
-                </Grid>
+                </Grid> */}
                 <Grid
                   className={`${classes.marginButtom}`}
                   container

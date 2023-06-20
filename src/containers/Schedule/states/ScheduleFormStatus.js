@@ -3,15 +3,20 @@ import { useFetchRequestSchools } from "../../../query/Schedule";
 
 export const States = () => {
 
-    let initialValues = {
-        start_date: null,
-        end_date: null,
-        year: "",
-        school_identificationArray: "",
-      };
 
-      const { data: schools, isLoading } = useFetchRequestSchools();
 
+  let initialValues = {
+    start_date: null,
+    end_date: null,
+    year: null,
+    school_identificationArray: "",
+  };
+
+
+
+  const { data: schools, isLoading } = useFetchRequestSchools();
+
+  // console.log(initialValues)
 
   var getIdSchools = [];
 
@@ -21,8 +26,7 @@ export const States = () => {
     }
   }
 
-
-    return {
-        initialValues, schools, isLoading, getIdSchools
-    }
+  return {
+    initialValues, schools, isLoading, getIdSchools
+  }
 }
