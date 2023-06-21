@@ -10,11 +10,12 @@ const typography = {
   types: {
     light: "Poppins Light",
     regular: "Poppins Regular",
+    normal: "Poppins normal",
     medium: "Poppins Medium",
     extraLight: "Poppins ExtraLight",
     semiBold: "Poppins Bold",
     bold: "Poppins SemiBold",
-    inter: "Inter"
+    inter: "Inter Regular"
   }
 };
 

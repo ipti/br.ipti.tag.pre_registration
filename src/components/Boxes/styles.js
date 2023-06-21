@@ -76,7 +76,7 @@ const useStyles = {
   marginBox: {
     marginRight: 10
   },
-  boxQuantityBackgroundPurple: {
+  boxQuantityBackground: {
     backgroundColor: styleBase.colors.colorsBaseProductNormal
   },
   boxQuantityBackgroundPink: {
@@ -88,8 +88,8 @@ const useStyles = {
     justifyContent: "center",
     color: styleBase.colors.white,
     fontSize: styleBase.typography.font.extraSmall,
-    padding: "9px 9px",
-    borderRadius: 8,
+    padding: "7px",
+    borderRadius: 12,
     height: "20px",
     marginRight: 8,
     minWidth: 20,

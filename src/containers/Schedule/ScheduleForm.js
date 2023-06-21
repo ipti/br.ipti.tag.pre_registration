@@ -53,7 +53,7 @@ const Form = props => {
       start_date: values.start_date,
       end_date: values.end_date,
       school_identificationArray: allSchool ? getIdSchools : [getIdSchool()],
-      year: parseInt(values.year),
+      year: parseInt(values.year.getFullYear()),
     };
     requestSaveEventPreMutation.mutate(data)
   };
@@ -73,9 +73,8 @@ const Form = props => {
       })
       .nullable()
       .required("Campo obrigatório!"),
-    year: Yup.number()
-      .min(4, "Campo deve ter no mínimo 4 digitos. Ex: 2020")
-      .required("Campo obrigatório!")
+    // year: Yup.number()
+    //   .required("Campo obrigatório!")
   });
 
  

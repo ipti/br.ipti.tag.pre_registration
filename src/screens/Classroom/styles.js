@@ -32,6 +32,9 @@ const useStyles = {
     marginTop: 90,
     marginBottom: 30
   },
+  marginZero: {
+    margin: "0"
+  },
   floatLeft: {
     float: "left"
   },

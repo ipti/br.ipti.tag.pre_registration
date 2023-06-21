@@ -111,6 +111,7 @@ const StepThree = props => {
                       variant="outlined"
                       name="color_race"
                       value={values.color_race}
+                      className={classes.textField}
                       onChange={handleChange}
                     >
                       <MenuItem value={0}>Não Declarada</MenuItem>

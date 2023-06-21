@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
-
+import TagImage from "../../assets/images/taglogin.svg"
+import BackButton from "../../assets/images/backIcon.svg"
 
 // Redux
 
@@ -18,9 +19,11 @@ import { useContext } from "react";
 
 import styles from "../../screens/Registration/styles";
 import { makeStyles } from "@material-ui/core/styles";
+import { useHistory } from "react-router";
 const useStyles = makeStyles(styles);
 
 const Home = props => {
+  const history = useHistory()
   const classes = useStyles();
   const [load, setLoad] = useState(true)
   const [open, setOpen] = useState(false);
@@ -112,6 +115,8 @@ const Home = props => {
   const backStep = () => {
     if (step > 0) {
       setStep(step - 1)
+    } if(step === 0) {
+      history.push("/register")
     }
   }
 
@@ -145,39 +150,43 @@ const Home = props => {
   };
 
   const wizard = () => {
-    // const isActive =
-    //   props.period?.data?.internal === true ||
-    //   props.period?.data?.newStudent === true ||
-    //   props?.student?.status ||
-    //   step === 6 ||
-    //   props.loading;
+
     return (
       <RegistrationContextProvider>
-        <Grid
-          className={classes.backgroundForm}
-          container
-          justifyContent="center"
-          //alignItems="center"
-        >
-          <Grid item lg={4} md={5} xs={10}>
-            {isActive ? (
-              <Wizard
-                schools={schools}
-                next={next}
-                step={step}
-                handleStudent={handleStudent}
-                loadingButtom={props.loading}
-                setIsActive={setIsActive}
-                handleSubmit={onSubmit}
-                backStep={backStep}
-                nextStep={nextStep}
-                values={dataValues}
-              />
-            ) : (
-              <Wait />
-            )}
+        <div style={{ display: "flex", flexDirection: "column" }} className={classes.backgroundForm}>
+          <div style={{ display: "flex", flexDirection: "row" }}>
+            <div className={classes.topBar} style={{ backgroundColor: "#667DF4" }} />
+            <div className={classes.topBar} style={{ backgroundColor: "#F45A5A" }} />
+            <div className={classes.topBar} style={{ backgroundColor: "#66D654" }} />
+            <div className={classes.topBar} style={{ backgroundColor: "#EADA48" }} />
+          </div>
+          <div style={{ display: "flex", flexDirection: "row" }}><img className={classes.backButton} onClick={backStep} src={BackButton} alt=""></img><img className={classes.imgTag} src={TagImage} alt=""></img></div>
+          <Grid
+            container
+            justifyContent="center"
+             //alignItems="center"
+          >
+            <Grid item lg={4} md={5} xs={10}>
+              {isActive ? (
+                <Wizard
+                  schools={schools}
+                  next={next}
+                  step={step}
+                  handleStudent={handleStudent}
+                  loadingButtom={props.loading}
+                  setIsActive={setIsActive}
+                  handleSubmit={onSubmit}
+                  backStep={backStep}
+                  nextStep={nextStep}
+                  values={dataValues}
+                />
+              ) : (
+                <Wait />
+              )}
+            </Grid>
           </Grid>
-        </Grid>
+
+        </div>
       </RegistrationContextProvider>
 
     );

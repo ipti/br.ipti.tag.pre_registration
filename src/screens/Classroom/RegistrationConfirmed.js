@@ -101,10 +101,6 @@ const Home = props => {
           <p className={classes.label}>CPF</p>
           <TextField className={classes.inputStudent} value={cpf ? cpf : "Sem cpf"} variant="outlined" disabled />
         </Grid>
-        {/* <Grid item md={4}>
-          <BoxStatus title={student.student_fk ? "Transferência" : "Novo Aluno"} />
-        </Grid>
-         */}
         <Grid item md={6}>
           <p className={classes.label}>Possui Deficiência</p>
           <TextField className={classes.inputStudent} value={deficiency} variant="outlined" disabled />

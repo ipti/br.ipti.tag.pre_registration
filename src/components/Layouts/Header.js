@@ -56,7 +56,8 @@ const useStyles = makeStyles({
     fontSize: styleBase.typography.font.medium
   },
   accountButton: {
-    color: styleBase.colors.colorsBaseProductNormal
+    color: styleBase.colors.colorsBaseProductNormal,
+    marginLeft: "10px"
   },
   "@media(max-width: 600px)": {
     menuButton: {
@@ -84,6 +85,8 @@ const Header = ({ setIsSidebar, isSidebar }) => {
   const handleLogout = () => {
     localStorage.clear();
     history.push("/login");
+    window.location.reload()
+
   };
 
   const { data: schoolRequest, isLoading } = useFetchRequestSchoolList();
@@ -93,9 +96,6 @@ const Header = ({ setIsSidebar, isSidebar }) => {
       setSchool(schoolRequest)
     }
   }, [schoolRequest])
-
-
-
 
   return (
     <AppBar classes={{ root: classes.root }} position="static">

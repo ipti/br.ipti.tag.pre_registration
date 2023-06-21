@@ -7,7 +7,6 @@ const BoxDiscriptionClassroom = props => {
   const {title, pre_registration} = props;
   const classes = useStyles();
 
-
   return (
     <div
       className={`${classes.boxDescriptionCalssroom} `}

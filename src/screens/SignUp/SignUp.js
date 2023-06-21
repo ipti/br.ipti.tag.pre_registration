@@ -35,15 +35,16 @@ const SignUp = () => {
                                 </div>
                             </div>
                         </div>
-
                     </div>
                     <div
                         className={`${classes.resetPassword} ${classes.textCenter}`}
                     >
-                        Faça o seu Login
-                        <Link className={classes.link} to="/login">
-                            clique aqui
-                        </Link>
+                        <div className={`${classes.buttonLogin}`}>
+                            Faça o seu Login
+                            <Link className={classes.link} to="/login">
+                                clique aqui
+                            </Link>
+                        </div> 
                     </div>
                 </div>
             </div>

@@ -68,7 +68,7 @@ const useStyles = {
   },
   floatLeft: {
     float: "left",
-    marginTop: "-3px"
+    marginTop: "-1px"
   },
   // "@media(max-width: 600px)": {
   //   menu: {

@@ -12,9 +12,6 @@ const useStyles = {
         display: "flex",
         position: "fixed"
     },
-    box: {
-
-    },
     divBlue: {
         background: "linear-gradient(0deg, #3F45EA, #3F45EA)",
         opacity: 0.94,
@@ -38,17 +35,29 @@ const useStyles = {
         position: "relative", zIndex: "100"
     },
     imgTagna: {
-        width: "100%",
+        width: "90%",
     },
     resetPassword: {
         color: styleBase.colors.white,
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "end",
-        position: "relative", zIndex: "100",
+        zIndex: "100",
         fontSize: styleBase.typography.font.small,
-        marginTop: 30,
-        marginBottom: 30,
+        fontFamily: styleBase.typography.types.inter,
+        paddingTop: 40,
+        paddingBottom: 40,
+        marginRight: 20,
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "start",
+        position: "absolute",
+        alignItems: "end",
+        width: "98%"
+    },
+    buttonLogin: {
+        borderStyle: "solid",
+        border: "1px",
+        borderRadius: "25px",
+        padding: "10px",
+        fontFamily: styleBase.typography.types.regular,
     },
     textTitle: {
         fontFamily: styleBase.typography.types.regular,
@@ -60,7 +69,7 @@ const useStyles = {
     },
     link: {
         fontFamily: styleBase.typography.types.bold,
-        color: styleBase.colors.red,
+        color: styleBase.colors.white,
         textDecoration: "none",
         marginLeft: 5
     },
@@ -79,12 +88,17 @@ const useStyles = {
         resetPassword: {
             display: "flex",
             flexDirection: "column",
-            justifyContent: "start"
+            justifyContent: "start",
+            fontSize: 14,
+            position: "absolute",
+            alignItems: "end",
+            width: "98%"
         },
     },
     "@media(max-width: 740px)": {
         divImage: {
-            width: "80%"
+            width: "100%",
+            position: "relative"
         },
         textTitle: {
             fontFamily: styleBase.typography.types.regular,
@@ -96,12 +110,40 @@ const useStyles = {
         resetPassword: {
             display: "flex",
             flexDirection: "row",
-            justifyContent: "center"
+            justifyContent: "center",
+            alignItems: "end",
+            background: "linear-gradient(180deg, rgba(71, 77, 232, 0) 0%, #474DE8 100%)",
+            padding: "20px 0px",
+            height: "200px",
+            position: "relative",
+            width: "100%"
         },
-        box: {
-            flexDirection: "column-reverse"
-        }
+        divImage: {
+            height: "100%",
+            marginTop: "auto",
+            position: "absolute",
+        },
+        imgTagna: {
+            width: "460px",
+        },
+        textTitle: {
+            fontFamily: styleBase.typography.types.normal,
+            fontWeight: "500",
+            color: styleBase.colors.white,
+            fontSize: 42,
+            textAlign: "center"
+        },
+        formSignUp: {
+            justifyContent: "start",
+            marginTop: "25vh",
+        },
+        "@media(max-height: 700px)": {
+            formSignUp: {
+                marginTop: "10vh",
+            }
+        },
     },
+
     "@media(max-width: 1020px)": {
         divImage: {
             width: "70%"
@@ -112,8 +154,7 @@ const useStyles = {
             fontSize: 25,
         },
         imageLoginStyle: {
-            width: "80%",
-            height: "80%",
+            width: "100%",
             marginLeft: "20%"
         },
     },
