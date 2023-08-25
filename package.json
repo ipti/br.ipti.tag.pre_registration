@@ -43,6 +43,7 @@
     "sweetalert": "^2.1.2",
     "sweetalert2": "^11.7.5",
     "sweetalert2-react-content": "^5.0.7",
+    "use-mask-input": "^3.3.3",
     "yarn": "^1.22.19",
     "yup": "^0.28.0"
   },
