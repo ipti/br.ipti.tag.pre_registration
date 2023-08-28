@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef } from "react";
 
 // Material UI
 import { FormControl, FormControlLabel, FormHelperText, FormLabel, Grid, Radio, RadioGroup, TextField } from "@material-ui/core";
@@ -19,6 +19,7 @@ import ModalExistStudent from "../../components/Modal/ModalExistStudent";
 import { RegistrationContext } from "../../containers/Registration/Context/context";
 import styleBase from "../../styles";
 import styles from "./styles";
+import MyInputComponent from "../../components/Mask/mask";
 
 const useStyles = makeStyles(styles);
 
@@ -31,55 +32,121 @@ const PurpleRadio = withStyles({
   checked: {}
 })(props => <Radio color="default" {...props} />);
 
-const TextMaskCpf = props => {
-  const { inputRef, ...others } = props;
+const TextMaskCpf = (props) => {
+  const inputRef = useRef(null);
+
+  const handleInputClick = () => {
+    if (inputRef.current) {
+      const inputElement = inputRef.current.inputElement;
+      if (inputElement) {
+        inputElement.selectionStart = 0;
+        inputElement.selectionEnd = 0;
+        inputElement.focus();
+      }
+    }
+  };
 
   return (
     <MaskedInput
-      {...others}
-      ref={ref => {
-        inputRef(ref ? ref.inputElement : null);
+      {...props}
+      ref={(ref) => {
+        inputRef.current = ref;
+        if (props.inputRef) {
+          props.inputRef(ref);
+        }
       }}
-      mask={[/\d/, /\d/, /\d/, ".", /\d/, /\d/, /\d/, ".", /\d/, /\d/, /\d/, "-", /\d/, /\d/]}
-      // placeholderChar={"_"}
+      onClick={handleInputClick}
+      placeholderChar={'\u2000'}
+      guide
+      keepCharPositions
+      mask={[
+        /\d/,
+        /\d/,
+        /\d/,
+        '.',
+        /\d/,
+        /\d/,
+        /\d/,
+        '.',
+        /\d/,
+        /\d/,
+        /\d/,
+        '-',
+        /\d/,
+        /\d/,
+      ]}
       showMask
     />
   );
 };
-
 const TextMaskDate = props => {
-  const { inputRef, ...others } = props;
+  const inputRef = useRef(null);
+
+  const handleInputClick = () => {
+    if (inputRef.current) {
+      const inputElement = inputRef.current.inputElement;
+      if (inputElement) {
+        inputElement.selectionStart = 0;
+        inputElement.selectionEnd = 0;
+        inputElement.focus();
+      }
+    }
+  };
 
   return (
     <MaskedInput
-      {...others}
-      ref={ref => {
-        inputRef(ref ? ref.inputElement : null);
+      {...props}
+      ref={(ref) => {
+        inputRef.current = ref;
+        if (props.inputRef) {
+          props.inputRef(ref);
+        }
       }}
+      onClick={handleInputClick}
+      placeholderChar={'\u2000'}
+      guide
+      keepCharPositions
       mask={[/\d/, /\d/, "/", /\d/, /\d/, "/", /\d/, /\d/, /\d/, /\d/]}
-      placeholderChar={"_"}
       showMask
     />
   );
 };
 
 const TextMaskFone = props => {
-  const { inputRef, ...other } = props;
+  const inputRef = useRef(null);
+
+  const handleInputClick = () => {
+    if (inputRef.current) {
+      const inputElement = inputRef.current.inputElement;
+      if (inputElement) {
+        inputElement.selectionStart = 0;
+        inputElement.selectionEnd = 0;
+        inputElement.focus();
+      }
+    }
+  };
 
   return (
     <MaskedInput
-      {...other}
-      ref={ref => {
-        inputRef(ref ? ref.inputElement : null);
+      {...props}
+      ref={(ref) => {
+        inputRef.current = ref;
+        if (props.inputRef) {
+          props.inputRef(ref);
+        }
       }}
+      onClick={handleInputClick}
+      placeholderChar={'\u2000'}
+      guide
+      keepCharPositions
       mask={["(", /[1-9]/, /\d/, ")", " ", /\d/, /\d/, /\d/, /\d/, /\d/, "-", /\d/, /\d/, /\d/, /\d/]}
-      placeholderChar={"\u2000"}
       showMask
     />
   );
 };
 
 const StepSix = props => {
+  const inputRef = useRef(null);
   const classes = useStyles();
   const [student, setStudent] = useState([])
   const [openModal, setOpenModal] = useState(false)
@@ -152,11 +219,11 @@ const StepSix = props => {
                       name="cpf"
                       variant="outlined"
                       InputProps={{
-                        inputComponent: TextMaskCpf,
+                        inputComponent: MyInputComponent,
                         value: values.cpf,
                         onChange: handleChange
                       }}
-                      onBlur={(e) => Isverify(e)}
+                      // onBlur={(e) => Isverify(e)}
                       error={errorList.cpf}
                       className={classes.textField}
                       autoComplete="off"

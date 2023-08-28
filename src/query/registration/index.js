@@ -11,7 +11,7 @@ const requestStudent = async id => {
         params: {
           include: {
             edcenso_uf: true,
-            school_identification: { include: { student_documents_and_address: { where: { student_fk: id } }, classroom: {where: {school_year: 2023}}, event_pre_registration: true } }
+            school_identification: { include: { student_documents_and_address: { where: { student_fk: id } }, classroom: { where: { school_year: 2023 } }, event_pre_registration: true } }
             // student_documents_and_address: true
 
           }
@@ -74,7 +74,7 @@ export const requestSaveRegistration = data => {
     .post("/student-pre-identification", data)
     .then(response => response.data)
     .catch(err => {
-      if(err.response.status === 401){
+      if (err.response.status === 401) {
         logout()
         window.location.reload()
       }
@@ -92,8 +92,8 @@ const requestSchoolList = async () => {
           classroom: { where: { school_year: 2023 } },
           calendar_event: true,
           event_pre_registration: true,
-          student_documents_and_address: true,
-          student_identification: true
+          // student_documents_and_address: true,
+          // student_identification: true
         }
       }
     })
@@ -121,7 +121,7 @@ const requestSchool = async id => {
     })
     .then(response => response.data)
     .catch(err => {
-      if(err.response.status === 401){
+      if (err.response.status === 401) {
         logout()
         window.location.reload()
       }

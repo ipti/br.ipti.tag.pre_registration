@@ -100,23 +100,16 @@ const Home = props => {
       onSubmit();
     }
 
-    // if (step === 3 && values && values.numRegistration !== "") {
-    //   getDataStudent(values.numRegistration);
-    // } else {
-    //   if (step === 7) {
-    //     onSubmit();
-    //     setStep(step)
-    //   } else {
-    //     setStep(step);
-    //   }
-    // }
   };
 
   const backStep = () => {
     if (step > 0) {
       setStep(step - 1)
-    } if(step === 0) {
+    } if(step === 0 && isActive) {
       history.push("/register")
+    }
+    if(!isActive){
+      setIsActive(true)
     }
   }
 
@@ -181,7 +174,7 @@ const Home = props => {
                   values={dataValues}
                 />
               ) : (
-                <Wait />
+                <Wait setIsActive={setIsActive}/>
               )}
             </Grid>
           </Grid>

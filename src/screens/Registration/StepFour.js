@@ -22,6 +22,9 @@ import styles from "./styles";
 import ModalExistStudent from "../../components/Modal/ModalExistStudent";
 import { RegistrationContext } from "../../containers/Registration/Context/context";
 import styleBase from "../../styles";
+import { useRef } from "react";
+import { withMask } from "use-mask-input";
+import MyInputComponent from "../../components/Mask/mask";
 
 const useStyles = makeStyles(styles);
 
@@ -35,62 +38,112 @@ const PurpleRadio = withStyles({
 })(props => <Radio color="default" {...props} />);
 
 const TextMaskFone = props => {
-  const { inputRef, ...other } = props;
+  const inputRef = useRef(null);
+
+  const handleInputClick = () => {
+    if (inputRef.current) {
+      const inputElement = inputRef.current.inputElement;
+      if (inputElement) {
+        inputElement.selectionStart = 0;
+        inputElement.selectionEnd = 0;
+        inputElement.focus();
+      }
+    }
+  };
 
   return (
     <MaskedInput
-      {...other}
-      ref={ref => {
-        inputRef(ref ? ref.inputElement : null);
+      {...props}
+      ref={(ref) => {
+        inputRef.current = ref;
+        if (props.inputRef) {
+          props.inputRef(ref);
+        }
       }}
+      onClick={handleInputClick}
+      placeholderChar={'\u2000'}
+      guide
+      keepCharPositions
       mask={["(", /[1-9]/, /\d/, ")", " ", /\d/, /\d/, /\d/, /\d/, /\d/, "-", /\d/, /\d/, /\d/, /\d/]}
-      placeholderChar={"\u2000"}
       showMask
     />
   );
 };
 
 const TextMaskDate = props => {
-  const { inputRef, ...others } = props;
+  const inputRef = useRef(null);
 
+  const handleInputClick = () => {
+    if (inputRef.current) {
+      const inputElement = inputRef.current.inputElement;
+      if (inputElement) {
+        inputElement.selectionStart = 0;
+        inputElement.selectionEnd = 0;
+        inputElement.focus();
+      }
+    }
+  };
 
   return (
     <MaskedInput
-      {...others}
-      ref={ref => {
-        inputRef(ref ? ref.inputElement : null);
+      {...props}
+      ref={(ref) => {
+        inputRef.current = ref;
+        if (props.inputRef) {
+          props.inputRef(ref);
+        }
       }}
+      onClick={handleInputClick}
+      placeholderChar={'\u2000'}
+      guide
+      keepCharPositions
       mask={[/\d/, /\d/, "/", /\d/, /\d/, "/", /\d/, /\d/, /\d/, /\d/]}
-      placeholderChar={"_"}
       showMask
     />
   );
 };
 
 const TextMaskCpf = props => {
-  const { inputRef, ...others } = props;
+  const inputRef = useRef(null);
+
+  const handleInputClick = () => {
+    if (inputRef.current) {
+      const inputElement = inputRef.current.inputElement;
+      if (inputElement) {
+        inputElement.selectionStart = 0;
+        inputElement.selectionEnd = 0;
+        inputElement.focus();
+      }
+    }
+  };
 
   return (
     <MaskedInput
-      {...others}
-      ref={ref => {
-        inputRef(ref ? ref.inputElement : null);
+      {...props}
+      ref={(ref) => {
+        inputRef.current = ref;
+        if (props.inputRef) {
+          props.inputRef(ref);
+        }
       }}
+      onClick={handleInputClick}
+      placeholderChar={'\u2000'}
+      guide
+      keepCharPositions
       mask={[/\d/, /\d/, /\d/, ".", /\d/, /\d/, /\d/, ".", /\d/, /\d/, /\d/, "-", /\d/, /\d/]}
-      placeholderChar={"_"}
       showMask
     />
   );
 };
 
 const StepFour = props => {
+  const inputRef = useRef(null);
   const classes = useStyles();
   const { school, quiz } = useContext(RegistrationContext)
   const [student, setStudent] = useState([])
   const [studentResponsable, setStudentResponsable] = useState([])
   const [openModalCPF, setOpenModalCPF] = useState(false)
   const [openModalCPFResponsable, setOpenModalCPFResponsable] = useState(false)
-
 
   const validationSchema = Yup.object().shape({
     responsable_name: Yup.string().required("Campo obrigatório!"),
@@ -100,7 +153,6 @@ const StepFour = props => {
     sex: Yup.number().required("Campo obrigatório!"),
     zone: Yup.number().required("Campo obrigatório!"),
   });
-
 
   const initialValues = {
     birthday: props?.values?.birthday ?? '',
@@ -131,7 +183,6 @@ const StepFour = props => {
       setStudentResponsable(isValid);
     }
   }
-
 
   return (
     <>
@@ -172,11 +223,12 @@ const StepFour = props => {
                       name="cpf"
                       variant="outlined"
                       InputProps={{
-                        inputComponent: TextMaskCpf,
+                        inputComponent: withMask(MyInputComponent, '9999-9999'),
                         value: values.cpf,
-                        onChange: handleChange
+                        inputRef: inputRef,
+                        onChange: handleChange,
                       }}
-                      onBlur={(e) => Isverify(e)}
+                      // onBlur={(e) => Isverify(e)}
                       className={classes.textField}
                       autoComplete="off"
 
