@@ -3,6 +3,7 @@ import LoginImg from "../../assets/images/faded-logo.png";
 const useStyles = {
   backgroundForm: {
     minWidth: "100%",
+    minHeight: "100%",
     fontFamily: styleBase.typography.types.light,
     background: `url(${LoginImg})`,
     backgroundRepeat: "no-repeat",

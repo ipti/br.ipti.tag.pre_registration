@@ -16,7 +16,7 @@ export const Controller = () => {
       },
       onSuccess: (data) => {
         swal("Pré-matricula feita com sucesso!")
-        history.push('/register')
+        // history.push('/register')
       },
     }
   );

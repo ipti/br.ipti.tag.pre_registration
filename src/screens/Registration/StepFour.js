@@ -223,7 +223,7 @@ const StepFour = props => {
                       name="cpf"
                       variant="outlined"
                       InputProps={{
-                        inputComponent: withMask(MyInputComponent, '9999-9999'),
+                        inputComponent: MyInputComponent,
                         value: values.cpf,
                         inputRef: inputRef,
                         onChange: handleChange,
@@ -436,7 +436,7 @@ const StepFour = props => {
                     onClick={handleSubmit}
                     className="t-button-primary"
                     type="submit"
-                    title={ quiz.length > 0 ? "Continuar" : "Finalizar"}
+                    title={ "Continuar"}
                   />
                 </Grid>
               </Grid>

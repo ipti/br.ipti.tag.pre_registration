@@ -9,23 +9,6 @@ const ReMatricula = props => {
   const { requestSaveRegistrationMutation } = Controller();
 
   const { id } = useParams()
-
-  // useEffect(() => {
-
-  //   if (loadData) {
-  //     props.dispatch({
-  //       type: "FETCH_STUDENT",
-  //       registration: id
-  //     })
-  //     setLoadData(false);
-  //   }
-  //   if (loadDataSchool) {
-  //     props.dispatch({ type: "FETCH_SCHOOLS_LIST" });
-  //     setLoadDataSchool(false);
-  //   }
-
-  // }, [loadData, props, loadDataSchool, id]);
-
   const { data } = useFetchRequestStudent({ id: id });
 
   const onSubmit = (value) => {

@@ -1,7 +1,7 @@
 import React, { Suspense, lazy } from "react";
 import { HashRouter, Route, Switch, Redirect } from "react-router-dom";
 import Login from "./containers/Login";
-import RegistrationHome from "./containers/Registration/Home";
+import RegistrationHome from "./containers/Registration/FormRegistration/Home";
 import { isAuthenticated } from "./services/auth";
 import MainLayout from "./components/Layouts/MainLayout";
 import NotFoundPage from "./components/Layouts/NotFoundPage";
@@ -10,6 +10,7 @@ import ReMatricula from "./containers/Registration/ReMatricula";
 import { Classroom, ClassroomForm } from "./containers/Classroom";
 import CreateClassroom from "./containers/Classroom/AddClassroom";
 import Register from "./containers/Register";
+import FormRegistration from "./containers/Registration/FormRegistration/FormRegistration";
 
 //const Home = lazy(() => import("./containers/Home"));
 const Schedule = lazy(() => import("./containers/Schedule/Schedule"));
@@ -49,7 +50,7 @@ const Routes = () => (
     <Switch>
       <Route path="/login" exact component={Login} />
       <Route path="/register" exact component={Register} />
-      <Route path="/matricula" exact component={RegistrationHome} />
+      <Route path="/matricula" exact component={FormRegistration} />
       <Route path="/matricula/:id" exact component={ReMatricula} />
       <PrivateRoute exact path="/" component={Schedule} />
       <PrivateRoute exact path="/cronograma" component={Schedule} />

@@ -374,7 +374,7 @@ const StepSix = props => {
                     onClick={handleSubmit}
                     className="t-button-primary"
                     type="submit"
-                    title={ quiz.length > 0 ? "Continuar" : "Finalizar"}
+                    title={"Continuar"}
                   />
                 </Grid>
               </Grid>
