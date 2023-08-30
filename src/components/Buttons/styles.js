@@ -55,7 +55,7 @@ const useStyles = {
     fontSize: styleBase.typography.font.medium,
     fontFamily: styleBase.typography.types.light,
     textAlign: "center",
-    padding: "6px 10px",
+    // padding: "6px 10px",
     cursor: 'pointer',
     transition: 'ease-in',
     outline: 'none',
