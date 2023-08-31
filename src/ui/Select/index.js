@@ -1,30 +1,49 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+import * as React from 'react';
+import ReactSelect from 'react-select';
 
-const SelectUi = ({ value, handleChange, label, options }) => {
+const SelectUi = ({ value, handleChange, label, options, name, getOptionValue, getOptionLabel, disabled }) => {
+
+
+    const customStyles = {
+        control: base => ({
+          ...base,
+      
+          height: "56px",
+          minHeight: "56px",
+          fontFamily: "Roboto, Helvetica, Arial, sans-serif",
+          display: 'flex', flexDirection: 'row', justifyContent: "start"
+        }),
+        menu: base => ({
+          ...base,
+          width: '100%',
+          fontFamily: "Roboto, Helvetica, Arial, sans-serif",
+        })
+      };
 
 
     return (
-        <Box sx={{ minWidth: 120 }}>
-            <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Age</InputLabel>
-                <Select
-                    value={value}
-                    label={label}
-                    onChange={handleChange}
-                >
-                    {options.map((item, index) => {
-                        return (
-                            <MenuItem value={10}>Ten</MenuItem>
-                        )
-                    })}
-                </Select>
-            </FormControl>
-        </Box>
+        <div style={{width: "100%"}}>
+          <FormControl
+            component="fieldset"
+            style={{width: "100%"}}
+          >
+            <ReactSelect
+              styles={customStyles}
+              className="basic-single"
+              name={name}
+              classNamePrefix="select"
+              defaultValue={value}
+              placeholder={label}
+              options={options}
+              isLoading={!options}
+              onChange={handleChange}
+              getOptionValue={getOptionValue}
+              getOptionLabel={getOptionLabel}
+              isDisabled={disabled}
+            />
+          </FormControl>
+        </div>
     );
 }
 

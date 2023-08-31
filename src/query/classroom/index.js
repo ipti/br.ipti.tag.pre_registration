@@ -48,6 +48,19 @@ export const requestDeletePreRegistration = id => {
     });
 };
 
+export const requestUpdatePreRegistration = (id, body) => {
+  return api
+    .put("/student-pre-identification/" + id, body)
+    .then(response => response.data)
+    .catch(err => {
+      if (err.response.status === 401) {
+        logout()
+        window.location.reload()
+      }
+      throw err;
+    });
+};
+
 
 
 export const useFetchRequestClassroom = ({ id }) => {
