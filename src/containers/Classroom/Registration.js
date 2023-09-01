@@ -6,11 +6,14 @@ import { RegistrationConfirmed } from "../../screens/Classroom";
 import { StageRegistrationState } from "./context/statesRegistration";
 import { ControllerUpdatePreRegistration } from "../../controller/classroom/EditPreRegistraton";
 import api from "../../services/api";
+import { StageState } from "./context/states";
 
 const Registration = props => {
 
   const [state, setState] = useState([]);
   const [loadStates, setLoadStates] = useState(true)
+
+  const {classrooms} = StageState()
 
    const {requestUpdateRegistrationMutation, requestUpdatePreIdentificationMutation} = Controller();
 
@@ -35,8 +38,13 @@ const Registration = props => {
       color_race: data.color_race.id, 
       deficiency: data.deficiency.id, 
       zone: data.zone.id, 
-      edcenso_city: data.edcenso_city,
-      edcenso_uf: data.edcenso_uf
+      edcenso_city: data.edcenso_city?.id ? data.edcenso_city.id : data.edcenso_city,
+      edcenso_uf: data.edcenso_uf?.id ? data.edcenso_uf.id : data.edcenso_uf,
+      cep: data.cep ?  data.cep.replace(/\D/g, '') : null,
+      cpf: data.cpf ?  data.cpf.replace(/\D/g, '') : "",
+      responsable_telephone: data.responsable_telephone ?  data.responsable_telephone.replace(/\D/g, '') : "",
+      responsable_cpf: data.responsable_cpf ? data.responsable_cpf.replace(/\D/g, '') :  "",
+      classroom_fk: data.classroom_fk.id
     }
     
     requestEditPreRegistrationMutation.mutate({id: id, data: body})
@@ -53,7 +61,6 @@ const Registration = props => {
           }
         })
         setState(res.data)
-        console.log(state)
         setLoadStates(false)
       })();
     }
@@ -74,6 +81,7 @@ const Registration = props => {
             state={state}
             loadingIcon={props.loading}
             handleEditPreRegistration={handleEditPreRegistration}
+            classrooms={classrooms}
           />
         </>
       )}

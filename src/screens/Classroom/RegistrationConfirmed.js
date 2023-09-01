@@ -18,11 +18,17 @@ import { Column, Row } from "../../styles/style";
 import styles from "./styles";
 import { Form, Formik } from "formik";
 import SelectUi from "../../ui/Select";
+import { useRef } from "react";
+import MaskCep from "../../components/Mask/maskcep";
+import MaskPhone from "../../components/Mask/maskphone";
+import MaskCpf from "../../components/Mask/maskcpf";
 
 const useStyles = makeStyles(styles);
 
 const Home = props => {
   const classes = useStyles();
+
+  const inputRef = useRef(null);
 
   const [citys, setCitys] = useState([])
 
@@ -35,6 +41,7 @@ const Home = props => {
     handleEditPreRegistration,
     answer,
     state,
+    classrooms
   } = props;
   const student = registration ?? [];
 
@@ -76,12 +83,8 @@ const Home = props => {
     return color.find(props => props.id === student?.color_race)
   }
 
-  const getState = () => {
-    return state.find(props => props.id === student?.edcenso_uf) ?? 0
-  }
-
-  const getCity = () => {
-    return citys?.find(props => props.id === student?.edcenso_city) ?? 0
+  const getClassroom = () => {
+    return classrooms?.find(props => props.id === student?.classroom_fk)
   }
 
   const initialValue = {
@@ -100,34 +103,50 @@ const Home = props => {
     number: student?.number,
     cep: student?.cep,
     zone: student?.zone === 1 ? { id: 1, name: "Rural" } : { id: 2, name: "Urbana" },
-    edcenso_uf: student.edcenso_uf,
-    edcenso_city: student.edcenso_city
+    edcenso_uf: student.edcenso_uf ?? null,
+    edcenso_city: student.edcenso_city ?? null,
+    classroom_fk: classrooms ? getClassroom() : student.classroom_fk
   }
 
+
   const handleStatesCity = (selectedOption, setFieldValue) => {
-    console.log(selectedOption)
     setFieldValue("edcenso_city", selectedOption.id
     )
     setFieldValue("edcenso_uf", selectedOption.edcenso_uf_fk
     )
-
   }
   return (
     <>
-      <ArrowBack onChange={() => { history.goBack() }} style={{ cursor: "pointer" }} />
+      <ArrowBack onClick={() => { history.goBack() }} style={{ cursor: "pointer" }} />
       <h1>{student && student.classroom.name}</h1>
       <Grid className={classes.boxTitlePagination} container direction="row">
-        <h1>Matrículas</h1>
+        <h2>Matrículas</h2>
       </Grid>
-      <Column>
+      {edit ? <>
+        {!student?.unavailable ? <Grid item style={{ width: "100%" }} md={3}>
+          <ButtonPurple
+            className="t-button-primary"
+            onClick={() => handleSubmit(body)}
+            type="button"
+            title="Confirmar Matricula"
+          />
+        </Grid> : <Grid item style={{ width: "100%" }} md={3}>
+          <ButtonLinePurple
+            type="button"
+            disabled
+            title="Já Matriculado"
+          />
+        </Grid>}
+      </> : null}
+      {!student?.unavailable ? <Column>
         <Row id="end"><Edit style={{ cursor: "pointer" }} onClick={() => setEdit(!edit)} /></Row>
-      </Column>
+      </Column> : null}
 
-      {<Formik initialValues={initialValue} onSubmit={values => handleEditPreRegistration(student.id, values)}>
+      {classrooms && student ? <Formik initialValues={initialValue} onSubmit={values => { handleEditPreRegistration(student.id, values); setEdit(!edit) }}>
         {({ errors, values, touched, handleChange, handleSubmit, setFieldValue }) => {
           return (
             <Form onSubmit={handleSubmit}>
-              {!edit ? <Row id="start" style={{width: "40%"}}>
+              {!edit ? <Row id="start" style={{ width: "40%" }}>
                 <ButtonPurple
                   className="t-button-primary"
                   type="submit"
@@ -135,7 +154,7 @@ const Home = props => {
                 />
                 <ButtonWhite
                   className="t-button-primary"
-                  style={{backgroundColor: "#94a8be"}}
+                  style={{ backgroundColor: "#94a8be" }}
                   type="button"
                   onClick={() => setEdit(!edit)}
                   title="Canelar"
@@ -144,11 +163,11 @@ const Home = props => {
                 : null}
               <h2> Dados básicos </h2>
               <Grid container direction="row" spacing={2}>
-                <Grid item md={6}>
+                <Grid item style={{ width: "100%" }} md={6}>
                   <p className={classes.label}>Name</p>
                   <TextField className={classes.inputStudent} value={values.name} name="name" onChange={handleChange} variant="outlined" disabled={edit} />
                 </Grid>
-                <Grid item md={6}>
+                <Grid item style={{ width: "100%" }} md={6}>
                   <p className={classes.label}>Sexo</p>
                   <SelectUi
                     getOptionValue={opt => opt.id}
@@ -161,11 +180,11 @@ const Home = props => {
                     variant="outlined"
                     disabled={edit} />
                 </Grid>
-                <Grid item md={6}>
+                <Grid item style={{ width: "100%" }} md={6}>
                   <p className={classes.label}>Data de Nascimento</p>
                   <TextField className={classes.inputStudent} name="birthday" onChange={handleChange} value={values.birthday} variant="outlined" disabled={edit} />
                 </Grid>
-                <Grid item md={6}>
+                <Grid item style={{ width: "100%" }} md={6}>
                   <p className={classes.label}>Cor/Raça</p>
                   <SelectUi
                     className={classes.inputStudent}
@@ -177,11 +196,16 @@ const Home = props => {
                     variant="outlined"
                     disabled={edit} />
                 </Grid>
-                <Grid item md={6}>
+                <Grid item style={{ width: "100%" }} md={6}>
                   <p className={classes.label}>CPF</p>
-                  <TextField className={classes.inputStudent} name="cpf" onChange={handleChange} value={values.cpf} variant="outlined" disabled={edit} />
+                  <TextField className={classes.inputStudent} InputProps={{
+                    inputComponent: MaskCpf,
+                    value: values.cpf,
+                    inputRef: inputRef,
+                    onChange: handleChange,
+                  }} name="cpf" onChange={handleChange} value={values.cpf} variant="outlined" disabled={edit} />
                 </Grid>
-                <Grid item md={6}>
+                <Grid item style={{ width: "100%" }} md={6}>
                   <p className={classes.label}>Possui Deficiência</p>
                   <SelectUi
                     getOptionValue={opt => opt.id}
@@ -197,55 +221,73 @@ const Home = props => {
               </Grid>
               <h2> Dados do Responsável </h2>
               <Grid container direction="row" spacing={2}>
-                <Grid item md={6}>
+                <Grid item style={{ width: "100%" }} md={6}>
                   <p className={classes.label}>Responsável</p>
                   <TextField className={classes.inputStudent} name="responsable_name" value={values.responsable_name} onChange={handleChange} variant="outlined" disabled={edit} />
                 </Grid>
-                <Grid item md={6}>
+                <Grid item style={{ width: "100%" }} md={6}>
                   <p className={classes.label}>CPF</p>
-                  <TextField className={classes.inputStudent} name="responsable_cpf" value={values.responsable_cpf} onChange={handleChange} variant="outlined" disabled={edit} />
+                  <TextField className={classes.inputStudent}
+                    InputProps={{
+                      inputComponent: MaskCpf,
+                      value: values.responsable_cpf,
+                      inputRef: inputRef,
+                      onChange: handleChange,
+                    }}
+                    name="responsable_cpf" value={values.responsable_cpf} onChange={handleChange} variant="outlined" disabled={edit} />
                 </Grid>
-                <Grid item md={6}>
+                <Grid item style={{ width: "100%" }} md={6}>
                   <p className={classes.label}>Telefone</p>
-                  <TextField className={classes.inputStudent} name="responsable_telephone" value={values.responsable_telephone} onChange={handleChange} variant="outlined" disabled={edit} />
+                  <TextField className={classes.inputStudent} InputProps={{
+                    inputComponent: MaskPhone,
+                    value: values.responsable_telephone,
+                    inputRef: inputRef,
+                    onChange: handleChange,
+                  }} name="responsable_telephone" value={values.responsable_telephone} onChange={handleChange} variant="outlined" disabled={edit} />
                 </Grid>
               </Grid>
               <h2> Endereço </h2>
               <Grid container direction="row" spacing={3}>
-                <Grid item md={6}>
+                <Grid item style={{ width: "100%" }} md={6}>
                   <p className={classes.label}>Endereço</p>
                   <TextField className={classes.inputStudent} name="address" value={values.address} onChange={handleChange} variant="outlined" disabled={edit} />
                 </Grid>
-                <Grid item md={6}>
+                <Grid item style={{ width: "100%" }} md={6}>
                   <p className={classes.label}>Bairro</p>
                   <TextField className={classes.inputStudent} name="neighborhood" value={values.neighborhood} variant="outlined" disabled={edit} />
                 </Grid>
-                <Grid item md={6}>
+                <Grid item style={{ width: "100%" }} md={6}>
                   <p className={classes.label}>Número</p>
                   <TextField className={classes.inputStudent} value={values.number} name="number" variant="outlined" onChange={handleChange} disabled={edit} />
                 </Grid>
-                <Grid item md={6}>
+                <Grid item style={{ width: "100%" }} md={6}>
                   <p className={classes.label}>Complemento</p>
-                  <TextField className={classes.inputStudent} value={values.complement} name="complement" onChange={handleChange} variant="outlined" disabled={edit} />
+                  <TextField className={classes.inputStudent} name="complement" variant="outlined" disabled={edit} />
                 </Grid>
-                <Grid item md={6}>
+                <Grid item style={{ width: "100%" }} md={6}>
                   <p className={classes.label}>CEP</p>
-                  <TextField className={classes.inputStudent} value={values.cep} name="cep" onChange={handleChange} variant="outlined" disabled={edit} />
+                  <TextField className={classes.inputStudent}
+                    InputProps={{
+                      inputComponent: MaskCep,
+                      value: values.complement,
+                      inputRef: inputRef,
+                      onChange: handleChange,
+                    }}
+                    value={values.cep} name="cep" onChange={handleChange} variant="outlined" disabled={edit} />
                 </Grid>
-                <Grid item md={6}>
+                <Grid item style={{ width: "100%" }} md={6}>
                   <p className={classes.label}>Estado</p>
                   <SelectUi className={classes.inputStudent} options={state} getOptionValue={opt => opt.id} getOptionLabel={opt => opt.name} value={values.edcenso_uf} name="edcenso_uf" handleChange={selectedOption => {
-                    console.log(selectedOption)
                     setCitys(selectedOption.edcenso_city)
                   }} variant="outlined" disabled={edit} />
                 </Grid>
-                <Grid item md={6}>
+                <Grid item style={{ width: "100%" }} md={6}>
                   <p className={classes.label}>Cidade</p>
                   <SelectUi className={classes.inputStudent} value={values.edcenso_city} options={citys} getOptionValue={opt => opt.id} getOptionLabel={opt => opt.name} name="edcenso_city" handleChange={selectedOption => {
                     handleStatesCity(selectedOption, setFieldValue)
                   }} variant="outlined" disabled={edit} />
                 </Grid>
-                <Grid item md={6}>
+                <Grid item style={{ width: "100%" }} md={6}>
                   <p className={classes.label}>Local de Moradia</p>
                   <SelectUi
                     getOptionValue={opt => opt.id}
@@ -257,30 +299,31 @@ const Home = props => {
                     variant="outlined"
                     disabled={edit} />
                 </Grid>
-                <Grid item md={12}>
+                <Grid item style={{ width: "100%" }} md={12}>
                   <div className={classes.lineGrayClean}></div>
                 </Grid>
               </Grid>
               <Grid container direction="row" spacing={3}>
-                <Grid item md={6}>
+                <Grid item style={{ width: "100%" }} md={6}>
                   <p className={classes.label}>Turma</p>
-                  <TextField className={classes.inputStudent} value={student?.classroom?.name} variant="outlined" />
+                  <SelectUi options={classrooms} disabled={true} getOptionValue={opt => opt.id} value={values.classroom_fk}
+                    getOptionLabel={opt => opt.name} className={classes.inputStudent} variant="outlined" />
                 </Grid>
               </Grid>
 
               {answer ? <> {answer.length > 0 ? <>
                 <Grid container direction="row" spacing={3}>
-                  <Grid item md={12}>
+                  <Grid item style={{ width: "100%" }} md={12}>
                     <div className={classes.lineGrayClean}></div>
                   </Grid>
-                  <Grid item md={5}>
+                  <Grid item style={{ width: "100%" }} md={5}>
                     <div className={classes.floatLeft}>
                       <h2> Formulário </h2>
                     </div>
                   </Grid>
                   {answer.map((item, index) => {
                     return (
-                      <Grid item md={12} key={index}>
+                      <Grid item style={{ width: "100%" }} md={12} key={index}>
                         <p className={classes.label}>{item.description}</p>
                         <TextField className={classes.inputStudent} value={item.value} variant="outlined" disabled={edit} />
                       </Grid>
@@ -294,7 +337,7 @@ const Home = props => {
           )
         }}
 
-      </Formik>}
+      </Formik> : null}
       <Grid
         className={classes.boxButtons}
         container
@@ -303,21 +346,8 @@ const Home = props => {
       >
         {!props?.loadingIcon ? (
           <>
-            {!student?.unavailable ? <Grid item md={3}>
-              <ButtonPurple
-                className="t-button-primary"
-                onChange={() => handleSubmit(body)}
-                type="button"
-                title="Confirmar Matricula"
-              />
-            </Grid> : <Grid item md={3}>
-              <ButtonLinePurple
-                type="button"
-                disabled
-                title="Já Matriculado"
-              />
-            </Grid>}
-            {/* <Grid item md={3}>
+
+            {/* <Grid item style={{width: "100%"}} md={3}>
               <ButtonLinePurple
               onChange={() => handleRefusePreIdentification(false)}
               type="button"
@@ -326,7 +356,7 @@ const Home = props => {
             </Grid> */}
           </>
         ) : (
-          <Grid item md={3}>
+          <Grid item style={{ width: "100%" }} md={3}>
             <Loading />
           </Grid>
         )}

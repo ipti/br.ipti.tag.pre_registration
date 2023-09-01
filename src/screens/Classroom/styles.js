@@ -10,7 +10,7 @@ const useStyles = {
     fontWeight: "unset"
   },
   boxTitlePagination: {
-    marginBottom: 40
+    marginBottom: 20
   },
   formControl: {
     width: "80%",

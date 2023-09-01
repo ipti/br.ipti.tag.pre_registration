@@ -1,16 +1,15 @@
 import React, { Suspense, lazy } from "react";
-import { HashRouter, Route, Switch, Redirect } from "react-router-dom";
-import Login from "./containers/Login";
-import RegistrationHome from "./containers/Registration/FormRegistration/Home";
-import { isAuthenticated } from "./services/auth";
+import { HashRouter, Redirect, Route, Switch } from "react-router-dom";
 import MainLayout from "./components/Layouts/MainLayout";
 import NotFoundPage from "./components/Layouts/NotFoundPage";
 import CircularLoading from "./components/Loading/CircularLoading";
-import ReMatricula from "./containers/Registration/ReMatricula";
 import { Classroom, ClassroomForm } from "./containers/Classroom";
 import CreateClassroom from "./containers/Classroom/AddClassroom";
+import Login from "./containers/Login";
 import Register from "./containers/Register";
 import FormRegistration from "./containers/Registration/FormRegistration/FormRegistration";
+import ReMatricula from "./containers/Registration/ReMatricula";
+import { isAuthenticated } from "./services/auth";
 
 //const Home = lazy(() => import("./containers/Home"));
 const Schedule = lazy(() => import("./containers/Schedule/Schedule"));

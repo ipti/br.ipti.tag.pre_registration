@@ -56,7 +56,6 @@ const Create = props => {
       >
         {props => {
 
-          console.log(props.values)
 
           return (
             <Form>
@@ -82,7 +81,6 @@ const Create = props => {
                         margin="normal"
                         required
                         onChange={value => {
-                           console.log(value.getFullYear())
                             props.setFieldValue("year", value ? value : null)
 
                         }
