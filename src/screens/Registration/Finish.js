@@ -24,16 +24,16 @@ const Finish = props => {
         </Grid>
         <Grid item xs={12}>
           <p>
-            Matrícula realizada com sucesso,
-            <br /> a escola entrará em contato
+            Clique no botão,
+            <br /> Para finalizar a matricula
           </p>
         </Grid>
       </Grid><div style={{ margin: 'auto', marginTop: '20px', width: '300px' }}>
         <ButtonGreen
           className="t-button-primary"
           type="button"
-          onClick={() => window.location.reload()}
-          title="Voltar para o inicio"
+          onClick={() => props.onSubmit()}
+          title="Finalizar"
         />
       </div>
       <Grid

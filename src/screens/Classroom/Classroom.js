@@ -31,7 +31,7 @@ const theme = createTheme({
 const useStyles = makeStyles(theme => styles);
 
 
-const Classroom = ({ pagination, handlePage, activePage }) => {
+const Classroom = () => {
 
   const { classrooms: stages } = useContext(StageContext)
 
@@ -53,22 +53,22 @@ const Classroom = ({ pagination, handlePage, activePage }) => {
   const year_classrrom = [{ year: "Todos", id: 11 }, ...yearArray];
 
   const stage = () => {
-    return stages.map((stage, index) => {
-
+    return stages?.map((stage, index) => {
       return (
         <Grid key={index} item md={4} sm={3} xs={12}>
-          <BoxBig
+          {stage ? <BoxBig
             link={`turmas/${stage.id}`}
-            title={stage.name}
+            title={stage?.name}
             addCursor={true}
             textRight=""
           >
             <BoxDiscriptionClassroom
-              title={`Ano: ${stage.school_year}`}
-              pre_registration={stage.student_pre_identification}
-              registrationConfirmed={`${stage.student_pre_identification.length}`}
+              title={`Ano: ${stage?.school_year}`}
+              pre_registration={stage?.student_pre_identification}
+              registrationConfirmed={`${stage?.student_pre_identification.length}`}
             />
           </BoxBig>
+          : null}
         </Grid>
       );
     });
@@ -83,7 +83,7 @@ const Classroom = ({ pagination, handlePage, activePage }) => {
             {/* <p style={{marginLeft: 'auto'}}> Será valido o último ano escolar para cada estagio</p> */}
           </div>
           <div className={`${classes.spaceBetween}`}>
-            <div style={{ width: matches ? "80%" :'50%' }}>
+            <div style={{ width: matches ? "80%" : '50%' }}>
               <Select
                 className="basic-single"
                 classNamePrefix="select"

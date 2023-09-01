@@ -67,7 +67,6 @@ const Quiz = props => {
                             <Grid>
                                 <Grid>
                                     <h3>{item.name}</h3>
-                                    {/* <p>{data.school_year}</p> */}
                                 </Grid>
                             </Grid>
                             {item.questions.map((question, index) => {
@@ -115,7 +114,6 @@ const Quiz = props => {
                                     </Grid>
                                 )
                             })}
-
                         </Grid>
                     )
                 })}
@@ -129,10 +127,8 @@ const Quiz = props => {
                     <Grid item xs={6}>
                         <ButtonPurple
                             type="submit"
-                            // onClick={nextPag}
                             title="Finalizar"
                             className="t-button-primary"
-                        // disabled={!isValid}
                         />
                     </Grid>
                 </Grid>

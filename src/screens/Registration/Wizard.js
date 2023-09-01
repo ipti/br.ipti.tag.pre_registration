@@ -14,6 +14,8 @@ import StepFour from "./StepFour";
 import StepOne from "./StepOne";
 import StepSix from "./StepSix";
 import StepThree from "./StepThree";
+
+
 const Wizard = props => {
 
   const nextStep = step => {
@@ -21,6 +23,7 @@ const Wizard = props => {
   };
 
   const { isOfLegalAge } = useContext(RegistrationContext);
+  
   const componentMapping = {
     "0": Start,
     "1": Classroom,

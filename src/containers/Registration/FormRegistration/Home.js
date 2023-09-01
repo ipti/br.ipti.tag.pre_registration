@@ -1,23 +1,23 @@
 import React, { useState } from "react";
 
-import TagImage from "../../assets/images/taglogin.svg"
-import BackButton from "../../assets/images/backIcon.svg"
+import TagImage from "../../../assets/images/taglogin.svg"
+import BackButton from "../../../assets/images/backIcon.svg"
 
 // Redux
 
 // Components
-import Alert from "../../components/Alert/CustomizedSnackbars";
-import Loading from "../../components/Loading/CircularLoadingRegistration";
-import Wait from "../../screens/Registration/Wait";
-import Wizard from "../../screens/Registration/Wizard";
+import Alert from "../../../components/Alert/CustomizedSnackbars";
+import Loading from "../../../components/Loading/CircularLoadingRegistration";
+import Wait from "../../../screens/Registration/Wait";
+import Wizard from "../../../screens/Registration/Wizard";
 
 // Material UI
 import Grid from "@material-ui/core/Grid";
-import { Controller } from "../../controller/registration";
-import RegistrationContextProvider, { RegistrationContext } from "./Context/context";
+import { Controller } from "../../../controller/registration";
+import RegistrationContextProvider, { RegistrationContext } from "../Context/context";
 import { useContext } from "react";
 
-import styles from "../../screens/Registration/styles";
+import styles from "../../../screens/Registration/styles";
 import { makeStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router";
 const useStyles = makeStyles(styles);
@@ -25,51 +25,18 @@ const useStyles = makeStyles(styles);
 const Home = props => {
   const history = useHistory()
   const classes = useStyles();
-  const [load, setLoad] = useState(true)
   const [open, setOpen] = useState(false);
   const [step, setStep] = useState(0);
   const [dataValues, setDataValues] = useState({});
-  const { schools } = useContext(RegistrationContext);
+  const { schools, quiz } = useContext(RegistrationContext);
   const { requestSaveRegistrationMutation } = Controller()
   const [isActive, setIsActive] = useState(true);
 
-  // useEffect(() => {
-
-  //   if (loadDataSchool) {
-  //     props.dispatch({ type: "FETCH_SCHOOLS_LIST" });
-  //     setLoadDataSchool(false);
-  //   }
-
-  //   // if (loadPeriod) {
-  //   //   props.dispatch({ type: "FETCH_PERIOD" });
-  //   //   setLoadPeriod(false);
-  //   // }
-
-
-  //   if (step === 2 && props?.student?.status === "1") {
-  //     setStep(3);
-  //   }
-
-  //   if (props?.registration?.status === "1" && !props.loading) {
-  //     setStep(6);
-  //   }
-
-  //   if (props?.student?.status === "1" && !props.loading) {
-  //     setStep(5);
-  //   }
-
-  //   if (props.openAlert) {
-  //     setTimeout(function () {
-  //       props.dispatch({ type: "CLOSE_ALERT_REGISTRATION" });
-  //     }, 3000);
-  //   }
-  // }, [loadDataSchool, loadDataStudent, loadPeriod, number, open, props, step]);
 
   const onSubmit = () => {
 
     const parseBool = value =>
       ['true', 'false'].includes(value) ? value === true : null
-    if (load) {
       requestSaveRegistrationMutation.mutate(
         {
           ...dataValues, sex: parseInt(dataValues.sex),
@@ -84,8 +51,8 @@ const Home = props => {
           event_pre_registration: parseInt(dataValues.event_pre_registration),
         }
       )
-      setLoad(false)
-    }
+      // setLoad(false)
+    
   };
 
 
@@ -95,28 +62,21 @@ const Home = props => {
 
     setDataValues(data);
     setStep(step)
-
-    if (step === 6) {
-      onSubmit();
-    }
-
-    // if (step === 3 && values && values.numRegistration !== "") {
-    //   getDataStudent(values.numRegistration);
-    // } else {
-    //   if (step === 7) {
-    //     onSubmit();
-    //     setStep(step)
-    //   } else {
-    //     setStep(step);
-    //   }
-    // }
   };
+
 
   const backStep = () => {
     if (step > 0) {
-      setStep(step - 1)
-    } if(step === 0) {
+      if (step === 6 && (quiz.length === 0)) {
+        setStep(step - 2)
+      } else {
+        setStep(step - 1)
+      }
+    } if (step === 0 && isActive) {
       history.push("/register")
+    }
+    if (!isActive) {
+      setIsActive(true)
     }
   }
 
@@ -163,8 +123,9 @@ const Home = props => {
           <div style={{ display: "flex", flexDirection: "row" }}><img className={classes.backButton} onClick={backStep} src={BackButton} alt=""></img><img className={classes.imgTag} src={TagImage} alt=""></img></div>
           <Grid
             container
+            style={{ height: "100%" }}
             justifyContent="center"
-             //alignItems="center"
+            alignItems="center"
           >
             <Grid item lg={4} md={5} xs={10}>
               {isActive ? (
@@ -179,9 +140,10 @@ const Home = props => {
                   backStep={backStep}
                   nextStep={nextStep}
                   values={dataValues}
+                  onSubmit={onSubmit}
                 />
               ) : (
-                <Wait />
+                <Wait setIsActive={setIsActive} />
               )}
             </Grid>
           </Grid>
