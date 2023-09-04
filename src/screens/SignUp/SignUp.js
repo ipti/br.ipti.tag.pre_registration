@@ -9,7 +9,6 @@ const useStyles = makeStyles(styles);
 
 const SignUp = () => {
     const { data } = useFetchRequestSchoolList();
-    console.log(data)
     const classes = useStyles();
     return (
         <div className="row align-items--center">

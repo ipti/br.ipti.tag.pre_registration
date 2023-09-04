@@ -24,7 +24,7 @@ import { RegistrationContext } from "../../containers/Registration/Context/conte
 import styleBase from "../../styles";
 import { useRef } from "react";
 import { withMask } from "use-mask-input";
-import MyInputComponent from "../../components/Mask/mask";
+import MyInputComponent from "../../components/Mask/maskcpf";
 
 const useStyles = makeStyles(styles);
 
@@ -325,7 +325,7 @@ const StepFour = props => {
                         value: values.responsable_cpf,
                         onChange: handleChange
                       }}
-                      onBlur={(e) => Isverifyresponsable(e)}
+                      // onBlur={(e) => Isverifyresponsable(e)}
                       className={classes.textField}
                       error={errorList.responsable_cpf}
                       autoComplete="off"
