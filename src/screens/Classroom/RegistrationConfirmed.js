@@ -117,7 +117,7 @@ const Home = props => {
   }
   return (
     <>
-      <ArrowBack onClick={() => { history.goBack() }} style={{ cursor: "pointer" }} />
+      <ArrowBack onChange={() => { history.goBack() }} style={{ cursor: "pointer" }} />
       <h1>{student && student.classroom.name}</h1>
       <Grid className={classes.boxTitlePagination} container direction="row">
         <h2>Matrículas</h2>
