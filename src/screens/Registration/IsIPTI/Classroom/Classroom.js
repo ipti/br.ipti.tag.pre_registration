@@ -3,11 +3,11 @@ import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import React, { useContext } from "react";
 import Select from "react-select";
-import homeImg from "../../assets/images/Pessoas.png";
-import { ButtonPurple } from "../../components/Buttons";
-import styles from "./styles";
+import homeImg from "../../../../assets/images/Pessoas.png";
+import styles from "../../styles";
 import { useState } from "react";
-import { RegistrationContext } from "../../context/Registration/context";
+import { ButtonPurple } from "../../../../components/Buttons";
+import { RegistrationContext } from "../../../../context/Registration/context";
 
 const useStyles = makeStyles(styles);
 
@@ -23,15 +23,16 @@ const customStyles = {
       fontFamily: "Roboto, Helvetica, Arial, sans-serif",
     })
   };
+  
 const Classroom = props => {
     const classes = useStyles();
     const [isValid, setIsValid] = useState(false)
-    const { school, idClassRoom, setIdClassroom } = useContext(RegistrationContext);
+    const { school, idClassRoom, setIdClassroom,next } = useContext(RegistrationContext);
 
     if(!school) return null
 
     const onButton = () => {
-        props.next('2', {
+        next(3, {
             classroom: idClassRoom
         })
     }

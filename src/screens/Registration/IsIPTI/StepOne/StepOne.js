@@ -6,16 +6,16 @@ import { FormControl, FormControlLabel, FormHelperText, FormLabel, Grid, MenuIte
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 
 // Components
-import { ButtonPurple } from "../../components/Buttons";
 
 // Third party
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 
 // Styles
-import styleBase from "../../styles";
-import styles from "./styles";
-import { RegistrationContext } from "../../context/Registration/context";
+import styleBase from "../../../../styles";
+import styles from "../../styles";
+import { ButtonPurple } from "../../../../components/Buttons";
+import { RegistrationContext } from "../../../../context/Registration/context";
 
 const useStyles = makeStyles(styles);
 
@@ -29,7 +29,7 @@ const PurpleRadio = withStyles({
 })(props => <Radio color="default" {...props} />);
 
 
-const StepThree = props => {
+const StepOne = () => {
   const classes = useStyles();
 
   const validationSchema = Yup.object().shape({
@@ -38,12 +38,12 @@ const StepThree = props => {
     deficiency: Yup.boolean().required("Campo obrigatório!"),
   });
 
-  const {setIsOfLegalAge, isOfLegalAge} = useContext(RegistrationContext)
+  const {setIsOfLegalAge, isOfLegalAge, next} = useContext(RegistrationContext)
  
   const initialValues = {
-    name: props?.values?.name ?? '',
-    color_race: props?.values?.color_race ?? '',
-    deficiency: props?.values?.deficiency ?? "",
+    name: '',
+    color_race: '',
+    deficiency:  "",
   };
 
 
@@ -51,7 +51,7 @@ const StepThree = props => {
     <>
       <Formik
         initialValues={initialValues}
-        onSubmit={values => props.next(4 , values)}
+        onSubmit={values => next(4 , values)}
         validationSchema={validationSchema}
         validateOnChange={false}
         enableReinitialize
@@ -223,4 +223,4 @@ const StepThree = props => {
   );
 };
 
-export default StepThree;
+export default StepOne;

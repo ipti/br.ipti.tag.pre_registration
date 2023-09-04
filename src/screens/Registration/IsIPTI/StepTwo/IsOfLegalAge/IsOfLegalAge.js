@@ -6,7 +6,7 @@ import { FormControl, FormControlLabel, FormHelperText, FormLabel, Grid, Radio, 
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 
 // Components
-import { ButtonPurple } from "../../components/Buttons";
+import { ButtonPurple } from "../../../../../components/Buttons";
 
 // Third party
 import { Form, Formik } from "formik";
@@ -14,14 +14,14 @@ import * as Yup from "yup";
 
 // Styles
 import { useState } from "react";
-import MaskedInput from "react-text-mask";
-import ModalExistStudent from "../../components/Modal/ModalExistStudent";
-import styleBase from "../../styles";
-import styles from "./styles";
-import MyInputComponent from "../../components/Mask/maskcpf";
-import MaskDate from "../../components/Mask/maskdate";
-import MaskPhone from "../../components/Mask/maskphone";
-import { RegistrationContext } from "../../context/Registration/context";
+import { RegistrationContext } from "../../../../../context/Registration/context";
+
+import styleBase from "../../../styles";
+import styles from "../../../styles";
+import MaskCpf from "../../../../../components/Mask/maskcpf";
+import MaskDate from "../../../../../components/Mask/maskdate";
+import MaskPhone from "../../../../../components/Mask/maskphone";
+import ModalExistStudent from "../../../../../components/Modal/ModalExistStudent";
 
 const useStyles = makeStyles(styles);
 
@@ -34,61 +34,15 @@ const PurpleRadio = withStyles({
   checked: {}
 })(props => <Radio color="default" {...props} />);
 
-const TextMaskCpf = (props) => {
-  const inputRef = useRef(null);
 
-  const handleInputClick = () => {
-    if (inputRef.current) {
-      const inputElement = inputRef.current.inputElement;
-      if (inputElement) {
-        inputElement.selectionStart = 0;
-        inputElement.selectionEnd = 0;
-        inputElement.focus();
-      }
-    }
-  };
 
-  return (
-    <MaskedInput
-      {...props}
-      ref={(ref) => {
-        inputRef.current = ref;
-        if (props.inputRef) {
-          props.inputRef(ref);
-        }
-      }}
-      onClick={handleInputClick}
-      placeholderChar={'\u2000'}
-      guide
-      keepCharPositions
-      mask={[
-        /\d/,
-        /\d/,
-        /\d/,
-        '.',
-        /\d/,
-        /\d/,
-        /\d/,
-        '.',
-        /\d/,
-        /\d/,
-        /\d/,
-        '-',
-        /\d/,
-        /\d/,
-      ]}
-      showMask
-    />
-  );
-};
-
-const StepSix = props => {
+const IsOfLegalAge = () => {
   const inputRef = useRef(null);
   const classes = useStyles();
   const [student, setStudent] = useState([])
   const [openModal, setOpenModal] = useState(false)
 
-  const { school, quiz } = useContext(RegistrationContext)
+  const { school, quiz, next } = useContext(RegistrationContext)
 
   const validationSchema = Yup.object().shape({
     cpf: Yup.string().required("Campo obrigatório!"),
@@ -99,11 +53,11 @@ const StepSix = props => {
   });
 
   const initialValues = {
-    cpf: props?.values?.cpf ?? "",
-    sex: props?.values?.sex ?? '',
-    birthday: props?.values?.birthday ?? '',
-    responsable_telephone: props?.values?.responsable_telephone ?? "",
-    zone: props?.values?.zone ?? ''
+    cpf: "",
+    sex: '',
+    birthday: '',
+    responsable_telephone: "",
+    zone: ''
   };
 
   const Isverify = (e) => {
@@ -121,7 +75,7 @@ const StepSix = props => {
     <>
       <Formik
         initialValues={initialValues}
-        onSubmit={values => quiz.length > 0 ? props.next(5, values) : props.next(6, values)}
+        onSubmit={values => quiz.length > 0 ? next(5, values) : next(6, values)}
         validationSchema={validationSchema}
         validateOnChange={false}
         enableReinitialize
@@ -156,7 +110,7 @@ const StepSix = props => {
                       name="cpf"
                       variant="outlined"
                       InputProps={{
-                        inputComponent: MyInputComponent,
+                        inputComponent: MaskCpf,
                         value: values.cpf,
                         onChange: handleChange
                       }}
@@ -324,4 +278,4 @@ const StepSix = props => {
   );
 };
 
-export default StepSix;
+export default IsOfLegalAge;

@@ -19,12 +19,11 @@ import * as Yup from "yup";
 // Styles
 import styles from "./styles";
 
-import ModalExistStudent from "../../components/Modal/ModalExistStudent";
-import { RegistrationContext } from "../../containers/Registration/Context/context";
-import styleBase from "../../styles";
 import { useRef } from "react";
-import { withMask } from "use-mask-input";
 import MyInputComponent from "../../components/Mask/maskcpf";
+import ModalExistStudent from "../../components/Modal/ModalExistStudent";
+import { RegistrationContext } from "../../context/Registration/context";
+import styleBase from "../../styles";
 
 const useStyles = makeStyles(styles);
 

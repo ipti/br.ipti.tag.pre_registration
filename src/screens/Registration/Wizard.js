@@ -5,7 +5,6 @@ import Grid from "@material-ui/core/Grid";
 
 // Components
 import { useContext } from "react";
-import { RegistrationContext } from "../../containers/Registration/Context/context";
 import Classroom from "./ClassRoom";
 import Finish from "./Finish";
 import Quiz from "./Quiz";
@@ -14,6 +13,7 @@ import StepFour from "./StepFour";
 import StepOne from "./StepOne";
 import StepSix from "./StepSix";
 import StepThree from "./StepThree";
+import { RegistrationContext } from "../../context/Registration/context";
 
 
 const Wizard = props => {

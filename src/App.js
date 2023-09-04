@@ -15,7 +15,9 @@ import {
 import { QueryClientProvider } from "react-query";
 import queryClient from "./services/query";
 
+import dotenv from 'dotenv';
 
+dotenv.config();
 
 const theme = createTheme({
   palette: {

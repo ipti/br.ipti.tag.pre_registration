@@ -3,10 +3,10 @@ import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import React, { useContext, useState } from "react";
 import Select from "react-select";
-import homeImg from "../../assets/images/Capelo.png";
-import { ButtonPurple } from "../../components/Buttons";
-import styles from "./styles";
-import { RegistrationContext } from "../../context/Registration/context";
+import homeImg from "../../../../assets/images/Capelo.png";
+import { ButtonPurple } from "../../../../components/Buttons";
+import styles from "../../styles";
+import { RegistrationContext } from "../../../../context/Registration/context";
 const useStyles = makeStyles(styles);
 
 const customStyles = {
@@ -26,22 +26,32 @@ const customStyles = {
 };
 
 
-const Start = props => {
+const Projects = () => {
   const classes = useStyles();
   const [startDate, setStartDate] = useState()
   const [endDate, setEndDate] = useState()
   const [isValid, setIsValid] = useState()
-  const { setIdEvent, idEvent, setSchool, setYear, schools, school } = useContext(RegistrationContext);
+  const {
+    setIdEvent,
+    idEvent,
+    setSchool,
+    setYear,
+    schools,
+    school,
+    isActive,
+    setIsActive, 
+    next
+  } = useContext(RegistrationContext);
 
   const datenow = Date.now();
   const date = new Date(datenow)
 
   const onButton = () => {
     if (startDate <= date.getTime() && date.getTime() <= (endDate + 87000000) && idEvent !== '') {
-      props.setIsActive(true)
-      props.next('1', { school_identification: school.inep_id, event_pre_registration: idEvent })
+      setIsActive(true)
+      next(2, { school_identification: school.inep_id, event_pre_registration: idEvent })
     } else {
-      props.setIsActive(false)
+      setIsActive(false)
     }
   }
   return (
@@ -86,7 +96,7 @@ const Start = props => {
                   setEndDate(new Date(selectedOption.event_pre_registration[last_event].end_date).getTime())
                   setYear(new Date(selectedOption.event_pre_registration[last_event].end_date).getFullYear())
                 } else {
-                  props.setIsActive(false)
+                  setIsActive(false)
                 }
               }}
               getOptionValue={opt => opt.inep_id}
@@ -116,4 +126,4 @@ const Start = props => {
   );
 };
 
-export default Start;
+export default Projects;

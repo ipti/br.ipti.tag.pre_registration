@@ -1,11 +1,10 @@
 import React from "react";
-import RegistrationContextProvider from "../Context/context";
-import Home from "./Home";
-
+import Registration from "../../../screens/Registration";
+import RegistrationContextProvider from "../../../context/Registration/context";
 const FormRegistration = () => {
     return(
         <RegistrationContextProvider>
-            <Home />
+            <Registration />
         </RegistrationContextProvider>
     )
 }
