@@ -26,7 +26,7 @@ const customStyles = {
 };
 
 
-const Projects = () => {
+const Schools = () => {
   const classes = useStyles();
   const [startDate, setStartDate] = useState()
   const [endDate, setEndDate] = useState()
@@ -126,4 +126,4 @@ const Projects = () => {
   );
 };
 
-export default Projects;
+export default Schools;

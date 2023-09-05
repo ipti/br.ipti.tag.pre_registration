@@ -5,7 +5,7 @@ import Grid from "@material-ui/core/Grid";
 
 // Components
 import InitForm from "./InitForm/InitForm";
-import { RegistrationContext } from "../../../context/Registration/context";
+import { RegistrationContext } from "../../../context/Registration/IsIPTI/context";
 import Projects from "./Projects/Projects";
 import Classroom from "./Classroom/Classroom";
 import StepOne from "./StepOne/StepOne";
@@ -16,7 +16,6 @@ const IsIPTI = () => {
 
   const { step } = useContext(RegistrationContext);
 
-  console.log(step)
   return (
     <Grid item xs={12}>
       {step === 0 ? <InitForm /> :
@@ -26,7 +25,6 @@ const IsIPTI = () => {
               step === 4 ? <StepTwo /> : null}
     </Grid>
   );
-
 }
 
 

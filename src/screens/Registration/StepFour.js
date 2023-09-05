@@ -22,7 +22,7 @@ import styles from "./styles";
 import { useRef } from "react";
 import MyInputComponent from "../../components/Mask/maskcpf";
 import ModalExistStudent from "../../components/Modal/ModalExistStudent";
-import { RegistrationContext } from "../../context/Registration/context";
+import { RegistrationContext } from "../../context/Registration/IsIPTI/context";
 import styleBase from "../../styles";
 
 const useStyles = makeStyles(styles);

@@ -13,7 +13,7 @@ const StepTwo = () => {
     return (
         <>
             {
-                isOfLegalAge === "2" ?
+                isOfLegalAge === 2 ?
                     <IsOfLegalAge /> : <IsNotOfLegalAge />
             }
         </>

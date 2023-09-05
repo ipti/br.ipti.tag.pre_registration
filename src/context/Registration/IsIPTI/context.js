@@ -20,8 +20,11 @@ const RegistrationContextProvider = ({ children }) => {
         quiz,
         next,
         step,
-        isActive, 
-        setIsActive
+        isActive,
+        setIsActive,
+        backStep,
+        onSubmit,
+        dataValues
     } = RegistrationState()
 
     return (
@@ -42,8 +45,11 @@ const RegistrationContextProvider = ({ children }) => {
                 quiz,
                 next,
                 step,
-                isActive, 
-                setIsActive
+                isActive,
+                setIsActive,
+                backStep,
+                onSubmit,
+                dataValues
             }}>
             {children}
         </RegistrationContext.Provider>

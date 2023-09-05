@@ -14,11 +14,17 @@ import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import styles from "./styles"
 import IsIPTI from "./IsIPTI";
+import IsRegistration from "./IsRegistration";
+import { useContext } from "react";
+import { RegistrationContext } from "../../context/Registration/IsIPTI/context";
 const useStyles = makeStyles(styles);
 
 const Registration = () => {
     const classes = useStyles();
     const [isActive, setIsActive] = useState(true);
+
+    const {backStep} = useContext(RegistrationContext)
+
 
     const wizard = () => {
 
@@ -30,7 +36,7 @@ const Registration = () => {
                     <div className={classes.topBar} style={{ backgroundColor: "#66D654" }} />
                     <div className={classes.topBar} style={{ backgroundColor: "#EADA48" }} />
                 </div>
-                <div style={{ display: "flex", flexDirection: "row" }}><img className={classes.backButton} src={BackButton} alt=""></img><img className={classes.imgTag} src={TagImage} alt=""></img></div>
+                <div style={{ display: "flex", flexDirection: "row" }}><img className={classes.backButton} onClick={backStep} src={BackButton} alt=""></img><img className={classes.imgTag} src={TagImage} alt=""></img></div>
                 <Grid
                     container
                     style={{ height: "100%" }}
@@ -38,7 +44,8 @@ const Registration = () => {
                     alignItems="center"
                 >
                     <Grid item lg={4} md={5} xs={10}>
-                        <IsIPTI />
+                    {process.env.REACT_APP_VERSION === "true" ? 
+                        <IsIPTI /> : <IsRegistration />}
                     </Grid>
                 </Grid>
             </div>

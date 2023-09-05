@@ -1,9 +1,9 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import Loading from "../../components/Loading/CircularLoading";
-import { Controller } from "../../controller/registration";
 import { useFetchRequestStudent } from "../../query/registration";
 import Home from "../../screens/Registration/ReMatricula";
+import { Controller } from "../../controller/registration";
 
 const ReMatricula = props => {
   const { requestSaveRegistrationMutation } = Controller();

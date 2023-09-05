@@ -20,8 +20,8 @@ import styles from "../../../../../styles";
 
 import { useRef } from "react";
 
-import styleBase from "../../../styles";
-import { RegistrationContext } from "../../../../../context/Registration/context";
+import styleBase from "../../../../../styles";
+import { RegistrationContext } from "../../../../../context/Registration/IsIPTI/context";
 import MaskCpf from "../../../../../components/Mask/maskcpf";
 import MaskDate from "../../../../../components/Mask/maskdate";
 import MaskPhone from "../../../../../components/Mask/maskphone";
@@ -40,10 +40,10 @@ const PurpleRadio = withStyles({
 
 
 
-const IsNotOfLegalAge = props => {
+const IsNotOfLegalAge = () => {
   const inputRef = useRef(null);
   const classes = useStyles();
-  const { school, quiz } = useContext(RegistrationContext)
+  const { school, quiz, next, onSubmit, dataValues} = useContext(RegistrationContext)
   const [student, setStudent] = useState([])
   const [studentResponsable, setStudentResponsable] = useState([])
   const [openModalCPF, setOpenModalCPF] = useState(false)
@@ -59,13 +59,13 @@ const IsNotOfLegalAge = props => {
   });
 
   const initialValues = {
-    birthday: props?.values?.birthday ?? '',
-    sex: props?.values?.sex ?? '',
-    responsable_name: props?.values?.responsable_name ?? '',
-    responsable_telephone: props?.values?.responsable_telephone ?? "",
-    responsable_cpf: props?.values?.responsable_cpf ?? '',
-    zone: props?.values?.zone ?? '',
-    cpf: props?.values?.cpf ?? ''
+    birthday:'',
+    sex: dataValues?.sex ?? '',
+    responsable_name: dataValues?.responsable_name ?? '',
+    responsable_telephone: dataValues?.responsable_telephone ?? "",
+    responsable_cpf: dataValues.responsable_cpf ?? '',
+    zone: dataValues?.zone ?? '',
+    cpf: dataValues?.cpf ?? ''
   };
 
   const Isverify = (e) => {
@@ -92,7 +92,7 @@ const IsNotOfLegalAge = props => {
     <>
       <Formik
         initialValues={initialValues}
-        onSubmit={values => quiz.length > 0 ? props.next(5, values) : props.next(6, values)}
+        onSubmit={values => quiz.length > 0 ? next(5, values) : onSubmit(values)}
         validationSchema={validationSchema}
         validateOnChange={false}
         enableReinitialize

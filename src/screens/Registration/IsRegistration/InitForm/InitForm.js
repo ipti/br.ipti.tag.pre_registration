@@ -25,6 +25,7 @@ const InitForm = () => {
         <Grid item xs={12}>
           <img className={classes.imageRegistration} src={homeImg} alt="" />
         </Grid>
+        adssdas
           <Grid item xs={10}>
           <h1>Iniciar Formulário</h1>
           <p>Confira todos os campos</p>

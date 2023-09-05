@@ -1,7 +1,10 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useState } from "react";
+
 
 // Material UI
-import { FormControl, FormControlLabel, FormHelperText, FormLabel, Grid, Radio, RadioGroup, TextField } from "@material-ui/core";
+import {
+    FormControl, FormControlLabel, FormHelperText, FormLabel, Grid, Radio, RadioGroup, TextField
+} from "@material-ui/core";
 
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 
@@ -13,15 +16,16 @@ import { Form, Formik } from "formik";
 import * as Yup from "yup";
 
 // Styles
-import { useState } from "react";
+import styles from "../../../../../styles";
 
-import styleBase from "../../../../../styles"
-import styles from "../../../styles";
+import { useRef } from "react";
+
+import styleBase from "../../../../../styles";
+import { RegistrationContext } from "../../../../../context/Registration/IsIPTI/context";
 import MaskCpf from "../../../../../components/Mask/maskcpf";
 import MaskDate from "../../../../../components/Mask/maskdate";
 import MaskPhone from "../../../../../components/Mask/maskphone";
 import ModalExistStudent from "../../../../../components/Modal/ModalExistStudent";
-import { RegistrationContext } from "../../../../../context/Registration/IsIPTI/context";
 
 const useStyles = makeStyles(styles);
 
@@ -36,28 +40,32 @@ const PurpleRadio = withStyles({
 
 
 
-const IsOfLegalAge = () => {
+const IsNotOfLegalAge = props => {
   const inputRef = useRef(null);
   const classes = useStyles();
+  const { school, quiz } = useContext(RegistrationContext)
   const [student, setStudent] = useState([])
-  const [openModal, setOpenModal] = useState(false)
-
-  const { school, quiz, next, onSubmit} = useContext(RegistrationContext)
+  const [studentResponsable, setStudentResponsable] = useState([])
+  const [openModalCPF, setOpenModalCPF] = useState(false)
+  const [openModalCPFResponsable, setOpenModalCPFResponsable] = useState(false)
 
   const validationSchema = Yup.object().shape({
-    cpf: Yup.string().required("Campo obrigatório!"),
+    responsable_name: Yup.string().required("Campo obrigatório!"),
+    responsable_cpf: Yup.string().required("Campo obrigatório!"),
+    responsable_telephone: Yup.string().required("Campo obrigatório!"),
     birthday: Yup.string().required("Campo obrigatório!"),
     sex: Yup.number().required("Campo obrigatório!"),
-    responsable_telephone: Yup.string().required("Campo obrigatório!"),
     zone: Yup.number().required("Campo obrigatório!"),
   });
 
   const initialValues = {
-    cpf: "",
-    sex: '',
-    birthday: '',
-    responsable_telephone: "",
-    zone: ''
+    birthday: props?.values?.birthday ?? '',
+    sex: props?.values?.sex ?? '',
+    responsable_name: props?.values?.responsable_name ?? '',
+    responsable_telephone: props?.values?.responsable_telephone ?? "",
+    responsable_cpf: props?.values?.responsable_cpf ?? '',
+    zone: props?.values?.zone ?? '',
+    cpf: props?.values?.cpf ?? ''
   };
 
   const Isverify = (e) => {
@@ -66,16 +74,25 @@ const IsOfLegalAge = () => {
 
     if (isValid.length !== 0) {
       setStudent(isValid);
-      setOpenModal(true)
+      setOpenModalCPF(true)
     }
   }
 
+  const Isverifyresponsable = (e) => {
+    var cpf = e.target.value.replace(/\D/g, '');
+    var isValid = cpf ? school.student_documents_and_address.filter(x => (cpf === x.cpf) && (x.received_responsable_cpf === true)) : [];
+
+    if (isValid.length !== 0) {
+      setOpenModalCPFResponsable(true)
+      setStudentResponsable(isValid);
+    }
+  }
 
   return (
     <>
       <Formik
         initialValues={initialValues}
-        onSubmit={values => quiz.length > 0 ? next(5, values) : onSubmit(values)}
+        onSubmit={values => quiz.length > 0 ? props.next(5, values) : props.next(6, values)}
         validationSchema={validationSchema}
         validateOnChange={false}
         enableReinitialize
@@ -83,10 +100,11 @@ const IsOfLegalAge = () => {
         {({ errors, values, touched, handleChange, handleSubmit }) => {
 
           const errorList = {
-            cpf: touched.cpf && errors.cpf,
+            responsable_name: touched.responsable_name && errors.responsable_name,
+            responsable_cpf: touched.responsable_cpf && errors.responsable_cpf,
+            responsable_telephone: touched.responsable_telephone && errors.responsable_telephone,
             birthday: touched.birthday && errors.birthday,
             sex: touched.sex && errors.sex,
-            responsable_telephone: touched.responsable_telephone && errors.responsable_telephone,
             zone: touched.zone && errors.zone,
           };
 
@@ -103,26 +121,26 @@ const IsOfLegalAge = () => {
                   <FormControl
                     component="fieldset"
                     className={classes.formControl}
-                    error={errorList.cpf}
                   >
-                    <FormLabel>Nº do CPF *</FormLabel>
+                    <FormLabel>Nº do CPF</FormLabel>
                     <TextField
                       name="cpf"
                       variant="outlined"
                       InputProps={{
                         inputComponent: MaskCpf,
                         value: values.cpf,
-                        onChange: handleChange
+                        inputRef: inputRef,
+                        onChange: handleChange,
                       }}
                       // onBlur={(e) => Isverify(e)}
-                      error={errorList.cpf}
                       className={classes.textField}
                       autoComplete="off"
+
                     />
-                    <FormHelperText>{errorList.cpf}</FormHelperText>
                   </FormControl>
                 </Grid>
               </Grid>
+
               <Grid
                 className={`${classes.contentMain}`}
                 container
@@ -186,6 +204,63 @@ const IsOfLegalAge = () => {
                       />
                     </RadioGroup>
                     <FormHelperText>{errorList.sex}</FormHelperText>
+                  </FormControl>
+                </Grid>
+              </Grid>
+              <Grid
+                className={`${classes.contentMain}`}
+                container
+                direction="row"
+                justifyContent="center"
+                alignItems="center"
+              >
+                <Grid item xs={12}>
+                  <FormControl
+                    component="fieldset"
+                    className={classes.formControl}
+                    error={errorList.responsable_cpf}
+                  >
+                    <FormLabel>Nº do CPF do Responsável *</FormLabel>
+                    <TextField
+                      name="responsable_cpf"
+                      variant="outlined"
+                      InputProps={{
+                        inputComponent: MaskCpf,
+                        value: values.responsable_cpf,
+                        onChange: handleChange
+                      }}
+                      // onBlur={(e) => Isverifyresponsable(e)}
+                      className={classes.textField}
+                      error={errorList.responsable_cpf}
+                      autoComplete="off"
+                    />
+                    <FormHelperText>{errorList.responsable_cpf}</FormHelperText>
+                  </FormControl>
+                </Grid>
+              </Grid>
+              <Grid
+                className={`${classes.contentMain}`}
+                container
+                direction="row"
+                justifyContent="center"
+                alignItems="center"
+              >
+                <Grid item xs={12}>
+                  <FormControl
+                    component="fieldset"
+                    className={classes.formControl}
+                    error={errorList.responsable_name}
+                  >
+                    <FormLabel>Nome Completo do Responsável *</FormLabel>
+                    <TextField
+                      name="responsable_name"
+                      value={values.responsable_name}
+                      onChange={handleChange}
+                      variant="outlined"
+                      className={classes.textField}
+                      error={errorList.responsable_name}
+                    />
+                    <FormHelperText>{errorList.responsable_name}</FormHelperText>
                   </FormControl>
                 </Grid>
               </Grid>
@@ -265,7 +340,7 @@ const IsOfLegalAge = () => {
                     onClick={handleSubmit}
                     className="t-button-primary"
                     type="submit"
-                    title={"Continuar"}
+                    title={ "Continuar"}
                   />
                 </Grid>
               </Grid>
@@ -273,9 +348,10 @@ const IsOfLegalAge = () => {
           );
         }}
       </Formik>
-      <ModalExistStudent openModal={openModal} school={school} student={student} />
+      <ModalExistStudent openModal={openModalCPF} school={school} student={student} setOpen={setOpenModalCPF} />
+      <ModalExistStudent openModal={openModalCPFResponsable} school={school} student={studentResponsable} setOpen={setOpenModalCPFResponsable} />
     </>
   );
 };
 
-export default IsOfLegalAge;
+export default IsNotOfLegalAge;

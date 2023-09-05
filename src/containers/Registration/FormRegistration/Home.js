@@ -33,27 +33,7 @@ const Home = props => {
   const [isActive, setIsActive] = useState(true);
 
 
-  const onSubmit = () => {
 
-    const parseBool = value =>
-      ['true', 'false'].includes(value) ? value === true : null
-      requestSaveRegistrationMutation.mutate(
-        {
-          ...dataValues, sex: parseInt(dataValues.sex),
-          zone: parseInt(dataValues.zone),
-          birthday: dataValues.birthday,
-          deficiency: parseBool(dataValues.deficiency),
-          cpf: dataValues.cpf ? dataValues.cpf.replace(/\D/g, '') : null,
-          responsable_cpf: dataValues.responsable_cpf ? dataValues.responsable_cpf.replace(/\D/g, '') : "",
-          responsable_telephone: dataValues.responsable_telephone.replace(/\D/g, ''),
-          father_name: dataValues.father_name === "" ? null : dataValues.father_name,
-          mother_name: dataValues.mother_name === "" ? null : dataValues.mother_name,
-          event_pre_registration: parseInt(dataValues.event_pre_registration),
-        }
-      )
-      // setLoad(false)
-    
-  };
 
 
   const next = (step, values) => {
@@ -65,21 +45,7 @@ const Home = props => {
   };
 
 
-  const backStep = () => {
-    if (step > 0) {
-      if (step === 6 && (quiz.length === 0)) {
-        setStep(step - 2)
-      } else {
-        setStep(step - 1)
-      }
-    } if (step === 0 && isActive) {
-      history.push("/register")
-    }
-    if (!isActive) {
-      setIsActive(true)
-    }
-  }
-
+ 
   const nextStep = () => {
     if (step <= 6) {
       setStep(step + 1)
@@ -120,7 +86,7 @@ const Home = props => {
             <div className={classes.topBar} style={{ backgroundColor: "#66D654" }} />
             <div className={classes.topBar} style={{ backgroundColor: "#EADA48" }} />
           </div>
-          <div style={{ display: "flex", flexDirection: "row" }}><img className={classes.backButton} onClick={backStep} src={BackButton} alt=""></img><img className={classes.imgTag} src={TagImage} alt=""></img></div>
+          {/* <div style={{ display: "flex", flexDirection: "row" }}><img className={classes.backButton} onClick={backStep} src={BackButton} alt=""></img><img className={classes.imgTag} src={TagImage} alt=""></img></div> */}
           <Grid
             container
             style={{ height: "100%" }}
@@ -136,11 +102,8 @@ const Home = props => {
                   handleStudent={handleStudent}
                   loadingButtom={props.loading}
                   setIsActive={setIsActive}
-                  handleSubmit={onSubmit}
-                  backStep={backStep}
                   nextStep={nextStep}
                   values={dataValues}
-                  onSubmit={onSubmit}
                 />
               ) : (
                 <Wait setIsActive={setIsActive} />

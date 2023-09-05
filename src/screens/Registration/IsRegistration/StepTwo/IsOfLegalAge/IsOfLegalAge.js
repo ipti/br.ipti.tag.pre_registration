@@ -14,6 +14,7 @@ import * as Yup from "yup";
 
 // Styles
 import { useState } from "react";
+import { RegistrationContext } from "../../../../../context/Registration/IsIPTI/context";
 
 import styleBase from "../../../../../styles"
 import styles from "../../../styles";
@@ -21,7 +22,6 @@ import MaskCpf from "../../../../../components/Mask/maskcpf";
 import MaskDate from "../../../../../components/Mask/maskdate";
 import MaskPhone from "../../../../../components/Mask/maskphone";
 import ModalExistStudent from "../../../../../components/Modal/ModalExistStudent";
-import { RegistrationContext } from "../../../../../context/Registration/IsIPTI/context";
 
 const useStyles = makeStyles(styles);
 
@@ -42,7 +42,7 @@ const IsOfLegalAge = () => {
   const [student, setStudent] = useState([])
   const [openModal, setOpenModal] = useState(false)
 
-  const { school, quiz, next, onSubmit} = useContext(RegistrationContext)
+  const { school, quiz, next } = useContext(RegistrationContext)
 
   const validationSchema = Yup.object().shape({
     cpf: Yup.string().required("Campo obrigatório!"),
@@ -75,7 +75,7 @@ const IsOfLegalAge = () => {
     <>
       <Formik
         initialValues={initialValues}
-        onSubmit={values => quiz.length > 0 ? next(5, values) : onSubmit(values)}
+        onSubmit={values => quiz.length > 0 ? next(5, values) : next(6, values)}
         validationSchema={validationSchema}
         validateOnChange={false}
         enableReinitialize

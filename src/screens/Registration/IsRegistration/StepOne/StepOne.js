@@ -38,12 +38,12 @@ const StepOne = () => {
     deficiency: Yup.boolean().required("Campo obrigatório!"),
   });
 
-  const {setIsOfLegalAge, isOfLegalAge, next, dataValues} = useContext(RegistrationContext)
+  const {setIsOfLegalAge, isOfLegalAge, next} = useContext(RegistrationContext)
  
   const initialValues = {
-    name: dataValues?.name ??  '',
-    color_race: dataValues?.color_race ?? '',
-    deficiency: dataValues?.deficiency ?? "",
+    name: '',
+    color_race: '',
+    deficiency:  "",
   };
 
 

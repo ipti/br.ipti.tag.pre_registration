@@ -6,8 +6,8 @@ import styles from "./styles";
 
 import { FormControl, FormLabel, TextField } from "@material-ui/core";
 import { ButtonPurple } from "../../components/Buttons";
-import { RegistrationContext } from "../../../../context/Registration/context";
-
+import { RegistrationContext } from "../../../../context/Registration/IsIPTI/context";
+ 
 const useStyles = makeStyles(styles);
 
 const customStyles = {
