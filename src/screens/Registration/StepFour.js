@@ -25,6 +25,9 @@ import styleBase from "../../styles";
 import { useRef } from "react";
 import { withMask } from "use-mask-input";
 import MyInputComponent from "../../components/Mask/maskcpf";
+import MaskDate from "../../components/Mask/maskdate";
+import MaskCpf from "../../components/Mask/maskcpf";
+import MaskPhone from "../../components/Mask/maskphone";
 
 const useStyles = makeStyles(styles);
 
@@ -256,7 +259,7 @@ const StepFour = props => {
                       variant="outlined"
                       className={classes.textField}
                       InputProps={{
-                        inputComponent: TextMaskDate,
+                        inputComponent: MaskDate,
                         value: values.birthday,
                         onChange: handleChange
                       }}
@@ -321,7 +324,7 @@ const StepFour = props => {
                       name="responsable_cpf"
                       variant="outlined"
                       InputProps={{
-                        inputComponent: TextMaskCpf,
+                        inputComponent: MaskCpf,
                         value: values.responsable_cpf,
                         onChange: handleChange
                       }}
@@ -379,7 +382,7 @@ const StepFour = props => {
                       variant="outlined"
                       className={classes.textField}
                       InputProps={{
-                        inputComponent: TextMaskFone,
+                        inputComponent: MaskPhone,
                         value: values.responsable_telephone,
                         onChange: handleChange
                       }}
