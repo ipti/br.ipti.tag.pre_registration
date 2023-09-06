@@ -10,6 +10,7 @@ import Register from "./containers/Register";
 import FormRegistration from "./containers/Registration/FormRegistration/FormRegistration";
 import ReMatricula from "./containers/Registration/ReMatricula";
 import { isAuthenticated } from "./services/auth";
+import FormOphthalmological from "./containers/Classroom/Registration/FormOphthalmological/FormOphthalmological";
 
 //const Home = lazy(() => import("./containers/Home"));
 const Schedule = lazy(() => import("./containers/Schedule/Schedule"));
@@ -22,7 +23,7 @@ const SchoolClassrooms = lazy(() =>
 
 
 const RegistrationClassroom = lazy(() =>
-  import("./containers/Classroom/Registration")
+  import("./containers/Classroom/Registration/Registration")
 );
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
@@ -72,6 +73,11 @@ const Routes = () => (
         exact
         path="/turmas/:id/matricula/:idRegistration"
         component={RegistrationClassroom}
+      />
+      <PrivateRoute
+        exact
+        path="/turmas/:id/matricula/:idRegistration/form"
+        component={FormOphthalmological}
       />
 
       <PrivateRoute exact path="/turmas/:id" component={ClassroomForm} />

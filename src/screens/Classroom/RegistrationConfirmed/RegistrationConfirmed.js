@@ -5,8 +5,8 @@ import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 
 // Components
-import { ButtonLinePurple, ButtonPurple, ButtonWhite } from "../../components/Buttons";
-import Loading from "../../components/Loading/CircularLoadingButtomActions";
+import { ButtonLinePurple, ButtonPurple, ButtonWhite } from "../../../components/Buttons";
+import Loading from "../../../components/Loading/CircularLoadingButtomActions";
 
 // Assets
 
@@ -14,14 +14,14 @@ import Loading from "../../components/Loading/CircularLoadingButtomActions";
 import { TextField } from "@material-ui/core";
 import { ArrowBack, Edit } from "@material-ui/icons";
 import { useHistory } from "react-router";
-import { Column, Row } from "../../styles/style";
-import styles from "./styles";
+import { Column, Row } from "../../../styles/style";
+import styles from "../styles";
 import { Form, Formik } from "formik";
-import SelectUi from "../../ui/Select";
+import SelectUi from "../../../ui/Select";
 import { useRef } from "react";
-import MaskCep from "../../components/Mask/maskcep";
-import MaskPhone from "../../components/Mask/maskphone";
-import MaskCpf from "../../components/Mask/maskcpf";
+import MaskCep from "../../../components/Mask/maskcep";
+import MaskPhone from "../../../components/Mask/maskphone";
+import MaskCpf from "../../../components/Mask/maskcpf";
 
 const useStyles = makeStyles(styles);
 
@@ -141,7 +141,6 @@ const Home = props => {
       {!student?.unavailable ? <Column>
         <Row id="end"><Edit style={{ cursor: "pointer" }} onClick={() => setEdit(!edit)} /></Row>
       </Column> : null}
-
       {classrooms && student ? <Formik initialValues={initialValue} onSubmit={values => { handleEditPreRegistration(student.id, values); setEdit(!edit) }}>
         {({ errors, values, touched, handleChange, handleSubmit, setFieldValue }) => {
           return (
@@ -336,7 +335,6 @@ const Home = props => {
             </Form>
           )
         }}
-
       </Formik> : null}
       <Grid
         className={classes.boxButtons}
