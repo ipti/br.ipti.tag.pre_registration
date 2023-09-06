@@ -17,10 +17,6 @@ export const requestSchoolList = async () => {
       })
       .then(response => response.data)
       .catch(err => {
-        // if(err.response.status === 401){
-        //   logout()
-        //   window.location.reload()
-        // }
         throw err;
       });
   };
@@ -37,3 +33,17 @@ export const requestSchoolList = async () => {
         throw err;
       });
   };
+
+  export const requestSaveRegistration = data => {
+    return api
+      .post("/student-pre-identification", data)
+      .then(response => response.data)
+      .catch(err => {
+        if (err.response.status === 401) {
+          logout()
+          window.location.reload()
+        }
+        throw err;
+      });
+  };
+  

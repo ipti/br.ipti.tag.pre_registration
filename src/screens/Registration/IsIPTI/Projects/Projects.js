@@ -38,7 +38,6 @@ const Projects = () => {
     setYear,
     schools,
     school,
-    isActive,
     setIsActive, 
     next
   } = useContext(RegistrationContext);

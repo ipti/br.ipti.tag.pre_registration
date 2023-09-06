@@ -25,7 +25,7 @@ const RegistrationContextProvider = ({ children }) => {
         backStep,
         onSubmit,
         dataValues
-    } = RegistrationState()
+    } = RegistrationState();
 
     return (
         <RegistrationContext.Provider

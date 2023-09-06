@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext } from "react";
 
 // Material UI
 import { FormControl, FormControlLabel, FormHelperText, FormLabel, Grid, Radio, RadioGroup, TextField } from "@material-ui/core";
@@ -15,13 +15,13 @@ import * as Yup from "yup";
 // Styles
 import { useState } from "react";
 
-import styleBase from "../../../../../styles"
-import styles from "../../../styles";
 import MaskCpf from "../../../../../components/Mask/maskcpf";
 import MaskDate from "../../../../../components/Mask/maskdate";
 import MaskPhone from "../../../../../components/Mask/maskphone";
 import ModalExistStudent from "../../../../../components/Modal/ModalExistStudent";
 import { RegistrationContext } from "../../../../../context/Registration/IsIPTI/context";
+import styleBase from "../../../../../styles";
+import styles from "../../../styles";
 
 const useStyles = makeStyles(styles);
 
@@ -37,7 +37,6 @@ const PurpleRadio = withStyles({
 
 
 const IsOfLegalAge = () => {
-  const inputRef = useRef(null);
   const classes = useStyles();
   const [student, setStudent] = useState([])
   const [openModal, setOpenModal] = useState(false)
