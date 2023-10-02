@@ -6,10 +6,10 @@ export const FormOphthalmologicalContext = createContext({});
 
 const FormOphthalmologicaltProvider = ({ children }) => {
 
-    const {} = FormOphthalmologicalState()
+    const {initialValues} = FormOphthalmologicalState()
     
     return (
-        <FormOphthalmologicalContext.Provider value={{  }}>
+        <FormOphthalmologicalContext.Provider value={{ initialValues }}>
             {children}
         </FormOphthalmologicalContext.Provider>
     )

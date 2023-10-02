@@ -89,7 +89,6 @@ const Routes = () => (
       />
 
       <PrivateRoute exact path="/turma/adicionar" component={CreateClassroom} />
-
       <Route path="/*" component={NotFoundPage} />
     </Switch>
   </HashRouter>

@@ -11,60 +11,73 @@ const useStyles = makeStyles(styles);
 const FormOphthalmologicalPage = () => {
     const classes = useStyles();
 
-    const { } = useContext(FormOphthalmologicalContext);
+    const { initialValues } = useContext(FormOphthalmologicalContext);
 
     return (
-        <Formik>
+        <Formik initialValues={initialValues}>
             {({ errors, values, touched, handleChange, handleSubmit, setFieldValue }) => {
+                console.log(values)
                 return (
                     <Form onSubmit={handleSubmit}>
                         <Grid item style={{ width: "100%" }} md={12}>
                             <p className={classes.label}>Tem historia de febre nas últimas 24 horas:</p>
                             <RadioGroup
-                            // value={value}
-                            // onChange={handleChange}
+                                name="febre"
+                                value={values.febre}
+                                onChange={handleChange}
                             >
-                                <FormControlLabel control={<Radio />} label="Sim" />
-                                <FormControlLabel control={<Radio />} label="Não" />
+                                <FormControlLabel control={<Radio />} label="Sim" value={'true'}
+                                    name="febre" />
+                                <FormControlLabel control={<Radio />} label="Não" value={'false'}
+                                    name="febre" />
                             </RadioGroup>
                         </Grid>
                         <Grid item style={{ width: "100%" }} md={12}>
                             <p className={classes.label}>Tem história de convusão há menos de 15 dias:</p>
                             <RadioGroup
-                            // value={value}
-                            // onChange={handleChange}
+                                name="convucao"
+                                value={values.convucao}
+                                onChange={handleChange}
                             >
-                                <FormControlLabel control={<Radio />} label="Sim" />
-                                <FormControlLabel control={<Radio />} label="Não" />
+                                <FormControlLabel control={<Radio />} label="Sim" value={'true'}
+                                    name="convucao" />
+                                <FormControlLabel control={<Radio />} label="Não" value={'false'}
+                                    name="convucao" />
                             </RadioGroup>
                         </Grid>
                         <Grid item style={{ width: "100%" }} md={12}>
                             <p className={classes.label}>Tem alergia a colirios:</p>
                             <RadioGroup
-                            // value={value}
-                            // onChange={handleChange}
+                                name="alergiaColirio"
+                                value={values.alergiaColirio}
+                                onChange={handleChange}
                             >
-                                <FormControlLabel control={<Radio />} label="Sim" />
-                                <FormControlLabel control={<Radio />} label="Não" />
+                                <FormControlLabel control={<Radio />} label="Sim" value={'true'}
+                                    name="alergiaColirio" />
+                                <FormControlLabel control={<Radio />} label="Não" value={'false'}
+                                    name="alergiaColirio" />
                             </RadioGroup>
                         </Grid>
                         <Grid item style={{ width: "100%" }} md={12}>
                             <p className={classes.label}>Tem doenças no coração:</p>
                             <RadioGroup
-                            // value={value}
-                            // onChange={handleChange}
+                                name="doençasNoCoração"
+                                value={values.doençasNoCoração}
+                                onChange={handleChange}
                             >
-                                <FormControlLabel control={<Radio />} label="Sim" />
-                                <FormControlLabel control={<Radio />} label="Não" />
+                                <FormControlLabel control={<Radio />} label="Sim" value={'true'}
+                                    name="doençasNoCoração" />
+                                <FormControlLabel control={<Radio />} label="Não" value={'false'}
+                                    name="doençasNoCoração" />
                             </RadioGroup>
                         </Grid>
                         <Grid item style={{ width: "100%" }} md={12}>
                             <p className={classes.label}>DNP pupilometro</p>
-                            <TextField className={classes.inputStudent} name="name" onChange={handleChange} variant="outlined" />
+                            <TextField className={classes.inputStudent} name="pupilometro" onChange={handleChange} variant="outlined" />
                         </Grid>
                         <Grid item style={{ width: "100%" }} md={12}>
                             <p className={classes.label}>Refração estática olho direito</p>
-                            <TextField className={classes.inputStudent} name="name" onChange={handleChange} variant="outlined" />
+                            <TextField className={classes.inputStudent} name="olhoDireito" onChange={handleChange} variant="outlined" />
                         </Grid>
                         <Grid item style={{ width: "100%" }} md={12}>
                             <p className={classes.label}>Acuidade visual corrigida olho direito?</p>
@@ -84,7 +97,7 @@ const FormOphthalmologicalPage = () => {
                         </Grid>
                         <Grid item style={{ width: "100%" }} md={12}>
                             <p className={classes.label}>Refração estática olho esquerdo</p>
-                            <TextField className={classes.inputStudent} name="name" onChange={handleChange} variant="outlined" />
+                            <TextField className={classes.inputStudent} value={values.olhoEsquerdo} name="olhoEsquerdo" onChange={handleChange} variant="outlined" />
                         </Grid>
                         <Grid item style={{ width: "100%" }} md={12}>
                             <p className={classes.label}>Acuidade visual corrigida olho esquerdo?</p>

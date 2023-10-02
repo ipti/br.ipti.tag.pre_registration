@@ -1,8 +1,18 @@
 
 const FormOphthalmologicalState = () => {  
 
-    return{
+    const initialValues = {
+        febre: "",
+        convucao: "",
+        alergiaColirio: "",
+        doençasNoCoração: "",
+        pupilometro: "",
+        olhoDireito: "",
+        olhoEsquerdo: ""
+    }
 
+    return{
+        initialValues
     }
 }
 
