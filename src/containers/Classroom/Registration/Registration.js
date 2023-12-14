@@ -11,7 +11,7 @@ import { StageState } from "../context/states";
 const Registration = props => {
 
   const [state, setState] = useState([]);
-  const [loadStates, setLoadStatesF] = useState(true)
+  const [loadStates] = useState(true)
 
   const { classrooms } = StageState()
 

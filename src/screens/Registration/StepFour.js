@@ -13,21 +13,19 @@ import { ButtonPurple } from "../../components/Buttons";
 
 // Third party
 import { Form, Formik } from "formik";
-import MaskedInput from "react-text-mask";
 import * as Yup from "yup";
 
 // Styles
 import styles from "./styles";
 
+import { useRef } from "react";
+import MyInputComponent from "../../components/Mask/maskcpf";
 import ModalExistStudent from "../../components/Modal/ModalExistStudent";
 import { RegistrationContext } from "../../containers/Registration/Context/context";
 import styleBase from "../../styles";
-import { useRef } from "react";
-import { withMask } from "use-mask-input";
-import MyInputComponent from "../../components/Mask/maskcpf";
 
-import MaskDate from "../../components/Mask/maskdate";
 import MaskCpf from "../../components/Mask/maskcpf";
+import MaskDate from "../../components/Mask/maskdate";
 import MaskPhone from "../../components/Mask/maskphone";
 
 
@@ -42,104 +40,7 @@ const PurpleRadio = withStyles({
   checked: {}
 })(props => <Radio color="default" {...props} />);
 
-const TextMaskFone = props => {
-  const inputRef = useRef(null);
 
-  const handleInputClick = () => {
-    if (inputRef.current) {
-      const inputElement = inputRef.current.inputElement;
-      if (inputElement) {
-        inputElement.selectionStart = 0;
-        inputElement.selectionEnd = 0;
-        inputElement.focus();
-      }
-    }
-  };
-
-  return (
-    <MaskedInput
-      {...props}
-      ref={(ref) => {
-        inputRef.current = ref;
-        if (props.inputRef) {
-          props.inputRef(ref);
-        }
-      }}
-      onClick={handleInputClick}
-      placeholderChar={'\u2000'}
-      guide
-      keepCharPositions
-      mask={["(", /[1-9]/, /\d/, ")", " ", /\d/, /\d/, /\d/, /\d/, /\d/, "-", /\d/, /\d/, /\d/, /\d/]}
-      showMask
-    />
-  );
-};
-
-const TextMaskDate = props => {
-  const inputRef = useRef(null);
-
-  const handleInputClick = () => {
-    if (inputRef.current) {
-      const inputElement = inputRef.current.inputElement;
-      if (inputElement) {
-        inputElement.selectionStart = 0;
-        inputElement.selectionEnd = 0;
-        inputElement.focus();
-      }
-    }
-  };
-
-  return (
-    <MaskedInput
-      {...props}
-      ref={(ref) => {
-        inputRef.current = ref;
-        if (props.inputRef) {
-          props.inputRef(ref);
-        }
-      }}
-      onClick={handleInputClick}
-      placeholderChar={'\u2000'}
-      guide
-      keepCharPositions
-      mask={[/\d/, /\d/, "/", /\d/, /\d/, "/", /\d/, /\d/, /\d/, /\d/]}
-      showMask
-    />
-  );
-};
-
-const TextMaskCpf = props => {
-  const inputRef = useRef(null);
-
-  const handleInputClick = () => {
-    if (inputRef.current) {
-      const inputElement = inputRef.current.inputElement;
-      if (inputElement) {
-        inputElement.selectionStart = 0;
-        inputElement.selectionEnd = 0;
-        inputElement.focus();
-      }
-    }
-  };
-
-  return (
-    <MaskedInput
-      {...props}
-      ref={(ref) => {
-        inputRef.current = ref;
-        if (props.inputRef) {
-          props.inputRef(ref);
-        }
-      }}
-      onClick={handleInputClick}
-      placeholderChar={'\u2000'}
-      guide
-      keepCharPositions
-      mask={[/\d/, /\d/, /\d/, ".", /\d/, /\d/, /\d/, ".", /\d/, /\d/, /\d/, "-", /\d/, /\d/]}
-      showMask
-    />
-  );
-};
 
 const StepFour = props => {
   const inputRef = useRef(null);
@@ -233,10 +134,9 @@ const StepFour = props => {
                         inputRef: inputRef,
                         onChange: handleChange,
                       }}
-                      // onBlur={(e) => Isverify(e)}
+                      onBlur={(e) => Isverify(e)}
                       className={classes.textField}
                       autoComplete="off"
-
                     />
                   </FormControl>
                 </Grid>
@@ -330,7 +230,7 @@ const StepFour = props => {
                         value: values.responsable_cpf,
                         onChange: handleChange
                       }}
-                      // onBlur={(e) => Isverifyresponsable(e)}
+                      onBlur={(e) => Isverifyresponsable(e)}
                       className={classes.textField}
                       error={errorList.responsable_cpf}
                       autoComplete="off"

@@ -6,10 +6,10 @@ export const StageContext = createContext({});
 
 const StageContextProvider = ({ children }) => {
 
-    const { classrooms, isLoadingSchools } = StageState();
+    const { classrooms, isLoadingSchools, DeleteClassroom } = StageState();
     
     return (
-        <StageContext.Provider value={{ classrooms, isLoadingSchools }}>
+        <StageContext.Provider value={{ classrooms, isLoadingSchools, DeleteClassroom }}>
             {children}
         </StageContext.Provider>
     )

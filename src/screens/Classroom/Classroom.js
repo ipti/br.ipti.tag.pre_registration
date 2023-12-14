@@ -7,7 +7,7 @@ import Alert from "@material-ui/lab/Alert";
 
 import Select from "react-select";
 
-import { BoxBig, BoxDiscriptionClassroom } from "../../components/Boxes";
+import { BoxDiscriptionClassroom } from "../../components/Boxes";
 import List from "../../components/List";
 
 // Styles
@@ -15,6 +15,7 @@ import { Fab, useMediaQuery } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
+import CardClassroom from "../../components/Cards/Classroom";
 import { StageContext } from "../../containers/Classroom/context/context";
 import { getYearClassRoom, yearClassroom } from "../../services/auth";
 import styleBase from "../../styles";
@@ -33,7 +34,7 @@ const useStyles = makeStyles(theme => styles);
 
 const Classroom = () => {
 
-  const { classrooms: stages } = useContext(StageContext)
+  const { classrooms: stages, DeleteClassroom } = useContext(StageContext)
 
   const matches = useMediaQuery('(max-width:600px)')
 
@@ -56,18 +57,18 @@ const Classroom = () => {
     return stages?.map((stage, index) => {
       return (
         <Grid key={index} item md={4} sm={3} xs={12}>
-          {stage ? <BoxBig
+          {stage ? <CardClassroom
             link={`turmas/${stage.id}`}
             title={stage?.name}
-            addCursor={true}
-            textRight=""
+            id={stage?.id}
+            Delete={DeleteClassroom}
           >
             <BoxDiscriptionClassroom
               title={`Ano: ${stage?.school_year}`}
               pre_registration={stage?.student_pre_identification}
               registrationConfirmed={`${stage?.student_pre_identification.length}`}
             />
-          </BoxBig>
+          </CardClassroom>
           : null}
         </Grid>
       );

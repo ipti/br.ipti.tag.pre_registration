@@ -35,6 +35,32 @@ export const requestCreateClassroom = data => {
     });
 };
 
+export const requestEditClassroom = (data, id) => {
+  return api
+    .put("/classroom/" + id, data)
+    .then(response => response.data)
+    .catch(err => {
+      if (err.response.status === 401) {
+        logout()
+        window.location.reload()
+      }
+      throw err;
+    });
+};
+
+export const requestDeleteClassroom = id => {
+  return api
+    .delete("/classroom/" + id)
+    .then(response => response.data)
+    .catch(err => {
+      if (err.response.status === 401) {
+        logout()
+        window.location.reload()
+      }
+      throw err;
+    });
+};
+
 export const requestDeletePreRegistration = id => {
   return api
     .delete("/student-pre-identification/" + id)
