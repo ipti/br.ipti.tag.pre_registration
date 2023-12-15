@@ -78,6 +78,8 @@ export const requestSaveRegistration = data => {
         logout()
         window.location.reload()
       }
+      alert(err.response.message)
+
       throw err;
     });
 };
@@ -103,6 +105,7 @@ const requestSchoolList = async () => {
       //   logout()
       //   window.location.reload()
       // }
+
       throw err;
     });
 };

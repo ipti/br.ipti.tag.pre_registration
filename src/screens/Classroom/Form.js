@@ -6,22 +6,36 @@ import Alert from "@material-ui/lab/Alert";
 
 // Third party
 
+import {
+  makeStyles
+} from "@material-ui/core/styles";
+
 // Components
 import { BoxRegistration } from "../../components/Boxes";
 import List from "../../components/List";
 
 // Styles
+import { TextField } from "@material-ui/core";
 import { ArrowBack } from "@material-ui/icons";
+import { useState } from "react";
 import { useHistory } from "react-router";
 
+import styles from "./styles";
+
+const useStyles = makeStyles(theme => styles);
+
 const Create = props => {
-
-  const history = useHistory()
-
+  const [open, ] = useState(false)
   const {
     data,
     baseLink,
+    PutClassRooms
   } = props;
+  const [nameClassroom, setNameClassroom] = useState(data && data.name)
+  const classes = useStyles();
+
+  const history = useHistory()
+
 
 
   const registrations = () => {
@@ -45,11 +59,29 @@ const Create = props => {
     });
   };
 
+  console.log(data)
+
   return (
     <>
       <ArrowBack onClick={() => { history.goBack() }} style={{ cursor: "pointer" }} />
-        <h1>{data && data.name}</h1>
-        <h3>Candidatos</h3>
+      <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
+        {!open ? <h1 style={{ margin: 0, padding: 0 }}>{data && data.name}</h1> :
+          <TextField
+            name="name"
+            value={nameClassroom}
+            onChange={(e) => setNameClassroom(e.target.value)}
+            id="outlined-size-small"
+            variant="outlined"
+            onBlur={() => PutClassRooms(data.id, {name: nameClassroom})}
+            required
+            className={classes.textField}
+          />
+        }
+        {/* <div style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
+          <Edit style={{ cursor: "pointer" }} onClick={() => setOpen(!open)} />
+        </div> */}
+      </div>
+      <h3>Candidatos</h3>
       <Grid container direction="row" spacing={4}>
         <List items={registrations()}>
           <Grid item xs={12}>

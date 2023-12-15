@@ -3,10 +3,11 @@ import React from "react";
 import Alert from "@material-ui/lab/Alert";
 import { useMutation } from "react-query";
 import { useHistory } from "react-router";
-import { requestCreateClassroom } from "../../query/classroom";
+import { requestCreateClassroom, requestDeleteClassroom, requestEditClassroom } from "../../query/classroom";
 import { requestCreateStage, requestEditPreIdentification, requestUpdateRegistration } from "../../query/stage";
 import Swal from "sweetalert2";
 import styled from "../../styles"
+import queryClient from "../../services/query";
 
 
 export const Controller = () => {
@@ -28,6 +29,37 @@ export const Controller = () => {
             },
         }
     );
+
+    const requestDeleteClassroomMutation = useMutation(
+        (id) => requestDeleteClassroom(id),
+        {
+            onError: (error) => {
+                Swal(error.response.data.message);
+            },
+            onSuccess: (data) => {
+                queryClient.refetchQueries("useRequestsSchool")
+            },
+        }
+    );
+
+    const requestUpdateClassroomMutation = useMutation(
+        ({ data, id }) => requestEditClassroom(data, id),
+        {
+            onError: (error) => {
+                Swal(error.response.data.message);
+            },
+            onSuccess: (data) => {
+                history.goBack()
+                return (
+                    <Alert>
+                        opoaaa
+                    </Alert>
+                )
+            },
+        }
+    );
+
+
 
     const requestCreateStageMutation = useMutation(
         (data) => requestCreateStage(data),
@@ -91,5 +123,5 @@ export const Controller = () => {
 
 
 
-    return { requestUpdateRegistrationMutation, requestUpdatePreIdentificationMutation, requestCreateStageMutation, requestCreateClassroomMutation }
+    return {requestUpdateClassroomMutation, requestUpdateRegistrationMutation, requestDeleteClassroomMutation, requestUpdatePreIdentificationMutation, requestCreateStageMutation, requestCreateClassroomMutation }
 } 

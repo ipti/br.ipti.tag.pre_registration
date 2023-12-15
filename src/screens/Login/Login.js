@@ -1,15 +1,12 @@
 import Grid from "@material-ui/core/Grid";
-import InputAdornment from "@material-ui/core/InputAdornment";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
-import LockOpen from "@material-ui/icons/LockOpen";
-import PersonOutline from "@material-ui/icons/PersonOutline";
 import { Form, Formik } from "formik";
 import React from "react";
 import { Link } from "react-router-dom";
 
+import TagImage from "../../assets/images/taglogin.svg";
 import { ButtonPurple } from "../../components/Buttons";
-import TagImage from "../../assets/images/taglogin.svg"
 
 import styles from "./styles";
 
@@ -59,13 +56,13 @@ const Login = props => {
                       onChange={props.handleChange}
                       variant="outlined"
                       placeholder="Usuário"
-                      InputProps={{
-                        startAdornment: (
-                          <InputAdornment position="start">
-                            <PersonOutline className={classes.colorIcon} />
-                          </InputAdornment>
-                        )
-                      }}
+                      // InputProps={{
+                      //   startAdornment: (
+                      //     <InputAdornment position="start">
+                      //       <PersonOutline className={classes.colorIcon} />
+                      //     </InputAdornment>
+                      //   )
+                      // }}
                     />
                     <div className={classes.formFieldError}>
                       {props.errors.username}
@@ -79,22 +76,20 @@ const Login = props => {
                   alignItems="center"
                   className={classes.containerMain}
                 >
-                  <Grid item xs={12} className="t-field-text">
+                  <Grid item xs={12}>
                     <TextField
-                      className="t-field-text"
                       name="password"
                       onChange={props.handleChange}
                       variant="outlined"
                       type="password"
                       placeholder="Senha"
-                      InputProps={{
-                        startAdornment: (
-                          <InputAdornment position="start">
-                            <LockOpen className={classes.colorIcon} />
-                          </InputAdornment>
-                        ),
-                        className: "t-field-text__input",
-                      }}
+                      // InputProps={{
+                      //   startAdornment: (
+                      //     <InputAdornment position="start">
+                      //       <LockOpen className={classes.colorIcon} />
+                      //     </InputAdornment>
+                      //   ),
+                      // }}
                     />
                     <div className={classes.formFieldError}>
                       {props.errors.password}

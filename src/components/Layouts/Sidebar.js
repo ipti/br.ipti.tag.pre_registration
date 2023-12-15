@@ -68,6 +68,7 @@ const Sidebar = ({isSidebar}) => {
               <span className={`iconActive ${classes.floatLeft}`}>
                 {IconActive}
               </span>
+
               <span className={classes.span}>{name}</span>
             </Link>
           </li>

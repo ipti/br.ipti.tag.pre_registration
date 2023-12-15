@@ -31,6 +31,37 @@ export const requestCreateClassroom = data => {
         logout()
         window.location.reload()
       }
+      alert(err.response.message)
+      throw err;
+    });
+};
+
+export const requestEditClassroom = (data, id) => {
+  return api
+    .put("/classroom/" + id, data)
+    .then(response => response.data)
+    .catch(err => {
+      if (err.response.status === 401) {
+        logout()
+        window.location.reload()
+      }
+      alert(err.response.message)
+
+      throw err;
+    });
+};
+
+export const requestDeleteClassroom = id => {
+  return api
+    .delete("/classroom/" + id)
+    .then(response => response.data)
+    .catch(err => {
+      if (err.response.status === 401) {
+        logout()
+        window.location.reload()
+      }
+      alert(err.response.message)
+
       throw err;
     });
 };
@@ -44,6 +75,8 @@ export const requestDeletePreRegistration = id => {
         logout()
         window.location.reload()
       }
+      alert(err.response.message)
+
       throw err;
     });
 };

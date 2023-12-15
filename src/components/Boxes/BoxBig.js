@@ -4,10 +4,11 @@ import ImgSchool from "../../assets/images/school-icon.png";
 import { Link } from "react-router-dom";
 import styles from "./styles";
 import { Clear } from "@material-ui/icons";
+import { Tooltip } from "@material-ui/core";
 const useStyles = makeStyles(styles);
 
 const BoxBig = props => {
-  const { children, title, subtitle, textRight, link } = props;
+  const { children, title, textRight, link } = props;
   const classes = useStyles();
 
   const headWithImage = () => (
@@ -26,15 +27,16 @@ const BoxBig = props => {
   const headWithoutImage = () => (
     <div className={classes.boxWithoutImage}>
       {!textRight && (
-        <>
+        <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
           <div className={classes.title} title={title}>{title}</div>
-          <div className={classes.title} title={subtitle}>{subtitle}</div>
-        </>
+          <Tooltip title={"Excluir"}>
+            <Clear className={`${classes.floatRight} ${classes.iconDelete}`} onClick={(e) => { e.stopPropagation(); alert("erro"); console.log(props.id); props.delete(props.id) }} />
+          </Tooltip>
+        </div>
       )}
       {textRight && (
         <>
           <span className={classes.title}>{title}</span>
-          
           <Clear className={`${classes.floatRight} ${classes.iconDelete}`} onClick={() => props.deleteSchedule(props.id)} />
         </>
       )}

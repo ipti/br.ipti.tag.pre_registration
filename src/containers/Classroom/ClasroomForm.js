@@ -8,7 +8,7 @@ import { StageFormState } from "./context/stateStageForm";
 const Form = props => {
 
 
-  const { classroom, isLoading, isError } = StageFormState()
+  const { classroom, isLoading, isError, PutClassRooms } = StageFormState()
 
   const alert = () => {
 
@@ -46,6 +46,7 @@ const Form = props => {
             baseLink={`/turmas/${props.match.params.id}/matricula`}
             loadingIcon={props?.loading}
             data={classroom}
+            PutClassRooms={PutClassRooms}
           />
           {alert()}
         </>

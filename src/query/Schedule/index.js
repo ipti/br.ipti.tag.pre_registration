@@ -58,6 +58,8 @@ export const requestDeleteSchedule = id => {
         logout()
         window.location.reload()
       }
+      alert(err.response.message)
+
       throw err;
     });
 };
@@ -96,6 +98,8 @@ export const requestSaveEventPre = data => {
         logout()
         window.location.reload()
       }
+      alert(err.response.message)
+
       throw err;
     });
 };

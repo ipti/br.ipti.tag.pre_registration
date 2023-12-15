@@ -13,18 +13,21 @@ import { ButtonPurple } from "../../components/Buttons";
 
 // Third party
 import { Form, Formik } from "formik";
-import MaskedInput from "react-text-mask";
 import * as Yup from "yup";
 
 // Styles
 import styles from "./styles";
 
+import { useRef } from "react";
+import MyInputComponent from "../../components/Mask/maskcpf";
 import ModalExistStudent from "../../components/Modal/ModalExistStudent";
 import { RegistrationContext } from "../../containers/Registration/Context/context";
 import styleBase from "../../styles";
-import { useRef } from "react";
-import { withMask } from "use-mask-input";
-import MyInputComponent from "../../components/Mask/maskcpf";
+
+import MaskCpf from "../../components/Mask/maskcpf";
+import MaskDate from "../../components/Mask/maskdate";
+import MaskPhone from "../../components/Mask/maskphone";
+
 
 import MaskDate from "../../components/Mask/maskdate";
 import MaskCpf from "../../components/Mask/maskcpf";
@@ -42,111 +45,14 @@ const PurpleRadio = withStyles({
   checked: {}
 })(props => <Radio color="default" {...props} />);
 
-const TextMaskFone = props => {
-  const inputRef = useRef(null);
 
-  const handleInputClick = () => {
-    if (inputRef.current) {
-      const inputElement = inputRef.current.inputElement;
-      if (inputElement) {
-        inputElement.selectionStart = 0;
-        inputElement.selectionEnd = 0;
-        inputElement.focus();
-      }
-    }
-  };
-
-  return (
-    <MaskedInput
-      {...props}
-      ref={(ref) => {
-        inputRef.current = ref;
-        if (props.inputRef) {
-          props.inputRef(ref);
-        }
-      }}
-      onClick={handleInputClick}
-      placeholderChar={'\u2000'}
-      guide
-      keepCharPositions
-      mask={["(", /[1-9]/, /\d/, ")", " ", /\d/, /\d/, /\d/, /\d/, /\d/, "-", /\d/, /\d/, /\d/, /\d/]}
-      showMask
-    />
-  );
-};
-
-const TextMaskDate = props => {
-  const inputRef = useRef(null);
-
-  const handleInputClick = () => {
-    if (inputRef.current) {
-      const inputElement = inputRef.current.inputElement;
-      if (inputElement) {
-        inputElement.selectionStart = 0;
-        inputElement.selectionEnd = 0;
-        inputElement.focus();
-      }
-    }
-  };
-
-  return (
-    <MaskedInput
-      {...props}
-      ref={(ref) => {
-        inputRef.current = ref;
-        if (props.inputRef) {
-          props.inputRef(ref);
-        }
-      }}
-      onClick={handleInputClick}
-      placeholderChar={'\u2000'}
-      guide
-      keepCharPositions
-      mask={[/\d/, /\d/, "/", /\d/, /\d/, "/", /\d/, /\d/, /\d/, /\d/]}
-      showMask
-    />
-  );
-};
-
-const TextMaskCpf = props => {
-  const inputRef = useRef(null);
-
-  const handleInputClick = () => {
-    if (inputRef.current) {
-      const inputElement = inputRef.current.inputElement;
-      if (inputElement) {
-        inputElement.selectionStart = 0;
-        inputElement.selectionEnd = 0;
-        inputElement.focus();
-      }
-    }
-  };
-
-  return (
-    <MaskedInput
-      {...props}
-      ref={(ref) => {
-        inputRef.current = ref;
-        if (props.inputRef) {
-          props.inputRef(ref);
-        }
-      }}
-      onClick={handleInputClick}
-      placeholderChar={'\u2000'}
-      guide
-      keepCharPositions
-      mask={[/\d/, /\d/, /\d/, ".", /\d/, /\d/, /\d/, ".", /\d/, /\d/, /\d/, "-", /\d/, /\d/]}
-      showMask
-    />
-  );
-};
 
 const StepFour = props => {
   const inputRef = useRef(null);
   const classes = useStyles();
   const { school, quiz } = useContext(RegistrationContext)
-  const [student, setStudent] = useState([])
-  const [studentResponsable, setStudentResponsable] = useState([])
+  const [student, ] = useState([])
+  const [studentResponsable, ] = useState([])
   const [openModalCPF, setOpenModalCPF] = useState(false)
   const [openModalCPFResponsable, setOpenModalCPFResponsable] = useState(false)
 
@@ -169,25 +75,25 @@ const StepFour = props => {
     cpf: props?.values?.cpf ?? ''
   };
 
-  const Isverify = (e) => {
-    var cpf = e.target.value.replace(/\D/g, '');
-    var isValid = cpf ? school.student_documents_and_address.filter(x => (cpf === x.cpf) && (x.received_responsable_cpf === false)) : [];
+  // const Isverify = (e) => {
+  //   var cpf = e.target.value.replace(/\D/g, '');
+  //   var isValid = cpf ? school.student_documents_and_address.filter(x => (cpf === x.cpf) && (x.received_responsable_cpf === false)) : [];
 
-    if (isValid.length !== 0) {
-      setStudent(isValid);
-      setOpenModalCPF(true)
-    }
-  }
+  //   if (isValid.length !== 0) {
+  //     setStudent(isValid);
+  //     setOpenModalCPF(true)
+  //   }
+  // }
 
-  const Isverifyresponsable = (e) => {
-    var cpf = e.target.value.replace(/\D/g, '');
-    var isValid = cpf ? school.student_documents_and_address.filter(x => (cpf === x.cpf) && (x.received_responsable_cpf === true)) : [];
+  // const Isverifyresponsable = (e) => {
+  //   var cpf = e.target.value.replace(/\D/g, '');
+  //   var isValid = cpf ? school.student_documents_and_address.filter(x => (cpf === x.cpf) && (x.received_responsable_cpf === true)) : [];
 
-    if (isValid.length !== 0) {
-      setOpenModalCPFResponsable(true)
-      setStudentResponsable(isValid);
-    }
-  }
+  //   if (isValid.length !== 0) {
+  //     setOpenModalCPFResponsable(true)
+  //     setStudentResponsable(isValid);
+  //   }
+  // }
 
   return (
     <>
@@ -236,7 +142,6 @@ const StepFour = props => {
                       // onBlur={(e) => Isverify(e)}
                       className={classes.textField}
                       autoComplete="off"
-
                     />
                   </FormControl>
                 </Grid>
