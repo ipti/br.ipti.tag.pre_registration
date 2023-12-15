@@ -31,6 +31,7 @@ export const requestCreateClassroom = data => {
         logout()
         window.location.reload()
       }
+      alert(err.response.message)
       throw err;
     });
 };
@@ -44,6 +45,8 @@ export const requestEditClassroom = (data, id) => {
         logout()
         window.location.reload()
       }
+      alert(err.response.message)
+
       throw err;
     });
 };
@@ -57,6 +60,8 @@ export const requestDeleteClassroom = id => {
         logout()
         window.location.reload()
       }
+      alert(err.response.message)
+
       throw err;
     });
 };
@@ -70,6 +75,8 @@ export const requestDeletePreRegistration = id => {
         logout()
         window.location.reload()
       }
+      alert(err.response.message)
+
       throw err;
     });
 };

@@ -37,8 +37,8 @@ const PurpleRadio = withStyles({
 
 const StepSix = props => {
   const classes = useStyles();
-  const [student, setStudent] = useState([])
-  const [openModal, setOpenModal] = useState(false)
+  const [student,] = useState([])
+  const [openModal,] = useState(false)
 
   const { school, quiz } = useContext(RegistrationContext)
 
@@ -58,15 +58,15 @@ const StepSix = props => {
     zone: props?.values?.zone ?? ''
   };
 
-  const Isverify = (e) => {
-    var cpf = e.target.value.replace(/\D/g, '');
-    var isValid = cpf ? school.student_documents_and_address.filter(x => (cpf === x.cpf) && (x.received_responsable_cpf === false)) : [];
+  // const Isverify = (e) => {
+  //   var cpf = e.target.value.replace(/\D/g, '');
+  //   var isValid = cpf ? school.student_documents_and_address.filter(x => (cpf === x.cpf) && (x.received_responsable_cpf === false)) : [];
 
-    if (isValid.length !== 0) {
-      setStudent(isValid);
-      setOpenModal(true)
-    }
-  }
+  //   if (isValid.length !== 0) {
+  //     setStudent(isValid);
+  //     setOpenModal(true)
+  //   }
+  // }
 
 
   return (
@@ -112,7 +112,7 @@ const StepSix = props => {
                         value: values.cpf,
                         onChange: handleChange
                       }}
-                      onBlur={(e) => Isverify(e)}
+                      // onBlur={(e) => Isverify(e)}
                       error={errorList.cpf}
                       className={classes.textField}
                       autoComplete="off"

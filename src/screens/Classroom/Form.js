@@ -15,17 +15,17 @@ import { BoxRegistration } from "../../components/Boxes";
 import List from "../../components/List";
 
 // Styles
-import { ArrowBack, Edit } from "@material-ui/icons";
-import { useHistory } from "react-router";
-import { useState } from "react";
 import { TextField } from "@material-ui/core";
+import { ArrowBack } from "@material-ui/icons";
+import { useState } from "react";
+import { useHistory } from "react-router";
 
 import styles from "./styles";
 
 const useStyles = makeStyles(theme => styles);
 
 const Create = props => {
-  const [open, setOpen] = useState(false)
+  const [open, ] = useState(false)
   const {
     data,
     baseLink,
@@ -77,9 +77,9 @@ const Create = props => {
             className={classes.textField}
           />
         }
-        <div style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
+        {/* <div style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
           <Edit style={{ cursor: "pointer" }} onClick={() => setOpen(!open)} />
-        </div>
+        </div> */}
       </div>
       <h3>Candidatos</h3>
       <Grid container direction="row" spacing={4}>

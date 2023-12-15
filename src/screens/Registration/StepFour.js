@@ -46,8 +46,8 @@ const StepFour = props => {
   const inputRef = useRef(null);
   const classes = useStyles();
   const { school, quiz } = useContext(RegistrationContext)
-  const [student, setStudent] = useState([])
-  const [studentResponsable, setStudentResponsable] = useState([])
+  const [student, ] = useState([])
+  const [studentResponsable, ] = useState([])
   const [openModalCPF, setOpenModalCPF] = useState(false)
   const [openModalCPFResponsable, setOpenModalCPFResponsable] = useState(false)
 
@@ -70,25 +70,25 @@ const StepFour = props => {
     cpf: props?.values?.cpf ?? ''
   };
 
-  const Isverify = (e) => {
-    var cpf = e.target.value.replace(/\D/g, '');
-    var isValid = cpf ? school.student_documents_and_address.filter(x => (cpf === x.cpf) && (x.received_responsable_cpf === false)) : [];
+  // const Isverify = (e) => {
+  //   var cpf = e.target.value.replace(/\D/g, '');
+  //   var isValid = cpf ? school.student_documents_and_address.filter(x => (cpf === x.cpf) && (x.received_responsable_cpf === false)) : [];
 
-    if (isValid.length !== 0) {
-      setStudent(isValid);
-      setOpenModalCPF(true)
-    }
-  }
+  //   if (isValid.length !== 0) {
+  //     setStudent(isValid);
+  //     setOpenModalCPF(true)
+  //   }
+  // }
 
-  const Isverifyresponsable = (e) => {
-    var cpf = e.target.value.replace(/\D/g, '');
-    var isValid = cpf ? school.student_documents_and_address.filter(x => (cpf === x.cpf) && (x.received_responsable_cpf === true)) : [];
+  // const Isverifyresponsable = (e) => {
+  //   var cpf = e.target.value.replace(/\D/g, '');
+  //   var isValid = cpf ? school.student_documents_and_address.filter(x => (cpf === x.cpf) && (x.received_responsable_cpf === true)) : [];
 
-    if (isValid.length !== 0) {
-      setOpenModalCPFResponsable(true)
-      setStudentResponsable(isValid);
-    }
-  }
+  //   if (isValid.length !== 0) {
+  //     setOpenModalCPFResponsable(true)
+  //     setStudentResponsable(isValid);
+  //   }
+  // }
 
   return (
     <>
@@ -134,7 +134,7 @@ const StepFour = props => {
                         inputRef: inputRef,
                         onChange: handleChange,
                       }}
-                      onBlur={(e) => Isverify(e)}
+                      // onBlur={(e) => Isverify(e)}
                       className={classes.textField}
                       autoComplete="off"
                     />
@@ -230,7 +230,7 @@ const StepFour = props => {
                         value: values.responsable_cpf,
                         onChange: handleChange
                       }}
-                      onBlur={(e) => Isverifyresponsable(e)}
+                      // onBlur={(e) => Isverifyresponsable(e)}
                       className={classes.textField}
                       error={errorList.responsable_cpf}
                       autoComplete="off"

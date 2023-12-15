@@ -80,6 +80,8 @@ export const requestSaveClassroom = data => {
         logout()
         window.location.reload()
       }
+      alert(err.response.message)
+
       throw err;
     });
 };
@@ -93,6 +95,8 @@ export const requestEditPreIdentification = (data, id) => {
         logout()
         window.location.reload()
       }
+      alert(err.response.message)
+
       throw err;
     });
 };
@@ -106,6 +110,8 @@ export const requestCreateStage = (data) => {
         logout()
         window.location.reload()
       }
+      alert(err.response.message)
+
       throw err;
     });
 };
@@ -120,6 +126,8 @@ export const requestUpdateRegistration = (data, id) => {
           logout()
           window.location.reload()
         }
+        alert(err.response.message)
+
         throw err;
       });
   } else {
@@ -131,6 +139,8 @@ export const requestUpdateRegistration = (data, id) => {
           logout()
           window.location.reload()
         }
+        alert(err.response.message)
+
         throw err;
       });
   }
