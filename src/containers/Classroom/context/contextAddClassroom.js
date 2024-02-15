@@ -9,6 +9,7 @@ const StageContextProvider = ({ children }) => {
     const [initial_minute, setInitial_min] = useState('00');
     const [final_hour, setFinal_hour] = useState('12');
     const [final_minute, setFinal_min] = useState('00');
+    const calendar = new Date(Date.now()).getFullYear()
     
     const initialValue = {
         name: '',
@@ -24,7 +25,7 @@ const StageContextProvider = ({ children }) => {
         week_days_friday: false,
         week_days_saturday: false,
         assistance_type: 0,
-        school_year: 2023,
+        school_year: calendar ,
         school_identification: getIdSchool()
     }
 
