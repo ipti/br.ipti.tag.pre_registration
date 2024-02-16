@@ -37,6 +37,7 @@ export const Controller = () => {
                 Swal(error.response.data.message);
             },
             onSuccess: (data) => {
+                
                 queryClient.refetchQueries("useRequestsSchool")
             },
         }
