@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 import api from "../../services/api";
-import { logout } from "../../services/auth";
+import { getYearClassRoom, logout } from "../../services/auth";
 
 
 // Request student identification
@@ -11,7 +11,7 @@ const requestStudent = async id => {
         params: {
           include: {
             edcenso_uf: true,
-            school_identification: { include: { student_documents_and_address: { where: { student_fk: id } }, classroom: { where: { school_year: 2023 } }, event_pre_registration: true } }
+            school_identification: { include: { student_documents_and_address: { where: { student_fk: id } }, classroom: { where: { school_year: 2024 } }, event_pre_registration: true } }
             // student_documents_and_address: true
 
           }
@@ -87,28 +87,32 @@ export const requestSaveRegistration = data => {
 
 // request all school
 const requestSchoolList = async () => {
-  return await api
-    .get("/student-pre-identify/school", {
-      params: {
-        include: {
-          classroom: { where: { school_year: 2023 } },
-          calendar_event: true,
-          event_pre_registration: true,
-          // student_documents_and_address: true,
-          // student_identification: true
+console.log(getYearClassRoom())
+  if (getYearClassRoom()) {
+    var year = parseInt(getYearClassRoom())
+    return await api
+      .get("/student-pre-identify/school", {
+        params: {
+          include: {
+            classroom: { where: { school_year: year } },
+            calendar_event: true,
+            event_pre_registration: true,
+            // student_documents_and_address: true,
+            // student_identification: true
+          }
         }
-      }
-    })
-    .then(response => response.data)
-    .catch(err => {
-      // if(err.response.status === 401){
-      //   logout()
-      //   window.location.reload()
-      // }
+      })
+      .then(response => response.data)
+      .catch(err => {
+        // if(err.response.status === 401){
+        //   logout()
+        //   window.location.reload()
+        // }
 
-      throw err;
-    });
-};
+        throw err;
+      });
+  };
+}
 
 const requestSchool = async id => {
   return await api

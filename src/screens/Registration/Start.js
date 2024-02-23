@@ -39,7 +39,7 @@ const Start = props => {
   const onButton = () => {
     if (startDate <= date.getTime() && date.getTime() <= (endDate + 87000000) && idEvent !== '') {
       props.setIsActive(true)
-      props.next('1', { school_identification: school.inep_id, event_pre_registration: idEvent })
+      props.next('2', { school_identification: school.inep_id, event_pre_registration: idEvent })
     } else {
       props.setIsActive(false)
     }

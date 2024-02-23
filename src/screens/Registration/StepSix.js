@@ -73,7 +73,7 @@ const StepSix = props => {
     <>
       <Formik
         initialValues={initialValues}
-        onSubmit={values => quiz.length > 0 ? props.next(5, values) : props.next(6, values)}
+        onSubmit={values => quiz.length > 0 ? props.next(6, values) : props.next(7, values)}
         validationSchema={validationSchema}
         validateOnChange={false}
         enableReinitialize

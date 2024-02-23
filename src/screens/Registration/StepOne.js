@@ -30,7 +30,7 @@ const Student = props => {
       <Grid className={`${classes.marginTop} ${classes.marginButtom}`} container justifyContent="center" alignItems="center" >
         <Grid className={classes.marginLeftButton} item xs={4}>
           <ButtonLinePurple
-            onClick={() => props.next(3)}
+            onClick={() => props.next(4)}
             type="button"
             title="Iniciar"
             className="t-button-primary"
