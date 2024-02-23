@@ -14,6 +14,7 @@ import StepFour from "./StepFour";
 import StepOne from "./StepOne";
 import StepSix from "./StepSix";
 import StepThree from "./StepThree";
+import ChoiceYear from "./ChoiceYear";
 
 
 const Wizard = props => {
@@ -25,13 +26,14 @@ const Wizard = props => {
   const { isOfLegalAge } = useContext(RegistrationContext);
   
   const componentMapping = {
-    "0": Start,
-    "1": Classroom,
-    "2": StepOne,
-    "3": StepThree,
-    "4": isOfLegalAge === '1' ? StepFour : StepSix,
-    "5": Quiz,
-    "6": Finish
+    "0": ChoiceYear,
+    "1": Start,
+    "2": Classroom,
+    "3": StepOne,
+    "4": StepThree,
+    "5": isOfLegalAge === '1' ? StepFour : StepSix,
+    "6": Quiz,
+    "7": Finish
   };
 
   const StepComponent = componentMapping[props.step];

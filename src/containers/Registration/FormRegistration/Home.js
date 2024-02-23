@@ -57,7 +57,7 @@ const Home = props => {
 
 
   const next = (step, values) => {
-
+    console.log(step)
     let data = Object.assign(dataValues, values);
 
     setDataValues(data);
