@@ -126,7 +126,7 @@ const Header = ({ setIsSidebar, isSidebar }) => {
               window.location.reload()
 
             }}
-            defaultValue={schoolRequest.find(x => x.inep_id === getIdSchool())}
+            defaultValue={schoolRequest?.find(x => x.inep_id === getIdSchool())}
             getOptionValue={opt => opt.inep_id}
             getOptionLabel={opt => opt.inep_id + " - " + opt.name}
           />  </Grid> : <div style={{ margin: "auto" }}><CircularProgress /></div>}
