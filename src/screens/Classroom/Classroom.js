@@ -51,7 +51,9 @@ const Classroom = () => {
     id: i
   }));
 
-  const year_classrrom = [{ year: "Todos", id: 11 }, ...yearArray];
+  const year_classrrom = [...yearArray];
+
+
 
   const stage = () => {
     return stages?.map((stage, index) => {
@@ -75,6 +77,10 @@ const Classroom = () => {
     });
   };
 
+  const getYearValue = () => {
+    return year_classrrom.find(props => props.year === parseInt(getYearClassRoom()))
+  }
+
   return (
     <div style={{ position: "relative" }}>
       <Grid container direction="row">
@@ -90,7 +96,7 @@ const Classroom = () => {
                 classNamePrefix="select"
                 placeholder="Digite o ano"
                 options={year_classrrom}
-                defaultValue={getYearClassRoom()}
+                defaultValue={getYearValue()}
                 onChange={selectedOption => {
                   if (selectedOption.year === 'Todos') {
                     yearClassroom('');

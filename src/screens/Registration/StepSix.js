@@ -83,10 +83,7 @@ const StepSix = props => {
 
 
   const validationSchema = Yup.object().shape({
-    cpf: Yup.string().test('cpf-valido', 'CPF inválido', (value) => {
-      if (!value) return false;
-      return validaCPF(value);
-  }).required('Campo obrigatório!'),
+    cpf: Yup.string().required('Campo obrigatório!'),
     birthday: Yup.string().required("Campo obrigatório!"),
     sex: Yup.number().required("Campo obrigatório!"),
     responsable_telephone: Yup.string().required("Campo obrigatório!"),
@@ -117,7 +114,7 @@ const StepSix = props => {
     <>
       <Formik
         initialValues={initialValues}
-        onSubmit={values => quiz.length > 0 ? props.next(6, values) : props.next(7, values)}
+        onSubmit={values => quiz.length > 0 ? props.next(6, values) : props.next(6, values)}
         validationSchema={validationSchema}
         validateOnChange={false}
         enableReinitialize
@@ -161,7 +158,7 @@ const StepSix = props => {
                       className={classes.textField}
                       autoComplete="off"
                     />
-                    <FormHelperText>{errorList.cpf}</FormHelperText>
+                    <FormHelperText>{errorList.cpf}{!validaCPF(values.cpf) && values.cpf.length > 0  ? "CPF invalido" : null}</FormHelperText>
                   </FormControl>
                 </Grid>
               </Grid>

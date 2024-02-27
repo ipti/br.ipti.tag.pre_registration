@@ -68,7 +68,7 @@ const Home = props => {
   const backStep = () => {
     if (step > 0) {
       if (step === 6 && (quiz.length === 0)) {
-        setStep(step - 2)
+        setStep(step - 1)
       } else {
         setStep(step - 1)
       }

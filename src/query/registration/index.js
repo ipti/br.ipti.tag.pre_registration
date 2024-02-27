@@ -94,7 +94,7 @@ console.log(getYearClassRoom())
       .get("/student-pre-identify/school", {
         params: {
           include: {
-            classroom: { where: { school_year: year } },
+            classroom: { where: { school_year: year ?? 2024 } },
             calendar_event: true,
             event_pre_registration: true,
             // student_documents_and_address: true,

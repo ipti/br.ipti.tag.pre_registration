@@ -6,15 +6,14 @@ import Grid from "@material-ui/core/Grid";
 // Components
 import { useContext } from "react";
 import { RegistrationContext } from "../../containers/Registration/Context/context";
+import ChoiceYear from "./ChoiceYear";
 import Classroom from "./ClassRoom";
 import Finish from "./Finish";
-import Quiz from "./Quiz";
 import Start from "./Start";
 import StepFour from "./StepFour";
 import StepOne from "./StepOne";
 import StepSix from "./StepSix";
 import StepThree from "./StepThree";
-import ChoiceYear from "./ChoiceYear";
 
 
 const Wizard = props => {
@@ -32,8 +31,8 @@ const Wizard = props => {
     "3": StepOne,
     "4": StepThree,
     "5": isOfLegalAge === '1' ? StepFour : StepSix,
-    "6": Quiz,
-    "7": Finish
+    // "6": Quiz,
+    "6": Finish
   };
 
   const StepComponent = componentMapping[props.step];

@@ -91,14 +91,11 @@ const StepFour = props => {
 
   const validationSchema = Yup.object().shape({
     responsable_name: Yup.string().required("Campo obrigatório!"),
-    responsable_cpf: Yup.string().test('cpf-valido', 'CPF inválido', (value) => {
-      if (!value) return false;
-      return validaCPF(value);
-    }).required('Campo obrigatório!'),
+    responsable_cpf: Yup.string().required('Campo obrigatório!'),
     responsable_telephone: Yup.string().required("Campo obrigatório!"),
     birthday: Yup.string().required("Campo obrigatório!"),
     sex: Yup.number().required("Campo obrigatório!"),
-    zone: Yup.number().required("Campo obrigatório!")
+    zone: Yup.number().required("Campo obrigatório!"),
   });
 
   const initialValues = {
@@ -137,7 +134,7 @@ const StepFour = props => {
     <>
       <Formik
         initialValues={initialValues}
-        onSubmit={values => quiz.length > 0 ? props.next(6, values) : props.next(7, values)}
+        onSubmit={values => quiz.length > 0 ? props.next(6, values) : props.next(6, values)}
         validationSchema={validationSchema}
         validateOnChange={false}
         enableReinitialize
@@ -181,7 +178,7 @@ const StepFour = props => {
                       className={classes.textField}
                       autoComplete="off"
                     />
-                    <FormHelperText>{validaCPF(values.cpf) ? null : "CPF invalido"}</FormHelperText>
+                    <FormHelperText>{!validaCPF(values.cpf) && values.cpf.length > 0  ? "CPF invalido" : null}</FormHelperText>
                   </FormControl>
                 </Grid>
               </Grid>
@@ -279,7 +276,7 @@ const StepFour = props => {
                       error={errorList.responsable_cpf}
                       autoComplete="off"
                     />
-                    <FormHelperText>{errorList.responsable_cpf}{validaCPF(values.responsable_cpf) ? null : "CPF invalido"}</FormHelperText>
+                    <FormHelperText>{errorList.responsable_cpf}{!validaCPF(values.cpf) && values.cpf.length > 0 ?  "CPF invalido" : null}</FormHelperText>
                   </FormControl>
                 </Grid>
               </Grid>

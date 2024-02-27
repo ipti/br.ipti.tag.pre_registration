@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import * as Yup from "yup";
 import Login from "../../screens/Login/Login";
 import api from "../../services/api";
-import { idSchool, login } from "../../services/auth";
+import { idSchool, login, yearClassroom } from "../../services/auth";
 
 const SignIn = () => {
   const [isValid, setValid] = useState(true);
@@ -19,6 +19,7 @@ const SignIn = () => {
         if (response.data.user.schools[0]) {
           idSchool(response.data.user.schools[0].inep_id)
         }
+        yearClassroom(2024)
         login(response.data.access_token);
         history.push("/");
       } else {
