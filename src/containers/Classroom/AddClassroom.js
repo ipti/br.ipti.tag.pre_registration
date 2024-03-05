@@ -48,6 +48,7 @@ const CreateClassroom = props => {
   const handleSubmit = values => {
     requestCreateClassroomMutation.mutate(
       {...values, 
+        school_year: parseInt(values.school_year),
         initial_hour: `${values.initial_hour}`.padStart(2), 
         initial_min: `${values.initial_minute}`.padStart(2),
         final_hour: `${values.final_hour}`.padStart(2),

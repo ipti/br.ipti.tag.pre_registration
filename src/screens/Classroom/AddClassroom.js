@@ -107,6 +107,35 @@ const Create = props => {
                 <Grid item md={12} sm={12}>
                   <Grid
                     container
+                    direction="row"
+                    alignItems="center"
+                    spacing={2}
+                  >
+                    <Grid item md={5} sm={5}>
+                      <FormControl
+                        component="fieldset"
+                        className={classes.formControl}
+                      >
+                        <FormLabel>Ano*</FormLabel>
+                        <TextField
+                          name="school_year"
+                          value={props.values.school_year}
+                          onChange={props.handleChange}
+                          id="outlined-size-small"
+                          variant="outlined"
+                          required
+                          className={classes.textField}
+                        />
+                        <div className={classes.formFieldError}>
+                          {props.errors.school_year}
+                        </div>
+                      </FormControl>
+                    </Grid>
+                  </Grid>
+                </Grid>
+                <Grid item md={12} sm={12}>
+                  <Grid
+                    container
                     direction="column"
                     //alignItems="center"
                     spacing={2}
