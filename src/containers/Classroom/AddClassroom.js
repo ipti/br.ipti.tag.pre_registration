@@ -48,10 +48,10 @@ const CreateClassroom = props => {
   const handleSubmit = values => {
     requestCreateClassroomMutation.mutate(
       {...values, 
-        initial_hour: `${values.initial_hour}`, 
-        initial_min: `${values.initial_minute}`,
-        final_hour: `${values.final_hour}`,
-        final_min: `${values.final_minute}`
+        initial_hour: `${values.initial_hour}`.padStart(2), 
+        initial_min: `${values.initial_minute}`.padStart(2),
+        final_hour: `${values.final_hour}`.padStart(2),
+        final_min: `${values.final_minute}`.padStart(2)
       })
   };
 
