@@ -10,7 +10,7 @@ const CreateClassroom = props => {
   const [allSchool, setAllSchool] = useState(false);
   const [open, setOpen] = useState(false);
   const { data } = useFetchRequestStagevsmodality()
-  const {requestCreateClassroomMutation} = Controller()
+  const { requestCreateClassroomMutation } = Controller()
 
   const handleClose = () => {
     setOpen(false);
@@ -46,13 +46,15 @@ const CreateClassroom = props => {
   };
 
   const handleSubmit = values => {
+    console.log(values);
     requestCreateClassroomMutation.mutate(
-      {...values, 
+      {
+        ...values,
         school_year: parseInt(values.school_year),
-        initial_hour: `${values.initial_hour}`.padStart(2), 
-        initial_min: `${values.initial_minute}`.padStart(2),
-        final_hour: `${values.final_hour}`.padStart(2),
-        final_min: `${values.final_minute}`.padStart(2)
+        initial_hour: `${values.initial_hour}`.padStart(2, "0"),
+        initial_minute: `${values.initial_minute}`.padStart(2, "0"),
+        final_hour: `${values.final_hour}`.padStart(2, "0"),
+        final_minute: `${values.final_minute}`.padStart(2, "0")
       })
   };
 
@@ -64,7 +66,7 @@ const CreateClassroom = props => {
       ) : (
         <StageContextProvider>
           <Create
-           // validationSchema={validationSchema}
+            // validationSchema={validationSchema}
             stages={data}
             handleSubmit={handleSubmit}
             allSchool={allSchool}
